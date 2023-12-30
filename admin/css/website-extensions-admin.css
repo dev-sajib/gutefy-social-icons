@@ -2,3 +2,7 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+ .gutefy-social__url {
+        border: transparent !important;
+         padding: 5px !important;
+ }
