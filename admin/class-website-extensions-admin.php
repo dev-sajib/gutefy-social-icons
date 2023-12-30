@@ -20,7 +20,8 @@
  * @subpackage Website_Extensions/admin
  * @author     Gutefy <gutefy.2023@gmail.com>
  */
-class Website_Extensions_Admin {
+class Website_Extensions_Admin
+{
 
 	/**
 	 * The ID of this plugin.
@@ -47,34 +48,27 @@ class Website_Extensions_Admin {
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct($plugin_name, $version)
+	{
+		require_once plugin_dir_path(__FILE__) . 'module-social-icon/class-social-icon-extensions.php';
 
+		$this->register_elements();
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
 	}
-
+	public function register_elements()
+	{
+		new Class_social_icon_extensions();
+	}
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Website_Extensions_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Website_Extensions_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/website-extensions-admin.css', array(), $this->version, 'all' );
-
+	public function enqueue_styles()
+	{
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/website-extensions-admin.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -82,22 +76,9 @@ class Website_Extensions_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Website_Extensions_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Website_Extensions_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/website-extensions-admin.js', array( 'jquery' ), $this->version, false );
-
+	public function enqueue_scripts()
+	{
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/website-extensions-admin.js', array('jquery'), $this->version, false);
 	}
 
 }

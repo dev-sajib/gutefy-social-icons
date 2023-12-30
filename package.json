@@ -1,0 +1,21 @@
+{
+  "name": "website-extensions",
+  "version": "1.0.0",
+  "description": "Extend wordpress website functionality",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx gulp watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss:compile": "node-sass --output-style compressed -o ./public/view-social-icon/ ./public/view-social-icon/view-social-icon.scss"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-sass": "^5.1.0",
+    "node-sass": "^9.0.0",
+    "sass": "^1.69.6"
+  }
+}
