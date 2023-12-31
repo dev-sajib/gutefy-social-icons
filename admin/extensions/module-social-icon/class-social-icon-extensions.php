@@ -28,8 +28,56 @@ class Class_social_icon_extensions
                                 'panel' => 'gutefy-core-panel',
                         )
                 );
+
                 $this->socialHandellar($wp_customize);
+
+
+                // Add color control
+                $wp_customize->add_setting(
+                        "gutefy_social_color",
+                        array(
+                                'default' => '#000000',
+                                'transport' => 'refresh',
+                        )
+                );
+
+                $wp_customize->add_control(
+                        new WP_Customize_Color_Control(
+                                $wp_customize,
+                                "gutefy_social_color",
+                                array(
+                                        'label' => __('Icon Color', 'gutefy-social-icons'),
+                                        'section' => 'gutefy-core-section',
+                                        'settings' => "gutefy_social_color",
+                                        'priority' => 31,
+                                )
+                        )
+                );
+
+                // Add background color control
+                $wp_customize->add_setting(
+                        "gutefy_social_bg_color",
+                        array(
+                                'default' => '#ffffff',
+                                'transport' => 'refresh',
+                        )
+                );
+
+                $wp_customize->add_control(
+                        new WP_Customize_Color_Control(
+                                $wp_customize,
+                                "gutefy_social_bg_color",
+                                array(
+                                        'label' => __('Background Color', 'gutefy-social-icons'),
+                                        'section' => 'gutefy-core-section',
+                                        'settings' => "gutefy_social_bg_color",
+                                        'priority' => 32,
+                                )
+                        )
+                );
+
         }
+
         function singleSocialHandellar($wp_customize, $social_name)
         {
                 // Add a URL control
@@ -55,13 +103,13 @@ class Class_social_icon_extensions
                         )
                 );
         }
+
         function socialHandellar($wp_customize)
         {
-                $this->singleSocialHandellar($wp_customize, 'twitter');
-                $this->singleSocialHandellar($wp_customize, 'facebook');
-                $this->singleSocialHandellar($wp_customize, 'whatsapp');
-                $this->singleSocialHandellar($wp_customize, 'paper-plane');
-                $this->singleSocialHandellar($wp_customize, 'instagram');
-
+                $this->singleSocialHandellar($wp_customize, 'social_one');
+                $this->singleSocialHandellar($wp_customize, 'social_two');
+                $this->singleSocialHandellar($wp_customize, 'social_three');
+                $this->singleSocialHandellar($wp_customize, 'social_four');
+                $this->singleSocialHandellar($wp_customize, 'social_five');
         }
 }

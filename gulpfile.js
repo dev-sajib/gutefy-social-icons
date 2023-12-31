@@ -14,6 +14,14 @@ gulp.task('scss:compile', function () {
                 .pipe(cleanCSS()) // Minify the CSS
                 .pipe(gulp.dest('./public/css'));
 });
+gulp.task('admin_scss:compile', function () {
+        return gulp.src('./admin/extensions/**/*.scss')
+                .pipe(sass().on('error', sass.logError))
+                .pipe(autoprefixer())
+                .pipe(concat('website-extensions-admin.min.css'))
+                .pipe(cleanCSS()) // Minify the CSS
+                .pipe(gulp.dest('./admin/css'));
+});
 
 gulp.task('js:minify', function () {
         return gulp.src('./public/extensions/**/*.js')
@@ -23,6 +31,7 @@ gulp.task('js:minify', function () {
 });
 
 gulp.task('watch', function () {
+        gulp.watch('./admin/extensions/**/*.scss', gulp.series('admin_scss:compile'));
         gulp.watch('./public/extensions/**/*.scss', gulp.series('scss:compile'));
         gulp.watch('./public/extensions/**/*.js', gulp.series('js:minify'));
 });

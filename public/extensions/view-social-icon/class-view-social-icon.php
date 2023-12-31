@@ -13,12 +13,16 @@ class Class_view_social_icon
                 $whatsapp_url = get_theme_mod('gutefy_social_url_whatsapp', '');
                 $paper_plane_url = get_theme_mod('gutefy_social_url_paper-plane', '');
                 $instagram_url = get_theme_mod('gutefy_social_url_instagram', '');
+                $social_icon_color = get_theme_mod("gutefy_social_color", "");
+                $social_icon_bg_color = get_theme_mod("gutefy_social_bg_color", "");
                 $data = [
                         'twitter' => $twitter_url,
                         'facebook' => $facebook_url,
                         'whatsapp' => $whatsapp_url,
                         'paper-plane' => $paper_plane_url,
                         'instagram' => $instagram_url,
+                        'gutefy-social-icon-color' => $social_icon_color,
+                        'gutefy-social-icon-bg-color' => $social_icon_bg_color,
                 ];
                 $content = $this->render_frontend($content, $data);
                 return $content;
@@ -41,19 +45,19 @@ class Class_view_social_icon
                 // Expand Section
                 $html .= '<ul>';
                 if ($data['twitter']) {
-                        $html .= '<li><i class="fab fa-twitter"></i></li>';
+                        $html .= '<li style="background:' . $data['gutefy-social-icon-bg-color'] . '"  ><a style="color:' . $data['gutefy-social-icon-color'] . '"  href=' . $data['twitter'] . '><i  class="fab fa-twitter"></i></a></li>';
                 }
                 if ($data['facebook']) {
-                        $html .= '<li><a href=' . $data['facebook'] . '><i class="fab fa-facebook"></i></a></li>';
+                        $html .= '<li style="background:' . $data['gutefy-social-icon-bg-color'] . '"  ><a  style="color:' . $data['gutefy-social-icon-color'] . '" href=' . $data['facebook'] . '><i class="fab fa-facebook"></i></a></li>';
                 }
                 if ($data['whatsapp']) {
-                        $html .= '<li><a href=' . $data['whatsapp'] . '><i class="fab fa-whatsapp"></i></a></li>';
+                        $html .= '<li style="background:' . $data['gutefy-social-icon-bg-color'] . '"  ><a  style="color:' . $data['gutefy-social-icon-color'] . '" href=' . $data['whatsapp'] . '><i class="fab fa-whatsapp"></i></a></li>';
                 }
                 if ($data['paper-plane']) {
-                        $html .= '<li><a href=' . $data['paper-plane'] . '><i class="fas fa-paper-plane"></i></a></li>';
+                        $html .= '<li style="background:' . $data['gutefy-social-icon-bg-color'] . '"  ><a  style="color:' . $data['gutefy-social-icon-color'] . '" href=' . $data['paper-plane'] . '><i class="fas fa-paper-plane"></i></a></li>';
                 }
                 if ($data['instagram']) {
-                        $html .= '<li><a href=' . $data['instagram'] . '><i class="fab fa-instagram"></i></a></li>';
+                        $html .= '<li style="background:' . $data['gutefy-social-icon-bg-color'] . '"  ><a  style="color:' . $data['gutefy-social-icon-color'] . '" href=' . $data['instagram'] . '><i class="fab fa-instagram"></i></a></li>';
                 }
                 $html .= '</ul>';
 
