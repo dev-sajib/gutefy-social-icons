@@ -50,7 +50,7 @@ class Website_Extensions_Admin
 	 */
 	public function __construct($plugin_name, $version)
 	{
-		require_once plugin_dir_path(__FILE__) . 'module-social-icon/class-social-icon-extensions.php';
+		require_once plugin_dir_path(__FILE__) . 'extensions/module-social-icon/class-social-icon-extensions.php';
 
 		$this->register_elements();
 		$this->plugin_name = $plugin_name;
