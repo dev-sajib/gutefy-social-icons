@@ -8,13 +8,13 @@ class Class_custom_icon_control extends WP_Customize_Control
         public function render_content()
         {
                 ?>
-                <div class="custom-icon-control">
-                        <?php parent::render_content(); ?>
-                        //TODO - working on it
-                        <span class="gutefy_icon_selector_dropdown">
+<div class="custom-icon-control">
+        <?php parent::render_content(); ?>
+        //TODO - working on it need to fixed
+        <span class="gutefy_icon_selector_dropdown">
 
-                        </span>
-                </div>
-                <?php
+        </span>
+</div>
+<?php
         }
 }
