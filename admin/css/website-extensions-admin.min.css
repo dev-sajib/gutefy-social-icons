@@ -1,1 +1,1 @@
-ul#sub-accordion-panel-gutefy-core-panel li:hover{background-color:#f5ad3c}
+:root{--green:#086A61;--yellow:#F5AD3C}li#accordion-panel-gutefy-core-panel{border:1px solid var(--yellow)!important;border-left:none;border-right:none}.customize-control.customize-control-text .custom-icon-control{display:none}

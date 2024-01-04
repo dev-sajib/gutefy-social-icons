@@ -39,7 +39,7 @@ class Website_Extensions_Public
 	 */
 	public function __construct($plugin_name, $version)
 	{
-		require_once plugin_dir_path(__FILE__) . 'extensions/view-social-icon/class-view-social-icon.php';
+		require_once plugin_dir_path(__FILE__) . 'extensions/view-social-icon/class-social-icon-extensions-public.php';
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 	}
