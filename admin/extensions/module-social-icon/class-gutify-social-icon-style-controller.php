@@ -22,11 +22,11 @@ class Class_gutify_social_icon_style_controller
                         )
                 );
 
-                // Add color control under Gutefy social icons section
+                // Add color control under Gutefy social icons section for icon color
                 $wp_customize->add_setting(
                         $gutefy_namespace . 'color' . $gutefy_extensions_namespace,
                         array(
-                                'default' => '#000000',
+                                'default' => '#ffffff',
                                 'transport' => 'refresh',
                                 'type' => 'option',
                                 'capability' => 'manage_options',
@@ -45,11 +45,35 @@ class Class_gutify_social_icon_style_controller
                         )
                 );
 
+                // Add color control under Gutefy social icons section for hover color
+                $wp_customize->add_setting(
+                        $gutefy_namespace . 'hover_color' . $gutefy_extensions_namespace,
+                        array(
+                                'default' => '#086A61',
+                                'transport' => 'refresh',
+                                'type' => 'option',
+                                'capability' => 'manage_options',
+                        )
+                );
+
+                $wp_customize->add_control(
+                        new WP_Customize_Color_Control(
+                                $wp_customize,
+                                $gutefy_namespace . 'hover_color' . $gutefy_extensions_namespace,
+                                array(
+                                        'label' => __('Icon Hover Color', 'gutefy-social-icons'),
+                                        'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
+                                        'priority' => 3,
+                                )
+                        )
+                );
+
+
                 // Add background color control under Gutefy social icons section
                 $wp_customize->add_setting(
                         $gutefy_namespace . 'bg_color' . $gutefy_extensions_namespace,
                         array(
-                                'default' => '#ffffff',
+                                'default' => '#000000',
                                 'transport' => 'refresh',
                                 'type' => 'option',
                                 'capability' => 'manage_options',
@@ -61,12 +85,36 @@ class Class_gutify_social_icon_style_controller
                                 $wp_customize,
                                 $gutefy_namespace . 'bg_color' . $gutefy_extensions_namespace,
                                 array(
-                                        'label' => __('Background Color', 'gutefy-social-icons'),
+                                        'label' => __('Icon Background Color', 'gutefy-social-icons'),
                                         'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
                                         'priority' => 3,
                                 )
                         )
                 );
+
+                // Add hover background color control under Gutefy social icons section
+                $wp_customize->add_setting(
+                        $gutefy_namespace . 'hover_bg_color' . $gutefy_extensions_namespace,
+                        array(
+                                'default' => '#086A61',
+                                'transport' => 'refresh',
+                                'type' => 'option',
+                                'capability' => 'manage_options',
+                        )
+                );
+
+                $wp_customize->add_control(
+                        new WP_Customize_Color_Control(
+                                $wp_customize,
+                                $gutefy_namespace . 'hover_bg_color' . $gutefy_extensions_namespace,
+                                array(
+                                        'label' => __('Hover Background Color', 'gutefy-social-icons'),
+                                        'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
+                                        'priority' => 4,
+                                )
+                        )
+                );
+
 
                 // Add style select control under Gutefy social icons section
                 $wp_customize->add_setting(
@@ -86,12 +134,11 @@ class Class_gutify_social_icon_style_controller
                                 array(
                                         'label' => __('Select Style', 'gutefy-social-icons'),
                                         'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
-                                        'priority' => 1, // Adjust the priority as needed
+                                        'priority' => 1,
                                         'type' => 'select',
                                         'choices' => array(
                                                 'style1' => __('Style 1', 'gutefy-social-icons'),
                                                 'style2' => __('Style 2', 'gutefy-social-icons'),
-                                                'style3' => __('Style 3', 'gutefy-social-icons'),
                                         ),
                                 )
                         )

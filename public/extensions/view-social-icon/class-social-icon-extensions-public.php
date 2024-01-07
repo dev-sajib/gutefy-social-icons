@@ -18,8 +18,10 @@ class Class_view_social_icon extends Class_list_of_social_account
                 foreach ($this->socialList as $socialNetwork) {
                         $data[$socialNetwork . "_url"] = get_option('gutefy_social_url_' . $socialNetwork);
                 }
-                $data_style['gutefy-social-icon-color'] = get_option("gutefy_settings_color_social_icon", "");
-                $data_style['gutefy-social-icon-bg-color'] = get_option("gutefy_settings_bg_color_social_icon", "");
+                $data_style['gutefy_settings_color_social_icon'] = get_option("gutefy_settings_color_social_icon", "");
+                $data_style['gutefy_settings_bg_color_social_icon'] = get_option("gutefy_settings_bg_color_social_icon", "");
+                $data_style['gutefy_settings_hover_bg_color_social_icon'] = get_option("gutefy_settings_hover_bg_color_social_icon", "");
+                $data_style['gutefy_settings_hover_color_social_icon'] = get_option("gutefy_settings_hover_color_social_icon", "");
                 $content = $this->render_frontend($content, $data, $data_style);
                 return $content;
         }
