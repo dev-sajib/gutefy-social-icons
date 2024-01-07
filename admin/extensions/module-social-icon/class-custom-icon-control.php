@@ -4,6 +4,7 @@
 class Class_Custom_Icon_Control extends WP_Customize_Control
 {
         public $type = 'custom_icon';
+        public $json;
         public $custom_string;
 
         public function __construct($manager, $id, $args = array())
@@ -12,7 +13,6 @@ class Class_Custom_Icon_Control extends WP_Customize_Control
 
                 parent::__construct($manager, $id, $args);
         }
-
         public function render_content()
         {
                 ?>
@@ -28,4 +28,5 @@ class Class_Custom_Icon_Control extends WP_Customize_Control
 </div>
 <?php
         }
+
 }

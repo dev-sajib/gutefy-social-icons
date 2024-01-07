@@ -1,88 +1,45 @@
 <?php
-class Class_view_social_icon
+
+require_once plugin_dir_path(__FILE__) . '../../../admin/extensions/module-social-icon/class-list-of-social-account.php';
+require_once plugin_dir_path(__FILE__) . './class-social-icon-style-template.php';
+class Class_view_social_icon extends Class_list_of_social_account
 {
+        use Class_social_icon_style_template;
+        private $data = [];
+        private $data_style = [];
+        public $data_icon_list;
         function __construct()
         {
+                $this->data_icon_list = $this->socialListDefaultIcon;
                 add_filter('the_content', array($this, 'getIconData'));
         }
         public function getIconData($content)
         {
-                // Get the values from the Customizer settings
-                $one_url = get_option('gutefy_social_url_one', '');
-                $two_url = get_option('gutefy_social_url_two', '');
-                $three_url = get_option('gutefy_social_url_three', '');
-                $four_url = get_option('gutefy_social_url_four', '');
-                $five_url = get_option('gutefy_social_url_five', '');
-
-                $one_icon = get_option('gutefy_social_icon_one', '');
-                $two_icon = get_option('gutefy_social_icon_two', '');
-                $three_icon = get_option('gutefy_social_icon_three', '');
-                $four_icon = get_option('gutefy_social_icon_four', '');
-                $five_icon = get_option('gutefy_social_icon_five', '');
-
-                $social_icon_color = get_option("gutefy_social_color", "");
-                $social_icon_bg_color = get_option("gutefy_social_bg_color", "");
-                $data = [
-                        'one' => $one_url,
-                        'two' => $two_url,
-                        'three' => $three_url,
-                        'four' => $four_url,
-                        'five' => $five_url,
-                        'one_icon' => $one_icon,
-                        'two_icon' => $two_icon,
-                        'three_icon' => $three_icon,
-                        'four_icon' => $four_icon,
-                        'five_icon' => $five_icon,
-                        'gutefy-social-icon-color' => $social_icon_color,
-                        'gutefy-social-icon-bg-color' => $social_icon_bg_color,
-                ];
-                $content = $this->render_frontend($content, $data);
+                foreach ($this->socialList as $socialNetwork) {
+                        $data[$socialNetwork . "_url"] = get_option('gutefy_social_url_' . $socialNetwork);
+                }
+                $data_style['gutefy-social-icon-color'] = get_option("gutefy_settings_color_social_icon", "");
+                $data_style['gutefy-social-icon-bg-color'] = get_option("gutefy_settings_bg_color_social_icon", "");
+                $content = $this->render_frontend($content, $data, $data_style);
                 return $content;
         }
-        function render_frontend($html, $data)
+        function render_frontend($html, $data, $data_style)
         {
                 // Concatenate HTML
+                $new_html = $this->markup($html, $data, $data_style);
 
-                $new_html = $this->markup_one($html, $data);
                 return $new_html;
         }
 
-        function markup_one($html, $data)
+        function markup($html, $data, $data_style)
         {
-                $html .= '<section class="gutefy-section-wrapper">';
-                $html .= '<section class="section-wrapper">';
-
-                // Floating Action Button
-                $html .= '<div class="floating-action-button">';
-
-                // Floating Button
-                $html .= '<div style="background:' . $data['gutefy-social-icon-bg-color'] . '"  class="share-btn">';
-                $html .= '<i style="color:' . $data['gutefy-social-icon-color'] . '" id="share-icon" class="fas fa-share-alt"></i>';
-                $html .= '<i  style="color:' . $data['gutefy-social-icon-color'] . '" id="close-icon" class="fas fa-times"></i>';
-                $html .= '</div>';
-
-                // Expand Section
-                $html .= '<ul>';
-                if ($data['one'] && $data['one_icon']) {
-                        $html .= '<li style="background:' . $data['gutefy-social-icon-bg-color'] . '"  ><a style="color:' . $data['gutefy-social-icon-color'] . '"  href=' . $data['one'] . '><i  class="' . $data['one_icon'] . '"></i></a></li>';
+                $markup_style = get_option("gutefy_settings_selected_style_social_icon", "");
+                if ($markup_style === 'style1') {
+                        $html = $this->styleOne($html, $data, $data_style, $this->data_icon_list);
                 }
-                if ($data['two'] && $data['two_icon']) {
-                        $html .= '<li style="background:' . $data['gutefy-social-icon-bg-color'] . '"  ><a  style="color:' . $data['gutefy-social-icon-color'] . '" href=' . $data['two'] . '><i class="' . $data['two_icon'] . '"></i></a></li>';
+                if ($markup_style === 'style2') {
+                        $html = $this->styleTwo($html, $data, $data_style, $this->data_icon_list);
                 }
-                if ($data['three'] && $data['three_icon']) {
-                        $html .= '<li style="background:' . $data['gutefy-social-icon-bg-color'] . '"  ><a  style="color:' . $data['gutefy-social-icon-color'] . '" href=' . $data['three'] . '><i class="' . $data['three_icon'] . '"></i></a></li>';
-                }
-                if ($data['four'] && $data['four_icon']) {
-                        $html .= '<li style="background:' . $data['gutefy-social-icon-bg-color'] . '"  ><a  style="color:' . $data['gutefy-social-icon-color'] . '" href=' . $data['four'] . '><i class="' . $data['four_icon'] . '"></i></a></li>';
-                }
-                if ($data['five'] && $data['five_icon']) {
-                        $html .= '<li style="background:' . $data['gutefy-social-icon-bg-color'] . '"  ><a  style="color:' . $data['gutefy-social-icon-color'] . '" href=' . $data['five'] . '><i class="' . $data['five_icon'] . '"></i></a></li>';
-                }
-                $html .= '</ul>';
-
-                $html .= '</div>'; // End Floating Action Button
-                $html .= '</section>'; // End Section
-                $html .= '</section>'; // End Section
 
                 return $html;
         }

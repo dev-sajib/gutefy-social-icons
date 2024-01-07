@@ -1,28 +1,11 @@
 <?php
-
-class Class_Social_Icon_Extensions
+require_once plugin_dir_path(__FILE__) . 'class-list-of-social-account.php';
+require_once plugin_dir_path(__FILE__) . 'class-gutify-social-icon-style-controller.php';
+class Class_Social_Icon_Extensions extends Class_list_of_social_account
 {
-        private $socialList = array(
-                'Facebook',
-                'Instagram',
-                'Twitter',
-                'Linkedin',
-                'GitHub',
-                'CodePen',
-                'Email',
-                'GitLab',
-                'Line',
-                'Phone',
-                'Pinterest',
-                'RSS',
-                'Reddit',
-                'Slack',
-                'Snapchat',
-                'SoundCloud',
-                'Strava',
-        );
         public function __construct()
         {
+                new Class_gutify_social_icon_style_controller();
                 add_action('customize_register', array($this, 'gutefy_social_icons_customizer_settings'));
         }
 
@@ -44,69 +27,12 @@ class Class_Social_Icon_Extensions
                         )
                 );
 
-
-                // Add Gutefy Section under the Gutefy Panel
-                $wp_customize->add_section(
-                        $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
-                        array(
-                                'title' => __('Style Settings', 'gutefy-social-icons'),
-                                'priority' => 2,
-                                'panel' => $gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
-                        )
-                );
-
                 $wp_customize->add_section(
                         $gutefy_namespace . 'accounts' . $gutefy_extensions_namespace,
                         array(
                                 'title' => __('Social Accounts', 'gutefy-social-icons'),
                                 'priority' => 1,
                                 'panel' => $gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
-                        )
-                );
-
-                // Add color control under Gutefy social icons section
-                $wp_customize->add_setting(
-                        $gutefy_namespace . 'color' . $gutefy_extensions_namespace,
-                        array(
-                                'default' => '#000000',
-                                'transport' => 'refresh',
-                                'type' => 'option',
-                                'capability' => 'manage_options',
-                        )
-                );
-
-                $wp_customize->add_control(
-                        new WP_Customize_Color_Control(
-                                $wp_customize,
-                                $gutefy_namespace . 'color' . $gutefy_extensions_namespace,
-                                array(
-                                        'label' => __('Icon Color', 'gutefy-social-icons'),
-                                        'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
-                                        'priority' => 31,
-                                )
-                        )
-                );
-
-                // Add background color control under Gutefy social icons section
-                $wp_customize->add_setting(
-                        $gutefy_namespace . 'bg_color' . $gutefy_extensions_namespace,
-                        array(
-                                'default' => '#ffffff',
-                                'transport' => 'refresh',
-                                'type' => 'option',
-                                'capability' => 'manage_options',
-                        )
-                );
-
-                $wp_customize->add_control(
-                        new WP_Customize_Color_Control(
-                                $wp_customize,
-                                $gutefy_namespace . 'bg_color' . $gutefy_extensions_namespace,
-                                array(
-                                        'label' => __('Background Color', 'gutefy-social-icons'),
-                                        'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
-                                        'priority' => 32,
-                                )
                         )
                 );
 
@@ -122,6 +48,7 @@ class Class_Social_Icon_Extensions
                                 'capability' => 'manage_options',
                                 'default' => '',
                                 'transport' => 'refresh',
+                                '',
                         )
                 );
 
@@ -139,32 +66,32 @@ class Class_Social_Icon_Extensions
                         )
                 );
 
-                // Add an icon control
-                $wp_customize->add_setting(
-                        "gutefy_social_icon_$social_name",
-                        array(
-                                'type' => 'option',
-                                'capability' => 'manage_options',
-                                'default' => '',
-                                'transport' => 'refresh',
-                        )
-                );
-                $wp_customize->add_control(
-                        new Class_Custom_Icon_Control(
-                                $wp_customize,
-                                "gutefy_social_icon_$social_name",
-                                array(
-                                        'label' => __("Custom Fontawsom Icon Class", 'gutefy-social-icons'),
-                                        'section' => $gutefy_namespace . 'accounts' . $gutefy_extensions_namespace,
-                                        'type' => 'text',
-                                        'priority' => 30,
-                                        'custom_string' => $social_name, // Pass your custom string here
-                                        'input_attrs' => array(
-                                                'class' => "gutefy-social__icon $social_name",
-                                        ),
-                                )
-                        )
-                );
+                // // Add an icon control
+                // $wp_customize->add_setting(
+                //         "gutefy_social_icon_$social_name",
+                //         array(
+                //                 'type' => 'option',
+                //                 'capability' => 'manage_options',
+                //                 'default' => '',
+                //                 'transport' => 'refresh',
+                //         )
+                // );
+                // $wp_customize->add_control(
+                //         new Class_Custom_Icon_Control(
+                //                 $wp_customize,
+                //                 "gutefy_social_icon_$social_name",
+                //                 array(
+                //                         'label' => __("Custom Fontawsom Icon Class", 'gutefy-social-icons'),
+                //                         'section' => $gutefy_namespace . 'accounts' . $gutefy_extensions_namespace,
+                //                         'type' => 'text',
+                //                         'priority' => 30,
+                //                         'custom_string' => $social_name,
+                //                         'input_attrs' => array(
+                //                                 'class' => "gutefy-social__icon $social_name",
+                //                         ),
+                //                 )
+                //         )
+                // );
         }
 
         function social_handler($wp_customize, $gutefy_namespace, $gutefy_extensions_namespace)
