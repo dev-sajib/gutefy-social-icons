@@ -49,7 +49,7 @@ class Class_gutify_social_icon_style_controller
                 $wp_customize->add_setting(
                         $gutefy_namespace . 'hover_color' . $gutefy_extensions_namespace,
                         array(
-                                'default' => '#086A61',
+                                'default' => '#F5AD3C',
                                 'transport' => 'refresh',
                                 'type' => 'option',
                                 'capability' => 'manage_options',

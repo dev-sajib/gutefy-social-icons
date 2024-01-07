@@ -59,7 +59,7 @@ trait Class_social_icon_style_template
         {
                 $html .= '<section class="gutefy-section-wrapper style-two">';
                 $html .= '<section class="section-wrapper">';
-                $html .= '<div class="inner-fabs">';
+                $html .= '<div class="gf-sl-inner-fabs">';
 
                 // Add individual fabs with Font Awesome icons
                 // $html .= '<div class="fab round" id="fab4" data-tooltip="Create"><i class="fas fa-pencil-alt"></i></div>';

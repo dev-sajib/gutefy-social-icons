@@ -1,19 +1,16 @@
-
-jQuery(document).ready(function () {
-	jQuery(".share-btn").click(function () {
-		jQuery(".share-btn").toggleClass("active")
-		jQuery("ul").toggleClass("active")
-	})
-})
-
 //style two 
 document.addEventListener("DOMContentLoaded", function () {
-	let fab1 = document.querySelector('.gutefy-section-wrapper.style-two #fab1');
-	let innerFabs = document.getElementsByClassName('inner-fabs')[0];
+	if (document.querySelector('section.gutefy-section-wrapper.style-one .share-btn')) {
+		document.querySelector('section.gutefy-section-wrapper.style-one .share-btn').addEventListener('click', function () {
+			document.querySelector(' .gutefy-section-wrapper.style-one ul').classList.toggle('active')
+		});
+	}
+	if (document.querySelector('.gutefy-section-wrapper.style-two #fab1')) {
+		document.querySelector('.gutefy-section-wrapper.style-two #fab1').addEventListener('click', function () {
+			document.querySelector('.gf-sl-inner-fabs').classList.toggle('show')
+		});
+	}
 
-	fab1.addEventListener('click', function () {
-		innerFabs.classList.toggle('show')
-	})
 });
 //style two 
 

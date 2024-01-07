@@ -171,7 +171,7 @@
                                 }
                         }
                 }
-                .inner-fabs .fab.round {
+                .gf-sl-inner-fabs .fab.round {
                         width: 40px;
                         height: 40px;
                         right: 38px;
@@ -181,12 +181,12 @@
                 }
                 // from 0 through ${number of inner fabs}
                 @for $i from 0 through 5 {
-                        .inner-fabs.show .fab:nth-child(#{$i + 1}) {
+                        .gf-sl-inner-fabs.show .fab:nth-child(#{$i + 1}) {
                                 bottom: #{$i * 50 + 80}px;
                         }
                 }
                 // Did that so the box-shadow doesn't rotate too
-                .inner-fabs.show+.fab.round i {
+                .gf-sl-inner-fabs.show+.fab.round i {
                         transform: rotate(135deg);
                 }
                 .fab.round:before {
@@ -212,7 +212,7 @@
                         text-overflow: ellipsis;
                         vertical-align: middle;
                 }
-                .inner-fabs.show .fab.round:hover:before {
+                .gf-sl-inner-fabs.show .fab.round:hover:before {
                         content: attr(data-tooltip);
                         visibility: visible;
                         opacity: 1;
