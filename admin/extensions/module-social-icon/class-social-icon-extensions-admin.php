@@ -37,6 +37,20 @@ class Class_Social_Icon_Extensions extends Class_list_of_social_account
                 );
 
         }
+        function custom_url_validation($error_object, $input, $setting_object)
+        {
+                // Remove leading and trailing whitespaces
+                $input = trim($input);
+                // Validate URL using filter_var
+                if (filter_var($input, FILTER_VALIDATE_URL) === false) {
+                        // URL is not valid
+                        return false;
+                }
+
+                // URL is valid, return sanitized input
+                return esc_url_raw($input);
+        }
+
 
         function single_social_handler($wp_customize, $social_name, $gutefy_namespace, $gutefy_extensions_namespace)
         {
@@ -48,7 +62,8 @@ class Class_Social_Icon_Extensions extends Class_list_of_social_account
                                 'capability' => 'manage_options',
                                 'default' => '',
                                 'transport' => 'refresh',
-                                '',
+                                'sanitize_callback' => 'esc_url_raw',
+                                'validate_callback' => [$this, 'custom_url_validation'],
                         )
                 );
 
@@ -65,7 +80,6 @@ class Class_Social_Icon_Extensions extends Class_list_of_social_account
                                 ),
                         )
                 );
-
                 // // Add an icon control
                 // $wp_customize->add_setting(
                 //         "gutefy_social_icon_$social_name",

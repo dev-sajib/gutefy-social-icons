@@ -4,6 +4,7 @@ class Class_list_of_social_account
         protected $socialList = array(
                 'Facebook',
                 'Instagram',
+                'Skype',
                 'Twitter',
                 'Linkedin',
                 'GitHub',
@@ -23,6 +24,7 @@ class Class_list_of_social_account
         protected $socialListDefaultIcon = array(
                 'Facebook' => 'fab fa-facebook',
                 'Instagram' => 'fab fa-instagram',
+                'Skype' => 'fab fa-skype',
                 'Twitter' => 'fab fa-twitter',
                 'Linkedin' => 'fab fa-linkedin',
                 'GitHub' => 'fab fa-github',

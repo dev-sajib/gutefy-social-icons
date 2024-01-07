@@ -18,7 +18,7 @@ Website Extensions is a WordPress plugin developed by Gutefy, allowing users to 
 
 == Features ==
 - **Gutefy Social Icons:** Easily add and customize social icons that will be displayed at the bottom right corner of your webpage.
-- **Social Accounts:** Configure up to 17 social accounts, including Facebook, GitHub, GitLab, LinkedIn, CodePen, and more.
+- **Social Accounts:** Configure up to 17 social accounts, including Facebook, Skype, GitHub, GitLab, LinkedIn, CodePen, and more.
 - **Style Settings:** Customize the appearance of your social icons with options such as icon color, hover color, background color, and hover background color.
 
 == Screenshots ==
