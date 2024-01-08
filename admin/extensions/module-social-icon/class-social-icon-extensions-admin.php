@@ -41,11 +41,11 @@ class Class_Social_Icon_Extensions extends Class_list_of_social_account
         {
                 // Remove leading and trailing whitespaces
                 $input = trim($input);
-                // Validate URL using filter_var
-                if (filter_var($input, FILTER_VALIDATE_URL) === false) {
+                if ($input!='' && filter_var($input, FILTER_VALIDATE_URL) === false) {
                         // URL is not valid
                         return false;
                 }
+                // Validate URL using filter_var
 
                 // URL is valid, return sanitized input
                 return esc_url_raw($input);
