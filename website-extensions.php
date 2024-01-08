@@ -47,6 +47,23 @@ function activate_website_extensions() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-website-extensions-activator.php';
 	Website_Extensions_Activator::activate();
 }
+/**
+ * Add settings link to the plugin page.
+ *
+ * @param array  $links Array of plugin action links.
+ * @param string $file  Path to the plugin file relative to the plugins directory.
+ * @return array
+ */
+function gutify_plugin_action_links( $links, $file ) {
+	if ( strpos( $file, 'website-extensions.php' ) !== false ) {
+		$settings_link = '<a href="' . admin_url( 'customize.php?autofocus[panel]=gutefy_settings_core_panel_social_icon&autofocus[section]=gutefy_settings_accounts_social_icon' ) . '">' . esc_html__( 'Settings', 'gutefy-social-icons' ) . '</a>';
+		array_unshift( $links, $settings_link );
+	}
+
+	return $links;
+}
+add_filter( 'plugin_action_links', 'gutify_plugin_action_links', 10, 2 );
+
 
 /**
  * The code that runs during plugin deactivation.
