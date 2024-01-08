@@ -73,12 +73,10 @@ class Website_Extensions {
 			$this->version = '1.0.0';
 		}
 		$this->plugin_name = 'website-extensions';
-
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -183,7 +181,6 @@ class Website_Extensions {
 	public function run() {
 		$this->loader->run();
 	}
-
 	/**
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.

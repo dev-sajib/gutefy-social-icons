@@ -50,7 +50,7 @@ class Website_Extensions_Admin
 	 */
 	public function __construct($plugin_name, $version)
 	{
-		require_once plugin_dir_path(__FILE__) . 'module-social-icon/class-social-icon-extensions.php';
+		require_once plugin_dir_path(__FILE__) . 'extensions/module-social-icon/class-social-icon-extensions-admin.php';
 
 		$this->register_elements();
 		$this->plugin_name = $plugin_name;
@@ -68,7 +68,7 @@ class Website_Extensions_Admin
 	 */
 	public function enqueue_styles()
 	{
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/website-extensions-admin.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/website-extensions-admin.min.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -78,7 +78,7 @@ class Website_Extensions_Admin
 	 */
 	public function enqueue_scripts()
 	{
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/website-extensions-admin.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/website-extensions-admin.min.js', array('jquery'), $this->version, false);
 	}
 
 }

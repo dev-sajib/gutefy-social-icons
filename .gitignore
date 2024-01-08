@@ -1,5 +1,6 @@
 # Node.js dependencies
 /node_modules/
+/package-lock.json/ 
 
 # Compiled files
 /dist/
@@ -9,23 +10,8 @@
 # Dependency directories
 /vendor/
 
-# Compiled Python files
-*.pyc
-
 # Compiled Java files
 *.class
-
-# Compiled Ruby files
-*.rbc
-*.rbo
-*.rbs
-*.gem
-
-# Compiled PHP files
-*.phpc
-
-# PHPStorm project files
-.idea/
 
 # Visual Studio Code
 .vscode/
