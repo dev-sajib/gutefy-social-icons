@@ -51,6 +51,7 @@ class Website_Extensions_Admin
 	public function __construct($plugin_name, $version)
 	{
 		require_once plugin_dir_path(__FILE__) . 'extensions/module-social-icon/class-social-icon-extensions-admin.php';
+		require_once plugin_dir_path(__FILE__) . 'extensions/module-pre-loader/class-pre-loader-extensions-admin.php';
 
 		$this->register_elements();
 		$this->plugin_name = $plugin_name;
@@ -60,6 +61,7 @@ class Website_Extensions_Admin
 	public function register_elements()
 	{
 		new Class_social_icon_extensions();
+		new Class_pre_loader_extensions_admin();
 	}
 	/**
 	 * Register the stylesheets for the admin area.
