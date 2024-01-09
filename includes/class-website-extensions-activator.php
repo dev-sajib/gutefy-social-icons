@@ -20,8 +20,13 @@
  * @subpackage Website_Extensions/includes
  * @author     Gutefy <gutefy.2023@gmail.com>
  */
-class Website_Extensions_Activator {
+class Website_Extensions_Activator
+{
 
+	public function __construct()
+	{
+
+	}
 	/**
 	 * Short Description. (use period)
 	 *
@@ -29,7 +34,10 @@ class Website_Extensions_Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function activate() {
+	public static function activate()
+	{
+
 	}
+
 
 }
