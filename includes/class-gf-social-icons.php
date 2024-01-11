@@ -85,16 +85,16 @@ class Gutefy_Social_Icons
 	{
 		add_menu_page(
 			'Gutefy Social Icons',
-			'WE Options',
+			'Gf Social Icons',
 			'manage_options',
-			'gf_Gutefy_Social_Icons',
-			[$this, 'we_admin_panel_html_markup']
+			'gf_social_icons',
+			[$this, 'gf_social_icons_admin_panel_html_markup']
 		);
 	}
-	public function we_admin_panel_html_markup()
+	public function gf_social_icons_admin_panel_html_markup()
 	{
 		?>
-		<h1>Gutefy</h1>
+		<h1>Gutefy Social Icons</h1>
 		<?php
 	}
 	/**
