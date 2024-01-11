@@ -16,7 +16,7 @@ class Class_gutify_social_icon_style_controller
                 $wp_customize->add_section(
                         $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
                         array(
-                                'title' => __('Style Settings', 'website-extensions'),
+                                'title' => __('Style Settings', 'gf-social-icon'),
                                 'priority' => 2,
                                 'panel' => $gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
                         )
@@ -38,7 +38,7 @@ class Class_gutify_social_icon_style_controller
                                 $wp_customize,
                                 $gutefy_namespace . 'color' . $gutefy_extensions_namespace,
                                 array(
-                                        'label' => __('Icon Color', 'website-extensions'),
+                                        'label' => __('Icon Color', 'gf-social-icon'),
                                         'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
                                         'priority' => 2,
                                 )
@@ -61,7 +61,7 @@ class Class_gutify_social_icon_style_controller
                                 $wp_customize,
                                 $gutefy_namespace . 'hover_color' . $gutefy_extensions_namespace,
                                 array(
-                                        'label' => __('Icon Hover Color', 'website-extensions'),
+                                        'label' => __('Icon Hover Color', 'gf-social-icon'),
                                         'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
                                         'priority' => 3,
                                 )
@@ -85,7 +85,7 @@ class Class_gutify_social_icon_style_controller
                                 $wp_customize,
                                 $gutefy_namespace . 'bg_color' . $gutefy_extensions_namespace,
                                 array(
-                                        'label' => __('Icon Background Color', 'website-extensions'),
+                                        'label' => __('Icon Background Color', 'gf-social-icon'),
                                         'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
                                         'priority' => 3,
                                 )
@@ -108,7 +108,7 @@ class Class_gutify_social_icon_style_controller
                                 $wp_customize,
                                 $gutefy_namespace . 'hover_bg_color' . $gutefy_extensions_namespace,
                                 array(
-                                        'label' => __('Hover Background Color', 'website-extensions'),
+                                        'label' => __('Hover Background Color', 'gf-social-icon'),
                                         'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
                                         'priority' => 4,
                                 )
@@ -132,13 +132,13 @@ class Class_gutify_social_icon_style_controller
                                 $wp_customize,
                                 $gutefy_namespace . 'selected_style' . $gutefy_extensions_namespace,
                                 array(
-                                        'label' => __('Select Style', 'website-extensions'),
+                                        'label' => __('Select Style', 'gf-social-icon'),
                                         'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
                                         'priority' => 1,
                                         'type' => 'select',
                                         'choices' => array(
-                                                'style1' => __('Style 1', 'website-extensions'),
-                                                'style2' => __('Style 2', 'website-extensions'),
+                                                'style1' => __('Style 1', 'gf-social-icon'),
+                                                'style2' => __('Style 2', 'gf-social-icon'),
                                         ),
                                 )
                         )

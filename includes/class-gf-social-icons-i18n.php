@@ -9,8 +9,8 @@
  * @link       https://gutefy.com
  * @since      1.0.0
  *
- * @package    Website_Extensions
- * @subpackage Website_Extensions/includes
+ * @package    Gutefy_Social_Icons
+ * @subpackage Gutefy_Social_Icons/includes
  */
 
 /**
@@ -20,11 +20,12 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Website_Extensions
- * @subpackage Website_Extensions/includes
+ * @package    Gutefy_Social_Icons
+ * @subpackage Gutefy_Social_Icons/includes
  * @author     Gutefy <gutefy.2023@gmail.com>
  */
-class Website_Extensions_i18n {
+class Gutefy_Social_Icons_i18n
+{
 
 
 	/**
@@ -32,12 +33,13 @@ class Website_Extensions_i18n {
 	 *
 	 * @since    1.0.0
 	 */
-	public function load_plugin_textdomain() {
+	public function load_plugin_textdomain()
+	{
 
 		load_plugin_textdomain(
-			'website-extensions',
+			'gf-social-icon',
 			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+			dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
 		);
 
 	}

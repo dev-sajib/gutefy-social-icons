@@ -1,8 +1,8 @@
-=== Website Extensions ===
+=== Gutefy Social Icons ===
 Contributors: Gutefy
-Plugin Name: Website Extensions
+Plugin Name: Gutefy Social Icons
 Plugin URI: https://portfolio.gutefy.com/
-Tags: customizer, social icons, style settings, website extensions, gutefy, gutenbarg social icons
+Tags: customizer, social icons, style settings, Gutefy Social Icons, gutefy, gutenbarg social icons
 Requires at least: 4.5
 Tested up to: 5.9
 Stable tag: 1.0
@@ -10,10 +10,10 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-Website Extensions is a WordPress plugin developed by Gutefy, allowing users to easily enhance their website with a variety of customizable features. The main functionality of this plugin is to provide a Customizer option for adding social icons to your website.
+Gutefy Social Icons is a WordPress plugin developed by Gutefy, allowing users to easily enhance their website with a variety of customizable features. The main functionality of this plugin is to provide a Customizer option for adding social icons to your website.
 
 == Installation ==
-1. Upload the 'website-extensions' folder to the '/wp-content/plugins/' directory.
+1. Upload the 'gf-social-icon' folder to the '/wp-content/plugins/' directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 
 == Features ==
@@ -58,4 +58,4 @@ For any issues or inquiries, please visit the support forums on WordPress.org.
 For more information about the author and other projects, visit [Gutefy's Portfolio](https://portfolio.gutefy.com/).
 
 == License ==
-Website Extensions is licensed under the GPLv2 or later - http://www.gnu.org/licenses/gpl-2.0.html
+Gutefy Social Icons is licensed under the GPLv2 or later - http://www.gnu.org/licenses/gpl-2.0.html

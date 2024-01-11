@@ -16,7 +16,7 @@ class Class_pre_loader_extensions_admin
                 $wp_customize->add_section(
                         $gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
                         array(
-                                'title' => __('Gutefy Pre Loader', 'website-extensions'),
+                                'title' => __('Gutefy Pre Loader', 'gf-social-icon'),
                                 'description' => '<p>Gutefy Extensions for website enhancement</p>',
                                 'priority' => 160,
                         )
@@ -25,7 +25,7 @@ class Class_pre_loader_extensions_admin
                 // $wp_customize->add_section(
                 //         $gutefy_namespace . 'accounts' . $gutefy_extensions_namespace,
                 //         array(
-                //                 'title' => __('Pre Loader Style', 'website-extensions'),
+                //                 'title' => __('Pre Loader Style', 'gf-social-icon'),
                 //                 'priority' => 1,
                 //                 'panel' => $gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
                 //         )
@@ -45,7 +45,7 @@ class Class_pre_loader_extensions_admin
                                 $wp_customize,
                                 $gutefy_namespace . 'color' . $gutefy_extensions_namespace,
                                 array(
-                                        'label' => __('Icon Color', 'website-extensions'),
+                                        'label' => __('Icon Color', 'gf-social-icon'),
                                         'section' => $gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
                                         'priority' => 2,
                                 )
