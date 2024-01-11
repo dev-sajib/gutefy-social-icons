@@ -10,10 +10,10 @@
  *
  * @link              https://gutefy.com
  * @since             1.0.0
- * @package           Website_Extensions
+ * @package           Gutefy_Social_Icons
  *
  * @wordpress-plugin
- * Plugin Name:       Website Extensions 
+ * Plugin Name:       Gutefy Social Icons 
  * Plugin URI:        https://gutefy.com
  * Description:       Extend the feature of your websites
 
@@ -23,12 +23,12 @@
  * Author URI:        https://gutefy.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       website-extensions
+ * Text Domain:       gf-social-icon
  * Domain Path:       /languages
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
+if (!defined('WPINC')) {
 	die;
 }
 
@@ -37,15 +37,16 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'WEBSITE_EXTENSIONS_VERSION', '1.0.0' );
+define('Gutefy_Social_Icons_VERSION', '1.0.0');
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-website-extensions-activator.php
+ * This action is documented in includes/class-gf-social-icons-activator.php
  */
-function activate_website_extensions() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-website-extensions-activator.php';
-	Website_Extensions_Activator::activate();
+function activate_Gutefy_Social_Icons()
+{
+	require_once plugin_dir_path(__FILE__) . 'includes/class-gf-social-icons-activator.php';
+	Gutefy_Social_Icons_Activator::activate();
 }
 /**
  * Add settings link to the plugin page.
@@ -54,34 +55,36 @@ function activate_website_extensions() {
  * @param string $file  Path to the plugin file relative to the plugins directory.
  * @return array
  */
-function gutify_plugin_action_links( $links, $file ) {
-	if ( strpos( $file, 'website-extensions.php' ) !== false ) {
-		$settings_link = '<a href="' . admin_url( 'customize.php?autofocus[panel]=gutefy_settings_core_panel_social_icon&autofocus[section]=gutefy_settings_accounts_social_icon' ) . '">' . esc_html__( 'Settings', 'gutefy-social-icons' ) . '</a>';
-		array_unshift( $links, $settings_link );
+function gutify_plugin_action_links($links, $file)
+{
+	if (strpos($file, 'gf-social-icon.php') !== false) {
+		$settings_link = '<a href="' . admin_url('customize.php?autofocus[panel]=gutefy_settings_core_panel_social_icon&autofocus[section]=gutefy_settings_accounts_social_icon') . '">' . esc_html__('Settings', 'gf-social-icon') . '</a>';
+		array_unshift($links, $settings_link);
 	}
 
 	return $links;
 }
-add_filter( 'plugin_action_links', 'gutify_plugin_action_links', 10, 2 );
+add_filter('plugin_action_links', 'gutify_plugin_action_links', 10, 2);
 
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-website-extensions-deactivator.php
+ * This action is documented in includes/class-gf-social-icons-deactivator.php
  */
-function deactivate_website_extensions() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-website-extensions-deactivator.php';
-	Website_Extensions_Deactivator::deactivate();
+function deactivate_Gutefy_Social_Icons()
+{
+	require_once plugin_dir_path(__FILE__) . 'includes/class-gf-social-icons-deactivator.php';
+	Gutefy_Social_Icons_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_website_extensions' );
-register_deactivation_hook( __FILE__, 'deactivate_website_extensions' );
+register_activation_hook(__FILE__, 'activate_Gutefy_Social_Icons');
+register_deactivation_hook(__FILE__, 'deactivate_Gutefy_Social_Icons');
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-website-extensions.php';
+require plugin_dir_path(__FILE__) . 'includes/class-gf-social-icons.php';
 
 /**
  * Begins execution of the plugin.
@@ -92,10 +95,11 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-website-extensions.php';
  *
  * @since    1.0.0
  */
-function run_website_extensions() {
+function run_Gutefy_Social_Icons()
+{
 
-	$plugin = new Website_Extensions();
+	$plugin = new Gutefy_Social_Icons();
 	$plugin->run();
 
 }
-run_website_extensions();
+run_Gutefy_Social_Icons();

@@ -6,8 +6,8 @@
  * @link       https://gutefy.com
  * @since      1.0.0
  *
- * @package    Website_Extensions
- * @subpackage Website_Extensions/includes
+ * @package    Gutefy_Social_Icons
+ * @subpackage Gutefy_Social_Icons/includes
  */
 
 /**
@@ -16,12 +16,12 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Website_Extensions
- * @subpackage Website_Extensions/includes
+ * @package    Gutefy_Social_Icons
+ * @subpackage Gutefy_Social_Icons/includes
  * @author     Gutefy <gutefy.2023@gmail.com>
  */
-class Website_Extensions_Activator {
-
+class Gutefy_Social_Icons_Activator
+{
 	/**
 	 * Short Description. (use period)
 	 *
@@ -29,7 +29,9 @@ class Website_Extensions_Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function activate() {
+	public static function activate()
+	{
+
 	}
 
 }

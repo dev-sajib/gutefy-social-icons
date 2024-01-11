@@ -21,7 +21,7 @@ class Class_Social_Icon_Extensions extends Class_list_of_social_account
                 $wp_customize->add_panel(
                         $gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
                         array(
-                                'title' => __('Gutefy Social Icons', 'gutefy-social-icons'),
+                                'title' => __('Gutefy Social Icons', 'gf-social-icon'),
                                 'description' => '<p>Gutefy Extensions for website enhancement</p>',
                                 'priority' => 160,
                         )
@@ -30,18 +30,20 @@ class Class_Social_Icon_Extensions extends Class_list_of_social_account
                 $wp_customize->add_section(
                         $gutefy_namespace . 'accounts' . $gutefy_extensions_namespace,
                         array(
-                                'title' => __('Social Accounts', 'gutefy-social-icons'),
+                                'title' => __('Social Accounts', 'gf-social-icon'),
                                 'priority' => 1,
                                 'panel' => $gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
                         )
                 );
+
+
 
         }
         function custom_url_validation($error_object, $input, $setting_object)
         {
                 // Remove leading and trailing whitespaces
                 $input = trim($input);
-                if ($input!='' && filter_var($input, FILTER_VALIDATE_URL) === false) {
+                if ($input != '' && filter_var($input, FILTER_VALIDATE_URL) === false) {
                         // URL is not valid
                         return false;
                 }
@@ -70,7 +72,7 @@ class Class_Social_Icon_Extensions extends Class_list_of_social_account
                 $wp_customize->add_control(
                         "gutefy_social_url_$social_name",
                         array(
-                                'label' => __(ucwords($social_name), 'gutefy-social-icons'),
+                                'label' => __(ucwords($social_name), 'gf-social-icon'),
                                 'section' => $gutefy_namespace . 'accounts' . $gutefy_extensions_namespace,
                                 'type' => 'url',
                                 'priority' => 30,
@@ -95,7 +97,7 @@ class Class_Social_Icon_Extensions extends Class_list_of_social_account
                 //                 $wp_customize,
                 //                 "gutefy_social_icon_$social_name",
                 //                 array(
-                //                         'label' => __("Custom Fontawsom Icon Class", 'gutefy-social-icons'),
+                //                         'label' => __("Custom Fontawsom Icon Class", 'gf-social-icon'),
                 //                         'section' => $gutefy_namespace . 'accounts' . $gutefy_extensions_namespace,
                 //                         'type' => 'text',
                 //                         'priority' => 30,

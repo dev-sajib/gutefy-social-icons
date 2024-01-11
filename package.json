@@ -1,32 +1,31 @@
 {
-  "name": "website-extensions",
-  "version": "1.0.0",
-  "description": "Extend wordpress website functionality",
-  "main": "index.js",
-"scripts": {
-    "start": "npx gulp watch",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "scss:compile": "gulp scss:compile",
-    "admin_scss:compile": "gulp admin_scss:compile",
-    "admin_js:minify": "gulp admin_js:minify",
-    "js:minify": "gulp js:minify",
-    "watch": "gulp watch",
-"zip": "zip -r website-extensions.zip ./ -x 'node_modules*' '.git*' '*src*' '*/src*' 'gulpfile.js' 'package.json' 'package-lock.json'",
-    "build": "npm run scss:compile && npm run admin_scss:compile && npm run admin_js:minify && npm run js:minify && npm run zip"
-
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.1",
-    "gulp-clean-css": "^4.3.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-rename": "^2.0.0",
-    "gulp-sass": "^5.1.0",
-    "gulp-uglify": "^3.0.2",
-    "node-sass": "^9.0.0",
-    "sass": "^1.69.6"
-  }
+	"name": "gf-social-icon",
+	"version": "1.0.0",
+	"description": "Extend wordpress website functionality",
+	"main": "index.js",
+	"scripts": {
+		"start": "npx gulp watch",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"scss:compile": "gulp scss:compile",
+		"admin_scss:compile": "gulp admin_scss:compile",
+		"admin_js:minify": "gulp admin_js:minify",
+		"js:minify": "gulp js:minify",
+		"watch": "gulp watch",
+		"zip": "zip -r gf-social-icon.zip ./ -x 'node_modules*' '.git*' '*src*' '*/src*' 'gulpfile.js' 'package.json' 'package-lock.json'",
+		"build": "npm run scss:compile && npm run admin_scss:compile && npm run admin_js:minify && npm run js:minify"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"gulp": "^4.0.2",
+		"gulp-autoprefixer": "^7.0.1",
+		"gulp-clean-css": "^4.3.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-rename": "^2.0.0",
+		"gulp-sass": "^5.1.0",
+		"gulp-uglify": "^3.0.2",
+		"node-sass": "^9.0.0",
+		"sass": "^1.69.6"
+	}
 }

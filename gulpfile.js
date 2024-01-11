@@ -10,7 +10,7 @@ gulp.task('scss:compile', function () {
         return gulp.src('./public/extensions/**/*.scss')
                 .pipe(sass().on('error', sass.logError))
                 .pipe(autoprefixer())
-                .pipe(concat('website-extensions-public.min.css'))
+                .pipe(concat('gf-social-icon-public.min.css'))
                 .pipe(cleanCSS()) // Minify the CSS
                 .pipe(gulp.dest('./public/css'));
 });
@@ -18,7 +18,7 @@ gulp.task('admin_scss:compile', function () {
         return gulp.src('./admin/extensions/**/*.scss')
                 .pipe(sass().on('error', sass.logError))
                 .pipe(autoprefixer())
-                .pipe(concat('website-extensions-admin.min.css'))
+                .pipe(concat('gf-social-icon-admin.min.css'))
                 .pipe(cleanCSS()) // Minify the CSS
                 .pipe(gulp.dest('./admin/css'));
 });
@@ -26,13 +26,13 @@ gulp.task('admin_scss:compile', function () {
 gulp.task('admin_js:minify', function () {
         return gulp.src('./admin/extensions/**/*.js')
                 .pipe(uglify())
-                .pipe(concat('website-extensions-admin.min.js'))
+                .pipe(concat('gf-social-icon-admin.min.js'))
                 .pipe(gulp.dest('./admin/js'));
 });
 gulp.task('js:minify', function () {
         return gulp.src('./public/extensions/**/*.js')
                 .pipe(uglify())
-                .pipe(concat('website-extensions-public.min.js'))
+                .pipe(concat('gf-social-icon-public.min.js'))
                 .pipe(gulp.dest('./public/js'));
 });
 

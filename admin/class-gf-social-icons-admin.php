@@ -6,8 +6,8 @@
  * @link       https://gutefy.com
  * @since      1.0.0
  *
- * @package    Website_Extensions
- * @subpackage Website_Extensions/admin
+ * @package    Gutefy_Social_Icons
+ * @subpackage Gutefy_Social_Icons/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Website_Extensions
- * @subpackage Website_Extensions/admin
+ * @package    Gutefy_Social_Icons
+ * @subpackage Gutefy_Social_Icons/admin
  * @author     Gutefy <gutefy.2023@gmail.com>
  */
-class Website_Extensions_Admin
+class Gutefy_Social_Icons_Admin
 {
 
 	/**
@@ -51,6 +51,7 @@ class Website_Extensions_Admin
 	public function __construct($plugin_name, $version)
 	{
 		require_once plugin_dir_path(__FILE__) . 'extensions/module-social-icon/class-social-icon-extensions-admin.php';
+		require_once plugin_dir_path(__FILE__) . 'extensions/module-pre-loader/class-pre-loader-extensions-admin.php';
 
 		$this->register_elements();
 		$this->plugin_name = $plugin_name;
@@ -60,6 +61,7 @@ class Website_Extensions_Admin
 	public function register_elements()
 	{
 		new Class_social_icon_extensions();
+		new Class_pre_loader_extensions_admin();
 	}
 	/**
 	 * Register the stylesheets for the admin area.
@@ -68,7 +70,7 @@ class Website_Extensions_Admin
 	 */
 	public function enqueue_styles()
 	{
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/website-extensions-admin.min.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/gf-social-icon-admin.min.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -78,7 +80,7 @@ class Website_Extensions_Admin
 	 */
 	public function enqueue_scripts()
 	{
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/website-extensions-admin.min.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/gf-social-icon-admin.min.js', array('jquery'), $this->version, false);
 	}
 
 }

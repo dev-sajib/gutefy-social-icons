@@ -5,11 +5,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Website_Extensions
- * @subpackage Website_Extensions/public
+ * @package    Gutefy_Social_Icons
+ * @subpackage Gutefy_Social_Icons/public
  * @author     Gutefy <gutefy.2023@gmail.com>
  */
-class Website_Extensions_Public
+class Gutefy_Social_Icons_Public
 {
 
 	/**
@@ -52,7 +52,7 @@ class Website_Extensions_Public
 	 */
 	public function enqueue_styles()
 	{
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/website-extensions-public.min.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/gf-social-icon-public.min.css', array(), $this->version, 'all');
 
 		//social icon
 		wp_enqueue_style('gutefy-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css', array(), '6.0.0', 'all');
@@ -65,7 +65,7 @@ class Website_Extensions_Public
 	 */
 	public function enqueue_scripts()
 	{
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/website-extensions-public.min.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/gf-social-icon-public.min.js', array('jquery'), $this->version, false);
 	}
 
 }
