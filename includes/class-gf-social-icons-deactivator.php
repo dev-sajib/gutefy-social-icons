@@ -1,15 +1,4 @@
 <?php
-
-/**
- * Fired during plugin deactivation
- *
- * @link       https://gutefy.com
- * @since      1.0.0
- *
- * @package    Gutefy_Social_Icons
- * @subpackage Gutefy_Social_Icons/includes
- */
-
 /**
  * Fired during plugin deactivation.
  *
@@ -22,7 +11,6 @@
  */
 class Gutefy_Social_Icons_Deactivator
 {
-
 	/**
 	 * Short Description. (use period)
 	 *
@@ -32,7 +20,5 @@ class Gutefy_Social_Icons_Deactivator
 	 */
 	public static function deactivate()
 	{
-
 	}
-
 }

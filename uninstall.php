@@ -27,5 +27,27 @@
 
 // If uninstall not called from WordPress, then exit.
 if (!defined('WP_UNINSTALL_PLUGIN')) {
+	// global $wpdb;
+
+	// $table_name = $wpdb->prefix . '_gf_social_icons';
+
+	// // Check if the table exists before attempting to drop it
+	// if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name) {
+	// 	$sql = "DROP TABLE $table_name";
+
+	// 	require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+	// 	if (!function_exists('dbDelta')) {
+	// 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+	// 	}
+
+	// 	// Drop the table
+	// 	$result = $wpdb->query($sql);
+
+	// 	// Check for errors during table dropping
+	// 	if ($wpdb->last_error !== '') {
+	// 		error_log("Error dropping database table: " . $wpdb->last_error);
+	// 		wp_die("Error dropping database table. Check the error log for details.");
+	// 	}
+	// }
 	exit;
 }
