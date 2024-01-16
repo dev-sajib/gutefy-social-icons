@@ -35,14 +35,16 @@ class Class_view_social_icon extends Class_list_of_social_account
 
         function markup($html, $data, $data_style)
         {
-                $markup_style = get_option("gutefy_settings_selected_style_social_icon", "");
-                if ($markup_style === 'style1') {
-                        $html = $this->styleOne($html, $data, $data_style, $this->data_icon_list);
+                if ($data) {
+                        $markup_style = get_option("gutefy_settings_selected_style_social_icon", "");
+                        if ($markup_style === 'style1') {
+                                $html = $this->styleOne($html, $data, $data_style, $this->data_icon_list);
+                        } elseif ($markup_style === 'style2') {
+                                $html = $this->styleTwo($html, $data, $data_style, $this->data_icon_list);
+                        } else {
+                                $html = $this->styleTwo($html, $data, $data_style, $this->data_icon_list);
+                        }
                 }
-                if ($markup_style === 'style2') {
-                        $html = $this->styleTwo($html, $data, $data_style, $this->data_icon_list);
-                }
-
                 return $html;
         }
 

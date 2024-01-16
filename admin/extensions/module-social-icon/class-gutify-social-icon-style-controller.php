@@ -120,7 +120,7 @@ class Class_gutify_social_icon_style_controller
                 $wp_customize->add_setting(
                         $gutefy_namespace . 'selected_style' . $gutefy_extensions_namespace,
                         array(
-                                'default' => 'style1',
+                                'default' => 'style2',
                                 'transport' => 'refresh',
                                 'type' => 'option',
                                 'capability' => 'manage_options',
