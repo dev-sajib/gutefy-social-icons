@@ -30,8 +30,8 @@ class Gutefy_Social_Icons_Activator
 	 */
 	public static function activate()
 	{
-		$activator = new self();
-		$activator->gf_social_icons_create_db();
+		// $activator = new self();
+		// $activator->gf_social_icons_create_db();
 	}
 
 	public function gf_social_icons_create_db()

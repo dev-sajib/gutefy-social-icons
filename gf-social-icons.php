@@ -57,11 +57,9 @@ function activate_Gutefy_Social_Icons()
  */
 function gutify_plugin_action_links($links, $file)
 {
-	if (strpos($file, 'gf-social-icon.php') !== false) {
-		$settings_link = '<a href="' . admin_url('customize.php?autofocus[panel]=gutefy_settings_core_panel_social_icon&autofocus[section]=gutefy_settings_accounts_social_icon') . '">' . esc_html__('Settings', 'gf-social-icon') . '</a>';
-		array_unshift($links, $settings_link);
-	}
 
+	$settings_link = '<a href="' . admin_url('customize.php?autofocus[panel]=gutefy_settings_core_panel_social_icon&autofocus[section]=gutefy_settings_accounts_social_icon') . '">' . esc_html__('Settings', 'gf-social-icon') . '</a>';
+	array_unshift($links, $settings_link);
 	return $links;
 }
 add_filter('plugin_action_links', 'gutify_plugin_action_links', 10, 2);

@@ -79,7 +79,7 @@ class Gutefy_Social_Icons
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-		add_action('admin_menu', [$this, 'we_admin_menu_options']);
+		// add_action('admin_menu', [$this, 'we_admin_menu_options']);
 	}
 	public function we_admin_menu_options()
 	{
