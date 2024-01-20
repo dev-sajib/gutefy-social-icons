@@ -8,7 +8,8 @@ class Class_gutify_social_icon_style_controller
 
 	public function gutify_social_icon_style_controller($wp_customize)
 	{
-		require_once(plugin_dir_path(__FILE__) . './class-gf-control-slider.php');
+		require_once(plugin_dir_path(__FILE__) . './../../controls/class-gf-control-slider.php');
+		require_once(plugin_dir_path(__FILE__) . './../../controls/class-gf-control-toggle.php');
 		// Create a namespace for Gutefy settings
 		$gutefy_namespace = 'gutefy_settings_';
 		$gutefy_extensions_namespace = '_social_icon';
@@ -23,12 +24,34 @@ class Class_gutify_social_icon_style_controller
 			)
 		);
 
+		$wp_customize->add_setting(
+			$gutefy_namespace.'toggle_for_use_officeal_color'.$gutefy_extensions_namespace,
+			array(
+				'default'	=>	'sajib',
+				'transport'	=>	'refresh',
+				'type'		=>	'option',
+				'capability'	=>	'manage_options'
+			)
+		);
+		$wp_customize->add_control(
+			new Class_gf_control_toggle(
+				$wp_customize,
+				$gutefy_namespace.'toggle_for_use_officeal_color'.$gutefy_extensions_namespace,
+				array(
+					'label' => __('Use Official Color', 'gf-social-icon'),
+					'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
+					'priority' => 2,
+				)
+			)
+			
+		);
+
 		// Add color control under Gutefy social icons section for icon color
 		$wp_customize->add_setting(
 			$gutefy_namespace . 'color' . $gutefy_extensions_namespace,
 			array(
 				'default' => '#ffffff',
-				'transport' => 'refresh',
+				'transport' => 'postMessage',
 				'type' => 'option',
 				'capability' => 'manage_options',
 			)

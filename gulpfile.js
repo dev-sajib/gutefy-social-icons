@@ -26,7 +26,7 @@ gulp.task('admin_scss:compile', function () {
 gulp.task('admin_js:minify', function () {
         return gulp.src('./admin/extensions/**/*.js')
                 .pipe(uglify())
-                .pipe(concat('gf-social-icon-admin.min.js'))
+                .pipe(concat('gf-social-icon-customizer-admin.min.js'))
                 .pipe(gulp.dest('./admin/js'));
 });
 gulp.task('js:minify', function () {
