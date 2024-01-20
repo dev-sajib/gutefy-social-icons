@@ -15,11 +15,9 @@ body div#main-container{
         --gutefy-secondary-hover-color: #F5AD3C;
         --gutefy-icon-size:30px;
         --gutefy-icon-wrapper-size: 60px;
-        
-}
-$gutefy-icon-wrapper-size_var: 60;
 
-// $gutefy-style-two-icon-size: var(--gutefy-icon-wrapper-size)   default;
+}
+
 
 .gutefy-section-wrapper.style-one {
         .section-wrapper {
@@ -27,7 +25,7 @@ $gutefy-icon-wrapper-size_var: 60;
                 bottom: 130px;
                 right: 25px;
                 z-index: 9999999999;
-                
+
                 .floating-action-button {
                         width: var(--gutefy-icon-wrapper-size);
                         height: var(--gutefy-icon-wrapper-size);
@@ -194,12 +192,7 @@ $gutefy-icon-wrapper-size_var: 60;
                         font-size: 1.5em;
                         will-change: bottom;
                 }
-                // from 0 through ${number of inner fabs}
-                @for $i from 0 through 5 {
-                        .gf-sl-inner-fabs.show .fab:nth-child(#{$i + 1}) {
-                                bottom: #{$i * $gutefy-icon-wrapper-size_var + 80}px;
-                        }
-                }
+
                 // Did that so the box-shadow doesn't rotate too
                 .gf-sl-inner-fabs.show+.fab.round i {
                         transform: rotate(135deg);
