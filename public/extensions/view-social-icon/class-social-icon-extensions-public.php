@@ -16,18 +16,33 @@ class Class_view_social_icon extends Class_list_of_social_account
         public function getIconData($content)
         {
                 foreach ($this->socialList as $socialNetwork) {
-                        $data[$socialNetwork . "_url"] = get_option('gutefy_social_url_' . $socialNetwork);
+                        if($socialNetwork == 'Email'){
+                                $generate_email_url = (get_option('gutefy_social_url_' . $socialNetwork) !='')?"mailto:".str_replace('http://','',get_option('gutefy_social_url_' . $socialNetwork)):'';
+                                $data[$socialNetwork."_url"] = $generate_email_url;
+                        }
+                        elseif($socialNetwork == 'Phone'){
+                                $generate_phone_url = (get_option('gutefy_social_url_' . $socialNetwork) !='')?"tel:".str_replace('http://','',get_option('gutefy_social_url_' . $socialNetwork)):'';
+                                $data[$socialNetwork."_url"] = $generate_phone_url;
+                        }
+                        else{
+                                $data[$socialNetwork . "_url"] = get_option('gutefy_social_url_' . $socialNetwork);
+                        }
                 }
                 $data_style['gutefy_settings_color_social_icon'] = get_option("gutefy_settings_color_social_icon", "");
                 $data_style['gutefy_settings_bg_color_social_icon'] = get_option("gutefy_settings_bg_color_social_icon", "");
                 $data_style['gutefy_settings_hover_bg_color_social_icon'] = get_option("gutefy_settings_hover_bg_color_social_icon", "");
                 $data_style['gutefy_settings_hover_color_social_icon'] = get_option("gutefy_settings_hover_color_social_icon", "");
+                $data_style['gutefy_settings_icon_size_social_icon'] = get_option("gutefy_settings_icon_size_social_icon", "");
+                $data_style['gutefy_settings_icon_wrapper_size_social_icon'] = get_option("gutefy_settings_icon_wrapper_size_social_icon", "");
+                
+                // var_dump($data_style);
                 $content = $this->render_frontend($content, $data, $data_style);
                 return $content;
         }
         function render_frontend($html, $data, $data_style)
         {
                 // Concatenate HTML
+                
                 $new_html = $this->markup($html, $data, $data_style);
 
                 return $new_html;
