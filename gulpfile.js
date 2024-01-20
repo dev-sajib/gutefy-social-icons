@@ -15,20 +15,22 @@ gulp.task('scss:compile', function () {
                 .pipe(gulp.dest('./public/css'));
 });
 gulp.task('admin_scss:compile', function () {
-        return gulp.src('./admin/extensions/**/*.scss')
+        return gulp.src('./admin/src/**/*.scss')
                 .pipe(sass().on('error', sass.logError))
                 .pipe(autoprefixer())
-                .pipe(concat('gf-social-icon-admin.min.css'))
+                .pipe(concat('gf-social-icons-admin.min.css'))
                 .pipe(cleanCSS()) // Minify the CSS
                 .pipe(gulp.dest('./admin/css'));
 });
 
 gulp.task('admin_js:minify', function () {
-        return gulp.src('./admin/extensions/**/*.js')
+        return gulp.src('./admin/src/**/*.js')
                 .pipe(uglify())
-                .pipe(concat('gf-social-icon-customizer-admin.min.js'))
+                .pipe(concat('gf-social-icons-customizer-admin.min.js'))
                 .pipe(gulp.dest('./admin/js'));
 });
+
+//public -----------------
 gulp.task('js:minify', function () {
         return gulp.src('./public/extensions/**/*.js')
                 .pipe(uglify())
@@ -37,10 +39,10 @@ gulp.task('js:minify', function () {
 });
 
 gulp.task('watch', function () {
-        gulp.watch('./admin/extensions/**/*.scss', gulp.series('admin_scss:compile'));
+        gulp.watch('./admin/src/**/*.scss', gulp.series('admin_scss:compile'));
         gulp.watch('./public/extensions/**/*.scss', gulp.series('scss:compile'));
         gulp.watch('./public/extensions/**/*.js', gulp.series('js:minify'));
-        gulp.watch('./admin/extensions/**/*.js', gulp.series('admin_js:minify'));
+        gulp.watch('./admin/src/**/*.js', gulp.series('admin_js:minify'));
 });
 
 // Default task to run both 'scss:compile' and 'js:minify' tasks when watching

@@ -1,11 +1,10 @@
 <?php
-require_once plugin_dir_path(__FILE__) . 'class-list-of-social-account.php';
-require_once plugin_dir_path(__FILE__) . 'class-gutify-social-icon-style-controller.php';
-class Class_Social_Icon_Extensions extends Class_list_of_social_account
+require_once plugin_dir_path(__FILE__) . 'class-gf-social-icons-list-of-account-admin.php';
+require_once plugin_dir_path(__FILE__) . 'class-gf-social-icons-style-controller-admin.php';
+class Class_gf_social_icon_content_controller_admin extends Class_gf_social_icons_list_of_account_admin
 {
 	public function __construct()
 	{
-		new Class_gutify_social_icon_style_controller();
 		add_action('customize_register', array($this, 'gutefy_social_icons_customizer_settings'));
 	}
 
@@ -113,3 +112,4 @@ class Class_Social_Icon_Extensions extends Class_list_of_social_account
 		}
 	}
 }
+new Class_gf_social_icon_content_controller_admin();

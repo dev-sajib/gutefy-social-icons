@@ -50,17 +50,12 @@ class Gutefy_Social_Icons_Admin
 	 */
 	public function __construct($plugin_name, $version)
 	{
-		add_action( 'customize_preview_init', [$this,'enqueue_customizer_scripts'] );
-		require_once plugin_dir_path(__FILE__) . 'extensions/module-social-icon/class-social-icon-extensions-admin.php';
-
-		$this->register_elements();
+		require_once plugin_dir_path(__FILE__) . 'src/class-gf-social-icons-content-controller-admin.php';
+		
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
-	}
-	public function register_elements()
-	{
-		new Class_social_icon_extensions();
+		
+		add_action( 'customize_preview_init', [$this,'enqueue_customizer_scripts'] );
 	}
 	/**
 	 * Register the stylesheets for the admin area.
@@ -69,7 +64,7 @@ class Gutefy_Social_Icons_Admin
 	 */
 	public function enqueue_styles()
 	{
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/gf-social-icon-admin.min.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/gf-social-icons-admin.min.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -78,11 +73,11 @@ class Gutefy_Social_Icons_Admin
 	 * @since    1.0.0
 	 */
 	public function enqueue_customizer_scripts(){
-		wp_enqueue_script('gutefy-social-icon-admin-customizer', plugin_dir_url(__FILE__) . 'js/gf-social-icon-customizer-admin.min.js', array( 'jquery','customize-preview' ), $this->version, true);
+		wp_enqueue_script('gutefy-social-icon-admin-customizer', plugin_dir_url(__FILE__) . './js/gf-social-icons-customizer-admin.min.js', array( 'jquery','customize-preview' ), $this->version, true);
 	}
 	public function enqueue_scripts()
 	{
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/gf-social-icon-admin.min.js', array( 'jquery' ), $this->version, false);
+		// wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/gf-social-icons-admin.min.js', array( 'jquery' ), $this->version, false);
 	}
 
 }

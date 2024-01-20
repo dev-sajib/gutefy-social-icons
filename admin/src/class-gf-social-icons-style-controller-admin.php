@@ -1,5 +1,5 @@
 <?php
-class Class_gutify_social_icon_style_controller
+class Class_gf_social_icons_style_controller_admin
 {
 	public function __construct()
 	{
@@ -8,8 +8,8 @@ class Class_gutify_social_icon_style_controller
 
 	public function gutify_social_icon_style_controller($wp_customize)
 	{
-		require_once(plugin_dir_path(__FILE__) . './../../controls/class-gf-control-slider.php');
-		require_once(plugin_dir_path(__FILE__) . './../../controls/class-gf-control-toggle.php');
+		require_once(plugin_dir_path(__FILE__) . './../controls/class-gf-social-icons-control-slider.php');
+		require_once(plugin_dir_path(__FILE__) . './../controls/class-gf-social-icons-control-toggle.php');
 		// Create a namespace for Gutefy settings
 		$gutefy_namespace = 'gutefy_settings_';
 		$gutefy_extensions_namespace = '_social_icon';
@@ -34,7 +34,7 @@ class Class_gutify_social_icon_style_controller
 			)
 		);
 		$wp_customize->add_control(
-			new Class_gf_control_toggle(
+			new Class_gf_social_icons_control_toggle(
 				$wp_customize,
 				$gutefy_namespace.'toggle_for_use_officeal_color'.$gutefy_extensions_namespace,
 				array(
@@ -180,7 +180,7 @@ class Class_gutify_social_icon_style_controller
 		);
 
 		$wp_customize->add_control(
-			new Class_gf_control_slider(
+			new Class_gf_social_icons_control_slider(
 				$wp_customize,
 				$gutefy_namespace . 'icon_size' . $gutefy_extensions_namespace,
 				array(
@@ -208,7 +208,7 @@ class Class_gutify_social_icon_style_controller
 		);
 
 		$wp_customize->add_control(
-			new Class_gf_control_slider(
+			new Class_gf_social_icons_control_slider(
 				$wp_customize,
 				$gutefy_namespace . 'icon_wrapper_size' . $gutefy_extensions_namespace,
 				array(
@@ -226,3 +226,4 @@ class Class_gutify_social_icon_style_controller
 
 	}
 }
+new Class_gf_social_icons_style_controller_admin();

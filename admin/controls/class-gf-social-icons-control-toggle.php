@@ -1,5 +1,5 @@
 <?php
-class Class_gf_control_toggle extends WP_Customize_Control
+class Class_gf_social_icons_control_toggle extends WP_Customize_Control
 {
        public $type = 'toggle';
 

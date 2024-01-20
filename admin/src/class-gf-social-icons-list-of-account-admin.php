@@ -1,5 +1,5 @@
 <?php
-class Class_list_of_social_account
+class Class_gf_social_icons_list_of_account_admin
 {
         protected $socialList = array(
                 'Facebook',
