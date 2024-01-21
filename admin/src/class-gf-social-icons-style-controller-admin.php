@@ -14,6 +14,12 @@ class Class_gf_social_icons_style_controller_admin
 		$gutefy_namespace = 'gutefy_settings_';
 		$gutefy_extensions_namespace = '_social_icon';
 
+		// $wp_customize->selective_refresh->add_partial(
+		// 	$gutefy_namespace.'selected_style'.$gutefy_extensions_namespace,
+		// 	array(
+		// 		'selector'	=>	'.gutefy-section-wrapper',
+		// 	)
+		// );
 		// Add Gutefy Section under the Gutefy Panel
 		$wp_customize->add_section(
 			$gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
@@ -74,7 +80,7 @@ class Class_gf_social_icons_style_controller_admin
 			$gutefy_namespace . 'hover_color' . $gutefy_extensions_namespace,
 			array(
 				'default' => '#F5AD3C',
-				'transport' => 'refresh',
+				'transport' => 'postMessage',
 				'type' => 'option',
 				'capability' => 'manage_options',
 			)
@@ -98,7 +104,7 @@ class Class_gf_social_icons_style_controller_admin
 			$gutefy_namespace . 'bg_color' . $gutefy_extensions_namespace,
 			array(
 				'default' => '#000000',
-				'transport' => 'refresh',
+				'transport' => 'postMessage',
 				'type' => 'option',
 				'capability' => 'manage_options',
 			)
@@ -121,7 +127,7 @@ class Class_gf_social_icons_style_controller_admin
 			$gutefy_namespace . 'hover_bg_color' . $gutefy_extensions_namespace,
 			array(
 				'default' => '#086A61',
-				'transport' => 'refresh',
+				'transport' => 'postMessage',
 				'type' => 'option',
 				'capability' => 'manage_options',
 			)
@@ -173,7 +179,7 @@ class Class_gf_social_icons_style_controller_admin
 			array(
 
 				'default' => '30',
-				'transport' => 'refresh',
+				'transport' => 'postMessage',
 				'capability' => 'manage_options',
 				'type' => 'option'
 			)
@@ -201,7 +207,7 @@ class Class_gf_social_icons_style_controller_admin
 			array(
 
 				'default' => '60',
-				'transport' => 'refresh',
+				'transport' => 'postMessage',
 				'capability' => 'manage_options',
 				'type' => 'option'
 			)
