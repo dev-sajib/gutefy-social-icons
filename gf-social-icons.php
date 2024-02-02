@@ -41,12 +41,12 @@ define('Gutefy_Social_Icons_VERSION', '1.0.0');
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-gf-social-icons-activator.php
+ * This action is documented in includes/gf-social-icons-class-activator.php
  */
 function activate_Gutefy_Social_Icons()
 {
-	require_once plugin_dir_path(__FILE__) . 'includes/class-gf-social-icons-activator.php';
-	Gutefy_Social_Icons_Activator::activate();
+	require_once plugin_dir_path(__FILE__) . 'includes/gf-social-icons-class-activator.php';
+	Gf_social_icons_class_activator::activate();
 }
 /**
  * Add settings link to the plugin page.
@@ -67,12 +67,12 @@ add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'gutify_plugin_a
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-gf-social-icons-deactivator.php
+ * This action is documented in includes/gf-social-icons-class-deactivator.php
  */
 function deactivate_Gutefy_Social_Icons()
 {
-	require_once plugin_dir_path(__FILE__) . 'includes/class-gf-social-icons-deactivator.php';
-	Gutefy_Social_Icons_Deactivator::deactivate();
+	require_once plugin_dir_path(__FILE__) . 'includes/gf-social-icons-class-deactivator.php';
+	Gf_social_icons_class_deactivator::deactivate();
 }
 
 register_activation_hook(__FILE__, 'activate_Gutefy_Social_Icons');
@@ -82,7 +82,7 @@ register_deactivation_hook(__FILE__, 'deactivate_Gutefy_Social_Icons');
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path(__FILE__) . 'includes/class-gf-social-icons.php';
+require plugin_dir_path(__FILE__) . 'includes/gf-social-icons-class.php';
 
 /**
  * Begins execution of the plugin.
@@ -96,7 +96,7 @@ require plugin_dir_path(__FILE__) . 'includes/class-gf-social-icons.php';
 function run_Gutefy_Social_Icons()
 {
 
-	$plugin = new Gutefy_Social_Icons();
+	$plugin = new Gf_social_icons_class();
 	$plugin->run();
 
 }

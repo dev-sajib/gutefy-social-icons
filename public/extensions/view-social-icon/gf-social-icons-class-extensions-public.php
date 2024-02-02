@@ -1,10 +1,10 @@
 <?php
 
 require_once plugin_dir_path(__FILE__) . '../../../admin/src/gf-social-icons-class-list-of-account-admin.php';
-require_once plugin_dir_path(__FILE__) . './class-social-icon-style-template.php';
-class Class_view_social_icon extends Gf_social_icons_class_list_of_account_admin
+require_once plugin_dir_path(__FILE__) . './gf-social-icons-class-style-template.php';
+class   Gf_social_icons_class_extensions_public extends Gf_social_icons_class_list_of_account_admin
 {
-        use Class_social_icon_style_template;
+        use Gf_social_icons_class_style_template;
         private $data = [];
         private $data_style = [];
         public $data_icon_list;
@@ -66,4 +66,4 @@ class Class_view_social_icon extends Gf_social_icons_class_list_of_account_admin
 
 }
 
-new Class_view_social_icon();
+new Gf_social_icons_class_extensions_public();

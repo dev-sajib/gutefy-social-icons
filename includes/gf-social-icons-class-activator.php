@@ -19,7 +19,7 @@
  * @subpackage Gutefy_Social_Icons/includes
  * @author Gutefy <gutefy.2023@gmail.com>
  */
-class Gutefy_Social_Icons_Activator
+class Gf_social_icons_class_activator
 {
 	/**
 	 * Short Description. (use period)

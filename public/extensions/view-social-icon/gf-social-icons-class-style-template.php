@@ -1,6 +1,6 @@
 <?php
 
-trait Class_social_icon_style_template
+trait   Gf_social_icons_class_style_template
 {
         private function get_style_settings($data_style)
         {

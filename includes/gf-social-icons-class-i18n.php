@@ -24,7 +24,7 @@
  * @subpackage Gutefy_Social_Icons/includes
  * @author     Gutefy <gutefy.2023@gmail.com>
  */
-class Gutefy_Social_Icons_i18n
+class 	Gf_social_icons_class_i18n
 {
 
 

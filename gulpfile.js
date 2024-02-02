@@ -40,7 +40,7 @@ gulp.task('customizer_admin_js:minify', function () {
 gulp.task('js:minify', function () {
         return gulp.src('./public/extensions/**/*.js')
                 .pipe(uglify())
-                .pipe(concat('gf-social-icon-public.min.js'))
+                .pipe(concat('gf-social-icons-public.min.js'))
                 .pipe(gulp.dest('./public/js'));
 });
 

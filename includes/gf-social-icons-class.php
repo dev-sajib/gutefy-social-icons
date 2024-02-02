@@ -27,7 +27,7 @@
  * @subpackage Gutefy_Social_Icons/includes
  * @author     Gutefy <gutefy.2023@gmail.com>
  */
-class Gutefy_Social_Icons
+class Gf_social_icons_class
 {
 
 	/**
@@ -36,7 +36,7 @@ class Gutefy_Social_Icons
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Gutefy_Social_Icons_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Gf_social_icons_class_loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -102,10 +102,10 @@ class Gutefy_Social_Icons
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Gutefy_Social_Icons_Loader. Orchestrates the hooks of the plugin.
-	 * - Gutefy_Social_Icons_i18n. Defines internationalization functionality.
+	 * - Gf_social_icons_class_loader. Orchestrates the hooks of the plugin.
+	 * - Gf_social_icons_class_i18n. Defines internationalization functionality.
 	 * - Gutefy_Social_Icons_Admin. Defines all hooks for the admin area.
-	 * - Gutefy_Social_Icons_Public. Defines all hooks for the public side of the site.
+	 * - Gf_social_icons_class_public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -120,33 +120,33 @@ class Gutefy_Social_Icons
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-gf-social-icons-loader.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/gf-social-icons-class-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-gf-social-icons-i18n.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/gf-social-icons-class-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-gf-social-icons-admin.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/gf-social-icons-class-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-gf-social-icons-public.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'public/gf-social-icons-class-public.php';
 
-		$this->loader = new Gutefy_Social_Icons_Loader();
+		$this->loader = new Gf_social_icons_class_loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Gutefy_Social_Icons_i18n class in order to set the domain and to register the hook
+	 * Uses the Gf_social_icons_class_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -155,7 +155,7 @@ class Gutefy_Social_Icons
 	private function set_locale()
 	{
 
-		$plugin_i18n = new Gutefy_Social_Icons_i18n();
+		$plugin_i18n = new Gf_social_icons_class_i18n();
 
 		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
 
@@ -171,7 +171,7 @@ class Gutefy_Social_Icons
 	private function define_admin_hooks()
 	{
 
-		$plugin_admin = new Gutefy_Social_Icons_Admin($this->get_plugin_name(), $this->get_version());
+		$plugin_admin = new Gf_social_icons_class_admin($this->get_plugin_name(), $this->get_version());
 
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
@@ -188,7 +188,7 @@ class Gutefy_Social_Icons
 	private function define_public_hooks()
 	{
 
-		$plugin_public = new Gutefy_Social_Icons_Public($this->get_plugin_name(), $this->get_version());
+		$plugin_public = new Gf_social_icons_class_public($this->get_plugin_name(), $this->get_version());
 
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
@@ -220,7 +220,7 @@ class Gutefy_Social_Icons
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Gutefy_Social_Icons_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Gf_social_icons_class_loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader()
 	{

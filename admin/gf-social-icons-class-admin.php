@@ -20,7 +20,7 @@
  * @subpackage Gutefy_Social_Icons/admin
  * @author     Gutefy <gutefy.2023@gmail.com>
  */
-class Gutefy_Social_Icons_Admin
+class Gf_social_icons_class_admin
 {
 
 	/**

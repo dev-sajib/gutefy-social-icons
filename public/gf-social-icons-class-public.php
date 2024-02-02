@@ -9,7 +9,7 @@
  * @subpackage Gutefy_Social_Icons/public
  * @author     Gutefy <gutefy.2023@gmail.com>
  */
-class Gutefy_Social_Icons_Public
+class 	Gf_social_icons_class_public
 {
 
 	/**
@@ -39,7 +39,7 @@ class Gutefy_Social_Icons_Public
 	 */
 	public function __construct($plugin_name, $version)
 	{
-		require_once plugin_dir_path(__FILE__) . 'extensions/view-social-icon/class-social-icon-extensions-public.php';
+		require_once plugin_dir_path(__FILE__) . 'extensions/view-social-icon/gf-social-icons-class-extensions-public.php';
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 	}
@@ -64,7 +64,7 @@ class Gutefy_Social_Icons_Public
 	 */
 	public function enqueue_scripts()
 	{
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/gf-social-icon-public.min.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/gf-social-icons-public.min.js', array('jquery'), $this->version, false);
 	}
 
 }
