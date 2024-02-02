@@ -30,27 +30,27 @@ class Class_gf_social_icons_style_controller_admin
 			)
 		);
 
-		$wp_customize->add_setting(
-			$gutefy_namespace.'toggle_for_use_officeal_color'.$gutefy_extensions_namespace,
-			array(
-				'default'	=>	'sajib',
-				'transport'	=>	'refresh',
-				'type'		=>	'option',
-				'capability'	=>	'manage_options'
-			)
-		);
-		$wp_customize->add_control(
-			new Class_gf_social_icons_control_toggle(
-				$wp_customize,
-				$gutefy_namespace.'toggle_for_use_officeal_color'.$gutefy_extensions_namespace,
-				array(
-					'label' => __('Use Official Color', 'gf-social-icon'),
-					'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
-					'priority' => 2,
-				)
-			)
+		// $wp_customize->add_setting(
+		// 	$gutefy_namespace.'toggle_for_use_officeal_color'.$gutefy_extensions_namespace,
+		// 	array(
+		// 		'default'	=>	'sajib',
+		// 		'transport'	=>	'refresh',
+		// 		'type'		=>	'option',
+		// 		'capability'	=>	'manage_options'
+		// 	)
+		// );
+		// $wp_customize->add_control(
+		// 	new Class_gf_social_icons_control_toggle(
+		// 		$wp_customize,
+		// 		$gutefy_namespace.'toggle_for_use_officeal_color'.$gutefy_extensions_namespace,
+		// 		array(
+		// 			'label' => __('Use Official Color', 'gf-social-icon'),
+		// 			'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
+		// 			'priority' => 2,
+		// 		)
+		// 	)
 			
-		);
+		// );
 
 		// Add color control under Gutefy social icons section for icon color
 		$wp_customize->add_setting(
