@@ -10,9 +10,10 @@
 		"admin_scss:compile": "gulp admin_scss:compile",
 		"admin_js:minify": "gulp admin_js:minify",
 		"js:minify": "gulp js:minify",
+		"customizer_admin_js:minify":"gulp customizer_admin_js:minify",
 		"watch": "gulp watch",
 		"zip": "zip -r gf-social-icon.zip ./ -x 'node_modules*' '.git*' '*src*' '*/src*' 'gulpfile.js' 'package.json' 'package-lock.json'",
-		"build": "npm run scss:compile && npm run admin_scss:compile && npm run admin_js:minify && npm run js:minify"
+		"build": "npm run scss:compile && npm run admin_scss:compile && npm run admin_js:minify && npm run customizer_admin_js:minify && npm run js:minify"
 	},
 	"keywords": [],
 	"author": "",

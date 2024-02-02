@@ -1,8 +1,8 @@
 <?php
 
-require_once plugin_dir_path(__FILE__) . '../../../admin/extensions/module-social-icon/class-list-of-social-account.php';
+require_once plugin_dir_path(__FILE__) . '../../../admin/src/class-gf-social-icons-list-of-account-admin.php';
 require_once plugin_dir_path(__FILE__) . './class-social-icon-style-template.php';
-class Class_view_social_icon extends Class_list_of_social_account
+class Class_view_social_icon extends Class_gf_social_icons_list_of_account_admin
 {
         use Class_social_icon_style_template;
         private $data = [];

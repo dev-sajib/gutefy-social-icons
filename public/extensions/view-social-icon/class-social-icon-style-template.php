@@ -7,7 +7,7 @@ trait Class_social_icon_style_template
                 // var_dump($data_style);
                 $style = '';
                 $style = '<style>';
-                $style .= ':root{';
+                $style .= 'body{';
                 $style .= ($data_style['gutefy_settings_color_social_icon'] != '') ? '--gutefy-secondary-color:' . $data_style['gutefy_settings_color_social_icon'] . ' !important;' : '';
                 $style .= ($data_style['gutefy_settings_bg_color_social_icon'] != '') ? '--gutefy-primary-color:' . $data_style['gutefy_settings_bg_color_social_icon'] . ' !important;' : '';
                 $style .= ($data_style['gutefy_settings_hover_color_social_icon'] != '') ? '--gutefy-secondary-hover-color:' . $data_style['gutefy_settings_hover_color_social_icon'] . ' !important;' : '';
@@ -45,7 +45,7 @@ trait Class_social_icon_style_template
                         $accountName = $this->get_account_name_from_string($socialNetwork);
                         if ($url != '' && $allow_social_number != 0) {
                                 $allow_social_number -= 1;
-                                $html .= '<li ><a  href=' . $url . '><i  class="' . $data_icon_list[$accountName] . '"></i></a></li>';
+                                $html .= '<li ><a  href=' . $url . '><i  class="' . $data_icon_list[$accountName]['icon'] . '"></i></a></li>';
                         }
 
                 }
@@ -68,7 +68,7 @@ trait Class_social_icon_style_template
                 foreach ($data as $socialNetwork => $url) {
                         $accountName = $this->get_account_name_from_string($socialNetwork);
                         if ($url != '') {
-                                $html .= '<a href="' . $url . '" class="fab round" id="' . $accountName . '" data-tooltip="' . $accountName . '"  ><i class="' . $data_icon_list[$accountName] . '"></i></a>';
+                                $html .= '<a href="' . $url . '" class="fab round" id="' . $accountName . '" data-tooltip="' . $accountName . '"  ><i class="' . $data_icon_list[$accountName]['icon'] . '"></i></a>';
                         }
 
                 }
