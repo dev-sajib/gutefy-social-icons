@@ -1,5 +1,5 @@
 <?php
-class Class_gf_social_icons_control_slider extends WP_Customize_Control
+class Gf_social_icons_class_control_slider extends WP_Customize_Control
 {
        public $type = 'slider';
 

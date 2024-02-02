@@ -1,7 +1,7 @@
 <?php
-require_once plugin_dir_path(__FILE__) . 'class-gf-social-icons-list-of-account-admin.php';
-require_once plugin_dir_path(__FILE__) . 'class-gf-social-icons-style-controller-admin.php';
-class Class_gf_social_icon_content_controller_admin extends Class_gf_social_icons_list_of_account_admin
+require_once plugin_dir_path(__FILE__) . 'gf-social-icons-class-list-of-account-admin.php';
+require_once plugin_dir_path(__FILE__) . 'gf-social-icons-class-style-controller-admin.php';
+class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_class_list_of_account_admin
 {
 	public function __construct()
 	{
@@ -19,7 +19,7 @@ class Class_gf_social_icon_content_controller_admin extends Class_gf_social_icon
 		$wp_customize->add_panel(
 			$gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
 			array(
-				'title' => __('Gutefy Social Icons', 'gf-social-icon'),
+				'title' => __('Gutefy Social Icons', 'gf-social-icons'),
 				'description' => '<p>Gutefy Extensions for website enhancement</p>',
 				'priority' => 160,
 			)
@@ -28,7 +28,7 @@ class Class_gf_social_icon_content_controller_admin extends Class_gf_social_icon
 		$wp_customize->add_section(
 			$gutefy_namespace . 'accounts' . $gutefy_extensions_namespace,
 			array(
-				'title' => __('Social Accounts', 'gf-social-icon'),
+				'title' => __('Social Accounts', 'gf-social-icons'),
 				'priority' => 1,
 				'panel' => $gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
 			)
@@ -92,13 +92,13 @@ class Class_gf_social_icon_content_controller_admin extends Class_gf_social_icon
 		$wp_customize->add_control(
 			"gutefy_social_url_$social_name",
 			array(
-				'label' => __(ucwords($social_name), 'gf-social-icon'),
+				'label' => ucwords($social_name),
 				'section' => $gutefy_namespace . 'accounts' . $gutefy_extensions_namespace,
 				'type' => 'text',
 				'priority' => 30,
 				'input_attrs' => array(
 					'class' => "gutefy-social__url $social_name",
-					'placeholder' => __('https://'),
+					'placeholder' => 'https://',
 				),
 			)
 		);
@@ -112,4 +112,4 @@ class Class_gf_social_icon_content_controller_admin extends Class_gf_social_icon
 		}
 	}
 }
-new Class_gf_social_icon_content_controller_admin();
+new Gf_social_icons_class_content_controller_admin();

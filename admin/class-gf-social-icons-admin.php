@@ -50,9 +50,9 @@ class Gutefy_Social_Icons_Admin
 	 */
 	public function __construct($plugin_name, $version)
 	{
-		require_once plugin_dir_path(__FILE__) . 'src/class-gf-social-icons-content-controller-admin.php';
+		require_once plugin_dir_path(__FILE__) . 'src/gf-social-icons-class-content-controller-admin.php';
 		
-		$this->plugin_name = $plugin_name;
+		$this->plugin_name = $plugin_name; 
 		$this->version = $version;
 		
 		add_action( 'customize_preview_init', [$this,'enqueue_customizer_scripts'] );

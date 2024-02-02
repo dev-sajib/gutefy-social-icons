@@ -57,7 +57,7 @@ function activate_Gutefy_Social_Icons()
  */
 function gutify_plugin_action_links($links, $file)
 {
-	$settings_link = '<a href="' . admin_url('customize.php?autofocus[panel]=gutefy_settings_core_panel_social_icon&autofocus[section]=gutefy_settings_accounts_social_icon') . '">' . esc_html__('Settings', 'gf-social-icon') . '</a>';
+	$settings_link = '<a href="' . admin_url('customize.php?autofocus[panel]=gutefy_settings_core_panel_social_icon&autofocus[section]=gutefy_settings_accounts_social_icon') . '">' . esc_html__('Settings', 'gf-social-icons') . '</a>';
 	array_unshift($links, $settings_link);
 	return $links;
 }

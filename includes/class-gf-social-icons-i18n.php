@@ -37,7 +37,7 @@ class Gutefy_Social_Icons_i18n
 	{
 
 		load_plugin_textdomain(
-			'gf-social-icon',
+			'gf-social-icons',
 			false,
 			dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
 		);

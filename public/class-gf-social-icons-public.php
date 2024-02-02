@@ -57,7 +57,6 @@ class Gutefy_Social_Icons_Public
 
 		//social icon
 	}
-
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
 	 *

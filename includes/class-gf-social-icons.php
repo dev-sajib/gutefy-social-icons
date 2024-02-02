@@ -74,7 +74,7 @@ class Gutefy_Social_Icons
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'gf-social-icon';
+		$this->plugin_name = 'gf-social-icons';
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
