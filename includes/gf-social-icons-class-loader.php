@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
 /**
  * Register all actions and filters for the plugin
  *
@@ -21,7 +23,7 @@
  * @subpackage Gutefy_Social_Icons/includes
  * @author     Gutefy <gutefy.2023@gmail.com>
  */
-class Gutefy_Social_Icons_Loader
+class 	Gf_social_icons_class_loader
 {
 
 	/**

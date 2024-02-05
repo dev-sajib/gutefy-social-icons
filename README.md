@@ -16,7 +16,7 @@ Gutefy Social Icons is a WordPress plugin developed by Gutefy, allowing users to
 
 ## Installation
 
-1. Upload the 'gf-social-icon' folder to the '/wp-content/plugins/' directory.
+1. Upload the 'gf-social-icons' folder to the '/wp-content/plugins/' directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 
 ## Features

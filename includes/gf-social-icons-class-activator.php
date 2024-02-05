@@ -1,4 +1,7 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
 /**
  * Fired during plugin activation
  *
@@ -19,7 +22,7 @@
  * @subpackage Gutefy_Social_Icons/includes
  * @author Gutefy <gutefy.2023@gmail.com>
  */
-class Gutefy_Social_Icons_Activator
+class Gf_social_icons_class_activator
 {
 	/**
 	 * Short Description. (use period)
@@ -28,7 +31,7 @@ class Gutefy_Social_Icons_Activator
 	 *
 	 * @since 1.0.0
 	 */
-	public static function activate()
+	public static function gf_social_icons_activate()
 	{
 		// $activator = new self();
 		// $activator->gf_social_icons_create_db();

@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -20,7 +22,8 @@
  * @subpackage Gutefy_Social_Icons/admin
  * @author     Gutefy <gutefy.2023@gmail.com>
  */
-class Gutefy_Social_Icons_Admin
+
+class Gf_social_icons_class_admin
 {
 
 	/**
@@ -50,19 +53,19 @@ class Gutefy_Social_Icons_Admin
 	 */
 	public function __construct($plugin_name, $version)
 	{
-		require_once plugin_dir_path(__FILE__) . 'src/class-gf-social-icons-content-controller-admin.php';
+		require_once plugin_dir_path(__FILE__) . 'extensions/gf-social-icons-class-content-controller-admin.php';
 		
-		$this->plugin_name = $plugin_name;
+		$this->plugin_name = $plugin_name; 
 		$this->version = $version;
 		
-		add_action( 'customize_preview_init', [$this,'enqueue_customizer_scripts'] );
+		add_action( 'customize_preview_init', [$this,'gf_social_icons_enqueue_customizer_scripts'] );
 	}
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles()
+	public function gf_social_icons_enqueue_styles()
 	{
 		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/gf-social-icons-admin.min.css', array(), $this->version, 'all');
 	}
@@ -72,10 +75,10 @@ class Gutefy_Social_Icons_Admin
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_customizer_scripts(){
+	public function gf_social_icons_enqueue_customizer_scripts(){
 		wp_enqueue_script('gutefy-social-icon-admin-customizer', plugin_dir_url(__FILE__) . './js/gf-social-icons-customizer-admin.min.js', array( 'jquery','customize-preview' ), $this->version, true);
 	}
-	public function enqueue_scripts()
+	public function gf_social_icons_enqueue_scripts()
 	{
 		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/gf-social-icons-admin.min.js', array( 'jquery' ), $this->version, false);
 	}

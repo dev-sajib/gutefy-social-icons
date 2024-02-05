@@ -10,7 +10,7 @@ gulp.task('scss:compile', function () {
         return gulp.src('./public/extensions/**/*.scss')
                 .pipe(sass().on('error', sass.logError))
                 .pipe(autoprefixer())
-                .pipe(concat('gf-social-icon-public.min.css'))
+                .pipe(concat('gf-social-icons-public.min.css'))
                 .pipe(cleanCSS()) // Minify the CSS
                 .pipe(gulp.dest('./public/css'));
 });
@@ -40,7 +40,7 @@ gulp.task('customizer_admin_js:minify', function () {
 gulp.task('js:minify', function () {
         return gulp.src('./public/extensions/**/*.js')
                 .pipe(uglify())
-                .pipe(concat('gf-social-icon-public.min.js'))
+                .pipe(concat('gf-social-icons-public.min.js'))
                 .pipe(gulp.dest('./public/js'));
 });
 

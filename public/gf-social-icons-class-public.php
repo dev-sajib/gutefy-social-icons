@@ -1,4 +1,7 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
 /**
  * The public-facing functionality of the plugin.
  *
@@ -9,7 +12,7 @@
  * @subpackage Gutefy_Social_Icons/public
  * @author     Gutefy <gutefy.2023@gmail.com>
  */
-class Gutefy_Social_Icons_Public
+class 	Gf_social_icons_class_public
 {
 
 	/**
@@ -39,7 +42,7 @@ class Gutefy_Social_Icons_Public
 	 */
 	public function __construct($plugin_name, $version)
 	{
-		require_once plugin_dir_path(__FILE__) . 'extensions/view-social-icon/class-social-icon-extensions-public.php';
+		require_once plugin_dir_path(__FILE__) . 'extensions/view-social-icon/gf-social-icons-class-extensions-public.php';
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 	}
@@ -50,22 +53,21 @@ class Gutefy_Social_Icons_Public
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles()
+	public function gf_social_icons_enqueue_styles()
 	{
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/gf-social-icon-public.min.css', array(), $this->version, 'all');
+		wp_enqueue_style('gutefy-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css', array(), '6.0.0', 'all');
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/gf-social-icons-public.min.css', array(), $this->version, 'all');
 
 		//social icon
-		wp_enqueue_style('gutefy-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css', array(), '6.0.0', 'all');
 	}
-
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts()
+	public function gf_social_icons_enqueue_scripts()
 	{
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/gf-social-icon-public.min.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/gf-social-icons-public.min.js', array('jquery'), $this->version, false);
 	}
 
 }

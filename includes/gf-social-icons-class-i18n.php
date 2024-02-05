@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
 /**
  * Define the internationalization functionality
  *
@@ -24,7 +26,7 @@
  * @subpackage Gutefy_Social_Icons/includes
  * @author     Gutefy <gutefy.2023@gmail.com>
  */
-class Gutefy_Social_Icons_i18n
+class 	Gf_social_icons_class_i18n
 {
 
 
@@ -33,11 +35,11 @@ class Gutefy_Social_Icons_i18n
 	 *
 	 * @since    1.0.0
 	 */
-	public function load_plugin_textdomain()
+	public function gf_social_icons_load_textdomain()
 	{
 
 		load_plugin_textdomain(
-			'gf-social-icon',
+			'gf-social-icons',
 			false,
 			dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
 		);
