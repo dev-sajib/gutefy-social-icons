@@ -1,4 +1,7 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
 /**
  * Fired during plugin activation
  *
@@ -28,7 +31,7 @@ class Gf_social_icons_class_activator
 	 *
 	 * @since 1.0.0
 	 */
-	public static function activate()
+	public static function gf_social_icons_activate()
 	{
 		// $activator = new self();
 		// $activator->gf_social_icons_create_db();

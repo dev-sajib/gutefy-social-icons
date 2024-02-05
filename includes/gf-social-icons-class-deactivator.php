@@ -1,4 +1,7 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
 /**
  * Fired during plugin deactivation.
  *
@@ -18,7 +21,7 @@ class Gf_social_icons_class_deactivator
 	 *
 	 * @since    1.0.0
 	 */
-	public static function deactivate()
+	public static function gf_social_icons_deactivate()
 	{
 	}
 }

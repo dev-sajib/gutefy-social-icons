@@ -1,5 +1,7 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
 /**
  * The file that defines the core plugin class
  *
@@ -76,12 +78,12 @@ class Gf_social_icons_class
 		}
 		$this->plugin_name = 'gf-social-icons';
 		$this->load_dependencies();
-		$this->set_locale();
-		$this->define_admin_hooks();
-		$this->define_public_hooks();
-		// add_action('admin_menu', [$this, 'we_admin_menu_options']);
+		$this->gf_social_icons_set_locale();
+		$this->gf_social_icons_define_admin_hooks();
+		$this->gf_social_icons_define_public_hooks();
+		// add_action('admin_menu', [$this, 'gf_social_icons_admin_menu_options']);
 	}
-	public function we_admin_menu_options()
+	public function gf_social_icons_admin_menu_options()
 	{
 		add_menu_page(
 			'Gutefy Social Icons',
@@ -152,12 +154,12 @@ class Gf_social_icons_class
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function set_locale()
+	private function gf_social_icons_set_locale()
 	{
 
 		$plugin_i18n = new Gf_social_icons_class_i18n();
 
-		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
+		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'gf_social_icons_load_textdomain');
 
 	}
 
@@ -168,13 +170,13 @@ class Gf_social_icons_class
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_admin_hooks()
+	private function gf_social_icons_define_admin_hooks()
 	{
 
 		$plugin_admin = new Gf_social_icons_class_admin($this->get_plugin_name(), $this->get_version());
 
-		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
-		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
+		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'gf_social_icons_enqueue_styles');
+		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'gf_social_icons_enqueue_scripts');
 
 	}
 
@@ -185,13 +187,13 @@ class Gf_social_icons_class
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_public_hooks()
+	private function gf_social_icons_define_public_hooks()
 	{
 
 		$plugin_public = new Gf_social_icons_class_public($this->get_plugin_name(), $this->get_version());
 
-		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
-		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
+		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'gf_social_icons_enqueue_styles');
+		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'gf_social_icons_enqueue_scripts');
 
 	}
 

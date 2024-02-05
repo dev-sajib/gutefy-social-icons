@@ -1,4 +1,8 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
+
 class Gf_social_icons_class_list_of_account_admin
 {
         protected $socialList = array(

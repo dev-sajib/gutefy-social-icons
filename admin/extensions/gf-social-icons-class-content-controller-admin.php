@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
+
+
 require_once plugin_dir_path(__FILE__) . 'gf-social-icons-class-list-of-account-admin.php';
 require_once plugin_dir_path(__FILE__) . 'gf-social-icons-class-style-controller-admin.php';
 class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_class_list_of_account_admin
@@ -13,7 +18,7 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 		// Create a namespace for Gutefy settings
 		$gutefy_namespace = 'gutefy_settings_';
 		$gutefy_extensions_namespace = '_social_icon';
-		$this->social_handler($wp_customize, $gutefy_namespace, $gutefy_extensions_namespace);
+		$this->gf_social_icons_social_handler($wp_customize, $gutefy_namespace, $gutefy_extensions_namespace);
 
 		// Add Gutefy Panel
 		$wp_customize->add_panel(
@@ -37,7 +42,7 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 
 
 	}
-	function custom_url_validation($error_object, $input, $setting_object)
+	function gf_social_icons_custom_url_validation($error_object, $input, $setting_object)
 	{
 		$social_account_name = str_replace('gutefy_social_url_', '', $setting_object->id);
 		// Remove leading and trailing whitespaces
@@ -74,7 +79,7 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 	}
 
 
-	function single_social_handler($wp_customize, $social_name, $gutefy_namespace, $gutefy_extensions_namespace)
+	function gf_social_icons_single_gf_social_icons_social_handler($wp_customize, $social_name, $gutefy_namespace, $gutefy_extensions_namespace)
 	{
 		// Add a URL control
 		$wp_customize->add_setting(
@@ -85,7 +90,7 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 				'default' => '',
 				'transport' => 'refresh',
 				// 'sanitize_callback' => 'esc_url_raw',
-				'validate_callback' => [$this, 'custom_url_validation'],
+				'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
 			)
 		);
 
@@ -104,11 +109,11 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 		);
 	}
 
-	function social_handler($wp_customize, $gutefy_namespace, $gutefy_extensions_namespace)
+	function gf_social_icons_social_handler($wp_customize, $gutefy_namespace, $gutefy_extensions_namespace)
 	{
 
 		foreach ($this->socialList as $socialNetwork) {
-			$this->single_social_handler($wp_customize, $socialNetwork, $gutefy_namespace, $gutefy_extensions_namespace);
+			$this->gf_social_icons_single_gf_social_icons_social_handler($wp_customize, $socialNetwork, $gutefy_namespace, $gutefy_extensions_namespace);
 		}
 	}
 }

@@ -1,4 +1,8 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
+
 class Gf_social_icons_class_style_controller_admin
 {
 	public function __construct()

@@ -1,8 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 trait   Gf_social_icons_class_style_template
 {
-        private function get_style_settings($data_style)
+        private function gf_social_icons_get_style_settings($data_style)
         {
                 // var_dump($data_style);
                 $style = '';
@@ -18,12 +19,12 @@ trait   Gf_social_icons_class_style_template
                 $style .= '</style>';
                 return $style;
         }
-        private function get_account_name_from_string($key)
+        private function gf_social_icons_get_account_name_from_string($key)
         {
                 $accountName = str_replace('_url', '', $key);
                 return $accountName;
         }
-        public function styleOne($html, $data, $data_style, $data_icon_list)
+        public function gf_social_icons_style_one($html, $data, $data_style, $data_icon_list)
         {
 
                 $allow_social_number = 5;
@@ -42,7 +43,7 @@ trait   Gf_social_icons_class_style_template
                 // Expand Section
                 $html .= '<ul>';
                 foreach ($data as $socialNetwork => $url) {
-                        $accountName = $this->get_account_name_from_string($socialNetwork);
+                        $accountName = $this->gf_social_icons_get_account_name_from_string($socialNetwork);
                         if ($url != '' && $allow_social_number != 0) {
                                 $allow_social_number -= 1;
                                 $html .= '<li ><a  href=' . $url . '><i  class="' . $data_icon_list[$accountName]['icon'] . '"></i></a></li>';
@@ -54,10 +55,10 @@ trait   Gf_social_icons_class_style_template
                 $html .= '</div>'; // End Floating Action Button
                 $html .= '</section>'; // End Section
                 $html .= '</section>'; // End Section
-                $html .= $this->get_style_settings($data_style);
+                $html .= $this->gf_social_icons_get_style_settings($data_style);
                 return $html;
         }
-        public function styleTwo($html, $data, $data_style, $data_icon_list)
+        public function gf_social_icons_style_two($html, $data, $data_style, $data_icon_list)
         {
                 $html .= '<section class="gutefy-section-wrapper style-two">';
                 $html .= '<section class="section-wrapper">';
@@ -66,7 +67,7 @@ trait   Gf_social_icons_class_style_template
                 // Add individual fabs with Font Awesome icons
                 // $html .= '<div class="fab round" id="fab4" data-tooltip="Create"><i class="fas fa-pencil-alt"></i></div>';
                 foreach ($data as $socialNetwork => $url) {
-                        $accountName = $this->get_account_name_from_string($socialNetwork);
+                        $accountName = $this->gf_social_icons_get_account_name_from_string($socialNetwork);
                         if ($url != '') {
                                 $html .= '<a href="' . $url . '" class="fab round" id="' . $accountName . '" data-tooltip="' . $accountName . '"  ><i class="' . $data_icon_list[$accountName]['icon'] . '"></i></a>';
                         }
@@ -77,7 +78,7 @@ trait   Gf_social_icons_class_style_template
 
                 $html .= '</section>';
                 $html .= '</section>';
-                $html .= $this->get_style_settings($data_style);
+                $html .= $this->gf_social_icons_get_style_settings($data_style);
 
                 return $html;
         }
