@@ -55,9 +55,7 @@ class 	Gf_social_icons_class_public
 	 */
 	public function gf_social_icons_enqueue_styles()
 	{
-		wp_enqueue_style('gutefy-font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css', array(), '6.0.0', 'all');
 		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/gf-social-icons-public.min.css', array(), $this->version, 'all');
-
 		//social icon
 	}
 	/**
