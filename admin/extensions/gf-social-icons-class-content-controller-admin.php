@@ -24,7 +24,7 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 		$wp_customize->add_panel(
 			$gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
 			array(
-				'title' => __('Gutefy Social Icons', 'gf-social-icons'),
+				'title' => esc_html(__('Gutefy Social Icons', 'gf-social-icons')),
 				'description' => '<p>Gutefy Extensions for website enhancement</p>',
 				'priority' => 160,
 			)
@@ -33,7 +33,7 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 		$wp_customize->add_section(
 			$gutefy_namespace . 'accounts' . $gutefy_extensions_namespace,
 			array(
-				'title' => __('Social Accounts', 'gf-social-icons'),
+				'title' => esc_html(__('Social Accounts', 'gf-social-icons')),
 				'priority' => 1,
 				'panel' => $gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
 			)
