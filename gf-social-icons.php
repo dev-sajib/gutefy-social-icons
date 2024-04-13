@@ -23,7 +23,7 @@
  * Author URI:        https://gutefy.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       gf-social-icon
+ * Text Domain:       gf-social-icons
  * Domain Path:       /languages
  */
 

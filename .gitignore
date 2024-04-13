@@ -46,3 +46,4 @@ $RECYCLE.BIN/
 Thumbs.db
 desktop.ini
 *.zip
+.DS_Store
