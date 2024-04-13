@@ -1,7 +1,7 @@
 {
   "name": "gf-social-icon",
   "version": "1.0.0",
-  "description": "Extend wordpress website functionality",
+  "description": "Beautiful Floting Social",
   "main": "index.js",
   "scripts": {
     "start": "npx gulp watch",
