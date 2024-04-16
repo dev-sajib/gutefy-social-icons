@@ -5,7 +5,7 @@
 **Plugin URI:** [https://portfolio.gutefy.com/](https://portfolio.gutefy.com/)  
 **Tags:** social icons, style settings, Gutefy Social Icons, gutefy, gutenbarg social icons  
 **Requires at least:** 6.3  
-**Tested up to:** 6.5  
+**Tested up to:** 6.5.2 
 **Stable tag:** 1.0.0 
 **License:** GPLv2 or later  
 **License URI:** [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
