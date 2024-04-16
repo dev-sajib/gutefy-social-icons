@@ -10,10 +10,6 @@
 **License:** GPLv2 or later  
 **License URI:** [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
 
-# Short Description
-
-Gutefy Social Icons is a powerful social icons solution for WordPress
-
 ## Description
 
 Gutefy Social Icons is a WordPress plugin developed by Gutefy, allowing users to easily enhance their website with a variety of customizable features. The main functionality of this plugin is to provide a Customizer option for adding social icons to your website.

@@ -15,12 +15,12 @@
  * @wordpress-plugin
  * Plugin Name:       Gutefy Social Icons 
  * Plugin URI:        https://gutefy.com
- * Description:       Extend the feature of your websites
+ * Description:       Enhance your website with this robust plugin, effortlessly adding floating social icons for seamless display and interaction.
 
 
  * Version:           1.0.0
  * Author:            Gutefy
- * Author URI:        https://gutefy.com/
+ * Author URI:        https://portfolio.gutefy.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       gf-social-icons

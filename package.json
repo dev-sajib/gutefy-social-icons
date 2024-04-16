@@ -12,7 +12,7 @@
     "js:minify": "gulp js:minify",
     "customizer_admin_js:minify": "gulp customizer_admin_js:minify",
     "watch": "gulp watch",
-    "zip": "zip -r gf_social_icons.zip ./ -x 'node_modules*' '.DS_Store' '*/.DS_Store' '.git*' '*src*' '*/src*' 'gulpfile.js' 'package.json' 'package-lock.json'",
+    "zip": "zip -r gf-social-icons.zip ./ -x 'node_modules*' '.DS_Store' '*/.DS_Store' '.git*' '*src*' '*/src*' 'gulpfile.js' 'package.json' 'package-lock.json'",
     "build": "npm run scss:compile && npm run admin_scss:compile && npm run admin_js:minify && npm run customizer_admin_js:minify && npm run js:minify"
   },
   "keywords": [],
