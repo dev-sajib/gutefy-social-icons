@@ -41,7 +41,7 @@ Gutefy Social Icons is a WordPress plugin developed by Gutefy, allowing users to
    ![Style 1](assets/style-two.jpg)
 
 == Changelog ==
-= 1.0 =
+= 1.0.0 =
 * Initial release.
 
 == Frequently Asked Questions ==
