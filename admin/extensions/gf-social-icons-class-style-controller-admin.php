@@ -3,61 +3,33 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 
 
-class Gf_social_icons_class_style_controller_admin
+class Gf_social_icons__class_style_controller_admin
 {
 	public function __construct()
 	{
-		add_action('customize_register', array($this, 'gutify_social_icon_style_controller'));
+		add_action('customize_register', array($this, 'gf_social_icons__style_controller'));
 	}
 
-	public function gutify_social_icon_style_controller($wp_customize)
+	public function gf_social_icons__style_controller($wp_customize)
 	{
-		require_once(plugin_dir_path(__FILE__) . './../controls/gf_social_icons_class_control_slider.php');
+		require_once(plugin_dir_path(__FILE__) . './../controls/Gf_social_icons__class_control_slider.php');
 		// Create a namespace for Gutefy settings
-		$gutefy_namespace = 'gutefy_settings_';
-		$gutefy_extensions_namespace = '_social_icon';
+		$gf_social_icons__namespace = 'gutefy_settings_';
+		$gf_social_icons__extensions_namespace = '_social_icon';
 
-		// $wp_customize->selective_refresh->add_partial(
-		// 	$gutefy_namespace.'selected_style'.$gutefy_extensions_namespace,
-		// 	array(
-		// 		'selector'	=>	'.gutefy-section-wrapper',
-		// 	)
-		// );
 		// Add Gutefy Section under the Gutefy Panel
 		$wp_customize->add_section(
-			$gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
+			$gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
 			array(
 				'title' => __('Style Settings', 'gf-social-icons'),
 				'priority' => 2,
-				'panel' => $gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
+				'panel' => $gf_social_icons__namespace . 'core-panel' . $gf_social_icons__extensions_namespace,
 			)
 		);
 
-		// $wp_customize->add_setting(
-		// 	$gutefy_namespace.'toggle_for_use_officeal_color'.$gutefy_extensions_namespace,
-		// 	array(
-		// 		'default'	=>	'sajib',
-		// 		'transport'	=>	'refresh',
-		// 		'type'		=>	'option',
-		// 		'capability'	=>	'manage_options'
-		// 	)
-		// );
-		// $wp_customize->add_control(
-		// 	new Class_gf_social_icons_control_toggle(
-		// 		$wp_customize,
-		// 		$gutefy_namespace.'toggle_for_use_officeal_color'.$gutefy_extensions_namespace,
-		// 		array(
-		// 			'label' => __('Use Official Color', 'gf-social-icons'),
-		// 			'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
-		// 			'priority' => 2,
-		// 		)
-		// 	)
-			
-		// );
-
 		// Add color control under Gutefy social icons section for icon color
 		$wp_customize->add_setting(
-			$gutefy_namespace . 'color' . $gutefy_extensions_namespace,
+			$gf_social_icons__namespace . 'color' . $gf_social_icons__extensions_namespace,
 			array(
 				'default' => '#ffffff',
 				'transport' => 'postMessage',
@@ -69,10 +41,10 @@ class Gf_social_icons_class_style_controller_admin
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control(
 				$wp_customize,
-				$gutefy_namespace . 'color' . $gutefy_extensions_namespace,
+				$gf_social_icons__namespace . 'color' . $gf_social_icons__extensions_namespace,
 				array(
 					'label' => __('Icon Color', 'gf-social-icons'),
-					'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
+					'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
 					'priority' => 2,
 				)
 			)
@@ -80,7 +52,7 @@ class Gf_social_icons_class_style_controller_admin
 
 		// Add color control under Gutefy social icons section for hover color
 		$wp_customize->add_setting(
-			$gutefy_namespace . 'hover_color' . $gutefy_extensions_namespace,
+			$gf_social_icons__namespace . 'hover_color' . $gf_social_icons__extensions_namespace,
 			array(
 				'default' => '#F5AD3C',
 				'transport' => 'postMessage',
@@ -92,10 +64,10 @@ class Gf_social_icons_class_style_controller_admin
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control(
 				$wp_customize,
-				$gutefy_namespace . 'hover_color' . $gutefy_extensions_namespace,
+				$gf_social_icons__namespace . 'hover_color' . $gf_social_icons__extensions_namespace,
 				array(
 					'label' => __('Icon Hover Color', 'gf-social-icons'),
-					'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
+					'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
 					'priority' => 3,
 				)
 			)
@@ -104,7 +76,7 @@ class Gf_social_icons_class_style_controller_admin
 
 		// Add background color control under Gutefy social icons section
 		$wp_customize->add_setting(
-			$gutefy_namespace . 'bg_color' . $gutefy_extensions_namespace,
+			$gf_social_icons__namespace . 'bg_color' . $gf_social_icons__extensions_namespace,
 			array(
 				'default' => '#000000',
 				'transport' => 'postMessage',
@@ -116,10 +88,10 @@ class Gf_social_icons_class_style_controller_admin
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control(
 				$wp_customize,
-				$gutefy_namespace . 'bg_color' . $gutefy_extensions_namespace,
+				$gf_social_icons__namespace . 'bg_color' . $gf_social_icons__extensions_namespace,
 				array(
 					'label' => __('Icon Background Color', 'gf-social-icons'),
-					'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
+					'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
 					'priority' => 3,
 				)
 			)
@@ -127,7 +99,7 @@ class Gf_social_icons_class_style_controller_admin
 
 		// Add hover background color control under Gutefy social icons section
 		$wp_customize->add_setting(
-			$gutefy_namespace . 'hover_bg_color' . $gutefy_extensions_namespace,
+			$gf_social_icons__namespace . 'hover_bg_color' . $gf_social_icons__extensions_namespace,
 			array(
 				'default' => '#086A61',
 				'transport' => 'postMessage',
@@ -139,10 +111,10 @@ class Gf_social_icons_class_style_controller_admin
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control(
 				$wp_customize,
-				$gutefy_namespace . 'hover_bg_color' . $gutefy_extensions_namespace,
+				$gf_social_icons__namespace . 'hover_bg_color' . $gf_social_icons__extensions_namespace,
 				array(
 					'label' => __('Hover Background Color', 'gf-social-icons'),
-					'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
+					'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
 					'priority' => 4,
 				)
 			)
@@ -151,7 +123,7 @@ class Gf_social_icons_class_style_controller_admin
 
 		// Add style select control under Gutefy social icons section
 		$wp_customize->add_setting(
-			$gutefy_namespace . 'selected_style' . $gutefy_extensions_namespace,
+			$gf_social_icons__namespace . 'selected_style' . $gf_social_icons__extensions_namespace,
 			array(
 				'default' => 'style2',
 				'transport' => 'refresh',
@@ -163,10 +135,10 @@ class Gf_social_icons_class_style_controller_admin
 		$wp_customize->add_control(
 			new WP_Customize_Control(
 				$wp_customize,
-				$gutefy_namespace . 'selected_style' . $gutefy_extensions_namespace,
+				$gf_social_icons__namespace . 'selected_style' . $gf_social_icons__extensions_namespace,
 				array(
 					'label' => __('Select Style', 'gf-social-icons'),
-					'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
+					'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
 					'priority' => 1,
 					'type' => 'select',
 					'choices' => array(
@@ -178,7 +150,7 @@ class Gf_social_icons_class_style_controller_admin
 		);
 		// Add icon size select control under Gutefy social icons section
 		$wp_customize->add_setting(
-			$gutefy_namespace . 'icon_size' . $gutefy_extensions_namespace,
+			$gf_social_icons__namespace . 'icon_size' . $gf_social_icons__extensions_namespace,
 			array(
 
 				'default' => '30',
@@ -189,12 +161,12 @@ class Gf_social_icons_class_style_controller_admin
 		);
 
 		$wp_customize->add_control(
-			new Gf_social_icons_class_control_slider(
+			new Gf_social_icons__class_control_slider(
 				$wp_customize,
-				$gutefy_namespace . 'icon_size' . $gutefy_extensions_namespace,
+				$gf_social_icons__namespace . 'icon_size' . $gf_social_icons__extensions_namespace,
 				array(
 					'label' => __('Icon Size', 'gf-social-icons'),
-					'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
+					'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
 					'input_attrs' => array(
 						'min' => '0',
 						'max' => '100',
@@ -206,7 +178,7 @@ class Gf_social_icons_class_style_controller_admin
 		);
 		// Add icon wrapper size select control under Gutefy social icons section
 		$wp_customize->add_setting(
-			$gutefy_namespace . 'icon_wrapper_size' . $gutefy_extensions_namespace,
+			$gf_social_icons__namespace . 'icon_wrapper_size' . $gf_social_icons__extensions_namespace,
 			array(
 
 				'default' => '60',
@@ -217,12 +189,12 @@ class Gf_social_icons_class_style_controller_admin
 		);
 
 		$wp_customize->add_control(
-			new Gf_social_icons_class_control_slider(
+			new Gf_social_icons__class_control_slider(
 				$wp_customize,
-				$gutefy_namespace . 'icon_wrapper_size' . $gutefy_extensions_namespace,
+				$gf_social_icons__namespace . 'icon_wrapper_size' . $gf_social_icons__extensions_namespace,
 				array(
 					'label' => __('Icon Wrapper Size', 'gf-social-icons'),
-					'section' => $gutefy_namespace . 'settings' . $gutefy_extensions_namespace,
+					'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
 					'input_attrs' => array(
 						'min' => '0',
 						'max' => '200',
@@ -235,4 +207,4 @@ class Gf_social_icons_class_style_controller_admin
 
 	}
 }
-new Gf_social_icons_class_style_controller_admin();
+new Gf_social_icons__class_style_controller_admin();

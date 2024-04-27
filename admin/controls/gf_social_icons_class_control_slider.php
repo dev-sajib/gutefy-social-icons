@@ -3,7 +3,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 
 
-class Gf_social_icons_class_control_slider extends WP_Customize_Control
+class Gf_social_icons__class_control_slider extends WP_Customize_Control
 {
        public $type = 'slider';
 

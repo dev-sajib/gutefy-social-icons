@@ -16,13 +16,13 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 	public function gutefy_social_icons_customizer_settings($wp_customize)
 	{
 		// Create a namespace for Gutefy settings
-		$gutefy_namespace = 'gutefy_settings_';
-		$gutefy_extensions_namespace = '_social_icon';
-		$this->gf_social_icons_social_handler($wp_customize, $gutefy_namespace, $gutefy_extensions_namespace);
+		$gf_social_icons__namespace = 'gutefy_settings_';
+		$gf_social_icons__extensions_namespace = '_social_icon';
+		$this->gf_social_icons_social_handler($wp_customize, $gf_social_icons__namespace, $gf_social_icons__extensions_namespace);
 
 		// Add Gutefy Panel
 		$wp_customize->add_panel(
-			$gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
+			$gf_social_icons__namespace . 'core-panel' . $gf_social_icons__extensions_namespace,
 			array(
 				'title' => esc_html(__('Gutefy Social Icons', 'gf-social-icons')),
 				'description' => '<p>Gutefy Extensions for website enhancement</p>',
@@ -31,11 +31,11 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 		);
 
 		$wp_customize->add_section(
-			$gutefy_namespace . 'accounts' . $gutefy_extensions_namespace,
+			$gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
 			array(
 				'title' => esc_html(__('Social Accounts', 'gf-social-icons')),
 				'priority' => 1,
-				'panel' => $gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
+				'panel' => $gf_social_icons__namespace . 'core-panel' . $gf_social_icons__extensions_namespace,
 			)
 		);
 
@@ -79,7 +79,7 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 	}
 
 
-	function gf_social_icons_single_gf_social_icons_social_handler($wp_customize, $social_name, $gutefy_namespace, $gutefy_extensions_namespace)
+	function gf_social_icons_single_social_handler($wp_customize, $social_name, $gf_social_icons__namespace, $gf_social_icons__extensions_namespace)
 	{
 		// Add a URL control
 		$wp_customize->add_setting(
@@ -98,7 +98,7 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 			"gutefy_social_url_$social_name",
 			array(
 				'label' => ucwords($social_name),
-				'section' => $gutefy_namespace . 'accounts' . $gutefy_extensions_namespace,
+				'section' => $gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
 				'type' => 'text',
 				'priority' => 30,
 				'input_attrs' => array(
@@ -109,11 +109,11 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 		);
 	}
 
-	function gf_social_icons_social_handler($wp_customize, $gutefy_namespace, $gutefy_extensions_namespace)
+	function gf_social_icons_social_handler($wp_customize, $gf_social_icons__namespace, $gf_social_icons__extensions_namespace)
 	{
 
 		foreach ($this->socialList as $socialNetwork) {
-			$this->gf_social_icons_single_gf_social_icons_social_handler($wp_customize, $socialNetwork, $gutefy_namespace, $gutefy_extensions_namespace);
+			$this->gf_social_icons_single_social_handler($wp_customize, $socialNetwork, $gf_social_icons__namespace, $gf_social_icons__extensions_namespace);
 		}
 	}
 }
