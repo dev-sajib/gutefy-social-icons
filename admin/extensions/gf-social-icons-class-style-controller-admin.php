@@ -11,8 +11,11 @@ class Gf_social_icons__class_style_controller_admin
 	}
 
 	public function gf_social_icons__style_controller($wp_customize)
-	{
-		require_once(plugin_dir_path(__FILE__) . './../controls/Gf_social_icons__class_control_slider.php');
+	{	
+		//initiate custom controller files
+		require_once( plugin_dir_path(__FILE__) . './../controls/gf_social_icons_class_control_slider.php');
+		require_once( plugin_dir_path( __FILE__ ) . './../controls/gf_social_icons__class_control_select.php' );
+
 		// Create a namespace for Gutefy settings
 		$gf_social_icons__namespace = 'gutefy_settings_';
 		$gf_social_icons__extensions_namespace = '_social_icon';
@@ -132,22 +135,41 @@ class Gf_social_icons__class_style_controller_admin
 			)
 		);
 
+
+		// ------------------
 		$wp_customize->add_control(
-			new WP_Customize_Control(
+			new Gf_social_icons_class_control_select(
 				$wp_customize,
 				$gf_social_icons__namespace . 'selected_style' . $gf_social_icons__extensions_namespace,
 				array(
 					'label' => __('Select Style', 'gf-social-icons'),
 					'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
 					'priority' => 1,
-					'type' => 'select',
+					// 'type' => 'select',
 					'choices' => array(
 						'style1' => __('Style 1', 'gf-social-icons'),
 						'style2' => __('Style 2', 'gf-social-icons'),
 					),
 				)
 			)
-		);
+				);
+		// ------------------
+		// $wp_customize->add_control(
+		// 	new WP_Customize_Control(
+		// 		$wp_customize,
+		// 		$gf_social_icons__namespace . 'selected_style' . $gf_social_icons__extensions_namespace,
+		// 		array(
+		// 			'label' => __('Select Style', 'gf-social-icons'),
+		// 			'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
+		// 			'priority' => 1,
+		// 			'type' => 'select',
+		// 			'choices' => array(
+		// 				'style1' => __('Style 1', 'gf-social-icons'),
+		// 				'style2' => __('Style 2', 'gf-social-icons'),
+		// 			),
+		// 		)
+		// 	)
+		// );
 		// Add icon size select control under Gutefy social icons section
 		$wp_customize->add_setting(
 			$gf_social_icons__namespace . 'icon_size' . $gf_social_icons__extensions_namespace,
