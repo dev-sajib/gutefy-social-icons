@@ -12,7 +12,7 @@ gulp.task('scss:compile', function () {
                 .pipe(autoprefixer())
                 .pipe(concat('gf-social-icons-public.min.css'))
                 .pipe(cleanCSS()) // Minify the CSS
-                .pipe(gulp.dest('./public/css'));
+                .pipe(gulp.dest('./assets/css'));
 });
 gulp.task('admin_scss:compile', function () {
         return gulp.src('./admin/**/*.scss')
@@ -20,20 +20,20 @@ gulp.task('admin_scss:compile', function () {
                 .pipe(autoprefixer())
                 .pipe(concat('gf-social-icons-admin.min.css'))
                 .pipe(cleanCSS()) // Minify the CSS
-                .pipe(gulp.dest('./admin/css'));
+                .pipe(gulp.dest('./assets/css'));
 });
 
 gulp.task('admin_js:minify', function () {
-        return gulp.src(['./admin/**/src/**/*.js', '!./admin/**/src/**/*customizer-admin.js'])
+        return gulp.src(['./admin/**/*.js', '!./admin/src/**/*customizer-admin.js'])
                 .pipe(uglify())
                 .pipe(concat('gf-social-icons-admin.min.js'))
-                .pipe(gulp.dest('./admin/js'));
+                .pipe(gulp.dest('./assets/js'));
 });
 gulp.task('customizer_admin_js:minify', function () {
-        return gulp.src('./admin/**/src/**/*customizer-admin.js')
+        return gulp.src('./admin/src/**/*customizer-admin.js')
                 .pipe(uglify())
                 .pipe(concat('gf-social-icons-customizer-admin.min.js'))
-                .pipe(gulp.dest('./admin/js'));
+                .pipe(gulp.dest('./assets/js'));
 });
 
 //public -----------------
@@ -41,15 +41,15 @@ gulp.task('js:minify', function () {
         return gulp.src('./public/extensions/**/*.js')
                 .pipe(uglify())
                 .pipe(concat('gf-social-icons-public.min.js'))
-                .pipe(gulp.dest('./public/js'));
+                .pipe(gulp.dest('./assets/js'));
 });
 
 gulp.task('watch', function () {
         gulp.watch('./admin/**/*.scss', gulp.series('admin_scss:compile'));
         gulp.watch('./public/extensions/**/*.scss', gulp.series('scss:compile'));
         gulp.watch('./public/extensions/**/*.js', gulp.series('js:minify'));
-        gulp.watch(['./admin/**/src/**/*.js', '!./admin/src/**/*customizer-admin.js'], gulp.series('admin_js:minify'));
-        gulp.watch('./admin/**/src/**/*customizer-admin.js', gulp.series('customizer_admin_js:minify'));
+        gulp.watch(['./admin/src/**/*.js', '!./admin/src/**/*customizer-admin.js'], gulp.series('admin_js:minify'));
+        gulp.watch('./admin/src/**/*customizer-admin.js', gulp.series('customizer_admin_js:minify'));
 });
 
 // Default task to run both 'scss:compile' and 'js:minify' tasks when watching

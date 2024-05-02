@@ -19,7 +19,7 @@ class Gf_social_icons_class_control_select extends WP_Customize_Control
                 <option  value="<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value ) ;?></option>
                 <?php endforeach ; ?>
             </select>
-            <p class='gf_social_icons--warning-sms' style='display:none '>In this style it will show only the first 6 social link filled icon </p>
+            <p class='gf_social_icons--warning-sms' style='display:none '>In this style it will show only the first 5 social link filled icon </p>
             <?php
     }
 }

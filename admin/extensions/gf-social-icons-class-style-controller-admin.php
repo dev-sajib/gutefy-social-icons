@@ -13,8 +13,8 @@ class Gf_social_icons__class_style_controller_admin
 	public function gf_social_icons__style_controller($wp_customize)
 	{	
 		//initiate custom controller files
-		require_once( plugin_dir_path(__FILE__) . './../controls/gf_social_icons_class_control_slider.php');
-		require_once( plugin_dir_path( __FILE__ ) . './../controls/gf_social_icons__class_control_select.php' );
+		require_once( plugin_dir_path(__FILE__) . './../controls/slider/gf_social_icons_class_control_slider.php');
+		require_once( plugin_dir_path( __FILE__ ) . './../controls/select/gf_social_icons__class_control_select.php' );
 
 		// Create a namespace for Gutefy settings
 		$gf_social_icons__namespace = 'gutefy_settings_';

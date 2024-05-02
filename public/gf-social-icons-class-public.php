@@ -42,7 +42,7 @@ class 	Gf_social_icons_class_public
 	 */
 	public function __construct($plugin_name, $version)
 	{
-		require_once plugin_dir_path(__FILE__) . 'extensions/view-social-icon/gf-social-icons-class-extensions-public.php';
+		require_once plugin_dir_path(__FILE__) . 'extensions/gf-social-icons-class-extensions-public.php';
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 	}
@@ -55,7 +55,7 @@ class 	Gf_social_icons_class_public
 	 */
 	public function gf_social_icons_enqueue_styles()
 	{
-		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/gf-social-icons-public.min.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . '../assets/css/gf-social-icons-public.min.css', array(), $this->version, 'all');
 		//social icon
 	}
 	/**
@@ -65,7 +65,7 @@ class 	Gf_social_icons_class_public
 	 */
 	public function gf_social_icons_enqueue_scripts()
 	{
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/gf-social-icons-public.min.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . '../assets/js/gf-social-icons-public.min.js', array('jquery'), $this->version, false);
 	}
 
 }
