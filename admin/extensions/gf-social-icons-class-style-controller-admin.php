@@ -1,6 +1,7 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+if (!defined('ABSPATH'))
+	exit; // Exit if accessed directly 
 
 
 class Gf_social_icons__class_style_controller_admin
@@ -11,10 +12,10 @@ class Gf_social_icons__class_style_controller_admin
 	}
 
 	public function gf_social_icons__style_controller($wp_customize)
-	{	
+	{
 		//initiate custom controller files
-		require_once( plugin_dir_path(__FILE__) . './../controls/slider/gf_social_icons_class_control_slider.php');
-		require_once( plugin_dir_path( __FILE__ ) . './../controls/select/gf_social_icons__class_control_select.php' );
+		require_once (plugin_dir_path(__FILE__) . './../controls/slider/gf_social_icons_class_control_slider.php');
+		require_once (plugin_dir_path(__FILE__) . './../controls/select/gf_social_icons__class_control_select.php');
 
 		// Create a namespace for Gutefy settings
 		$gf_social_icons__namespace = 'gutefy_settings_';
@@ -145,31 +146,14 @@ class Gf_social_icons__class_style_controller_admin
 					'label' => __('Select Style', 'gf-social-icons'),
 					'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
 					'priority' => 1,
-					// 'type' => 'select',
 					'choices' => array(
 						'style1' => __('Style 1', 'gf-social-icons'),
 						'style2' => __('Style 2', 'gf-social-icons'),
 					),
 				)
 			)
-				);
-		// ------------------
-		// $wp_customize->add_control(
-		// 	new WP_Customize_Control(
-		// 		$wp_customize,
-		// 		$gf_social_icons__namespace . 'selected_style' . $gf_social_icons__extensions_namespace,
-		// 		array(
-		// 			'label' => __('Select Style', 'gf-social-icons'),
-		// 			'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
-		// 			'priority' => 1,
-		// 			'type' => 'select',
-		// 			'choices' => array(
-		// 				'style1' => __('Style 1', 'gf-social-icons'),
-		// 				'style2' => __('Style 2', 'gf-social-icons'),
-		// 			),
-		// 		)
-		// 	)
-		// );
+		);
+
 		// Add icon size select control under Gutefy social icons section
 		$wp_customize->add_setting(
 			$gf_social_icons__namespace . 'icon_size' . $gf_social_icons__extensions_namespace,
@@ -225,6 +209,32 @@ class Gf_social_icons__class_style_controller_admin
 				)
 			)
 
+		);
+
+		$wp_customize->add_setting(
+			$gf_social_icons__namespace . 'icon_position' . $gf_social_icons__extensions_namespace,
+			array(
+				'default' => 'bottom_right',
+				'transport' => 'postMessage',
+				'capability' => 'manage_options',
+				'type' => 'option'
+			)
+		);
+
+		$wp_customize->add_control(
+			new Gf_social_icons_class_control_select(
+				$wp_customize,
+				$gf_social_icons__namespace . 'icon_position' . $gf_social_icons__extensions_namespace,
+				array(
+					'label' => __('Icon Position', 'gf-social-icons'),
+					'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
+					'priority' => 1,
+					'choices' => array(
+						'top_left' => __('Top Left', 'gf-social-icons'),
+						'bottom_right' => __('Bottom Right', 'gf-social-icons'),
+					),
+				)
+			)
 		);
 
 	}
