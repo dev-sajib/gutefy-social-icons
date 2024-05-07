@@ -14,7 +14,7 @@ class Gf_social_icons_class_control_select extends WP_Customize_Control
         
         <div class="gf-custom-size-control-wrapper range-slider">
             <select onchange="gf_social_icons__style_select_control(this)" id="gf_social_icons--style-select" <?php echo esc_html( $this->link() )  ?>>
-            <option>Choose Style</option>
+            <option>Choose <?php echo esc_html( $this->label )?></option>
                 <?php foreach($this->choices as $key=>$value) :  ?>
                 <option  value="<?php echo esc_html( $key ); ?>"><?php echo esc_html( $value ) ;?></option>
                 <?php endforeach ; ?>
