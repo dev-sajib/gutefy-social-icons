@@ -159,7 +159,7 @@ class Gf_social_icons__class_style_controller_admin
 			$gf_social_icons__namespace . 'icon_size' . $gf_social_icons__extensions_namespace,
 			array(
 
-				'default' => '30',
+				'default' => '12',
 				'transport' => 'postMessage',
 				'capability' => 'manage_options',
 				'type' => 'option'
@@ -187,7 +187,7 @@ class Gf_social_icons__class_style_controller_admin
 			$gf_social_icons__namespace . 'icon_wrapper_size' . $gf_social_icons__extensions_namespace,
 			array(
 
-				'default' => '60',
+				'default' => '44',
 				'transport' => 'postMessage',
 				'capability' => 'manage_options',
 				'type' => 'option'
@@ -261,4 +261,4 @@ class Gf_social_icons__class_style_controller_admin
 
 	}
 }
-new Gf_social_icons__class_style_controller_admin();
+new Gf_social_icons__class_style_controller_admin(); 
