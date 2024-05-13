@@ -16,11 +16,13 @@ body {
     --gutefy-primary-hover-color: #086A61; // used for icon hover background color
     --gutefy-secondary-hover-color: #F5AD3C; //used for icon hover color
     --gutefy-icon-size: 12px;
+    --gutefy-icon-wrapper-opacity: 0.4;
     --gutefy-icon-wrapper-size: 44px;
     --gutefy-icon-wrapper-display-postion-bottom: 0px;
     --gutefy-icon-wrapper-display-postion-right: 0px;
     --gutefy-icon-wrapper-display-postion-left: 100%;
     --gutefy-icon-wrapper-z-index: 9999999999;
+    --gutefy-icon-wrapper-position-top: 40%;
 
 }
 
@@ -28,7 +30,7 @@ body {
     .gf_social_icons-float-sm {
         position: fixed;
         right: 0;
-        top: 50%;
+        top: var(--gutefy-icon-wrapper-position-top);
         z-index: var(--gutefy-icon-wrapper-z-index);
     }
 
@@ -74,11 +76,11 @@ body {
     .gf_social_icons_social_float {
         z-index: var(--gutefy-icon-wrapper-z-index);
         position: fixed;
-        top: 50%;
+        top: var(--gutefy-icon-wrapper-position-top);
         left: -25px;
         line-height: 40px;
         font-size: 20px;
-        opacity: .25;
+        opacity: var(--gutefy-icon-wrapper-opacity);
         animation: linear social_float_off .3s;
         margin-top: -175px;
 
@@ -102,7 +104,7 @@ body {
         align-items: center;
         padding: 15px 0;
         overflow: hidden;
-        opacity: .4;
+        opacity: var(--gutefy-icon-wrapper-opacity);
         width: var(--gutefy-icon-wrapper-size);
         text-align: center;
         animation: linear social_icon_off .3s;
@@ -130,7 +132,7 @@ body {
 @keyframes social_float_on {
     0% {
         left: -25px;
-        opacity: .5;
+        opacity: var(--gutefy-icon-wrapper-opacity);
     }
 
     100% {
@@ -147,7 +149,7 @@ body {
 
     100% {
         left: -25px;
-        opacity: .5;
+        opacity: var(--gutefy-icon-wrapper-opacity);
     }
 }
 
@@ -155,7 +157,7 @@ body {
 
 @keyframes social_icon_on {
     0% {
-        opacity: .4
+        opacity: var(--gutefy-icon-wrapper-opacity)
     }
 
     100% {
@@ -169,6 +171,6 @@ body {
     }
 
     100% {
-        opacity: .4
+        opacity: var(--gutefy-icon-wrapper-opacity)
     }
 }

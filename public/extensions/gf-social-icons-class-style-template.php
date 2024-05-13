@@ -16,6 +16,7 @@ trait Gf_social_icons_class_style_template
                 $style .= ($data_style['gutefy_settings_hover_bg_color_social_icon'] != '') ? '--gutefy-primary-hover-color:' . $data_style['gutefy_settings_hover_bg_color_social_icon'] . ' !important;' : '';
                 $style .= ($data_style['gutefy_settings_icon_size_social_icon'] != '') ? '--gutefy-icon-size:' . $data_style['gutefy_settings_icon_size_social_icon'] . 'px' . ' !important;' : '';
                 $style .= ($data_style['gutefy_settings_icon_wrapper_size_social_icon'] != '') ? '--gutefy-icon-wrapper-size:' . $data_style['gutefy_settings_icon_wrapper_size_social_icon'] . 'px' . ' !important;' : '';
+                $style .= ($data_style['gutefy_settings_icon-wrapper-position-top_social_icon'] != '') ? '--gutefy-icon-wrapper-position-top:' . $data_style['gutefy_settings_icon-wrapper-position-top_social_icon'] . '%' . ' !important;' : '';
                 $style .= ($data_style['gutefy_settings_icon_wrapper_size_social_icon'] != '') ? '--gutefy-icon-wrapper-size:' . $data_style['gutefy_settings_icon_wrapper_size_social_icon'] . 'px' . ' !important;' : '';
                 $style .= ($data_style['gutefy_settings_icon_wrapper_z_index_social_icon'] != '') ? '--gutefy-icon-wrapper-z-index:' . $data_style['gutefy_settings_icon_wrapper_z_index_social_icon'] . ' !important;' : '';
                 if (($data_style['gutefy_settings_icon_position_social_icon'] != '') && ($new_value = $data_style['gutefy_settings_icon_position_social_icon'])) {

@@ -16,6 +16,7 @@ class Gf_social_icons__class_style_controller_admin
 		//initiate custom controller files
 		require_once (plugin_dir_path(__FILE__) . './../controls/slider/gf_social_icons_class_control_slider.php');
 		require_once (plugin_dir_path(__FILE__) . './../controls/select/gf_social_icons__class_control_select.php');
+		require_once (plugin_dir_path(__FILE__) . './../controls/spaching/gf_social_icons_class_control_spaching.php');
 
 		// Create a namespace for Gutefy settings
 		$gf_social_icons__namespace = 'gutefy_settings_';
@@ -41,6 +42,8 @@ class Gf_social_icons__class_style_controller_admin
 				'capability' => 'manage_options',
 			)
 		);
+
+
 
 		$wp_customize->add_control(
 			new WP_Customize_Color_Control(
@@ -136,6 +139,18 @@ class Gf_social_icons__class_style_controller_admin
 			)
 		);
 
+		//Icon wrapper opacity
+		$wp_customize->add_setting(
+			$gf_social_icons__namespace . 'icon-wrapper-opacity' . $gf_social_icons__extensions_namespace,
+			array(
+				'default' => '0.4',
+				'transport' => 'postMessage',
+				'type' => 'option',
+				'capability' => 'manage_options',
+
+			)
+		);
+
 
 		// ------------------
 		$wp_customize->add_control(
@@ -150,6 +165,15 @@ class Gf_social_icons__class_style_controller_admin
 						'style1' => __('Style 1', 'gf-social-icons'),
 						'style2' => __('Style 2', 'gf-social-icons'),
 					),
+					'input_attrs' => array(
+						'min' => '0',
+						'max' => '1',
+						'step' => '0.01',
+					),
+					'settings' => [
+						'selected_style' => $gf_social_icons__namespace . 'selected_style' . $gf_social_icons__extensions_namespace,
+						'opacity-control' => $gf_social_icons__namespace . 'icon-wrapper-opacity' . $gf_social_icons__extensions_namespace
+					]
 				)
 			)
 		);
@@ -167,12 +191,13 @@ class Gf_social_icons__class_style_controller_admin
 		);
 
 		$wp_customize->add_control(
-			new Gf_social_icons__class_control_slider(
+			new WP_Customize_Control(
 				$wp_customize,
 				$gf_social_icons__namespace . 'icon_size' . $gf_social_icons__extensions_namespace,
 				array(
 					'label' => __('Icon Size', 'gf-social-icons'),
 					'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
+					'type'	=> 'number',
 					'input_attrs' => array(
 						'min' => '0',
 						'max' => '100',
@@ -180,8 +205,9 @@ class Gf_social_icons__class_style_controller_admin
 					),
 				)
 			)
-
 		);
+
+
 		// Add icon wrapper size select control under Gutefy social icons section
 		$wp_customize->add_setting(
 			$gf_social_icons__namespace . 'icon_wrapper_size' . $gf_social_icons__extensions_namespace,
@@ -195,12 +221,13 @@ class Gf_social_icons__class_style_controller_admin
 		);
 
 		$wp_customize->add_control(
-			new Gf_social_icons__class_control_slider(
+			new WP_Customize_Control(
 				$wp_customize,
 				$gf_social_icons__namespace . 'icon_wrapper_size' . $gf_social_icons__extensions_namespace,
 				array(
 					'label' => __('Icon Wrapper Size', 'gf-social-icons'),
 					'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
+					'type'	=>	'number',
 					'input_attrs' => array(
 						'min' => '0',
 						'max' => '200',
@@ -211,54 +238,140 @@ class Gf_social_icons__class_style_controller_admin
 
 		);
 
+		// $wp_customize->add_setting(
+		// 	$gf_social_icons__namespace . 'icon_position' . $gf_social_icons__extensions_namespace,
+		// 	array(
+		// 		'default' => 'bottom_right',
+		// 		'transport' => 'postMessage',
+		// 		'capability' => 'manage_options',
+		// 		'type' => 'option'
+		// 	)
+		// );
+
+		// $wp_customize->add_control(
+		// 	new Gf_social_icons_class_control_select(
+		// 		$wp_customize,
+		// 		$gf_social_icons__namespace . 'icon_position' . $gf_social_icons__extensions_namespace,
+		// 		array(
+		// 			'label' => __('Icon Position', 'gf-social-icons'),
+		// 			'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
+		// 			'priority' => 1,
+		// 			'choices' => array(
+		// 				'bottom_right' => __('Bottom Right', 'gf-social-icons'),
+		// 				'bottom_left' => __('Bottom Left', 'gf-social-icons'),
+		// 			),
+		// 		)
+		// 	)
+		// );
+
+		//z-index control 
+		// $wp_customize->add_setting(
+		// 	$gf_social_icons__namespace . 'icon_wrapper_z_index' . $gf_social_icons__extensions_namespace,
+		// 	array(
+		// 		'default' => '9999999999',
+		// 		'transport' => 'postMessage',
+		// 		'capability' => 'manage_options',
+		// 		'type' => 'option'
+		// 	)
+		// );
+		// $wp_customize->add_control(
+		// 	new WP_Customize_Control(
+		// 		$wp_customize,
+		// 		$gf_social_icons__namespace . 'icon_wrapper_z_index' . $gf_social_icons__extensions_namespace,
+		// 		array(
+		// 			'label' => __('Z-index', 'gf-social-icons'),
+		// 			'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
+		// 			'type' => 'text'
+		// 		)
+		// 	)
+		// );
+
+
 		$wp_customize->add_setting(
-			$gf_social_icons__namespace . 'icon_position' . $gf_social_icons__extensions_namespace,
+			$gf_social_icons__namespace . 'icon_padding' . $gf_social_icons__extensions_namespace . '["left"]',
 			array(
-				'default' => 'bottom_right',
+				'default' => '0',
+				'transport' => 'postMessage',
+				'capability' => 'manage_options',
+				'type' => 'option'
+			)
+		);
+		$wp_customize->add_setting(
+			$gf_social_icons__namespace . 'icon_padding' . $gf_social_icons__extensions_namespace . '["right"]',
+			array(
+				'default' => '0',
+				'transport' => 'postMessage',
+				'capability' => 'manage_options',
+				'type' => 'option'
+			)
+		);
+		$wp_customize->add_setting(
+			$gf_social_icons__namespace . 'icon_padding' . $gf_social_icons__extensions_namespace . '["top"]',
+			array(
+				'default' => '0',
+				'transport' => 'postMessage',
+				'capability' => 'manage_options',
+				'type' => 'option'
+			)
+		);
+		$wp_customize->add_setting(
+			$gf_social_icons__namespace . 'icon_padding' . $gf_social_icons__extensions_namespace . '["bottom"]',
+			array(
+				'default' => '0',
 				'transport' => 'postMessage',
 				'capability' => 'manage_options',
 				'type' => 'option'
 			)
 		);
 
-		$wp_customize->add_control(
-			new Gf_social_icons_class_control_select(
-				$wp_customize,
-				$gf_social_icons__namespace . 'icon_position' . $gf_social_icons__extensions_namespace,
-				array(
-					'label' => __('Icon Position', 'gf-social-icons'),
-					'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
-					'priority' => 1,
-					'choices' => array(
-						'bottom_right' => __('Bottom Right', 'gf-social-icons'),
-						'bottom_left' => __('Bottom Left', 'gf-social-icons'),
-					),
-				)
-			)
-		);
+		// $wp_customize->add_control(
+		// 	new Gf_social_icons_class_control_spaching(
+		// 		$wp_customize,
+		// 		$gf_social_icons__namespace . 'icon_padding' . $gf_social_icons__extensions_namespace,
+		// 		array(
+		// 			'label' => __('Icon Spaching', 'gf-social-icons'),
+		// 			'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
+		// 			'settings'=> [
+		// 				'padding_right' => $gf_social_icons__namespace . 'icon_padding' . $gf_social_icons__extensions_namespace.'["right"]',
+		// 				'padding_left' => $gf_social_icons__namespace . 'icon_padding' . $gf_social_icons__extensions_namespace.'["left"]',
+		// 				'padding_top' => $gf_social_icons__namespace . 'icon_padding' . $gf_social_icons__extensions_namespace.'["top"]',
+		// 				'padding_bottom' => $gf_social_icons__namespace . 'icon_padding' . $gf_social_icons__extensions_namespace.'["bottom"]',
+		// 			],
+		// 		)
+		// 	)
+		// );
+				//position top 
 
-		//z-index control 
-		$wp_customize->add_setting(
-			$gf_social_icons__namespace.'icon_wrapper_z_index'.$gf_social_icons__extensions_namespace,
-			array(
-				'default'	=>	'9999999999',
-				'transport'	=>	'postMessage',
-				'capability'	=>	'manage_options',
-				'type'		=>		'option'
-			)
-			);
-		$wp_customize->add_control(
-			new WP_Customize_Control(
-				$wp_customize,
-				$gf_social_icons__namespace.'icon_wrapper_z_index'.$gf_social_icons__extensions_namespace,
-				array(
-					'label'	=>	__('Z-index','gf-social-icons'),
-					'section'	=> $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
-					'type'		=>'text'
-				)
-			)
-			);
+				$wp_customize->add_setting(
+					$gf_social_icons__namespace . 'icon-wrapper-position-top' . $gf_social_icons__extensions_namespace,
+					array(
+		
+						'default' => '40',
+						'transport' => 'postMessage',
+						'capability' => 'manage_options',
+						'type' => 'option'
+					)
+				);
+		
+				$wp_customize->add_control(
+					new Gf_social_icons__class_control_slider(
+						$wp_customize,
+						$gf_social_icons__namespace . 'icon-wrapper-position-top' . $gf_social_icons__extensions_namespace,
+						array(
+							'label' => __('Set Vertical Position', 'gf-social-icons'),
+							'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
+							'input_attrs' => array(
+								'min' => '0',
+								'max' => '100',
+								'step' => '1',
+							),
+						)
+					)
+				);
 
 	}
+
+	//Padding controller 
+
 }
-new Gf_social_icons__class_style_controller_admin(); 
+new Gf_social_icons__class_style_controller_admin();
