@@ -12,7 +12,7 @@ wp.customize(`${gutefy_namespace}bg_color${gf_social_icons__extensions_namespace
        value.bind(function (newval) {
               gutefySectionWrapper.style.setProperty('--gutefy-primary-color', newval);
        })
-})
+}) 
 
 //preview hover color
 wp.customize(`${gutefy_namespace}hover_color${gf_social_icons__extensions_namespace}`, function (value) {

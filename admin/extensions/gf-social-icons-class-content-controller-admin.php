@@ -15,6 +15,7 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 
 	public function gutefy_social_icons_customizer_settings($wp_customize)
 	{
+		require_once (plugin_dir_path(__FILE__) . './../controls/account-repeater-control/gf_social_icons__class_account_repeater_control_setting.php');
 		// Create a namespace for Gutefy settings
 		$gf_social_icons__namespace = 'gutefy_settings_';
 		$gf_social_icons__extensions_namespace = '_social_icon';
@@ -81,6 +82,37 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 
 	function gf_social_icons_single_social_handler($wp_customize, $social_name, $gf_social_icons__namespace, $gf_social_icons__extensions_namespace)
 	{
+		//ICON SETTINGS 
+
+		//Icon wrapper opacity
+		$wp_customize->add_setting(
+			$gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
+			array(
+				'default'	=>	json_encode( array("account-1"=> array('icon' => 'facebook','url'=>'facebook.com')) ),
+				'transport' => 'postMessage',
+				'type' => 'option',
+				'capability' => 'manage_options',
+
+			)
+		);
+
+
+		// ------------------
+		$wp_customize->add_control(
+			new Gf_social_icons_class_account_repeater_control_setting(
+				$wp_customize,
+				$gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
+				array(
+					'label' => __('Select Icon', 'gf-social-icons'),
+					'section' => $gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
+					'priority' => 1,
+					'settings' => [
+						'select_social_icon' => $gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
+					]
+				)
+			)
+		);
+
 		// Add a URL control
 		$wp_customize->add_setting(
 			"gutefy_social_url_$social_name",

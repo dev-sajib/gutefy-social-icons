@@ -51,7 +51,6 @@ class Gf_social_icons_class_extensions_public extends Gf_social_icons_class_list
                 $data_style['gutefy_settings_icon_position_social_icon'] = get_option("gutefy_settings_icon_position_social_icon", "");
                 $data_style['gutefy_settings_icon_wrapper_z_index_social_icon'] = get_option("gutefy_settings_icon_wrapper_z_index_social_icon", "");
                 $data_style['gutefy_settings_icon_wrapper_opacity_social_icon'] = get_option("gutefy_settings_icon-wrapper-opacity_social_icon", "");
-                var_dump($data_style);
                 $content = $this->gf_social_icons_render_frontend($content, $data, $data_style);
                 return $content;
         }

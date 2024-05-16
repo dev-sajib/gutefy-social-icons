@@ -80,7 +80,7 @@ class Gf_social_icons_class_admin
 	}
 	public function gf_social_icons_enqueue_scripts()
 	{ 
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . '../assets/js/gf-social-icons-admin.min.js', array( 'jquery' ), $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . '../assets/js/gf-social-icons-admin.min.js', array( 'jquery','customize-preview' ), $this->version, true);
 	}
 
 }
