@@ -25,10 +25,32 @@ class Gf_social_icons_class_extensions_public extends Gf_social_icons_class_list
                 } catch (\Throwable $th) {
                         //throw $th;
                 }
-
-
         }
+
         public function gf_social_icons_get_icon_data($content)
+        {
+                $account_data = json_decode(get_option('gutefy_settings_accounts_social_icon'));
+
+                $account_data_array = json_decode(json_encode($account_data), true);
+
+                // Initialize the array to store the reformatted data
+                // Check if the decoded data is an array
+                if (is_array($account_data_array)) {
+                        // Loop through each item in the account data
+                        foreach ($account_data as $item) {
+                                // Check if the item is an object and has the properties 'icon' and 'url'
+                                if (is_object($item) && isset($item->icon) && isset($item->url)) {
+                                        // Add the icon and url to the $data array
+                                        $data[] = ['url'=>$item->url,'icon'=>$item->icon];
+                                }
+                        }
+                }
+                $style_data= $this->gf_social_icons_style_settings();
+                $content = $this->gf_social_icons_render_frontend($content, $data, $style_data);
+                return $content;
+        }
+
+        public function gf_social_icons_get_icon_data_2($content)
         {
                 foreach ($this->socialList as $socialNetwork) {
                         if ($socialNetwork == 'Email') {
@@ -40,7 +62,14 @@ class Gf_social_icons_class_extensions_public extends Gf_social_icons_class_list
                         } else {
                                 $data[$socialNetwork . "_url"] = get_option('gutefy_social_url_' . $socialNetwork);
                         }
+
                 }
+
+                $content = $this->gf_social_icons_render_frontend($content, $data, $data_style);
+                return $content;
+        }
+
+        function gf_social_icons_style_settings(){
                 $data_style['gutefy_settings_color_social_icon'] = get_option("gutefy_settings_color_social_icon", "");
                 $data_style['gutefy_settings_bg_color_social_icon'] = get_option("gutefy_settings_bg_color_social_icon", "");
                 $data_style['gutefy_settings_hover_bg_color_social_icon'] = get_option("gutefy_settings_hover_bg_color_social_icon", "");
@@ -51,8 +80,8 @@ class Gf_social_icons_class_extensions_public extends Gf_social_icons_class_list
                 $data_style['gutefy_settings_icon_position_social_icon'] = get_option("gutefy_settings_icon_position_social_icon", "");
                 $data_style['gutefy_settings_icon_wrapper_z_index_social_icon'] = get_option("gutefy_settings_icon_wrapper_z_index_social_icon", "");
                 $data_style['gutefy_settings_icon_wrapper_opacity_social_icon'] = get_option("gutefy_settings_icon-wrapper-opacity_social_icon", "");
-                $content = $this->gf_social_icons_render_frontend($content, $data, $data_style);
-                return $content;
+
+                return $data_style;
         }
         function gf_social_icons_render_frontend($html, $data, $data_style)
         {
@@ -75,6 +104,7 @@ class Gf_social_icons_class_extensions_public extends Gf_social_icons_class_list
                                 $html = $this->gf_social_icons_style_two($html, $data, $data_style, $this->data_icon_list);
                         }
                 }
+
                 return $html;
         }
 

@@ -4,6 +4,21 @@ if (!defined('ABSPATH'))
         exit; // Exit if accessed directly 
 trait Gf_social_icons_class_style_template
 {
+        private function get_json_account_data()
+        {
+                $jsonFilePath = plugin_dir_path(__FILE__) . '../../assets/json/gf-social-icons-fontawsome.json';
+                if (file_exists($jsonFilePath)) {
+                        $json_data = file_get_contents($jsonFilePath);
+                        $data = json_decode($json_data, true);
+                        if (json_last_error() === JSON_ERROR_NONE) {
+                                // Successfully decoded JSON
+                                return ($data);
+                        } else {
+                                // Handle JSON decode errors
+                                echo "Error decoding JSON: " . json_last_error_msg();
+                        }
+                }
+        }
         private function gf_social_icons_get_style_settings($data_style)
         {
                 // var_dump($data_style);
@@ -44,17 +59,6 @@ trait Gf_social_icons_class_style_template
         }
         public function gf_social_icons_style_one($html, $data, $data_style, $data_icon_list)
         {
-                /**LINK -  
-                 <div class="gf_social_icons-float-sm">
-  <div class="gf_social_icons-fl-fl gf_social_icons-float-fb">
-    <i class="gf_social_icons-fa fa-facebook"></i>
-    <a href="" target="_blank"> Like us!</a>
-  </div>
-
-</div>
- 
-                 
-                 */
                 $html .= '<div class="gutefy-section-wrapper style-one">';
                 $html .= ' <div class="gf_social_icons-float-sm">';
 
@@ -75,20 +79,18 @@ trait Gf_social_icons_class_style_template
         }
         public function gf_social_icons_style_two($html, $data, $data_style, $data_icon_list)
         {
+                $icon_data = $this->get_json_account_data();
                 $html .= '<div class="gutefy-section-wrapper style-two">';
                 $html .= '<div class="gf_social_icons_social_float">';
 
-                foreach ($data as $socialNetwork => $url) {
-                        $accountName = $this->gf_social_icons_get_account_name_from_string($socialNetwork);
-                        if ($url != '') {
-                                $html .= '<a href="' . $url . '" class="gf_social_icons_social_icon" id="' . $accountName . '" >' . $data_icon_list[$accountName]['icon'] . '</a>';
+                foreach ($data as $socialNetwork) {
+                        if ($socialNetwork != '') {
+                                $html .= '<a href="' . $socialNetwork['url'] . '" class="gf_social_icons_social_icon" id="' . $socialNetwork['icon'] . '" >' . $icon_data[$socialNetwork['icon']]['icon'] . '</a>';
                         }
 
                 }
-
                 $html .= '</div>';
                 $html .= '</div>';
-                $html .= $this->gf_social_icons_get_style_settings($data_style);
 
                 return $html;
         }

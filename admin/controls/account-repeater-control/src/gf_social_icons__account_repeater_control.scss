@@ -1,0 +1,100 @@
+#sub-accordion-section-gutefy_settings_accounts_social_icon {
+    background-color: white !important;
+
+    .gutefy_settings_wrapper_accounts_social_icon {
+        display: grid;
+        justify-content: center;
+        padding: 20px 0;
+        grid-template-columns: 1fr;
+
+        button.gf_social_icons_add_account_button {
+            background: #179C3C;
+            padding: 15px 20px;
+            border: none;
+            color: white;
+            border-radius: 6px;
+            box-shadow: -1px 4px 7px 1px #0000004d;
+            cursor: pointer;
+        }
+
+        .gf-social-icons-repeater-field-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 14px;
+
+            .gf-social-icons-repeater-field-child-wrapper {
+                padding: 10px;
+                background-color: #E8E7E7;
+                border-radius: 5px;
+
+                .gf-social-icons-repeater-field {
+                    display: flex;
+                    gap: 10px;
+                    justify-content: center;
+                    align-items: center;
+
+
+                    input.gf-social-icons-url {
+                        border: none;
+                    }
+
+                    .gf-social-icons--icon-data {
+                        background-color: #fff;
+                        padding: 5px;
+                        display: flex;
+
+                        svg {
+                            width: 20px;
+                        }
+                    }
+
+                    .cross-account {
+                        cursor: pointer;
+                    }
+
+                }
+
+                .gf-social-icons-selection-popup {
+                    background-color: white;
+                    padding: 5px;
+                    margin-top: 15px;
+
+                    p {
+                        margin: 0;
+                    }
+
+                    .gf-social-icons-list {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                        gap: 15px;
+                        padding: 10px;
+                        margin: 10px 0;
+
+                        span {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 5px;
+                            border-radius: 5px;
+                           cursor: pointer; 
+                            &.active,&:hover{
+                                background: #189d3c;
+                                svg{
+                                    fill: white;
+                                }
+                            }
+
+                            svg {
+                                width: 25px;
+                                height: 25px;
+                            }
+                        }
+                    }
+                }
+
+
+            }
+
+        }
+    }
+}

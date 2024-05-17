@@ -89,7 +89,7 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 			$gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
 			array(
 				'default'	=>	json_encode( array("account-1"=> array('icon' => 'facebook','url'=>'facebook.com')) ),
-				'transport' => 'postMessage',
+				'transport' => 'refresh',
 				'type' => 'option',
 				'capability' => 'manage_options',
 
