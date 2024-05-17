@@ -59,16 +59,18 @@ trait Gf_social_icons_class_style_template
         }
         public function gf_social_icons_style_one($html, $data, $data_style, $data_icon_list)
         {
+                $icon_data = $this->get_json_account_data();
+
                 $html .= '<div class="gutefy-section-wrapper style-one">';
                 $html .= ' <div class="gf_social_icons-float-sm">';
 
 
-                foreach ($data as $socialNetwork => $url) {
-                        if ($url != '') {
-                                $accountName = $this->gf_social_icons_get_account_name_from_string($socialNetwork);
+                foreach ($data as $socialNetwork) {
+                        if ($socialNetwork != '') {
+                                $accountName = $socialNetwork['icon'];
                                 $html .= '<div class="gf_social_icons-fl-fl gf_social_icons-float-">';
-                                $html .= $data_icon_list[$accountName]['icon'];
-                                $html .= '<a  href=' . $url . '>' . $accountName . '</a>';
+                                $html .= $icon_data[$socialNetwork['icon']]['icon'];
+                                $html .= '<a  href=' . $socialNetwork['url'] . '>' . $socialNetwork['icon'] . '</a>';
                                 $html .= '</div>';
                         }
                 }

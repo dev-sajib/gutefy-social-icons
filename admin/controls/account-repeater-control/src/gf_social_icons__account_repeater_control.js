@@ -143,9 +143,9 @@ let gfSocialIconsGenerateIconSelectionPopup = (account_icon) => {
     p.textContent = 'Icon name';
 
     // Create the input element
-    const input = document.createElement('input');
-    input.setAttribute('type', 'text');
-    input.classList.add('gf-social-icons-search-box');
+    // const input = document.createElement('input');
+    // input.setAttribute('type', 'text');
+    // input.classList.add('gf-social-icons-search-box');
 
     // Create the inner div element
     const innerDiv = document.createElement('div');
@@ -167,13 +167,10 @@ let gfSocialIconsGenerateIconSelectionPopup = (account_icon) => {
 
     }
 
-    // Create the span element
-
-
     // Append elements to their respective parents
 
     div.appendChild(p);
-    div.appendChild(input);
+    // div.appendChild(input);
     div.appendChild(innerDiv);
 
     // Now you can append the 'div' element wherever you want in the DOM.
