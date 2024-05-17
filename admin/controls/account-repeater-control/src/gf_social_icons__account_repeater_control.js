@@ -33,11 +33,10 @@ let gf_social_icons_add_account_field = (id_number, account_icon, url = '') => {
 
     // Create the span element for the close button
     let closeSpan = document.createElement('span');
-    closeSpan.className = 'cross-account';
+    closeSpan.className = 'gf-social-icons-cross-account';
     closeSpan.textContent = '❌';
     closeSpan.onclick = function () {
-        console.log(newDiv);
-        gf_social_icons_close_this_account(newDiv);
+        gf_social_icons_close_this_account(newDivWrapper);
     };
 
     // Append the span, input, and close button to the new div
@@ -69,10 +68,10 @@ let gf_social_icons_add_account = (e) => {
 }
 let gf_social_icons_handel_icon_selection = (element) => {
     let account_name = element.dataset.icon_name;
-    element.parentElement.parentElement.parentElement.querySelector('.gf-social-icons--icon-data').dataset.account_name=account_name;
-    element.parentElement.parentElement.parentElement.querySelector('.gf-social-icons--icon-data').innerHTML=fontIcons[account_name].icon;
-    
-    Array.from(document.querySelectorAll('.gf-social-icons-single-icon')).forEach(e=>e.classList.remove('active'));
+    element.parentElement.parentElement.parentElement.parentElement.querySelector('.gf-social-icons--icon-data').dataset.account_name = account_name;
+    element.parentElement.parentElement.parentElement.parentElement.querySelector('.gf-social-icons--icon-data').innerHTML = fontIcons[account_name].icon;
+
+    Array.from(document.querySelectorAll('.gf-social-icons-single-icon')).forEach(e => e.classList.remove('active'));
     element.classList.add('active');
     gfSocialIconsPublishButtonReactive();
 }
@@ -134,6 +133,8 @@ let gfSocialIconsPublishButtonReactive = () => {
 
 let gfSocialIconsGenerateIconSelectionPopup = (account_icon) => {
     // Create the main div element
+    const div_wrapper = document.createElement('div');
+    div_wrapper.classList.add('gf-social-icons-selection-popup-wrapper');
     const div = document.createElement('div');
     div.classList.add('gf-social-icons-selection-popup');
 
@@ -142,10 +143,15 @@ let gfSocialIconsGenerateIconSelectionPopup = (account_icon) => {
     p.classList.add('title');
     p.textContent = 'Icon name';
 
+    // Create the span element for the close button
+    const closeSpan = document.createElement('span');
+    closeSpan.className = 'gf-social-icons-cross-popup';
+    closeSpan.textContent = '❌';
+
     // Create the input element
-    // const input = document.createElement('input');
-    // input.setAttribute('type', 'text');
-    // input.classList.add('gf-social-icons-search-box');
+    const input = document.createElement('input');
+    input.setAttribute('type', 'text');
+    input.classList.add('gf-social-icons-search-box');
 
     // Create the inner div element
     const innerDiv = document.createElement('div');
@@ -170,12 +176,37 @@ let gfSocialIconsGenerateIconSelectionPopup = (account_icon) => {
     // Append elements to their respective parents
 
     div.appendChild(p);
-    // div.appendChild(input);
+    div.appendChild(closeSpan);
+    div.appendChild(input);
     div.appendChild(innerDiv);
+    div_wrapper.appendChild(div);
+    closeSpan.onclick = function () {
+
+        div_wrapper.classList.add('fadeOut');
+            // Add a delay to ensure the fade-out animation finishes before hiding the popup
+            setTimeout(() => {
+                div_wrapper.style.display = 'none';
+                // Remove the fadeOut class to reset the animation for future use
+                div_wrapper.classList.remove('fadeOut');
+            }, 50); // Adjust the t
+    };
+    div_wrapper.addEventListener('click', function (event) {
+        if (event.target === this) {
+            // If the overlay is clicked (not the popup itself), hide the popup with fade-out animation
+            this.classList.add('fadeOut');
+            // Add a delay to ensure the fade-out animation finishes before hiding the popup
+            setTimeout(() => {
+                this.style.display = 'none';
+                // Remove the fadeOut class to reset the animation for future use
+                this.classList.remove('fadeOut');
+            }, 50); // Adjust the timeout to match the duration of the fade-out animation
+        }
+    });
+
 
     // Now you can append the 'div' element wherever you want in the DOM.
     // For example, if you want to append it to the body:
-    return div;
+    return div_wrapper;
 }
 // Example usage:
 window.addEventListener('load', function () {

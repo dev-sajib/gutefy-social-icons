@@ -48,12 +48,30 @@
                         }
                     }
 
-                    .cross-account {
+                    .gf-social-icons-cross-account {
                         cursor: pointer;
                     }
 
                 }
+                .gf-social-icons-selection-popup-wrapper {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black background */
+                    z-index: 999;
+                    display: flex;
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+                    animation: fadeIn 0.5s ease; 
 
+                    &.fadeOut{
+                        animation: fadeOut 0.5s ease; /* apply the fadeOut animation */
+
+                    }
+                
                 .gf-social-icons-selection-popup {
                     background-color: white;
                     padding: 5px;
@@ -91,10 +109,18 @@
                         }
                     }
                 }
-
+            }
 
             }
 
         }
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
