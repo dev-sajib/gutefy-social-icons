@@ -51,7 +51,37 @@ let gf_social_icons_add_account_field = (id_number, account_icon, url = '') => {
     } else {
         console.error('Wrapper div not found.');
     }
-    Array.from(document.querySelectorAll('.gf-social-icons-url')).forEach(e => e.addEventListener('input', gfSocialIconsPublishButtonReactive));
+    Array.from(document.querySelectorAll('.gf-social-icons-url')).forEach(e => e.addEventListener('input', (event) => {
+        console.log('four');
+        var input = event.target.value.trim();
+        var parentElement = event.target.parentElement.parentElement;
+        var errorMessage = parentElement.querySelector(".error-message");
+
+        // Create the error message element if it doesn't exist
+        if (!errorMessage) {
+            errorMessage = document.createElement("span");
+            errorMessage.className = "error-message";
+        }
+
+        // Regex patterns for URL, phone number, and email validation
+        var urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+        var phonePattern = /^\+?([0-9]{1,4})?[-. ]?([0-9]{3})[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!urlPattern.test(input) && !phonePattern.test(input) && !emailPattern.test(input)) {
+            errorMessage.textContent = "Please enter a valid URL, phone number, or email.";
+            if (!parentElement.contains(errorMessage)) {
+                parentElement.appendChild(errorMessage);
+            }
+            console.log('wrong input');
+        } else {
+            if (errorMessage.parentElement) {
+                errorMessage.parentElement.removeChild(errorMessage);
+            }
+            gfSocialIconsPublishButtonReactive();
+        }
+    }));
+
 }
 
 let gf_social_icons_get_account_number = function () {
@@ -156,8 +186,9 @@ let gfSocialIconsGenerateIconSelectionPopup = (account_icon) => {
     const input = document.createElement('input');
     input.setAttribute('type', 'text');
     input.classList.add('gf-social-icons-search-box');
-    
-    input.addEventListener('input',(element)=>{
+
+    input.addEventListener('input', (element) => {
+        console.log('two');
         gfSocialIconsHandlePopupSearch(element);
     })
 
@@ -191,12 +222,12 @@ let gfSocialIconsGenerateIconSelectionPopup = (account_icon) => {
     closeSpan.onclick = function () {
 
         div_wrapper.classList.add('fadeOut');
-            // Add a delay to ensure the fade-out animation finishes before hiding the popup
-            setTimeout(() => {
-                div_wrapper.style.display = 'none';
-                // Remove the fadeOut class to reset the animation for future use
-                div_wrapper.classList.remove('fadeOut');
-            }, 50); // Adjust the t
+        // Add a delay to ensure the fade-out animation finishes before hiding the popup
+        setTimeout(() => {
+            div_wrapper.style.display = 'none';
+            // Remove the fadeOut class to reset the animation for future use
+            div_wrapper.classList.remove('fadeOut');
+        }, 50); // Adjust the t
     };
     div_wrapper.addEventListener('click', function (event) {
         if (event.target === this) {
@@ -219,7 +250,7 @@ let gfSocialIconsGenerateIconSelectionPopup = (account_icon) => {
 // Example usage:
 window.addEventListener('load', function () {
     gf_social__restore_previous_accounts();
-    Array.from(document.querySelectorAll('.gf-social-icons-url')).forEach(e => e.addEventListener('input',()=>{
+    Array.from(document.querySelectorAll('.gf-social-icons-url')).forEach(e => e.addEventListener('input', (event) => {
         gfSocialIconsPublishButtonReactive();
     }));
 });

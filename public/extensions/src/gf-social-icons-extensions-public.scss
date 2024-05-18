@@ -52,6 +52,12 @@ body {
         &:hover {
             right: 0;
             background: var(--gutefy-primary-hover-color);
+            a{
+                color: var(--gutefy-secondary-hover-color);
+            }
+            svg{
+                fill:  var(--gutefy-secondary-hover-color);
+            }
         }
 
         a {

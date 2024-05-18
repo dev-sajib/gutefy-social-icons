@@ -38,7 +38,15 @@
                 padding: 10px;
                 background-color: #E8E7E7;
                 border-radius: 5px;
-
+                
+                span.error-message {
+                    margin-top: 13px;
+                    display: block;
+                    font-size: 10px;
+                    background: red;
+                    color: white;
+                    padding: 3px;
+                }
                 .gf-social-icons-repeater-field {
                     display: flex;
                     gap: 10px;
