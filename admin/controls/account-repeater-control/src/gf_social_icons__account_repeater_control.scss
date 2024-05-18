@@ -48,6 +48,9 @@
 
                     input.gf-social-icons-url {
                         border: none;
+                        &::placeholder{
+                            color:#E8E7E7
+                        }
                     }
 
                     .gf-social-icons--icon-data {

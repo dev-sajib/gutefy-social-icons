@@ -26,7 +26,7 @@ let gf_social_icons_add_account_field = (id_number, account_icon, url = '') => {
     let input = document.createElement('input');
     input.type = 'url';
     input.classList = 'gf-social-icons-url';
-    input.placeholder = 'Enter Social Url';
+    input.placeholder = 'https://facebook.com';
     if (url != '') {
         input.value = url;
     }
@@ -219,5 +219,7 @@ let gfSocialIconsGenerateIconSelectionPopup = (account_icon) => {
 // Example usage:
 window.addEventListener('load', function () {
     gf_social__restore_previous_accounts();
-    Array.from(document.querySelectorAll('.gf-social-icons-url')).forEach(e => e.addEventListener('input', gfSocialIconsPublishButtonReactive));
+    Array.from(document.querySelectorAll('.gf-social-icons-url')).forEach(e => e.addEventListener('input',()=>{
+        gfSocialIconsPublishButtonReactive();
+    }));
 });
