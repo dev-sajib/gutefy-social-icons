@@ -77,15 +77,14 @@ body {
         z-index: var(--gutefy-icon-wrapper-z-index);
         position: fixed;
         top: var(--gutefy-icon-wrapper-position-top);
-        left: -25px;
+        right: -25px;
         line-height: 40px;
         font-size: 20px;
         opacity: var(--gutefy-icon-wrapper-opacity);
         animation: linear social_float_off .3s;
-        margin-top: -175px;
 
         &:hover {
-            left: -5px;
+            right: -5px;
             opacity: 1;
             animation: linear social_float_on .3s;
         }
@@ -131,24 +130,24 @@ body {
 
 @keyframes social_float_on {
     0% {
-        left: -25px;
+        right: -25px;
         opacity: var(--gutefy-icon-wrapper-opacity);
     }
 
     100% {
-        left: -5px;
+        right: -5px;
         opacity: 1;
     }
 }
 
 @keyframes social_float_off {
     0% {
-        left: -5px;
+        right: -5px;
         opacity: 1;
     }
 
     100% {
-        left: -25px;
+        right: -25px;
         opacity: var(--gutefy-icon-wrapper-opacity);
     }
 }

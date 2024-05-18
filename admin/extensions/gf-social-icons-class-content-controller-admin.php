@@ -80,16 +80,13 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 	}
 
 
-	function gf_social_icons_single_social_handler($wp_customize, $social_name, $gf_social_icons__namespace, $gf_social_icons__extensions_namespace)
+	function gf_social_icons_single_social_handler($wp_customize, $gf_social_icons__namespace, $gf_social_icons__extensions_namespace)
 	{
-		//ICON SETTINGS 
-
-		//Icon wrapper opacity
 		$wp_customize->add_setting(
 			$gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
 			array(
 				'default'	=>	json_encode( array("account-1"=> array('icon' => 'facebook','url'=>'facebook.com')) ),
-				'transport' => 'refresh',
+				'transport' => 'postMessage',
 				'type' => 'option',
 				'capability' => 'manage_options',
 
@@ -103,7 +100,7 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 				$wp_customize,
 				$gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
 				array(
-					'label' => __('Select Icon', 'gf-social-icons'),
+					'label' => __('Accounts List', 'gf-social-icons'),
 					'section' => $gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
 					'priority' => 1,
 					'settings' => [
@@ -113,40 +110,38 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 			)
 		);
 
-		// Add a URL control
-		$wp_customize->add_setting(
-			"gutefy_social_url_$social_name",
-			array(
-				'type' => 'option',
-				'capability' => 'manage_options',
-				'default' => '',
-				'transport' => 'refresh',
-				// 'sanitize_callback' => 'esc_url_raw',
-				'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
-			)
-		);
+		// // Add a URL control
+		// $wp_customize->add_setting(
+		// 	"gutefy_social_url_$social_name",
+		// 	array(
+		// 		'type' => 'option',
+		// 		'capability' => 'manage_options',
+		// 		'default' => '',
+		// 		'transport' => 'refresh',
+		// 		// 'sanitize_callback' => 'esc_url_raw',
+		// 		'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
+		// 	)
+		// );
 
-		$wp_customize->add_control(
-			"gutefy_social_url_$social_name",
-			array(
-				'label' => ucwords($social_name),
-				'section' => $gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
-				'type' => 'text',
-				'priority' => 30,
-				'input_attrs' => array(
-					'class' => "gutefy-social__url $social_name",
-					'placeholder' => 'https://',
-				),
-			)
-		);
+		// $wp_customize->add_control(
+		// 	"gutefy_social_url_$social_name",
+		// 	array(
+		// 		'label' => ucwords($social_name),
+		// 		'section' => $gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
+		// 		'type' => 'text',
+		// 		'priority' => 30,
+		// 		'input_attrs' => array(
+		// 			'class' => "gutefy-social__url $social_name",
+		// 			'placeholder' => 'https://',
+		// 		),
+		// 	)
+		// );
 	}
 
 	function gf_social_icons_social_handler($wp_customize, $gf_social_icons__namespace, $gf_social_icons__extensions_namespace)
 	{
 
-		foreach ($this->socialList as $socialNetwork) {
-			$this->gf_social_icons_single_social_handler($wp_customize, $socialNetwork, $gf_social_icons__namespace, $gf_social_icons__extensions_namespace);
-		}
+			$this->gf_social_icons_single_social_handler($wp_customize,$gf_social_icons__namespace, $gf_social_icons__extensions_namespace);
 	}
 }
 new Gf_social_icons_class_content_controller_admin();

@@ -30,7 +30,7 @@ gulp.task('admin_js:minify', function () {
                 .pipe(gulp.dest('./assets/js'));
 });
 gulp.task('customizer_admin_js:minify', function () {
-        return gulp.src('./admin/extensions/**/*customizer-admin.js')
+        return gulp.src(['./admin/extensions/**/*customizer-admin.js','./admin/controls/account-repeater-control/src/gf-social-icons-fontawsome.js'])
                 .pipe(uglify())
                 .pipe(concat('gf-social-icons-customizer-admin.min.js'))
                 .pipe(gulp.dest('./assets/js'));
@@ -49,7 +49,7 @@ gulp.task('watch', function () {
         gulp.watch('./public/extensions/**/*.scss', gulp.series('scss:compile'));
         gulp.watch('./public/extensions/**/*.js', gulp.series('js:minify'));
         gulp.watch(['./admin/**/*.js', '!./admin/extensions/**/*customizer-admin.js'], gulp.series('admin_js:minify'));
-        gulp.watch('./admin/extensions/**/*customizer-admin.js', gulp.series('customizer_admin_js:minify'));
+        gulp.watch(['./admin/extensions/**/*customizer-admin.js','./admin/controls/account-repeater-control/src/gf-social-icons-fontawsome.js'], gulp.series('customizer_admin_js:minify'));
 });
 
 // Default task to run both 'scss:compile' and 'js:minify' tasks when watching

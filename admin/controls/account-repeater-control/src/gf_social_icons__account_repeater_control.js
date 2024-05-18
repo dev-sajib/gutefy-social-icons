@@ -34,7 +34,7 @@ let gf_social_icons_add_account_field = (id_number, account_icon, url = '') => {
     // Create the span element for the close button
     let closeSpan = document.createElement('span');
     closeSpan.className = 'gf-social-icons-cross-account';
-    closeSpan.textContent = '❌';
+    closeSpan.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg>';
     closeSpan.onclick = function () {
         gf_social_icons_close_this_account(newDivWrapper);
     };
@@ -131,6 +131,10 @@ let gfSocialIconsPublishButtonReactive = () => {
     }
 }
 
+let gfSocialIconsHandlePopupSearch = (element) => {
+    console.log(element);
+    console.log(element.value);
+}
 let gfSocialIconsGenerateIconSelectionPopup = (account_icon) => {
     // Create the main div element
     const div_wrapper = document.createElement('div');
@@ -146,12 +150,16 @@ let gfSocialIconsGenerateIconSelectionPopup = (account_icon) => {
     // Create the span element for the close button
     const closeSpan = document.createElement('span');
     closeSpan.className = 'gf-social-icons-cross-popup';
-    closeSpan.textContent = '❌';
+    closeSpan.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg>';
 
     // Create the input element
     const input = document.createElement('input');
     input.setAttribute('type', 'text');
     input.classList.add('gf-social-icons-search-box');
+    
+    input.addEventListener('input',(element)=>{
+        gfSocialIconsHandlePopupSearch(element);
+    })
 
     // Create the inner div element
     const innerDiv = document.createElement('div');

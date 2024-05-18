@@ -1,6 +1,93 @@
 const gutefySectionWrapper = document.querySelector('.gutefy-section-wrapper');
 const gutefy_namespace = 'gutefy_settings_';
 const gf_social_icons__extensions_namespace = '_social_icon';
+const gf_social_icons__style = '';
+
+// social hover style 
+wp.customize(`${gutefy_namespace}selected_style${gf_social_icons__extensions_namespace}`, (value) => {
+       value.bind((hover_style) => {
+              const data = wp.customize.value(`${gutefy_namespace}accounts${gf_social_icons__extensions_namespace}`)();
+              console.log(hover_style);
+              gfSocialAccountGenerateAccountMarkupFromTheJson(hover_style, data);
+       })
+})
+// social hover style 
+// add-social-account 
+wp.customize(`${gutefy_namespace}accounts${gf_social_icons__extensions_namespace}`, (value) => {
+       value.bind((account_details) => {
+              const hover_style = wp.customize.value(`${gutefy_namespace}selected_style${gf_social_icons__extensions_namespace}`)();
+              gfSocialAccountGenerateAccountMarkupFromTheJson(hover_style, account_details);
+       })
+})
+
+let gfSocialAccountGenerateAccountMarkupFromTheJson = (hover_style, data) => {
+       let toObject = JSON.parse(data);
+       if(hover_style=='style1'){
+              gfSocialAccountGenerateAccountMarkupStyleOne(toObject);
+       }
+       else{
+              gfSocialAccountGenerateAccountMarkupStyleTwo(toObject);
+       }
+}
+
+let gfSocialAccountGenerateAccountMarkupStyleTwo = (toObject) => {
+       
+       let div = document.querySelector('.gutefy-section-wrapper');
+       div.innerHTML = '';
+       div.classList.remove('style-one');
+       div.classList.add('style-two');
+
+       // Create the div element
+       const iconWrapper = document.createElement('div');
+       iconWrapper.className = "gf_social_icons_social_float";
+
+       Object.entries(toObject).forEach(([key, data]) => {
+              const anchor = document.createElement('a');
+              anchor.href = data.url;
+              anchor.innerHTML = fontIcons[data.icon]['icon'];
+              anchor.className = 'gf_social_icons_social_icon';
+              anchor.id = ''; // Set the id if needed
+
+              // Append the anchor to the div
+              iconWrapper.appendChild(anchor);
+       })
+
+       // Append the anchor to the div
+       div.appendChild(iconWrapper);
+
+}
+let gfSocialAccountGenerateAccountMarkupStyleOne = (toObject) => {
+
+       let div = document.querySelector('.gutefy-section-wrapper ');
+       div.innerHTML = '';
+       div.classList.add('style-one')
+       div.classList.remove('style-two');
+       let icon_wrapper = document.createElement('div');
+       icon_wrapper.className = 'gf_social_icons-float-sm'
+       Object.entries(toObject).forEach(([key, data]) => {
+              
+              const div_wrapper = document.createElement('div');
+              div_wrapper.className = 'gf_social_icons-fl-fl gf_social_icons-float-';
+       
+              // Add the icon to the div
+              div_wrapper.innerHTML = fontIcons[data.icon]['icon'];
+       
+              // Create the anchor element
+              const anchor = document.createElement('a');
+              anchor.href = data.url;
+              anchor.textContent = data.icon;
+       
+              // Append the anchor to the div
+              div_wrapper.appendChild(anchor);
+       
+              // Append the anchor to the div
+              icon_wrapper.appendChild(div_wrapper);
+       })
+       div.appendChild(icon_wrapper)
+
+}
+// add-social-account 
+
 //preview color
 wp.customize(`${gutefy_namespace}color${gf_social_icons__extensions_namespace}`, function (value) {
        value.bind(function (newval) {
@@ -12,7 +99,7 @@ wp.customize(`${gutefy_namespace}bg_color${gf_social_icons__extensions_namespace
        value.bind(function (newval) {
               gutefySectionWrapper.style.setProperty('--gutefy-primary-color', newval);
        })
-}) 
+})
 
 //preview hover color
 wp.customize(`${gutefy_namespace}hover_color${gf_social_icons__extensions_namespace}`, function (value) {

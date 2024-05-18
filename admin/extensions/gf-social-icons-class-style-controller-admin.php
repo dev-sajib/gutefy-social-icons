@@ -133,7 +133,7 @@ class Gf_social_icons__class_style_controller_admin
 			$gf_social_icons__namespace . 'selected_style' . $gf_social_icons__extensions_namespace,
 			array(
 				'default' => 'style2',
-				'transport' => 'refresh',
+				'transport' => 'postMessage',
 				'type' => 'option',
 				'capability' => 'manage_options',
 			)
@@ -158,7 +158,7 @@ class Gf_social_icons__class_style_controller_admin
 				$wp_customize,
 				$gf_social_icons__namespace . 'selected_style' . $gf_social_icons__extensions_namespace,
 				array(
-					'label' => __('Social Style', 'gf-social-icons'),
+					'label' => __('Social Hover Style', 'gf-social-icons'),
 					'section' => $gf_social_icons__namespace . 'settings' . $gf_social_icons__extensions_namespace,
 					'priority' => 1,
 					'choices' => array(
