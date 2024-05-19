@@ -4,9 +4,12 @@ function gfSocialResetAccountIdState() {
 }
 
 let gf_social_icons_add_account_field = (id_number, account_icon, url = '') => {
+    console.log('new account add hoise')
     let newDivWrapper = document.createElement('div');
-    newDivWrapper.classList = `gf-social-icons-repeater-field-child-wrapper`;
+    newDivWrapper.classList = `gf-social-icons-repeater-field-child-wrapper gf-social-icons-is-idle`;
 
+    let newDivDragItem = document.createElement('div');
+    newDivDragItem.className= 'gf-social-icons-account-list-drag-handle gf-social-icons-account-list-draging-handle';
 
     let newDiv = document.createElement('div');
     let generate_uniq_class = id_number;
@@ -40,6 +43,7 @@ let gf_social_icons_add_account_field = (id_number, account_icon, url = '') => {
     };
 
     // Append the span, input, and close button to the new div
+    newDiv.appendChild(newDivDragItem);
     newDiv.appendChild(span);
     newDiv.appendChild(input);
     newDiv.appendChild(closeSpan);
@@ -81,7 +85,6 @@ let gf_social_icons_add_account_field = (id_number, account_icon, url = '') => {
             gfSocialIconsPublishButtonReactive();
         }
     }));
-
 }
 
 let gf_social_icons_get_account_number = function () {
@@ -147,6 +150,8 @@ let gfSocialCollectSocialIconData = () => {
 }
 
 let gfSocialIconsPublishButtonReactive = () => {
+    gfSocialResetAccountIdState();
+    
     const data = gfSocialCollectSocialIconData();
     const inputField = document.querySelector('.gf-social-icons--accounts-details');
     if (inputField) {
@@ -252,4 +257,5 @@ window.addEventListener('load', function () {
     Array.from(document.querySelectorAll('.gf-social-icons-url')).forEach(e => e.addEventListener('input', (event) => {
         gfSocialIconsPublishButtonReactive();
     }));
+    gf_social_icons__handle_drag_sorting()
 });

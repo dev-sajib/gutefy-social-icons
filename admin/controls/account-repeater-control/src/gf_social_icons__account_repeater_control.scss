@@ -6,7 +6,7 @@
         justify-content: center;
         padding: 20px 0;
         grid-template-columns: 1fr;
-        
+
         .gutefy_settings_wrapper_title_social_icon {
             margin: 0;
             padding-top: 20px;
@@ -35,10 +35,12 @@
             gap: 14px;
 
             .gf-social-icons-repeater-field-child-wrapper {
+                position: relative;
                 padding: 10px;
                 background-color: #E8E7E7;
                 border-radius: 5px;
-                
+                box-shadow: 0 4px 6px -1px #001d2910, 0 2px 4px -2px #001d2910;
+
                 span.error-message {
                     margin-top: 13px;
                     display: block;
@@ -47,17 +49,26 @@
                     color: white;
                     padding: 3px;
                 }
+
+                &.is-draggable {
+                    z-index: 10;
+                }
+                &.gf-social-icons-is-idle{
+                    transition: 0.25s ease transform;
+                }
+
                 .gf-social-icons-repeater-field {
                     display: flex;
                     gap: 10px;
                     justify-content: center;
                     align-items: center;
-
+                    padding-left: 10px;
 
                     input.gf-social-icons-url {
                         border: none;
-                        &::placeholder{
-                            color:#E8E7E7
+
+                        &::placeholder {
+                            color: #E8E7E7
                         }
                     }
 
@@ -93,6 +104,23 @@
                             svg {
                                 fill: red;
                             }
+                        }
+                    }
+
+                    .gf-social-icons-account-list-drag-handle {
+                        position: absolute;
+                        left: 0;
+                        width: 20px;
+                        height: 44px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: grab;
+
+                        &::after {
+                            content: '⠿';
+                            font-size: 25px;
+                            color: #00000099;
                         }
                     }
 

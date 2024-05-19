@@ -89,7 +89,6 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 				'transport' => 'postMessage',
 				'type' => 'option',
 				'capability' => 'manage_options',
-
 			)
 		);
 
