@@ -19,10 +19,12 @@ Floting Social Icons Solutions.
 == Installation ==
 1. Upload the 'gf-social-icons' folder to the '/wp-content/plugins/' directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
+3. Click on settings. 
 
 ==Key Features ==
-- **Gutefy Social Icons:** Easily add and customize social icons that will be displayed at the left or right side of your webpage.
-- **Social Accounts:** Configure up to 17 social accounts, including Facebook, Skype, GitHub, GitLab, LinkedIn, CodePen, and more.
+- **Gutefy Social Icons:** Easily add and customize social icons that will be displayed at the right side of your webpage.
+- **Social Accounts:** Easily can add as many account as you want .
+- **Social Icon Changing Feature:** With one click can Change icon   .
 - **Style Settings:** Customize the appearance of your social icons with options such as icon color, hover color, background color, hover background color, icon size, wrapper size, icon wrapper opacity and so one.
 
 == Screenshots ==
@@ -49,10 +51,11 @@ Floting Social Icons Solutions.
 * Initial release.
 
 = 1.0.1 =
-* Date: May 13, 2024
 * Enhancement: Improved the floating style of social icons for better stability.
 * Enhancement: Enhanced functionality related to styling, ensuring smoother user experience.
 * Bug Fix: Fixed a bug related to hover styles for better consistency.
+* Added: Icon Changing option
+* Introduces: Flexible Account adding system
 
 == Frequently Asked Questions ==
 = How can I add or edit social accounts? =
