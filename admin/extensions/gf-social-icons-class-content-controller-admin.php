@@ -15,14 +15,15 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 
 	public function gutefy_social_icons_customizer_settings($wp_customize)
 	{
+		require_once (plugin_dir_path(__FILE__) . './../controls/account-repeater-control/gf_social_icons__class_account_repeater_control_setting.php');
 		// Create a namespace for Gutefy settings
-		$gutefy_namespace = 'gutefy_settings_';
-		$gutefy_extensions_namespace = '_social_icon';
-		$this->gf_social_icons_social_handler($wp_customize, $gutefy_namespace, $gutefy_extensions_namespace);
+		$gf_social_icons__namespace = 'gutefy_settings_';
+		$gf_social_icons__extensions_namespace = '_social_icon';
+		$this->gf_social_icons_social_handler($wp_customize, $gf_social_icons__namespace, $gf_social_icons__extensions_namespace);
 
 		// Add Gutefy Panel
 		$wp_customize->add_panel(
-			$gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
+			$gf_social_icons__namespace . 'core-panel' . $gf_social_icons__extensions_namespace,
 			array(
 				'title' => esc_html(__('Gutefy Social Icons', 'gf-social-icons')),
 				'description' => '<p>Gutefy Extensions for website enhancement</p>',
@@ -31,11 +32,11 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 		);
 
 		$wp_customize->add_section(
-			$gutefy_namespace . 'accounts' . $gutefy_extensions_namespace,
+			$gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
 			array(
 				'title' => esc_html(__('Social Accounts', 'gf-social-icons')),
 				'priority' => 1,
-				'panel' => $gutefy_namespace . 'core-panel' . $gutefy_extensions_namespace,
+				'panel' => $gf_social_icons__namespace . 'core-panel' . $gf_social_icons__extensions_namespace,
 			)
 		);
 
@@ -79,42 +80,68 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 	}
 
 
-	function gf_social_icons_single_gf_social_icons_social_handler($wp_customize, $social_name, $gutefy_namespace, $gutefy_extensions_namespace)
+	function gf_social_icons_single_social_handler($wp_customize, $gf_social_icons__namespace, $gf_social_icons__extensions_namespace)
 	{
-		// Add a URL control
 		$wp_customize->add_setting(
-			"gutefy_social_url_$social_name",
+			$gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
 			array(
+				'default'	=>	json_encode( array("1"=> array('icon' => 'facebook','url'=>'https://facebook.com')) ),
+				'transport' => 'postMessage',
 				'type' => 'option',
 				'capability' => 'manage_options',
-				'default' => '',
-				'transport' => 'refresh',
-				// 'sanitize_callback' => 'esc_url_raw',
-				'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
+
 			)
 		);
 
+
+		// ------------------
 		$wp_customize->add_control(
-			"gutefy_social_url_$social_name",
-			array(
-				'label' => ucwords($social_name),
-				'section' => $gutefy_namespace . 'accounts' . $gutefy_extensions_namespace,
-				'type' => 'text',
-				'priority' => 30,
-				'input_attrs' => array(
-					'class' => "gutefy-social__url $social_name",
-					'placeholder' => 'https://',
-				),
+			new Gf_social_icons_class_account_repeater_control_setting(
+				$wp_customize,
+				$gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
+				array(
+					'label' => __('Accounts List', 'gf-social-icons'),
+					'section' => $gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
+					'priority' => 1,
+					'settings' => [
+						'select_social_icon' => $gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
+					]
+				)
 			)
 		);
+
+		// // Add a URL control
+		// $wp_customize->add_setting(
+		// 	"gutefy_social_url_$social_name",
+		// 	array(
+		// 		'type' => 'option',
+		// 		'capability' => 'manage_options',
+		// 		'default' => '',
+		// 		'transport' => 'refresh',
+		// 		// 'sanitize_callback' => 'esc_url_raw',
+		// 		'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
+		// 	)
+		// );
+
+		// $wp_customize->add_control(
+		// 	"gutefy_social_url_$social_name",
+		// 	array(
+		// 		'label' => ucwords($social_name),
+		// 		'section' => $gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
+		// 		'type' => 'text',
+		// 		'priority' => 30,
+		// 		'input_attrs' => array(
+		// 			'class' => "gutefy-social__url $social_name",
+		// 			'placeholder' => 'https://',
+		// 		),
+		// 	)
+		// );
 	}
 
-	function gf_social_icons_social_handler($wp_customize, $gutefy_namespace, $gutefy_extensions_namespace)
+	function gf_social_icons_social_handler($wp_customize, $gf_social_icons__namespace, $gf_social_icons__extensions_namespace)
 	{
 
-		foreach ($this->socialList as $socialNetwork) {
-			$this->gf_social_icons_single_gf_social_icons_social_handler($wp_customize, $socialNetwork, $gutefy_namespace, $gutefy_extensions_namespace);
-		}
+			$this->gf_social_icons_single_social_handler($wp_customize,$gf_social_icons__namespace, $gf_social_icons__extensions_namespace);
 	}
 }
 new Gf_social_icons_class_content_controller_admin();

@@ -2,24 +2,28 @@
 Contributors: Gutefy
 Plugin Name: Gutefy Social Icons
 Plugin URI: https://portfolio.gutefy.com/
-Tags: social icons, style settings, Gutefy Social Icons, gutefy, gutenbarg social icons
+Tags: social icons, ,floting social icons
 Requires at least: 6.3
+Requires PHP: 7.2
 Tested up to: 6.5.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 Gutefy Social Icons is a WordPress plugin developed by Gutefy, allowing users to easily enhance their website with a variety of customizable features. The main functionality of this plugin is to provide a Customizer option for adding social icons to your website.
 
+== Short Description ==
+Floting Social Icons Solutions.
+
 == Installation ==
 1. Upload the 'gf-social-icons' folder to the '/wp-content/plugins/' directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 
-== Features ==
-- **Gutefy Social Icons:** Easily add and customize social icons that will be displayed at the bottom right corner of your webpage.
+==Key Features ==
+- **Gutefy Social Icons:** Easily add and customize social icons that will be displayed at the left or right side of your webpage.
 - **Social Accounts:** Configure up to 17 social accounts, including Facebook, Skype, GitHub, GitLab, LinkedIn, CodePen, and more.
-- **Style Settings:** Customize the appearance of your social icons with options such as icon color, hover color, background color, and hover background color.
+- **Style Settings:** Customize the appearance of your social icons with options such as icon color, hover color, background color, hover background color, icon size, wrapper size, icon wrapper opacity and so one.
 
 == Screenshots ==
 1. **Starting Panel:**
@@ -41,8 +45,14 @@ Gutefy Social Icons is a WordPress plugin developed by Gutefy, allowing users to
    ![Style 1](assets/style-two.jpg)
 
 == Changelog ==
-= 1.0 =
+= 1.0.0 =
 * Initial release.
+
+= 1.0.1 =
+* Date: May 13, 2024
+* Enhancement: Improved the floating style of social icons for better stability.
+* Enhancement: Enhanced functionality related to styling, ensuring smoother user experience.
+* Bug Fix: Fixed a bug related to hover styles for better consistency.
 
 == Frequently Asked Questions ==
 = How can I add or edit social accounts? =
@@ -59,3 +69,4 @@ For more information about the author and other projects, visit [Gutefy's Portfo
 
 == License ==
 Gutefy Social Icons is licensed under the GPLv2 or later - http://www.gnu.org/licenses/gpl-2.0.html
+
