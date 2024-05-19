@@ -85,7 +85,7 @@ class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_cla
 		$wp_customize->add_setting(
 			$gf_social_icons__namespace . 'accounts' . $gf_social_icons__extensions_namespace,
 			array(
-				'default'	=>	json_encode( array("account-1"=> array('icon' => 'facebook','url'=>'facebook.com')) ),
+				'default'	=>	json_encode( array("1"=> array('icon' => 'facebook','url'=>'https://facebook.com')) ),
 				'transport' => 'postMessage',
 				'type' => 'option',
 				'capability' => 'manage_options',
