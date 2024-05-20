@@ -4,9 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 
 
-require_once plugin_dir_path(__FILE__) . 'gf-social-icons-class-list-of-account-admin.php';
 require_once plugin_dir_path(__FILE__) . 'gf-social-icons-class-style-controller-admin.php';
-class Gf_social_icons_class_content_controller_admin extends Gf_social_icons_class_list_of_account_admin
+class Gf_social_icons_class_content_controller_admin
 {
 	public function __construct()
 	{

@@ -3,9 +3,8 @@
 if (!defined('ABSPATH'))
         exit; // Exit if accessed directly 
 
-require_once plugin_dir_path(__FILE__) . '../../admin/extensions/gf-social-icons-class-list-of-account-admin.php';
 require_once plugin_dir_path(__FILE__) . './gf-social-icons-class-style-template.php';
-class Gf_social_icons_class_extensions_public extends Gf_social_icons_class_list_of_account_admin
+class Gf_social_icons_class_extensions_public 
 {
         use Gf_social_icons_class_style_template;
         private $data = [];
@@ -13,7 +12,6 @@ class Gf_social_icons_class_extensions_public extends Gf_social_icons_class_list
         public $data_icon_list;
         function __construct()
         {
-                $this->data_icon_list = $this->socialListDefaultIcon;
                 $this->gf_social_icons_insert_content();
         }
         public function gf_social_icons_insert_content()
