@@ -22,6 +22,7 @@ class Gf_social_icons_class_extensions_public extends Gf_social_icons_class_list
                         add_action('woocommerce_after_main_content', array($this, 'gf_social_icons_get_icon_data'));
                         add_filter('the_content', array($this, 'gf_social_icons_get_icon_data'), 99999);
                         add_filter('get_the_excerpt', array($this, 'gf_social_icons_get_icon_data'), 99999);
+                        
                 } catch (\Throwable $th) {
                         //throw $th;
                 }
