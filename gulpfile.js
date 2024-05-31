@@ -52,5 +52,4 @@ gulp.task('watch', function () {
         gulp.watch(['./admin/extensions/**/*customizer-admin.js','./admin/controls/account-repeater-control/src/gf-social-icons-fontawsome.js'], gulp.series('customizer_admin_js:minify'));
 });
 
-// Default task to run both 'scss:compile' and 'js:minify' tasks when watching
 gulp.task('default', gulp.parallel('watch', 'scss:compile', 'js:minify'));

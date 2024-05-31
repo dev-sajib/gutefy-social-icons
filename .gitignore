@@ -17,7 +17,7 @@
 .vscode/
 
 # macOS-specific files
-.DS_Store
+**/.DS_Store
 .AppleDouble
 .LSOverride
 .DS_Store
@@ -49,3 +49,5 @@ desktop.ini
 .DS_Store
 package-lock.json
 .DS_Store
+public/.DS_Store
+/assets/js

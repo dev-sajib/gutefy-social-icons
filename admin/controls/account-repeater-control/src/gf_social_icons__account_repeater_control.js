@@ -82,7 +82,7 @@ let gf_social_icons_add_account_field = (id_number, account_icon, url = '') => {
             if (errorMessage.parentElement) {
                 errorMessage.parentElement.removeChild(errorMessage);
             }
-            gfSocialIconsPublishButtonReactive();
+            gf_social_icons_publish_button_reactive();
         }
     }));
 }
@@ -106,15 +106,18 @@ let gf_social_icons_handel_icon_selection = (element) => {
 
     Array.from(document.querySelectorAll('.gf-social-icons-single-icon')).forEach(e => e.classList.remove('active'));
     element.classList.add('active');
-    gfSocialIconsPublishButtonReactive();
+    gf_social_icons_publish_button_reactive();
 }
 let gf_social_icons_close_this_account = (e) => {
     e.remove();
     gfSocialResetAccountIdState();
-    gfSocialIconsPublishButtonReactive();
+    gf_social_icons_publish_button_reactive();
 }
 
 let gf_social__restore_previous_accounts = () => {
+    if(! document.querySelector('.gf-social-icons--accounts-details')){
+        return;
+    }
     let previous_account_data = document.querySelector('.gf-social-icons--accounts-details').value;
     if (previous_account_data != '') {
         let gf_social_account_data = JSON.parse(previous_account_data);
@@ -149,7 +152,7 @@ let gfSocialCollectSocialIconData = () => {
     return data;
 }
 
-let gfSocialIconsPublishButtonReactive = () => {
+let gf_social_icons_publish_button_reactive = () => {
     gfSocialResetAccountIdState();
     
     const data = gfSocialCollectSocialIconData();
@@ -255,7 +258,7 @@ let gfSocialIconsGenerateIconSelectionPopup = (account_icon) => {
 window.addEventListener('load', function () {
     gf_social__restore_previous_accounts();
     Array.from(document.querySelectorAll('.gf-social-icons-url')).forEach(e => e.addEventListener('input', (event) => {
-        gfSocialIconsPublishButtonReactive();
+        gf_social_icons_publish_button_reactive();
     }));
     gf_social_icons__handle_drag_sorting()
 });
