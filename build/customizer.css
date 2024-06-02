@@ -31,5 +31,208 @@
   bottom: 0.5rem;
   position: fixed;
 }
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/components/assets/css/socialRepeateater.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+#customize-control-gf_social_icons__general-settings-control {
+  background-color: white !important;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon {
+  display: grid;
+  justify-content: center;
+  padding: 20px 0;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gutefy_settings_wrapper_title_social_icon {
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  font-size: 16px;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon button.gf_social_icons_add_account_button {
+  background: #179C3C;
+  padding: 15px 20px;
+  border: 1px solid #179C3C;
+  color: white;
+  border-radius: 6px;
+  box-shadow: -1px 4px 7px 1px rgba(0, 0, 0, 0.3019607843);
+  cursor: pointer;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon button.gf_social_icons_add_account_button:hover {
+  background-color: transparent;
+  color: #179C3C;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper {
+  position: relative;
+  padding: 10px;
+  background-color: #E8E7E7;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px -1px rgba(0, 29, 41, 0.062745098), 0 2px 4px -2px rgba(0, 29, 41, 0.062745098);
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper span.error-message {
+  margin-top: 13px;
+  display: block;
+  font-size: 10px;
+  background: red;
+  color: white;
+  padding: 3px;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper.is-draggable {
+  z-index: 10;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper.gf-social-icons-is-idle {
+  transition: 0.25s ease transform;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-repeater-field {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-repeater-field input.gf-social-icons-url {
+  border: none;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-repeater-field input.gf-social-icons-url::-moz-placeholder {
+  color: #E8E7E7;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-repeater-field input.gf-social-icons-url::placeholder {
+  color: #E8E7E7;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-repeater-field .gf-social-icons--icon-data {
+  background-color: #fff;
+  padding: 5px;
+  display: flex;
+  cursor: pointer;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-repeater-field .gf-social-icons--icon-data svg {
+  width: 20px;
+  height: 20px;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-repeater-field .gf-social-icons--icon-data:hover {
+  background-color: #179C3C;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-repeater-field .gf-social-icons--icon-data:hover svg {
+  fill: #fff;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-repeater-field .gf-social-icons-cross-account {
+  cursor: pointer;
+  display: flex;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-repeater-field .gf-social-icons-cross-account svg {
+  height: 15px;
+  width: 15px;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-repeater-field .gf-social-icons-cross-account:hover svg {
+  fill: red;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-repeater-field .gf-social-icons-account-list-drag-handle {
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-repeater-field .gf-social-icons-account-list-drag-handle::after {
+  content: "⠿";
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.6);
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* semi-transparent black background */
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  animation: fadeIn 0.5s ease;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper.fadeOut {
+  animation: fadeOut 0.5s ease;
+  /* apply the fadeOut animation */
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper .gf-social-icons-selection-popup {
+  background-color: white;
+  padding: 20px 10px 10px 10px;
+  margin-top: 15px;
+  position: relative;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper .gf-social-icons-selection-popup span.gf-social-icons-cross-popup {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper .gf-social-icons-selection-popup span.gf-social-icons-cross-popup svg {
+  height: 25px;
+  width: 25px;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper .gf-social-icons-selection-popup span.gf-social-icons-cross-popup:hover svg {
+  fill: red;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper .gf-social-icons-selection-popup p.title {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  padding-bottom: 10px;
+  margin: 0;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper .gf-social-icons-selection-popup input.gf-social-icons-search-box {
+  border: 1px solid #c1c1c1;
+  border-radius: 0;
+  font-size: 16px;
+  padding: 8px;
+  line-height: 1rem;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper .gf-social-icons-selection-popup .gf-social-icons-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 15px;
+  padding: 10px;
+  margin: 10px 0;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper .gf-social-icons-selection-popup .gf-social-icons-list span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper .gf-social-icons-selection-popup .gf-social-icons-list span.active, #customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper .gf-social-icons-selection-popup .gf-social-icons-list span:hover {
+  background: #189d3c;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper .gf-social-icons-selection-popup .gf-social-icons-list span.active svg, #customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper .gf-social-icons-selection-popup .gf-social-icons-list span:hover svg {
+  fill: white;
+}
+#customize-control-gf_social_icons__general-settings-control .gutefy_settings_wrapper_accounts_social_icon .gf-social-icons-repeater-field-wrapper .gf-social-icons-repeater-field-child-wrapper .gf-social-icons-selection-popup-wrapper .gf-social-icons-selection-popup .gf-social-icons-list span svg {
+  width: 25px;
+  height: 25px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 /*# sourceMappingURL=customizer.css.map*/

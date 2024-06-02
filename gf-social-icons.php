@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name:       Gf Block
- * Description:       Example block scaffolded with Create Block tool.
+ * Plugin Name:       Social Icons
+ * Description:       Floting Social Icons Solutions.
  * Requires at least: 6.1
  * Requires PHP:      7.0
- * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Version:           1.0.1
+ * Author:            Gutefy
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       gf-block
+ * Text Domain:       gf-social-icons
  *
- * @package GfBlock
+ * @package GfSocialIcons
  */
 
 if (!defined('ABSPATH')) {
@@ -24,11 +24,11 @@ if (!defined('ABSPATH')) {
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function gf_social_icons__gf_social_icons__block_init()
+function gf_social_icons__block_init()
 {
     register_block_type(__DIR__ . '/build');
 }
-add_action('init', 'gf_social_icons__gf_social_icons__block_init');
+add_action('init', 'gf_social_icons__block_init');
 
 
 
@@ -36,8 +36,14 @@ function gf_social_icons__customizer_register($wp_customize)
 {
 
     require plugin_dir_path(__FILE__) . './classes/gf-social-icons-class-style-control.php';
+    require plugin_dir_path(__FILE__) . './classes/gf-social-icons-class-general-control.php';
+
     $wp_customize->register_control_type('Gf_social_icons_class_style_control');
+    $wp_customize->register_control_type('Gf_social_icons_class_general_control');
     
+
+    $wp_customize->add_setting('gf_social_icons_general_settings[accountsUrl]', ['type' => 'option']);
+
     $wp_customize->add_setting('gf_social_icons_style_settings[hoverStyleControl]', ['type' => 'option']);
     $wp_customize->add_setting('gf_social_icons_style_settings[IconColor]', ['type' => 'option']);
 
@@ -68,8 +74,14 @@ function gf_social_icons__customizer_scripts()
 
     wp_localize_script(
         'gf-social-icons--customizer-editor',
-        'GfSocialIconsSettings' ,
-        get_option('gf_social_icons_style_settings', ''),
+        'GfSocialIconsSettings',
+        [
+            'generalSettings' => get_option('gf_social_icons_general_settings', ''),
+            'styleSettings' =>  get_option('gf_social_icons_style_settings', ''),
+        ]
+            
+        
+        ,
         
     );
 
