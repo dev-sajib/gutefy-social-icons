@@ -11,10 +11,23 @@ export function SocialRepeateater(props) {
         seturl([...accountsUrl, ['facebook', '']]);
     }
     console.log('comming form SocialRepeateater 😓');
+
     const inputDataChangeHandle = (value,index) => {
         const newUrl = [...accountsUrl]; //[['facebook', 'facebook.com'], ['google-x', 'google.com']]
         newUrl[index][1] = value;
         seturl(newUrl);
+    }
+    console.log('🔥🔥🔥->' , accountsUrl);
+    const removeInputField = (ele) => {
+        const wrapperEle = ele.target.closest('.gf-social-icons-repeater-field-child-wrapper')
+        const accountId = wrapperEle.getAttribute('account-id');
+        console.log(accountId);
+        const currentAccountList =  [...accountsUrl]
+        currentAccountList.splice(accountId,1);
+
+        const newAccountList = currentAccountList
+        seturl(newAccountList);
+
     }
 
     const iconDataChangeHandle=(iconId , index)=>{
@@ -36,6 +49,7 @@ export function SocialRepeateater(props) {
                             index={index}
                             inputDataChangeHandle = {inputDataChangeHandle}
                             iconDataChangeHandle = {iconDataChangeHandle}
+                            removeInputField = {removeInputField}
                         />
                     ))
 

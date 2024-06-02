@@ -161,6 +161,16 @@ function SocialRepeateater(props) {
     newUrl[index][1] = value;
     seturl(newUrl);
   };
+  console.log('🔥🔥🔥->', accountsUrl);
+  const removeInputField = ele => {
+    const wrapperEle = ele.target.closest('.gf-social-icons-repeater-field-child-wrapper');
+    const accountId = wrapperEle.getAttribute('account-id');
+    console.log(accountId);
+    const currentAccountList = [...accountsUrl];
+    currentAccountList.splice(accountId, 1);
+    const newAccountList = currentAccountList;
+    seturl(newAccountList);
+  };
   const iconDataChangeHandle = (iconId, index) => {
     const newIcon = [...accountsUrl]; //[['facebook', 'facebook.com'], ['google-x', 'google.com']]
     newIcon[index][0] = iconId;
@@ -178,7 +188,8 @@ function SocialRepeateater(props) {
     input: input,
     index: index,
     inputDataChangeHandle: inputDataChangeHandle,
-    iconDataChangeHandle: iconDataChangeHandle
+    iconDataChangeHandle: iconDataChangeHandle,
+    removeInputField: removeInputField
   }))));
 }
 
@@ -201,6 +212,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _iconPopup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./iconPopup */ "./src/components/iconPopup.jsx");
 
+/** @format */
+
 
 
 
@@ -210,12 +223,8 @@ function SocialRepeatedField(props) {
   const hidePopup = () => {
     setShowPopup(!showPopup);
   };
-  const removeInputField = e => {
-    const accountData = e.target.closest(".gf-social-icons-repeater-field").querySelector(".components-input-control__input").value;
-    // const DataRestore =  
-    //FIXME - complete it 
-  };
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    "account-id": props.index,
     className: "gf-social-icons-repeater-field-child-wrapper gf-social-icons-is-idle"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "gf-social-icons-repeater-field"
@@ -234,7 +243,7 @@ function SocialRepeatedField(props) {
     }
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
     className: "gf-social-icons-cross-account",
-    onClick: removeInputField
+    onClick: props.removeInputField
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 512 512"
