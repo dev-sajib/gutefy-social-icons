@@ -1,4 +1,4 @@
-import { fontIcons } from './../fontAwsomeIcon'
+import { fontIcons } from '../fontAwsomeIcon'
 import './assets/css/socialRepeateater.scss';
 
 export function IconPopup(props) {

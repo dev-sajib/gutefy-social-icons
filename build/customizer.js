@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/components/generalSettings.js":
-/*!*******************************************!*\
-  !*** ./src/components/generalSettings.js ***!
-  \*******************************************/
+/***/ "./src/components/generalSettings.jsx":
+/*!********************************************!*\
+  !*** ./src/components/generalSettings.jsx ***!
+  \********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -20,7 +20,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _socialRepeateater__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./socialRepeateater */ "./src/components/socialRepeateater.js");
+/* harmony import */ var _socialRepeateater__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./socialRepeateater */ "./src/components/socialRepeateater.jsx");
 
 
 
@@ -78,10 +78,10 @@ class GeneralSettings extends _wordpress_element__WEBPACK_IMPORTED_MODULE_2__.Co
 
 /***/ }),
 
-/***/ "./src/components/iconPopup.js":
-/*!*************************************!*\
-  !*** ./src/components/iconPopup.js ***!
-  \*************************************/
+/***/ "./src/components/iconPopup.jsx":
+/*!**************************************!*\
+  !*** ./src/components/iconPopup.jsx ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -90,7 +90,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _fontAwsomeIcon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../fontAwsomeIcon */ "./src/fontAwsomeIcon.js");
+/* harmony import */ var _fontAwsomeIcon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../fontAwsomeIcon */ "./src/fontAwsomeIcon.js");
 /* harmony import */ var _assets_css_socialRepeateater_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/css/socialRepeateater.scss */ "./src/components/assets/css/socialRepeateater.scss");
 
 
@@ -128,10 +128,10 @@ function IconPopup(props) {
 
 /***/ }),
 
-/***/ "./src/components/socialRepeateater.js":
-/*!*********************************************!*\
-  !*** ./src/components/socialRepeateater.js ***!
-  \*********************************************/
+/***/ "./src/components/socialRepeateater.jsx":
+/*!**********************************************!*\
+  !*** ./src/components/socialRepeateater.jsx ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -141,7 +141,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _assets_css_socialRepeateater_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/css/socialRepeateater.scss */ "./src/components/assets/css/socialRepeateater.scss");
-/* harmony import */ var _socialRepeatedField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./socialRepeatedField */ "./src/components/socialRepeatedField.js");
+/* harmony import */ var _socialRepeatedField__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./socialRepeatedField */ "./src/components/socialRepeatedField.jsx");
 
 
 
@@ -184,10 +184,10 @@ function SocialRepeateater(props) {
 
 /***/ }),
 
-/***/ "./src/components/socialRepeatedField.js":
-/*!***********************************************!*\
-  !*** ./src/components/socialRepeatedField.js ***!
-  \***********************************************/
+/***/ "./src/components/socialRepeatedField.jsx":
+/*!************************************************!*\
+  !*** ./src/components/socialRepeatedField.jsx ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -199,7 +199,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fontAwsomeIcon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../fontAwsomeIcon */ "./src/fontAwsomeIcon.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _iconPopup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./iconPopup */ "./src/components/iconPopup.js");
+/* harmony import */ var _iconPopup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./iconPopup */ "./src/components/iconPopup.jsx");
 
 
 
@@ -249,10 +249,10 @@ function SocialRepeatedField(props) {
 
 /***/ }),
 
-/***/ "./src/components/styleSettings.js":
-/*!*****************************************!*\
-  !*** ./src/components/styleSettings.js ***!
-  \*****************************************/
+/***/ "./src/components/styleSettings.jsx":
+/*!******************************************!*\
+  !*** ./src/components/styleSettings.jsx ***!
+  \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -561,8 +561,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_styleSettings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/styleSettings */ "./src/components/styleSettings.js");
-/* harmony import */ var _components_generalSettings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/generalSettings */ "./src/components/generalSettings.js");
+/* harmony import */ var _components_styleSettings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/styleSettings */ "./src/components/styleSettings.jsx");
+/* harmony import */ var _components_generalSettings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/generalSettings */ "./src/components/generalSettings.jsx");
 
 // import 
 
