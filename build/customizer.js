@@ -424,6 +424,41 @@ const fontIcons = {
 
 /***/ }),
 
+/***/ "./src/view.js":
+/*!*********************!*\
+  !*** ./src/view.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _view_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view.scss */ "./src/view.scss");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+const {
+  customize
+} = wp;
+const gfSocialIconsPreviewControl = () => {
+  //Render Style Settings 
+  const styleSettingsDom = document.getElementById('gf_social_icons__wrapper');
+  if (styleSettingsDom) {
+    const root = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.createRoot)(styleSettingsDom);
+    root.render((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, "hello"));
+  }
+};
+window.addEventListener('load', function () {
+  gfSocialIconsPreviewControl();
+});
+
+/***/ }),
+
 /***/ "./src/components/assets/css/socialRepeateater.scss":
 /*!**********************************************************!*\
   !*** ./src/components/assets/css/socialRepeateater.scss ***!
@@ -440,6 +475,18 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************!*\
   !*** ./src/customizer.scss ***!
   \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./src/view.scss":
+/*!***********************!*\
+  !*** ./src/view.scss ***!
+  \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -572,8 +619,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_styleSettings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/styleSettings */ "./src/components/styleSettings.jsx");
 /* harmony import */ var _components_generalSettings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/generalSettings */ "./src/components/generalSettings.jsx");
+/* harmony import */ var _view__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./view */ "./src/view.js");
 
 // import 
+
 
 
 

@@ -4,6 +4,8 @@ import { createRoot } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { StyleSettings } from './components/styleSettings';
 import { GeneralSettings } from './components/generalSettings';
+import './view'
+
 
 // global varialbe 
 const { customize } = wp;

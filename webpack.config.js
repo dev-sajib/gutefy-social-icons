@@ -6,5 +6,6 @@ module.exports = {
     entry: {
         ...defaultConfig.entry,
         customizer: path.resolve( process.cwd(), 'src', 'customizer.js' ),
+        view: path.resolve( process.cwd(), 'src', 'view.js' ),
     }
 };

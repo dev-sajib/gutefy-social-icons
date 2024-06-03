@@ -4,7 +4,7 @@
 	"description": "Example block scaffolded with Create Block tool.",
 	"author": "The WordPress Contributors",
 	"license": "GPL-2.0-or-later",
-	"main": "build/index.js",
+	"main": "build/customizer.js",
 	"scripts": {
 		"build": "wp-scripts build",
 		"format": "wp-scripts format",
