@@ -11,15 +11,19 @@ export function SocialRepeatedField(props) {
     const hidePopup = () => {
         setShowPopup(!showPopup)
     }
-
+    const popupOpenClickHandler = (ele) => {
+        // const parentEle = ele.closest('')
+        setShowPopup(!showPopup)
+    }
 
     return (
         <div account-id={props.index} className='gf-social-icons-repeater-field-child-wrapper gf-social-icons-is-idle'>
             <div className='gf-social-icons-repeater-field'>
                 <span
+                    icon-id={props.input[0]}
                     className='gf-social-icons--icon-data'
                     onClick={() => {
-                        setShowPopup(!showPopup)
+                        popupOpenClickHandler(this)
                     }}
                 >
                     {fontIcons[`${props.input[0]}`].icon}
@@ -30,7 +34,8 @@ export function SocialRepeatedField(props) {
                     type='url'
                     value={props.input[1]}
                     onChange={(e) => {
-                        props.inputDataChangeHandle(e, props.index)
+                        props.dataChangeHandle(props.input[0], e, props.index)
+                        // props.inputDataChangeHandle(e, props.index)
                     }}
                 />
 
@@ -40,7 +45,7 @@ export function SocialRepeatedField(props) {
                     </svg>
                 </button>
             </div>
-            {showPopup && <IconPopup index={props.index} iconDataChangeHandle={props.iconDataChangeHandle} hidePopup={hidePopup} />}
+            {showPopup && <IconPopup index={props.index} input={props.input} hidePopup={hidePopup} dataChangeHandle={props.dataChangeHandle} />}
         </div>
     )
 }

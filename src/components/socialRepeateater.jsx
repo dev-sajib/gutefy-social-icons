@@ -17,7 +17,13 @@ export function SocialRepeateater(props) {
         newUrl[index][1] = value;
         seturl(newUrl);
     }
-    console.log('🔥🔥🔥->' , accountsUrl);
+    const dataChangeHandle = (newAccountIconId,newAccountUrl,index) => {
+        const newAccountData = [newAccountIconId,newAccountUrl];
+        const newUrl = [...accountsUrl]; //[['facebook', 'facebook.com'], ['google-x', 'google.com']]
+        newUrl[index] = newAccountData;
+        seturl(newUrl);
+    }
+    
     const removeInputField = (ele) => {
         const wrapperEle = ele.target.closest('.gf-social-icons-repeater-field-child-wrapper')
         const accountId = wrapperEle.getAttribute('account-id');
@@ -35,7 +41,7 @@ export function SocialRepeateater(props) {
         newIcon[index][0] = iconId;
         seturl(newIcon);
     }
-
+    console.log('🔥🔥🔥->' , accountsUrl); 
     customize.value('gf_social_icons_general_settings[accountsUrl]')(accountsUrl);
 
     return (
@@ -47,8 +53,7 @@ export function SocialRepeateater(props) {
                         <SocialRepeatedField 
                             input={input}
                             index={index}
-                            inputDataChangeHandle = {inputDataChangeHandle}
-                            iconDataChangeHandle = {iconDataChangeHandle}
+                            dataChangeHandle = {dataChangeHandle}
                             removeInputField = {removeInputField}
                         />
                     ))

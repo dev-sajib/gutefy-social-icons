@@ -6,6 +6,8 @@
 /dist/
 /public/css/
 /public/js/
+/build/
+
 
 # Dependency directories
 /vendor/

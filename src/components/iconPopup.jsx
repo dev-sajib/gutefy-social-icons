@@ -1,13 +1,12 @@
 import { fontIcons } from '../fontAwsomeIcon'
 import './assets/css/socialRepeateater.scss';
 
-export function IconPopup(props) {
+export function IconPopup(props) { //index={props.index} iconDataChangeHandle={props.iconDataChangeHandle} hidePopup={hidePopup}
     const handelIconClickInPopUp = (e) => {
         const spanEle = e.target.closest('span');
         const iconId = spanEle.getAttribute('icon-id');
         spanEle.classList.add('active');
-        props.iconDataChangeHandle(iconId,props.index)
-        
+        props.dataChangeHandle(iconId,props.input[1],props.index)        
     }
     return (
         <div className='gf-social-icons-selection-popup-wrapper'>
