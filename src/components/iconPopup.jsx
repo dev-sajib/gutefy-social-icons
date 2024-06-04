@@ -5,7 +5,8 @@ export function IconPopup(props) { //index={props.index} iconDataChangeHandle={p
     const handelIconClickInPopUp = (e) => {
         const spanEle = e.target.closest('span');
         const iconId = spanEle.getAttribute('icon-id');
-        spanEle.classList.add('active');
+        // spanEle.classList.add('active');
+        props.setShowPopup([false,iconId]);
         props.dataChangeHandle(iconId,props.input[1],props.index)        
     }
     return (
@@ -21,7 +22,8 @@ export function IconPopup(props) { //index={props.index} iconDataChangeHandle={p
                     {Object.keys(fontIcons).map((icon) => (
                         <span
                             icon-id={icon}
-                            key={icon} className='gf-social-icons-single-icon'
+                            key={icon} 
+                            className={`gf-social-icons-single-icon ${(props.iconId && props.iconId === icon) ? 'active' : ''}`}
                             onClick={
                                 handelIconClickInPopUp
                             }

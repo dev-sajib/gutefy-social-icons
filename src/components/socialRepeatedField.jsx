@@ -6,14 +6,15 @@ import { __experimentalInputControl as InputControl } from '@wordpress/component
 import { IconPopup } from './iconPopup'
 
 export function SocialRepeatedField(props) {
-    const [showPopup, setShowPopup] = useState(false)
+    const [[showPopup,iconId], setShowPopup] = useState([false,''])
 
     const hidePopup = () => {
-        setShowPopup(!showPopup)
+        setShowPopup([!showPopup,iconId])
     }
     const popupOpenClickHandler = (ele) => {
-        // const parentEle = ele.closest('')
-        setShowPopup(!showPopup)
+        
+        const iconId = ele.target.closest('.gf-social-icons--icon-data').getAttribute('icon-id');
+        setShowPopup([!showPopup,iconId])
     }
 
     return (
@@ -22,8 +23,8 @@ export function SocialRepeatedField(props) {
                 <span
                     icon-id={props.input[0]}
                     className='gf-social-icons--icon-data'
-                    onClick={() => {
-                        popupOpenClickHandler(this)
+                    onClick={(ele) => {
+                        popupOpenClickHandler(ele)
                     }}
                 >
                     {fontIcons[`${props.input[0]}`].icon}
@@ -45,7 +46,7 @@ export function SocialRepeatedField(props) {
                     </svg>
                 </button>
             </div>
-            {showPopup && <IconPopup index={props.index} input={props.input} hidePopup={hidePopup} dataChangeHandle={props.dataChangeHandle} />}
+            { showPopup && <IconPopup index={props.index} input={props.input} hidePopup={hidePopup} dataChangeHandle={props.dataChangeHandle} iconId={iconId} setShowPopup={setShowPopup} />}
         </div>
     )
 }
