@@ -55,7 +55,7 @@ function gf_social_icons__customizer_register($wp_customize)
     $wp_customize->add_setting('gf_social_icons_general_settings[accountsUrl]', ['type' => 'option']);
 
     $wp_customize->add_setting('gf_social_icons_style_settings[hoverStyleControl]', ['type' => 'option']);
-    $wp_customize->add_setting('gf_social_icons_style_settings[IconColor]', ['type' => 'option']);
+    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-secondary-color]', ['type' => 'option','transport'=>'postMessage']);
 
 }
 add_action('customize_register', 'gf_social_icons__customizer_register', 10);
@@ -77,7 +77,7 @@ function gf_social_icons__customizer_scripts()
     wp_enqueue_script(
         'gf-social-icons--customizer-editor',
         plugins_url($customizer_js, __FILE__),
-        array('react', 'wp-components', 'wp-element', 'wp-i18n', 'customize-controls', 'wp-api'),
+        array('react', 'wp-components','jquery', 'wp-element', 'wp-i18n', 'customize-controls', 'wp-api'),
         $script_asset['version']
     );
     // wp_set_script_translations( 'gf-block-block-editor', 'gf-social-icons' );
@@ -88,6 +88,7 @@ function gf_social_icons__customizer_scripts()
         [
             'generalSettings' => get_option('gf_social_icons_general_settings', ''),
             'styleSettings' => get_option('gf_social_icons_style_settings', ''),
+            'settingId' => 'gf_social_icons_style_settings[hoverStyleControl]',
         ],
 
 
@@ -162,3 +163,6 @@ function gf_social_icons_enqueue_scripts() {
 
 add_action('wp_enqueue_scripts', 'gf_social_icons_enqueue_styles');
 add_action('wp_enqueue_scripts', 'gf_social_icons_enqueue_scripts');
+
+
+

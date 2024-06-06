@@ -10,13 +10,13 @@
     display: block;
 }
 
-body {
+:root {
     --gutefy-primary-color: #ed0808; // used for icon background color
     --gutefy-secondary-color: #fff; // used for icon color
     --gutefy-primary-hover-color: #086A61; // used for icon hover background color
     --gutefy-secondary-hover-color: #F5AD3C; //used for icon hover color
     --gutefy-icon-size: 12px;
-    --gutefy-icon-wrapper-opacity: 0.4;
+    --gutefy-icon-wrapper-opacity: 1;
     --gutefy-icon-wrapper-size: 44px;
     --gutefy-icon-wrapper-display-postion-bottom: 0px;
     --gutefy-icon-wrapper-display-postion-right: 0px;

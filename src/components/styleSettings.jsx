@@ -35,11 +35,14 @@ export class StyleSettings extends Component {
 
             if (isAPILoaded === false) {
                 this.settings.fetch().then((response) => {
-                    this.setState({
-                        hoverStyleControl: GfSocialIconsSettings["styleSettings"].hoverStyleControl,
-                        IconColor: GfSocialIconsSettings["styleSettings"].IconColor,
-                        isAPILoaded: true,
-                    });
+                    if( GfSocialIconsSettings["styleSettings"]){
+                        console.log(GfSocialIconsSettings["styleSettings"].styles)
+                        this.setState({
+                            hoverStyleControl: GfSocialIconsSettings["styleSettings"].hoverStyleControl,
+                            IconColor: GfSocialIconsSettings["styleSettings"].styles['--gutefy-secondary-color'],
+                            isAPILoaded: true,
+                        });
+                    }
                 });
             }
         });
@@ -94,7 +97,8 @@ export class StyleSettings extends Component {
                             <ColorPalette
                                 onChange={(IconColor) => {
                                     this.setState({ IconColor });
-                                    customize.value('gf_social_icons_style_settings[IconColor]')(IconColor);
+                                    customize.value('gf_social_icons_style_settings[styles][--gutefy-secondary-color]')(IconColor);
+                                    document.querySelector('iframe').contentDocument.body.querySelector('.gutefy-section-wrapper.style-two').style.setProperty('--gutefy-secondary-color', IconColor)                          
                                 }}
                                 enableAlpha
                                 value={IconColor}

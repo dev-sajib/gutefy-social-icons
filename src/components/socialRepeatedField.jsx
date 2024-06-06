@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { fontIcons } from '../fontAwsomeIcon'
 import { __experimentalInputControl as InputControl } from '@wordpress/components'
-import { IconPopup } from './iconPopup'
 
 export function SocialRepeatedField(props) {
     const [[showPopup,iconId], setShowPopup] = useState([false,''])
