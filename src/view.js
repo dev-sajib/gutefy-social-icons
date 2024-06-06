@@ -12,10 +12,12 @@ function App() {
     const styleSettings = GfSocialIconsSettings['styleSettings']['styles'];
 
     const generateStyle = () => {
-        const styleMarkup = Object.keys(styleSettings).map((key, value) => {
-            return `${key}:${value}`;
-        }).join('; ');
-
+        let styleMarkup = ''
+        if (typeof styleSettings === 'object' && styleSettings !== null) {
+            styleMarkup = Object.keys(styleSettings).map((key, value) => {
+                return `${key}:${value}`;
+            }).join('; ');
+        }
         return styleMarkup
     }
 
