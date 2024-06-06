@@ -18,21 +18,7 @@ function App() {
 
         return styleMarkup
     }
-    const styles = `.gutefy-section-wrapper {
-                    ${generateStyle()}}`;
 
-    // Add the CSS variable to the DOM
-    const addStylesToDom = () => {
-        const styleSheet = document.createElement("style");
-        styleSheet.className = 'gf-dynamic-style-sheet'
-        styleSheet.type = "text/css";
-        styleSheet.innerText = styles;
-        document.querySelector('.gutefy-section-wrapper').parentElement.appendChild(styleSheet);
-    };
-
-    React.useEffect(() => {
-        addStylesToDom();
-    }, []);
 
     return (
         <div className="gutefy-section-wrapper style-two" >
@@ -43,6 +29,10 @@ function App() {
                     )
                 }
             </div>
+            <style type='text/css' className='gf-dynamic-style-sheet'>
+                {`.gutefy-section-wrapper {
+                    ${generateStyle()}}`}
+            </style>
         </div>
 
     )
