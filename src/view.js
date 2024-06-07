@@ -1,33 +1,53 @@
-import './view.scss'
+// import dependencies 
 import React from 'react'
-import { createRoot } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { createRoot } from '@wordpress/element';
+
+// import internal dependencies
+import './view.scss'
 import { fontIcons } from './fontAwsomeIcon';
 
 
-const { customize } = wp;
-
 function App() {
+    // get data from the db 
     const accountsUrl = GfSocialIconsSettings['generalSettings'].accountsUrl
     const styleSettings = GfSocialIconsSettings['styleSettings']['styles'];
+    
+    
+    function removeEmptyValues(obj) {
+        return Object.fromEntries(
+            Object.entries(obj)
+                .filter(([key, value]) => {
+                    // Check for empty values
+                    return value !== null &&
+                        value !== undefined &&
+                        value !== '' &&
+                        !(Array.isArray(value) && value.length === 0) &&
+                        !(value.constructor === Object && Object.keys(value).length === 0);
+                })
+        );
+    }
 
+    // generate style from the style object 
     const generateStyle = () => {
         let styleMarkup = ''
         if (typeof styleSettings === 'object' && styleSettings !== null) {
-            styleMarkup = Object.keys(styleSettings).map((key, value) => {
+
+            let filteredStyle = removeEmptyValues(styleSettings);
+            styleMarkup = Object.entries(filteredStyle).map(([key, value]) => {
+
                 return `${key}:${value}`;
             }).join('; ');
         }
         return styleMarkup
     }
 
-
     return (
         <div className="gutefy-section-wrapper style-two" >
             <div className="gf_social_icons_social_float">
                 {
                     accountsUrl.map(
-                        e => <a href={e[1]} className="gf_social_icons_social_icon"  >{(fontIcons[e[0]].icon) ? fontIcons[e[0]].icon : fontIcons[e[0]].icon}</a>
+                        (e, index) => <a key={index} href={e[1]} className="gf_social_icons_social_icon"  >{(fontIcons[e[0]].icon) ? fontIcons[e[0]].icon : fontIcons[e[0]].icon}</a>
                     )
                 }
             </div>
@@ -51,10 +71,7 @@ const gfSocialIconsPreviewControl = () => {
             styleSettingsDom
         );
         root.render(
-            <>
-                <App />
-            </>
-
+            <App />
         )
     }
 }

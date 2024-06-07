@@ -11,10 +11,10 @@
 }
 
 :root {
-    --gutefy-primary-color: #ed0808; // used for icon background color
-    --gutefy-secondary-color: #fff; // used for icon color
-    --gutefy-primary-hover-color: #086A61; // used for icon hover background color
-    --gutefy-secondary-hover-color: #F5AD3C; //used for icon hover color
+    --gutefy-icon-wrapper-color: #000; // used for icon wrapper color
+    --gutefy-icon-color: #fff; // used for icon color
+    --gutefy-icon-wrapper-hover-color: #086A61; // used for icon hover background color
+    --gutefy-icon-hover-color: #F5AD3C; //used for icon hover color
     --gutefy-icon-size: 12px;
     --gutefy-icon-wrapper-opacity: 1;
     --gutefy-icon-wrapper-size: 44px;
@@ -37,7 +37,7 @@
     .gf_social_icons-fl-fl {
         display: flex;
         align-items: center;
-        background: var(--gutefy-primary-color);
+        background: var(--gutefy-icon-wrapper-color);
         text-transform: uppercase;
         letter-spacing: 3px;
         padding: 4px;
@@ -51,17 +51,17 @@
 
         &:hover {
             right: 0;
-            background: var(--gutefy-primary-hover-color);
+            background: var(--gutefy-icon-wrapper-hover-color);
             a{
-                color: var(--gutefy-secondary-hover-color);
+                color: var(--gutefy-icon-hover-color);
             }
             svg{
-                fill:  var(--gutefy-secondary-hover-color);
+                fill:  var(--gutefy-icon-hover-color);
             }
         }
 
         a {
-            color: var(--gutefy-secondary-color)  ;
+            color: var(--gutefy-icon-color)  ;
             text-decoration: none;
             text-align: center;
             line-height: 43px  ;
@@ -70,7 +70,7 @@
     }
 
     svg {
-        fill:var(--gutefy-secondary-color);
+        fill:var(--gutefy-icon-color);
         padding: 10px 0;
         width: var(--gutefy-icon-size);
         margin:0 8px;
@@ -100,7 +100,7 @@
         z-index: var(--gutefy-icon-wrapper-z-index);
         position: relative;
         padding: 5px 8px 5px 15px;
-        background-color: var(--gutefy-primary-color);
+        background-color: var(--gutefy-icon-wrapper-color);
         border-radius: 5px;
         margin: 5px 0;
         display: flex;
@@ -116,17 +116,17 @@
 
         svg {
             width: var(--gutefy-icon-size);
-            fill: var(--gutefy-secondary-color);
+            fill: var(--gutefy-icon-color);
         }
 
         &:hover {
-            background: var(--gutefy-primary-hover-color);
+            background: var(--gutefy-icon-wrapper-hover-color);
             opacity: 1;
             text-shadow: 0px 0px 5px #fff;
             animation: linear social_icon_on .3s;
 
             svg {
-                fill: var(--gutefy-secondary-hover-color);
+                fill: var(--gutefy-icon-hover-color);
             }
         }
     }

@@ -5,7 +5,6 @@ export function IconPopup(props) { //index={props.index} iconDataChangeHandle={p
     const handelIconClickInPopUp = (e) => {
         const spanEle = e.target.closest('span');
         const iconId = spanEle.getAttribute('icon-id');
-        // spanEle.classList.add('active');
         props.setShowPopup([false,iconId]);
         props.dataChangeHandle(iconId,props.input[1],props.index)        
     }

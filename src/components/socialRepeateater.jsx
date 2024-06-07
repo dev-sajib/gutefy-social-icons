@@ -53,6 +53,7 @@ export function SocialRepeateater(props) {
                         <SocialRepeatedField 
                             input={input}
                             index={index}
+                            key={index}
                             dataChangeHandle = {dataChangeHandle}
                             removeInputField = {removeInputField}
                         />
