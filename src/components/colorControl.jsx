@@ -1,6 +1,6 @@
 /** @format */
 
-import { useState } from 'react'
+import { useState } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 import { Dropdown, Button, ColorPicker, ColorPalette } from '@wordpress/components'
 const { customize } = wp
@@ -27,14 +27,14 @@ export default function ColorControl(props) {
 
     const onChangeColor = (currentValue) => {
         setSelectedColor(currentValue)
-        document.querySelector('iframe').contentDocument.body.querySelector('.gutefy-section-wrapper.style-two').style.setProperty(props.targetedSelector, currentValue)
+        document.querySelector('iframe').contentDocument.body.querySelector('.gutefy-section-wrapper ').style.setProperty(props.targetedSelector, currentValue)
         customize.value(`gf_social_icons_style_settings[styles][${props.targetedSelector}]`)(currentValue)
     }
 
     return (
         <>
             <div className='gf-social-icons-color-dropdown-controller'>
-                <span className='label'>{props.label}</span>
+                <span className='label'>{__(props.label, 'gf-social-icons')}</span>
                 <Dropdown
                     className='gf-social-icons-color-dropdown'
                     contentClassName='gf-social-icons-color-dropdown-content-wrapper'

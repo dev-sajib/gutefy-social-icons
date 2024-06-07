@@ -1,6 +1,6 @@
 /** @format */
 
-import { useState } from 'react'
+import { useState } from '@wordpress/element'
 import { fontIcons } from '../fontAwsomeIcon'
 import { __experimentalInputControl as InputControl } from '@wordpress/components'
 import { IconPopup } from './iconPopup'

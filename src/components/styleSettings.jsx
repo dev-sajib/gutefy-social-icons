@@ -20,10 +20,30 @@ export class StyleSettings extends Component {
             IconWrapperColor: '#000000',
             IconHoverColor: '#F5AD3C',
             IconWrapperHoverColor: '#086A61',
+            IconPosition: 'right-center',
             isAPILoaded: false,
         }
     }
+    getPosition(GfSocialIconsSettings) {
+        const currentPosition = GfSocialIconsSettings['styleSettings'].styles['--gutefy-icon-wrapper-position-right']
+            ? GfSocialIconsSettings['styleSettings'].styles['--gutefy-icon-wrapper-position-right']
+            : this.state.IconPosition
 
+        console.log(typeof currentPosition)
+        let positionType = 'right-center'
+        switch (currentPosition) {
+            case 'auto':
+                positionType = 'left-center'
+                break
+            case '0%':
+                positionType = 'right-center'
+                break
+            default:
+                positionType
+        }
+        console.log('positionType', positionType)
+        return positionType
+    }
     componentDidMount() {
         api.loadPromise.then(() => {
             this.settings = new api.models.Settings()
@@ -32,6 +52,8 @@ export class StyleSettings extends Component {
             if (isAPILoaded === false) {
                 this.settings.fetch().then((response) => {
                     if (GfSocialIconsSettings['styleSettings']) {
+                        let IconPosition = this.getPosition(GfSocialIconsSettings)
+
                         this.setState({
                             IconColor: GfSocialIconsSettings['styleSettings'].styles['--gutefy-icon-color']
                                 ? GfSocialIconsSettings['styleSettings'].styles['--gutefy-icon-color']
@@ -45,8 +67,10 @@ export class StyleSettings extends Component {
                             IconWrapperHoverColor: GfSocialIconsSettings['styleSettings'].styles['--gutefy-icon-wrapper-hover-color']
                                 ? GfSocialIconsSettings['styleSettings'].styles['--gutefy-icon-wrapper-hover-color']
                                 : this.state.IconWrapperHoverColor,
+                            IconPosition: IconPosition,
                             isAPILoaded: true,
                         })
+                        console.log('hey', this.state)
                     }
                 })
             }
@@ -54,7 +78,7 @@ export class StyleSettings extends Component {
     }
 
     render() {
-        const { hoverStyleControl, IconColor, IconWrapperColor, IconHoverColor, IconWrapperHoverColor, isAPILoaded } = this.state
+        const { hoverStyleControl, IconColor, IconWrapperColor, IconHoverColor, IconWrapperHoverColor, isAPILoaded, IconPosition } = this.state
 
         if (!isAPILoaded) {
             return (
@@ -108,7 +132,7 @@ export class StyleSettings extends Component {
                     <Panel>
                         <PanelBody className='gf-social-icons-panel__body' initialOpen={false} title={__('Positioning & Size Settings', 'gf-social-icons')} icon=''>
                             <div className='gf-social-icons-panel__body_wrapper'>
-                                <PositioningControl label='Icon Position' />
+                                <PositioningControl label='Icon Position' value={IconPosition} />
                             </div>
                         </PanelBody>
                     </Panel>

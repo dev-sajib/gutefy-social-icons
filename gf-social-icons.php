@@ -38,7 +38,7 @@ function gf_social_icons_insert_content()
 }
 
 function gf_social_icons_get_icon_data($content){
-    $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-wrapper '>hello from the builder</div>";
+    $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper '></div>";
     $content .= $html;
     return $content; 
 }
@@ -55,11 +55,16 @@ function gf_social_icons__customizer_register($wp_customize)
     $wp_customize->add_setting('gf_social_icons_general_settings[accountsUrl]', ['type' => 'option']);
 
     $wp_customize->add_setting('gf_social_icons_style_settings[hoverStyleControl]', ['type' => 'option']);
+    
     $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-color]', ['type' => 'option','transport'=>'postMessage']);
     $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-color]', ['type' => 'option','transport'=>'postMessage']);
     $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-color]', ['type' => 'option','transport'=>'postMessage']);
     $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-hover-color]', ['type' => 'option','transport'=>'postMessage']);
     $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-hover-color]', ['type' => 'option','transport'=>'postMessage']);
+
+    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-right]', ['type' => 'option','transport'=>'postMessage']);
+    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-left]', ['type' => 'option','transport'=>'postMessage']);
+    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-top]', ['type' => 'option','transport'=>'postMessage']);
 
 }
 add_action('customize_register', 'gf_social_icons__customizer_register', 10);

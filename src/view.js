@@ -43,7 +43,7 @@ function App() {
     }
 
     return (
-        <div className="gutefy-section-wrapper style-two" >
+        <div className="gutefy-section-wrapper" >
             <div className="gf_social_icons_social_float">
                 {
                     accountsUrl.map(

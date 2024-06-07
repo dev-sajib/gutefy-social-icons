@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from '@wordpress/element'
 import './assets/css/socialRepeateater.scss';
 import { SocialRepeatedField } from './socialRepeatedField';
 
