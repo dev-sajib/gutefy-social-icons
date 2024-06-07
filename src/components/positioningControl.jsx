@@ -2,33 +2,33 @@
 
 import { useState } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
-import { BoxControl, SelectControl, RadioGroup, Radio } from '@wordpress/components'
-const { customize } = wp
-import { Dashicon } from '@wordpress/components'
-
-// internal dependency
+import { __experimentalUnitControl as UnitControl, SelectControl } from '@wordpress/components'
 import './assets/css/colorControl.scss'
 
-export default function PositioningControl(props) {
-    const [currentState, setCurrentState] = useState(props.value)
+import './assets/css/positioningControl.scss'
 
-    function setPosition(left, right, top) {
+const { customize } = wp
+
+export default function PositioningControl({ value, label, verticalValue }) {
+    const [currentState, setCurrentState] = useState(value)
+
+    function setPosition(left, right) {
         customize.value('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-right]')(right)
-        customize.value('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-top]')(top)
         customize.value('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-left]')(left)
-        document.querySelector('iframe').contentDocument.body.querySelector('.gutefy-section-wrapper ').style.setProperty('--gutefy-icon-wrapper-position-right', right)
-        document.querySelector('iframe').contentDocument.body.querySelector('.gutefy-section-wrapper ').style.setProperty('--gutefy-icon-wrapper-position-top', top)
-        document.querySelector('iframe').contentDocument.body.querySelector('.gutefy-section-wrapper ').style.setProperty('--gutefy-icon-wrapper-position-left', left)
+        const iframeDoc = document.querySelector('iframe').contentDocument
+        const sectionWrapper = iframeDoc.body.querySelector('.gutefy-section-wrapper')
+        sectionWrapper.style.setProperty('--gutefy-icon-wrapper-position-right', right)
+        sectionWrapper.style.setProperty('--gutefy-icon-wrapper-position-left', left)
     }
-    function positioningChangingHandle(currentValue) {
-        switch (currentValue) {
-            case 'right-center':
-                setPosition('auto', '0%', '40%')
-                break
-            case 'left-center':
-                setPosition('0%', 'auto', '40%')
-                break
 
+    function handlePositionChange(currentValue) {
+        switch (currentValue) {
+            case ' right':
+                setPosition('auto', '0%')
+                break
+            case 'left':
+                setPosition('0%', 'auto')
+                break
             default:
                 break
         }
@@ -36,28 +36,43 @@ export default function PositioningControl(props) {
     }
 
     return (
-        <>
-            <span className='label'>{__(props.label, 'gf-social-icons')}</span>
-            <SelectControl
-                onChange={(currentValue) => {
-                    positioningChangingHandle(currentValue)
-                }}
-                options={[
-                    {
-                        label: __('Left Center', 'gf-social-icons'),
-                        value: 'left-center',
-                    },
-                    {
-                        label: __('Right Center', 'gf-social-icons'),
-                        value: 'right-center',
-                    },
-                    {
-                        label: __('Custom', 'gf-social-icons'),
-                        value: 'custom',
-                    },
-                ]}
-                value={currentState}
-            />
-        </>
+        <div className='gf-social-icons-position-controller-wrapper'>
+            <div className='gf-social-icons-position-selection-wrapper'>
+                <span className='label'>{__(label, 'gf-social-icons')}</span>
+                <SelectControl
+                    onChange={(currentValue) => {
+                        handlePositionChange(currentValue)
+                    }}
+                    options={[
+                        {
+                            label: __('Left', 'gf-social-icons'),
+                            value: 'left',
+                        },
+                        {
+                            label: __('Right', 'gf-social-icons'),
+                            value: ' right',
+                        },
+                    ]}
+                    value={currentState}
+                />
+            </div>
+
+            <div className='gf-social-icons-vertical-position-adjust-wrapper'>
+                <span className='label'>{__('Adjust Vertical Position', 'gf-social-icons')}</span>
+                <UnitControl
+                    onChange={(currentValue) => {
+                        // setPositionTopValue(currentValue)
+                        const iframeDoc = document.querySelector('iframe').contentDocument
+                        const sectionWrapper = iframeDoc.body.querySelector('.gutefy-section-wrapper')
+                        sectionWrapper.style.setProperty('--gutefy-icon-wrapper-position-top', currentValue)
+
+                        customize.value('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-top]')(currentValue)
+                    }}
+                    value={verticalValue}
+                    max={100}
+                    min={0}
+                />
+            </div>
+        </div>
     )
 }

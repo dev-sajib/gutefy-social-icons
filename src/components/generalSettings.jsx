@@ -60,7 +60,7 @@ export class GeneralSettings extends Component {
         console.log(this.state);
         return (
             <Fragment>
-                <div className="gf-block__main">
+                <div className="gf-social-icons__main-wrapper">
                     <Panel>
                         <PanelBody
                             title={__('Control Your Accounts', 'gf-social-icons')}

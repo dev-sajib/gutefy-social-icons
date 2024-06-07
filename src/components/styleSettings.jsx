@@ -10,6 +10,7 @@ import { Panel, PanelBody, Placeholder, SelectControl, Spinner, ColorPalette } f
 import './assets/css/styleSettings.scss'
 import ColorControl from './colorControl'
 import PositioningControl from './positioningControl'
+import BorderBoxShadowControl from './borderBoxShadowControl'
 export class StyleSettings extends Component {
     constructor() {
         super(...arguments)
@@ -20,8 +21,10 @@ export class StyleSettings extends Component {
             IconWrapperColor: '#000000',
             IconHoverColor: '#F5AD3C',
             IconWrapperHoverColor: '#086A61',
-            IconPosition: 'right-center',
+            IconPosition: ' right',
+            IconPositionTop: '40%',
             isAPILoaded: false,
+
         }
     }
     getPosition(GfSocialIconsSettings) {
@@ -30,13 +33,13 @@ export class StyleSettings extends Component {
             : this.state.IconPosition
 
         console.log(typeof currentPosition)
-        let positionType = 'right-center'
+        let positionType = ' right'
         switch (currentPosition) {
             case 'auto':
-                positionType = 'left-center'
+                positionType = 'left'
                 break
             case '0%':
-                positionType = 'right-center'
+                positionType = ' right'
                 break
             default:
                 positionType
@@ -68,6 +71,10 @@ export class StyleSettings extends Component {
                                 ? GfSocialIconsSettings['styleSettings'].styles['--gutefy-icon-wrapper-hover-color']
                                 : this.state.IconWrapperHoverColor,
                             IconPosition: IconPosition,
+                            IconPositionTop:GfSocialIconsSettings['styleSettings'].styles['--gutefy-icon-wrapper-position-top']
+                            ? GfSocialIconsSettings['styleSettings'].styles['--gutefy-icon-wrapper-position-top']
+                            : this.state.IconPositionTop,
+
                             isAPILoaded: true,
                         })
                         console.log('hey', this.state)
@@ -78,7 +85,9 @@ export class StyleSettings extends Component {
     }
 
     render() {
-        const { hoverStyleControl, IconColor, IconWrapperColor, IconHoverColor, IconWrapperHoverColor, isAPILoaded, IconPosition } = this.state
+        const { 
+            hoverStyleControl, IconColor, IconWrapperColor, IconHoverColor, IconWrapperHoverColor, isAPILoaded, IconPosition, IconPositionTop 
+        } = this.state
 
         if (!isAPILoaded) {
             return (
@@ -90,8 +99,8 @@ export class StyleSettings extends Component {
 
         return (
             <Fragment>
-                <div className='gf-block__main'>
-                    <SelectControl
+                <div className='gf-social-icons__main-wrapper'>
+                    {/* <SelectControl
                         help={__('Hover style for your icons', 'gf-social-icons')}
                         label={__('Select Hover Style', 'gf-social-icons')}
                         onChange={(hoverStyleControl) => {
@@ -113,7 +122,7 @@ export class StyleSettings extends Component {
                             },
                         ]}
                         value={hoverStyleControl}
-                    />
+                    /> */}
                     <Panel>
                         <PanelBody className='gf-social-icons-panel__body' initialOpen={false} title={__('Color Settings', 'gf-social-icons')} icon=''>
                             <div className='gf-social-icons-panel__body_wrapper'>
@@ -129,10 +138,17 @@ export class StyleSettings extends Component {
                             </PanelBody>
                         </PanelBody>
                     </Panel>
-                    <Panel>
+                    <Panel >
                         <PanelBody className='gf-social-icons-panel__body' initialOpen={false} title={__('Positioning & Size Settings', 'gf-social-icons')} icon=''>
                             <div className='gf-social-icons-panel__body_wrapper'>
-                                <PositioningControl label='Icon Position' value={IconPosition} />
+                                <PositioningControl label='Icon Position' value={IconPosition} verticalValue= {IconPositionTop} />
+                            </div>
+                        </PanelBody>
+                    </Panel>
+                    <Panel >
+                        <PanelBody className='gf-social-icons-panel__body' initialOpen={false} title={__('Border & BoxShadow', 'gf-social-icons')} icon=''>
+                            <div className='gf-social-icons-panel__body_wrapper'>
+                                <BorderBoxShadowControl/>
                             </div>
                         </PanelBody>
                     </Panel>

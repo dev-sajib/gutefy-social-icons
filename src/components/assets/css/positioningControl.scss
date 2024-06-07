@@ -1,0 +1,25 @@
+.gf-social-icons-position-controller-wrapper {
+    display: grid;
+    gap: 10px;
+
+    .gf-social-icons-position-selection-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .components-base-control__field {
+            margin: 0;
+        }
+    }
+
+    .gf-social-icons-vertical-position-adjust-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .components-input-control{
+            width: 80px;
+        }
+
+    }
+}
