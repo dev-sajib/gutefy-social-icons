@@ -25,6 +25,9 @@ if (!defined('ABSPATH')) {
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 
+
+
+
 function gf_social_icons_insert_content()
 {
     try {
@@ -37,38 +40,41 @@ function gf_social_icons_insert_content()
     }
 }
 
-function gf_social_icons_get_icon_data($content){
+function gf_social_icons_get_icon_data($content)
+{
     $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper '></div>";
     $content .= $html;
-    return $content; 
+    return $content;
 }
 
 function gf_social_icons__customizer_register($wp_customize)
 {
-
     require plugin_dir_path(__FILE__) . './classes/gf-social-icons-class-style-control.php';
     require plugin_dir_path(__FILE__) . './classes/gf-social-icons-class-general-control.php';
 
+    $gf_social_icons_style_settings = [
+        '--gutefy-icon-color',
+        '--gutefy-icon-wrapper-color',
+        '--gutefy-icon-hover-color',
+        '--gutefy-icon-wrapper-hover-color',
+        '--gutefy-icon-wrapper-position-right',
+        '--gutefy-icon-wrapper-position-left',
+        '--gutefy-icon-wrapper-position-top',
+        '--gutefy-icon-size',
+        '--gutefy-icon-wrapper-size',
+    ];
     $wp_customize->register_control_type('Gf_social_icons_class_style_control');
     $wp_customize->register_control_type('Gf_social_icons_class_general_control');
 
 
     $wp_customize->add_setting('gf_social_icons_general_settings[accountsUrl]', ['type' => 'option']);
-
     $wp_customize->add_setting('gf_social_icons_style_settings[hoverStyleControl]', ['type' => 'option']);
-    
-    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-color]', ['type' => 'option','transport'=>'postMessage']);
-    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-color]', ['type' => 'option','transport'=>'postMessage']);
-    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-color]', ['type' => 'option','transport'=>'postMessage']);
-    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-hover-color]', ['type' => 'option','transport'=>'postMessage']);
-    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-hover-color]', ['type' => 'option','transport'=>'postMessage']);
 
-    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-right]', ['type' => 'option','transport'=>'postMessage']);
-    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-left]', ['type' => 'option','transport'=>'postMessage']);
-    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-top]', ['type' => 'option','transport'=>'postMessage']);
 
-    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-size]', ['type' => 'option','transport'=>'postMessage']);
-    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-size]', ['type' => 'option','transport'=>'postMessage']);
+
+    foreach ($gf_social_icons_style_settings as $gf_social_icons_setting) {
+        $wp_customize->add_setting("gf_social_icons_style_settings[styles][$gf_social_icons_setting]", ['type' => 'option', 'transport' => 'postMessage']);
+    }
 
 }
 add_action('customize_register', 'gf_social_icons__customizer_register', 10);
@@ -90,7 +96,7 @@ function gf_social_icons__customizer_scripts()
     wp_enqueue_script(
         'gf-social-icons--customizer-editor',
         plugins_url($customizer_js, __FILE__),
-        array('react', 'wp-components','jquery', 'wp-element', 'wp-i18n', 'customize-controls', 'wp-api'),
+        array('react', 'wp-components', 'jquery', 'wp-element', 'wp-i18n', 'customize-controls', 'wp-api'),
         $script_asset['version']
     );
     // wp_set_script_translations( 'gf-block-block-editor', 'gf-social-icons' );
@@ -124,11 +130,13 @@ gf_social_icons_insert_content();
 
 
 //SECTION -  Frontend Section 
-function gf_social_icons_enqueue_styles() {
+function gf_social_icons_enqueue_styles()
+{
     wp_enqueue_style('gf_social_icons_styles', plugin_dir_url(__FILE__) . 'build/view.css');
 }
 
-function gf_social_icons_enqueue_scripts() {
+function gf_social_icons_enqueue_scripts()
+{
 
 
     $dir = __DIR__;
