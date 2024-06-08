@@ -2,10 +2,11 @@
 
 import { useState } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
-import { __experimentalUnitControl as UnitControl, SelectControl } from '@wordpress/components'
+import {SelectControl } from '@wordpress/components'
 import './assets/css/colorControl.scss'
 
 import './assets/css/positioningControl.scss'
+import AdvUnitControl from './advUnitControl'
 
 const { customize } = wp
 
@@ -56,23 +57,7 @@ export default function PositioningControl({ value, label, verticalValue }) {
                     value={currentState}
                 />
             </div>
-
-            <div className='gf-social-icons-vertical-position-adjust-wrapper'>
-                <span className='label'>{__('Adjust Vertical Position', 'gf-social-icons')}</span>
-                <UnitControl
-                    onChange={(currentValue) => {
-                        // setPositionTopValue(currentValue)
-                        const iframeDoc = document.querySelector('iframe').contentDocument
-                        const sectionWrapper = iframeDoc.body.querySelector('.gutefy-section-wrapper')
-                        sectionWrapper.style.setProperty('--gutefy-icon-wrapper-position-top', currentValue)
-
-                        customize.value('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-top]')(currentValue)
-                    }}
-                    value={verticalValue}
-                    max={100}
-                    min={0}
-                />
-            </div>
+            <AdvUnitControl label={'Adjust Vertical Position'} targetSelector={'--gutefy-icon-wrapper-position-top'} value={verticalValue} min={0} max={100} />
         </div>
     )
 }

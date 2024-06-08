@@ -42,6 +42,7 @@ function gf_social_icons_get_icon_data($content){
     $content .= $html;
     return $content; 
 }
+
 function gf_social_icons__customizer_register($wp_customize)
 {
 
@@ -65,6 +66,9 @@ function gf_social_icons__customizer_register($wp_customize)
     $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-right]', ['type' => 'option','transport'=>'postMessage']);
     $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-left]', ['type' => 'option','transport'=>'postMessage']);
     $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-top]', ['type' => 'option','transport'=>'postMessage']);
+
+    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-size]', ['type' => 'option','transport'=>'postMessage']);
+    $wp_customize->add_setting('gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-size]', ['type' => 'option','transport'=>'postMessage']);
 
 }
 add_action('customize_register', 'gf_social_icons__customizer_register', 10);
