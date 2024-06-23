@@ -6,7 +6,7 @@ import { __experimentalBorderBoxControl as BorderBoxControl } from '@wordpress/c
 const { customize } = wp
 
 // internal dependency
-import './assets/css/borderBoxShadowControl.scss'
+import './../assets/css/borderBoxShadowControl.scss'
 
 export default function BorderBoxShadowControl(props) {
     const colors = [
@@ -46,7 +46,7 @@ export default function BorderBoxShadowControl(props) {
         bottom: defaultBorder,
         left: defaultBorder,
     })
-    console.log(borders)
+    //console.log(borders)
 
     return (
         <>

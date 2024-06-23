@@ -3,9 +3,9 @@
 import { useState } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 import {SelectControl } from '@wordpress/components'
-import './assets/css/colorControl.scss'
+import './../assets/css/colorControl.scss'
 
-import './assets/css/positioningControl.scss'
+import './../assets/css/positioningControl.scss'
 import AdvUnitControl from './advUnitControl'
 
 const { customize } = wp

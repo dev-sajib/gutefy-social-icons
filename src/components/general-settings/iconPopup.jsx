@@ -1,5 +1,5 @@
-import { fontIcons } from '../fontAwsomeIcon'
-import './assets/css/socialRepeateater.scss';
+import { fontIcons } from '../../fontAwsomeIcon'
+import './../assets/css/socialRepeateater.scss';
 
 export function IconPopup(props) { //index={props.index} iconDataChangeHandle={props.iconDataChangeHandle} hidePopup={hidePopup}
     const handelIconClickInPopUp = (e) => {

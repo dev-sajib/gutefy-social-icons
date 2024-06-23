@@ -6,14 +6,15 @@ import { createRoot } from '@wordpress/element';
 // import internal dependencies
 import './view.scss'
 import { fontIcons } from './fontAwsomeIcon';
+import AccountGenerate from './components/general-settings/accountGenerate';
 
 
 function App() {
     // get data from the db 
-    const accountsUrl = GfSocialIconsSettings['generalSettings'].accountsUrl
+    const accountsUrl = GfSocialIconsSettings['generalSettings']
     const styleSettings = GfSocialIconsSettings['styleSettings']['styles'];
-    
-    
+
+
     function removeEmptyValues(obj) {
         return Object.fromEntries(
             Object.entries(obj)
@@ -35,7 +36,6 @@ function App() {
 
             let filteredStyle = removeEmptyValues(styleSettings);
             styleMarkup = Object.entries(filteredStyle).map(([key, value]) => {
-
                 return `${key}:${value}`;
             }).join('; ');
         }
@@ -45,11 +45,9 @@ function App() {
     return (
         <div className="gutefy-section-wrapper" >
             <div className="gf_social_icons_social_float">
-                {
-                    accountsUrl.map(
-                        (e, index) => <a key={index} href={e[1]} className="gf_social_icons_social_icon"  >{(fontIcons[e[0]].icon) ? fontIcons[e[0]].icon : fontIcons[e[0]].icon}</a>
-                    )
-                }
+                <div id="gf_social_icons_social_icons_wrapper">
+                    <AccountGenerate accountsUrl={accountsUrl} />
+                </div>
             </div>
             <style type='text/css' className='gf-dynamic-style-sheet'>
                 {`.gutefy-section-wrapper {
@@ -67,10 +65,10 @@ const gfSocialIconsPreviewControl = () => {
     const styleSettingsDom = document.getElementById('gf_social_icons__wrapper');
     if (styleSettingsDom) {
 
-        const root = createRoot(
+        const styleSettingsRoot = createRoot(
             styleSettingsDom
         );
-        root.render(
+        styleSettingsRoot.render(
             <App />
         )
     }
@@ -78,4 +76,5 @@ const gfSocialIconsPreviewControl = () => {
 
 window.addEventListener('load', function () {
     gfSocialIconsPreviewControl();
+
 })

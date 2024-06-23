@@ -7,7 +7,7 @@ const { customize } = wp
 
 
 // internal dependency
-import './assets/css/colorControl.scss'
+import './../assets/css/colorControl.scss'
 
 
 export default function ColorControl(props) {
