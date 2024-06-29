@@ -42,8 +42,8 @@ class Gf_social_icons_global_settings
 
   public function gf_social_icons__register_customizer($wp_customize)
   {
-    require_once plugin_dir_path(__FILE__) . './gf-social-icons-general-control.php';
-    require_once plugin_dir_path(__FILE__) . './gf-social-icons-styles-control.php';
+    require_once plugin_dir_path(__FILE__) . './reactControl/gf-social-icons-general-control.php';
+    require_once plugin_dir_path(__FILE__) . './reactControl/gf-social-icons-styles-control.php';
 
     $this->gf_social_icons__panel($wp_customize);
     $this->gf_social_icons__sections($wp_customize);
@@ -128,7 +128,7 @@ class Gf_social_icons_global_settings
     $wp_customize->add_setting(
       'gf_social_icons_general_settings',
       array(
-        'default' => [['facebook', 'facebook.com',false]],
+        'default' => [['facebook', 'facebook.com']],
         'transport' => 'postMessage',
         'type' => 'option',
         'capability' => 'manage_options',
@@ -139,7 +139,17 @@ class Gf_social_icons_global_settings
     );
 
     $wp_customize->add_setting(
-      $this->gf_social_icons__namespace . 'styles' . $this->gf_social_icons__extensions_namespace,
+      'gf_social_icons_open_in_new_tab_settings',
+      array(
+        'default' => false,
+        'transport' => 'postMessage',
+        'type' => 'option',
+        'capability' => 'manage_options',
+      )
+    );
+
+    $wp_customize->add_setting(
+      'gf_social_icons_style_settings',
       array(
         'transport' => 'postMessage',
         'type' => 'option',

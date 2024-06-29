@@ -30,7 +30,6 @@ export function SocialRepeateater(props) {
 		} catch (error) {}
 	};
 
-
 	const dataChangeHandle = (newAccountIconId, newAccountUrl, index) => {
 		const newAccountData = [newAccountIconId, newAccountUrl];
 		const newUrl = [...accountsUrl]; //[['facebook', 'facebook.com'], ['google-x', 'google.com']]

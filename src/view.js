@@ -13,7 +13,8 @@ function App() {
     // get data from the db 
     const accountsUrl = GfSocialIconsSettings['generalSettings']
     const styleSettings = GfSocialIconsSettings['styleSettings']['styles'];
-
+    const openInNewTab = GfSocialIconsSettings['openInNewTab'];
+console.log('🔥',openInNewTab)
 
     function removeEmptyValues(obj) {
         return Object.fromEntries(
@@ -46,7 +47,7 @@ function App() {
         <div className="gutefy-section-wrapper" >
             <div className="gf_social_icons_social_float">
                 <div id="gf_social_icons_social_icons_wrapper">
-                    <AccountGenerate accountsUrl={accountsUrl} />
+                    <AccountGenerate accountsUrl={accountsUrl} openInNewTab={ openInNewTab} />
                 </div>
             </div>
             <style type='text/css' className='gf-dynamic-style-sheet'>

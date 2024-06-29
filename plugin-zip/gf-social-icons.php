@@ -62,9 +62,7 @@ function gf_social_icons__customizer_scripts()
         'gf-social-icons--customizer-editor',
         'GfSocialIconsSettings',
         [
-            'generalSettings' => get_option('gf_social_icons_general_settings', ''),
             'styleSettings' => get_option('gf_social_icons_style_settings', ''),
-            'settingId' => 'gf_social_icons_style_settings[hoverStyleControl]',
         ],
 
 
@@ -115,6 +113,7 @@ function gf_social_icons_enqueue_scripts()
         'GfSocialIconsSettings',
         [
             'generalSettings' => get_option('gf_social_icons_general_settings', ''),
+            'openInNewTab' => get_option('gf_social_icons_open_in_new_tab_settings', ''),
             'styleSettings' => get_option('gf_social_icons_style_settings', ''),
         ],
     );
