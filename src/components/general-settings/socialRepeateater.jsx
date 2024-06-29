@@ -3,14 +3,15 @@ import { useState, createRoot } from "@wordpress/element";
 import "./../assets/css/socialRepeateater.scss";
 import { SocialRepeatedField } from "./socialRepeatedField";
 import AccountGenerate from "./accountGenerate";
+import { ReactSortable } from "react-sortablejs";
 
 const { customize } = wp;
 
 export function SocialRepeateater(props) {
-	const [accountsUrl, seturl] = useState(props.control.setting.get()); // [['facebook', 'facebook.com'], ['google-x', 'google.com']]
+	const [accountsUrl, setAccountsUrl] = useState(props.control.setting.get()); // [['facebook', 'facebook.com'], ['google-x', 'google.com']]
 	const addInputField = (e) => {
 		e.preventDefault();
-		seturl([...accountsUrl, ["facebook", ""]]);
+		setAccountsUrl([...accountsUrl, ["facebook", ""]]);
 	};
 	const updatePreview = (accountsUrl) => {
 		try {
@@ -29,18 +30,12 @@ export function SocialRepeateater(props) {
 		} catch (error) {}
 	};
 
-	// //console.log('comming form SocialRepeateater 😓',accountsUrl);
 
-	// const inputDataChangeHandle = (value,index) => {
-	//     const newUrl = [...accountsUrl]; //[['facebook', 'facebook.com'], ['google-x', 'google.com']]
-	//     newUrl[index][1] = value;
-	//     seturl(newUrl);
-	// }
 	const dataChangeHandle = (newAccountIconId, newAccountUrl, index) => {
 		const newAccountData = [newAccountIconId, newAccountUrl];
 		const newUrl = [...accountsUrl]; //[['facebook', 'facebook.com'], ['google-x', 'google.com']]
 		newUrl[index] = newAccountData;
-		seturl(newUrl);
+		setAccountsUrl(newUrl);
 	};
 	props.control.setting.set(accountsUrl);
 
@@ -54,13 +49,13 @@ export function SocialRepeateater(props) {
 		currentAccountList.splice(accountId, 1);
 
 		const newAccountList = currentAccountList;
-		seturl(newAccountList);
+		setAccountsUrl(newAccountList);
 	};
 
 	const iconDataChangeHandle = (iconId, index) => {
 		const newIcon = [...accountsUrl]; //[['facebook', 'facebook.com'], ['google-x', 'google.com']]
 		newIcon[index][0] = iconId;
-		seturl(newIcon);
+		setAccountsUrl(newIcon);
 	};
 	//console.log("🔥🔥🔥->", accountsUrl);
 	updatePreview(accountsUrl);
@@ -74,7 +69,7 @@ export function SocialRepeateater(props) {
 			>
 				Add Input Field
 			</button>
-			<div className="gf-social-icons-repeater-field-wrapper">
+			<ReactSortable className="gf-social-icons-repeater-field-wrapper" list={accountsUrl} setList={setAccountsUrl}>
 				{accountsUrl.map((input, index) => (
 					<SocialRepeatedField
 						input={input}
@@ -84,7 +79,7 @@ export function SocialRepeateater(props) {
 						removeInputField={removeInputField}
 					/>
 				))}
-			</div>
+					</ReactSortable>
 		</div>
 	);
 }

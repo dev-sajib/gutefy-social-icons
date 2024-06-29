@@ -1,8 +1,8 @@
 {
-	"name": "gf-block",
-	"version": "0.1.0",
-	"description": "Example block scaffolded with Create Block tool.",
-	"author": "The WordPress Contributors",
+	"name": "gf-social-icons",
+	"version": "1.0.1",
+	"description": "Enhance your website with this robust plugin, effortlessly adding floating social icons for seamless display and interaction.",
+	"author": "Gutefy",
 	"license": "GPL-2.0-or-later",
 	"main": "build/customizer.js",
 	"scripts": {
@@ -11,15 +11,21 @@
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start"
+		"plugin-zip": "npm-run-all clean-zip zip-files",
+		"start": "wp-scripts start",
+		"clean-zip": "rm -rf gf-social-icons.zip && mkdir -p plugin-zip",
+		"zip-files": "cp -r build classes gf-social-icons.php 'README.txt'   plugin-zip && cd plugin-zip && zip -r ../gf-social-icons.zip ."
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^27.9.0"
+		"@types/sortablejs": "^1.15.8",
+		"@wordpress/scripts": "^27.9.0",
+		"npm-run-all": "^4.1.5"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.5.2",
 		"@fortawesome/free-solid-svg-icons": "^6.5.2",
-		"@fortawesome/react-fontawesome": "^0.2.2"
+		"@fortawesome/react-fontawesome": "^0.2.2",
+		"react-sortablejs": "^6.1.4",
+		"sortablejs": "^1.15.2"
 	}
 }
