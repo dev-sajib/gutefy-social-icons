@@ -17,7 +17,7 @@ export function SocialRepeateater(props) {
 		try {
 			const iframeDoc = document.querySelector("iframe").contentDocument;
 			const gfWrapperEle = iframeDoc.body.querySelector(
-				"#gf_social_icons_social_icons_wrapper",
+				"#gf_social_icons_wrapper",
 			);
 
 			if (gfWrapperEle) {

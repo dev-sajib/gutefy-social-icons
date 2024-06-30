@@ -46,11 +46,11 @@ console.log('🔥',openInNewTab)
     return (
         <div className="gutefy-section-wrapper" >
             <div className="gf_social_icons_social_float">
-                <div id="gf_social_icons_social_icons_wrapper">
+                <div id="gf_social_icons_wrapper">
                     <AccountGenerate accountsUrl={accountsUrl} openInNewTab={ openInNewTab} />
                 </div>
             </div>
-            <style type='text/css' className='gf-dynamic-style-sheet'>
+            <style type='text/css' className='gf-social-icons-dynamic-style-sheet'>
                 {`.gutefy-section-wrapper {
                     ${generateStyle()}}`}
             </style>

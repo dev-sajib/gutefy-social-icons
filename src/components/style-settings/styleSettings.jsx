@@ -4,16 +4,18 @@
 const { api, customize } = wp
 import { __ } from '@wordpress/i18n'
 import { Fragment, Component } from '@wordpress/element'
-import { Panel, PanelBody, Placeholder, SelectControl, Spinner, ColorPalette } from '@wordpress/components'
+import { Panel, PanelBody, Placeholder, Spinner,__experimentalBoxControl as BoxControl } from '@wordpress/components'
 
 // internal dependency
 import './../assets/css/styleSettings.scss'
 import ColorControl from './colorControl'
 import PositioningControl from './positioningControl'
-// import BorderBoxShadowControl from './borderBoxShadowControl'
+import BorderBoxShadowControl from './borderBoxShadowControl'
 import AdvUnitControl from './advUnitControl'
+import Spacing from './spacing'
 export class StyleSettings extends Component {
     constructor() {
+        console.log('skfksf')
         super(...arguments)
 
         this.state = {
@@ -27,6 +29,7 @@ export class StyleSettings extends Component {
             IconSize: '12px',
             IconWrapperSize: '44px',
             isAPILoaded: false,
+
         }
     }
     getPosition(GfSocialIconsSettings) {
@@ -46,7 +49,7 @@ export class StyleSettings extends Component {
             default:
                 positionType
         }
-        
+
         return positionType
     }
     componentDidMount() {
@@ -109,29 +112,6 @@ export class StyleSettings extends Component {
         return (
             <Fragment>
                 <div className='gf-social-icons__main-wrapper'>
-                    {/* <SelectControl
-                        help={__('Hover style for your icons', 'gf-social-icons')}
-                        label={__('Select Hover Style', 'gf-social-icons')}
-                        onChange={(hoverStyleControl) => {
-                            this.setState({ hoverStyleControl })
-                            customize.value('gf_social_icons_style_settings[hoverStyleControl]')(hoverStyleControl)
-                        }}
-                        options={[
-                            {
-                                label: __('Please Select...', 'gf-social-icons'),
-                                value: '',
-                            },
-                            {
-                                label: __('Style 1', 'gf-social-icons'),
-                                value: 'style-1',
-                            },
-                            {
-                                label: __('Style 2', 'gf-social-icons'),
-                                value: 'style-2',
-                            },
-                        ]}
-                        value={hoverStyleControl}
-                    /> */}
                     <Panel>
                         <PanelBody className='gf-social-icons-panel__body' initialOpen={false} title={__('Color Settings', 'gf-social-icons')} icon=''>
                             <div className='gf-social-icons-panel__body_wrapper'>
@@ -168,6 +148,13 @@ export class StyleSettings extends Component {
                             </div>
                         </PanelBody>
                     </Panel> */}
+                    <Panel>
+                        <PanelBody className='gf-social-icons-panel__body' initialOpen={false} title={__('Spaching', 'gf-social-icons')} icon=''>
+                            <div className='gf-social-icons-panel__body_wrapper'>
+                                <Spacing />
+                            </div>
+                        </PanelBody>
+                    </Panel>
                 </div>
             </Fragment>
         )

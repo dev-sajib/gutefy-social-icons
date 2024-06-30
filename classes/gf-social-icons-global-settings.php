@@ -6,15 +6,16 @@ class Gf_social_icons_global_settings
   private $gf_social_icons__namespace = 'gutefy_settings_';
   private $gf_social_icons__extensions_namespace = '_social_icon';
   private $gf_social_icons_style_settings = [
-    '--gutefy-icon-color',
-    '--gutefy-icon-wrapper-color',
-    '--gutefy-icon-hover-color',
-    '--gutefy-icon-wrapper-hover-color',
-    '--gutefy-icon-wrapper-position-right',
-    '--gutefy-icon-wrapper-position-left',
-    '--gutefy-icon-wrapper-position-top',
-    '--gutefy-icon-size',
-    '--gutefy-icon-wrapper-size',
+    ['--gutefy-icon-color', 'black'],
+    ['--gutefy-icon-wrapper-color', 'white'],
+    ['--gutefy-icon-hover-color', 'gray'],
+    ['--gutefy-icon-wrapper-hover-color', 'lightgray'],
+    ['--gutefy-icon-wrapper-position-right', '10px'],
+    ['--gutefy-icon-wrapper-position-left', '10px'],
+    ['--gutefy-icon-wrapper-position-top', '10px'],
+    ['--gutefy-icon-size', '24px'],
+    ['--gutefy-icon-wrapper-size', '40px'],
+    ['--gutefy-icon-wrapper-gap', '0px'],
   ];
 
   public function __construct()
@@ -158,7 +159,7 @@ class Gf_social_icons_global_settings
     );
 
     foreach ($this->gf_social_icons_style_settings as $gf_social_icons_setting) {
-      $wp_customize->add_setting("gf_social_icons_style_settings[styles][$gf_social_icons_setting]", ['type' => 'option', 'transport' => 'postMessage']);
+      $wp_customize->add_setting("gf_social_icons_style_settings[styles][$gf_social_icons_setting[0]]", ['type' => 'option', 'transport' => 'postMessage','default'=>$gf_social_icons_setting[1]]);
     }
 
   }
@@ -179,7 +180,7 @@ class Gf_social_icons_global_settings
     $wp_customize->add_control(
       new Gf_social_icons_styles_control(
         $wp_customize,
-        $this->gf_social_icons__namespace . 'styles' . $this->gf_social_icons__extensions_namespace,
+        'gf_social_icons_style_settings',
         array(
           'label' => __('Accounts List', 'gf-social-icons'),
           'section' => $this->gf_social_icons__namespace . 'styles' . $this->gf_social_icons__extensions_namespace,
