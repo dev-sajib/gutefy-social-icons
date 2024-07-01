@@ -9,7 +9,7 @@ const { customize } = wp
 import './../assets/css/borderBoxShadowControl.scss'
 import { width } from '@fortawesome/free-solid-svg-icons/fa0'
 
-export default function BorderBoxShadowControl(props) {
+export default function BorderBoxShadowControl({ targetSelector, value }) {
     const colors = [
         {
             color: '#72aee6',
@@ -36,35 +36,27 @@ export default function BorderBoxShadowControl(props) {
             name: 'Yellow 40',
         },
     ]
-    const defaultBorder = {
-        color: '#72aee6',
-        style: 'solid',
-        width: '1px',
-    }
-    const [borders, setBorders] = useState({
-        top: defaultBorder,
-        right: defaultBorder,
-        bottom: defaultBorder,
-        left: defaultBorder,
-    })
+    
+    const [borders, setBorders] = useState(value )
 
     function handleValueChange(newVal) {
         setBorders(newVal)
-        console.log(newVal); 
-        if (!newVal.color) {
-            // --gutefy-icon-border-left: '';
-            // --gutefy-icon-border-right: '';
-            // --gutefy-icon-border-top: '';
-            // --gutefy-icon-border-bottom: '';
-            // console.log('unlinked');
-        } else { //{color: '#72aee6', style: 'solid', width: '2px'}
-            const generatedStyle = `border =  ${newVal.width} ${newVal.style} ${newVal.color}`
-            const styleSheet = document.querySelector('iframe')
-                .contentDocument.body.querySelector('gf-social-icons-dynamic-style-sheet')
-            let prevStyle = styleSheet.innerText;
-
+        let generatedStyle = ''
+        const wrapper = document.querySelector('iframe').contentDocument.body
+        if (typeof newVal == 'object') {
+            Object.entries(newVal).map(([key, value]) => {
+                if (typeof value == 'object') {
+                    generatedStyle = ''
+                    generatedStyle = `${value.width ? value.width : ''} ${value.style ? value.style : ''} ${value.color ? value.color : ''}`
+                    Array.from(wrapper.querySelectorAll(targetSelector)).map((e) => e.style.setProperty(`border-${key}`, generatedStyle))
+                } else if (typeof value == 'string') {
+                    generatedStyle += ` ${value ? value : ''}`
+                    Array.from(wrapper.querySelectorAll(targetSelector)).map((e) => e.style.setProperty('border', generatedStyle))
+                }
+            })
         }
-        customize.value(`gf_social_icons_style_settings[styles][wrapper-border]`)(newVal)
+
+        customize.value(`gf_social_icons_style_settings[styles][gutefy_icon_wrapper_border]`)([targetSelector, newVal])
     }
     return (
         <>

@@ -16,6 +16,7 @@ class Gf_social_icons_global_settings
     ['--gutefy-icon-size', '24px'],
     ['--gutefy-icon-wrapper-size', '40px'],
     ['--gutefy-icon-wrapper-gap', '0px'],
+    ['gutefy_icon_wrapper_border', '0px'],
   ];
 
   public function __construct()

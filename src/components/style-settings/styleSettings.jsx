@@ -4,7 +4,7 @@
 const { api, customize } = wp
 import { __ } from '@wordpress/i18n'
 import { Fragment, Component } from '@wordpress/element'
-import { Panel, PanelBody, Placeholder, Spinner,__experimentalBoxControl as BoxControl } from '@wordpress/components'
+import { Panel, PanelBody, Placeholder, Spinner, __experimentalBoxControl as BoxControl } from '@wordpress/components'
 
 // internal dependency
 import './../assets/css/styleSettings.scss'
@@ -29,7 +29,11 @@ export class StyleSettings extends Component {
             IconSize: '12px',
             IconWrapperSize: '44px',
             isAPILoaded: false,
-
+            IconWrapperBorder: {
+                color: '#72aee6',
+                style: 'solid',
+                width: '1px',
+            },
         }
     }
     getPosition(GfSocialIconsSettings) {
@@ -86,6 +90,11 @@ export class StyleSettings extends Component {
                                 ? GfSocialIconsSettings['styleSettings'].styles['--gutefy-icon-wrapper-size']
                                 : this.state.IconWrapperSize,
 
+                            
+                                IconWrapperBorder: GfSocialIconsSettings['styleSettings'].styles['gutefy_icon_wrapper_border']
+                                ? GfSocialIconsSettings['styleSettings'].styles['gutefy_icon_wrapper_border'][1]
+                                : this.state.IconWrapperBorder,
+
                             isAPILoaded: true,
                         })
                     } else {
@@ -99,7 +108,7 @@ export class StyleSettings extends Component {
     }
 
     render() {
-        const { hoverStyleControl, IconColor, IconWrapperColor, IconHoverColor, IconWrapperHoverColor, isAPILoaded, IconPosition, IconPositionTop, IconSize, IconWrapperSize } = this.state
+        const { hoverStyleControl, IconColor, IconWrapperColor, IconHoverColor, IconWrapperHoverColor, isAPILoaded, IconPosition, IconPositionTop, IconSize, IconWrapperSize,IconWrapperBorder } = this.state
 
         if (!isAPILoaded) {
             return (
@@ -141,13 +150,13 @@ export class StyleSettings extends Component {
                         </PanelBody>
                     </Panel>
 
-                    {/* <Panel >
+                    <Panel>
                         <PanelBody className='gf-social-icons-panel__body' initialOpen={false} title={__('Border & BoxShadow', 'gf-social-icons')} icon=''>
                             <div className='gf-social-icons-panel__body_wrapper'>
-                                <BorderBoxShadowControl/>
+                                <BorderBoxShadowControl targetSelector={'#gf_social_icons_wrapper a'} value={IconWrapperBorder} />
                             </div>
                         </PanelBody>
-                    </Panel> */}
+                    </Panel>
                     <Panel>
                         <PanelBody className='gf-social-icons-panel__body' initialOpen={false} title={__('Spaching', 'gf-social-icons')} icon=''>
                             <div className='gf-social-icons-panel__body_wrapper'>

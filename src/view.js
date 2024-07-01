@@ -14,7 +14,6 @@ function App() {
     const accountsUrl = GfSocialIconsSettings['generalSettings']
     const styleSettings = GfSocialIconsSettings['styleSettings']['styles'];
     const openInNewTab = GfSocialIconsSettings['openInNewTab'];
-console.log('🔥',openInNewTab)
 
     function removeEmptyValues(obj) {
         return Object.fromEntries(
@@ -32,13 +31,41 @@ console.log('🔥',openInNewTab)
 
     // generate style from the style object 
     const generateStyle = () => {
-        let styleMarkup = ''
+        let singleDimentionStyle = ''
+        let multiDimentionStyle = ''
         if (typeof styleSettings === 'object' && styleSettings !== null) {
 
             let filteredStyle = removeEmptyValues(styleSettings);
-            styleMarkup = Object.entries(filteredStyle).map(([key, value]) => {
-                return `${key}:${value}`;
-            }).join('; ');
+
+            Object.entries(filteredStyle).map(([key, value]) => {
+                if (typeof value == 'string') {
+                    singleDimentionStyle += `${key} : ${value} ; `
+                }
+                if (typeof value == 'object') {
+                    multiDimentionStyle = ''
+                    console.log(value[1]);
+                    
+                    if (typeof value[1] == 'object') { 
+                        let concatenedStyleValue='';
+                        Object.entries(value[1]).map(([key, value]) => {
+                            console.log(value);
+                            if (typeof value == 'object') {
+                                multiDimentionStyle += `border-${key}: ${Object.entries(value).map(([key, value]) => value ? value : '').join(' ')} ;`
+                            }
+                            else {
+                                concatenedStyleValue += `${value?value:''} `
+                            }
+                        })
+                        if (concatenedStyleValue != '') {
+                            multiDimentionStyle = `border:${ concatenedStyleValue }`;
+                        }
+                    }
+
+
+                    multiDimentionStyle = `${value[0]} {${multiDimentionStyle}}`
+                }
+            })
+            return ` ${multiDimentionStyle}  .gutefy-section-wrapper {${singleDimentionStyle}}`
         }
         return styleMarkup
     }
@@ -47,12 +74,13 @@ console.log('🔥',openInNewTab)
         <div className="gutefy-section-wrapper" >
             <div className="gf_social_icons_social_float">
                 <div id="gf_social_icons_wrapper">
-                    <AccountGenerate accountsUrl={accountsUrl} openInNewTab={ openInNewTab} />
+                    <AccountGenerate accountsUrl={accountsUrl} openInNewTab={openInNewTab} />
                 </div>
             </div>
             <style type='text/css' className='gf-social-icons-dynamic-style-sheet'>
-                {`.gutefy-section-wrapper {
-                    ${generateStyle()}}`}
+                {/* {`.gutefy-section-wrapper {
+                    ${generateStyle()}}`} */}
+                {generateStyle()};
             </style>
         </div>
 

@@ -23,7 +23,6 @@
     --gutefy-icon-wrapper-position-top: 40%;
     --gutefy-icon-wrapper-position-right: 0%;
     --gutefy-icon-wrapper-position-left: auto;
-    // --gutefy-icon-border: '';
 }
 
 .gutefy-section-wrapper {
@@ -53,11 +52,6 @@
                 width: var(--gutefy-icon-wrapper-size);
                 height: var(--gutefy-icon-wrapper-size);
                 text-align: center;
-                border: var(--gutefy-icon-border);
-                border-top: var(--gutefy-icon-border-top);
-                border-bottom: var(--gutefy-icon-border-bottom);
-                border-left: var(--gutefy-icon-border-left);
-                border-right: var(--gutefy-icon-border-right);
 
 
                 svg {
