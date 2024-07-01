@@ -8,7 +8,7 @@ import { fontIcons } from "../../fontAwsomeIcon";
 export default function AccountGenerate({ accountsUrl, openInNewTab }) {
     return (
         <>
-            {accountsUrl.map((e, index) => (
+            {accountsUrl && accountsUrl.map((e, index) => (
                 <a 
                     key={index} 
                     href={e[1]} 

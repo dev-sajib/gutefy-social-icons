@@ -7,8 +7,6 @@ const { customize } = wp
 
 // internal dependency
 import './../assets/css/borderBoxShadowControl.scss'
-import { width } from '@fortawesome/free-solid-svg-icons/fa0'
-
 export default function BorderBoxShadowControl({ targetSelector, value }) {
     const colors = [
         {

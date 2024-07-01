@@ -29,7 +29,7 @@ new Gf_social_icons_global_settings();
 
 function gf_social_icons_plugin_action_links($links, $file)
 {
-	$settings_link = '<a href="' . admin_url('customize.php?autofocus[panel]=gutefy_settings_core_panel_social_icon&autofocus[section]=gutefy_settings_accounts_social_icon') . '">' . esc_html__('Settings', 'gf-social-icons') . '</a>';
+	$settings_link = '<a href="' . admin_url('customize.php?autofocus[panel]=gutefy_settings_core_panel_social_icon&autofocus[section]=gutefy_settings_general_social_icon') . '">' . esc_html__('Settings', 'gf-social-icons') . '</a>';
 	array_unshift($links, $settings_link);
 	return $links;
 }

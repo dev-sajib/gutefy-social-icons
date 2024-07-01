@@ -67,7 +67,6 @@ function App() {
             })
             return ` ${multiDimentionStyle}  .gutefy-section-wrapper {${singleDimentionStyle}}`
         }
-        return styleMarkup
     }
 
     return (

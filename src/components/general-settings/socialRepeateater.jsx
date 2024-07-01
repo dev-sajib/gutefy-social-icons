@@ -58,7 +58,6 @@ export function SocialRepeateater(props) {
 	};
 	//console.log("🔥🔥🔥->", accountsUrl);
 	updatePreview(accountsUrl);
-	console.log('social',accountsUrl);
 
 	return (
 		<div className="gutefy_settings_wrapper_accounts_social_icon gf-social-icons-repeater-field-wrapper">
