@@ -6,7 +6,8 @@ export function IconPopup(props) { //index={props.index} iconDataChangeHandle={p
         const spanEle = e.target.closest('span');
         const iconId = spanEle.getAttribute('icon-id');
         props.setShowPopup([false,iconId]);
-        props.dataChangeHandle(iconId,props.input[1],props.index)        
+        props.dataChangeHandle(iconId, props.input[1], props.index)   
+        wp.customize.previewer.refresh();
     }
     return (
         <div className='gf-social-icons-selection-popup-wrapper'>

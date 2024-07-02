@@ -11,6 +11,7 @@ export function SocialRepeateater(props) {
 	const [accountsUrl, setAccountsUrl] = useState(props.control.setting.get()); // [['facebook', 'facebook.com'], ['google-x', 'google.com']]
 	const addInputField = (e) => {
 		e.preventDefault();
+		wp.customize.previewer.refresh()
 		setAccountsUrl([...accountsUrl, ["facebook", ""]]);
 	};
 	const updatePreview = (accountsUrl) => {
@@ -48,6 +49,7 @@ export function SocialRepeateater(props) {
 		currentAccountList.splice(accountId, 1);
 
 		const newAccountList = currentAccountList;
+		customize.previewer.refresh()
 		setAccountsUrl(newAccountList);
 	};
 
@@ -57,7 +59,7 @@ export function SocialRepeateater(props) {
 		setAccountsUrl(newIcon);
 	};
 	//console.log("🔥🔥🔥->", accountsUrl);
-	updatePreview(accountsUrl);
+	// updatePreview(accountsUrl);
 
 	return (
 		<div className="gutefy_settings_wrapper_accounts_social_icon gf-social-icons-repeater-field-wrapper">
