@@ -1,10 +1,11 @@
 /* jshint esversion: 6 */
 import {GeneralSettings} from './generalSettings';
-import { render } from '@wordpress/element';
+import { createRoot } from '@wordpress/element';
 
 export const GeneralSettingsControl = wp.customize.Control.extend({
-	renderContent: function renderContent() {
-		// render(<GeneralSettings control={this} />, this.container[0]);
-		render(<GeneralSettings control={this} />, this.container[0]);
-	},
+  renderContent: function renderContent() {
+    const container = this.container[0];
+    const root = createRoot(container);
+    root.render(<GeneralSettings control={this} />);
+  },
 });

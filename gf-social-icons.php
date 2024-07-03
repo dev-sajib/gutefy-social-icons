@@ -104,7 +104,7 @@ function gf_social_icons_enqueue_scripts()
     wp_enqueue_script(
         'gf-social-icons--view-controller',
         plugins_url($view_js, __FILE__),
-        array('react', 'wp-components', 'wp-element', 'wp-i18n', 'customize-controls', 'wp-api'),
+        array('react', 'wp-components', 'wp-element', 'wp-i18n', 'wp-api'),
         $script_asset['version']
     );
 
