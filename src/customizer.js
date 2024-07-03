@@ -2,7 +2,7 @@
 import './customizer.scss';
 import { createRoot } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { StyleSettings } from './components/style-settings/styleSettings';
+import StyleSettings from './components/style-settings/styleSettings';
 import { GeneralSettingsControl } from './components/general-settings';
 
 

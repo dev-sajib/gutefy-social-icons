@@ -6,15 +6,15 @@ class Gf_social_icons_global_settings
   private $gf_social_icons__namespace = 'gutefy_settings_';
   private $gf_social_icons__extensions_namespace = '_social_icon';
   private $gf_social_icons_style_settings = [
-    ['--gutefy-icon-color', 'black'],
-    ['--gutefy-icon-wrapper-color', 'white'],
-    ['--gutefy-icon-hover-color', 'gray'],
-    ['--gutefy-icon-wrapper-hover-color', 'lightgray'],
-    ['--gutefy-icon-wrapper-position-right', '10px'],
-    ['--gutefy-icon-wrapper-position-left', '10px'],
-    ['--gutefy-icon-wrapper-position-top', '10px'],
-    ['--gutefy-icon-size', '24px'],
-    ['--gutefy-icon-wrapper-size', '40px'],
+    ['--gutefy-icon-color', 'white'],
+    ['--gutefy-icon-wrapper-color', '#27ae60'],
+    ['--gutefy-icon-hover-color', 'white'],
+    ['--gutefy-icon-wrapper-hover-color', '#2980b9'],
+    ['--gutefy-icon-wrapper-position-right', '0px'],
+    ['--gutefy-icon-wrapper-position-left', 'auto'],
+    ['--gutefy-icon-wrapper-position-top', '44%'],
+    ['--gutefy-icon-size', '16px'],
+    ['--gutefy-icon-wrapper-size', '44px'],
     ['--gutefy-icon-wrapper-gap', '0px'],
     ['gutefy_icon_wrapper_border', '0px'],
   ];

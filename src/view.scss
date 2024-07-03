@@ -8,19 +8,16 @@
 }
 
 :root {
-    --gutefy-icon-wrapper-color: #000; // used for icon wrapper color
-    --gutefy-icon-color: #fff; // used for icon color
-    --gutefy-icon-wrapper-hover-color: #086A61; // used for icon hover background color
-    --gutefy-icon-hover-color: #F5AD3C; //used for icon hover color
-    --gutefy-icon-size: 12px;
-    --gutefy-icon-wrapper-opacity: 1;
+    --gutefy-icon-wrapper-color: #27ae60; // used for icon wrapper color
+    --gutefy-icon-color: white; // used for icon color
+    --gutefy-icon-wrapper-hover-color: #2980b9; // used for icon hover background color
+    --gutefy-icon-hover-color: white; //used for icon hover color
+    --gutefy-icon-size: 16px;
     --gutefy-icon-wrapper-gap: 0px;
     --gutefy-icon-wrapper-size: 44px;
-    --gutefy-icon-wrapper-display-postion-bottom: 0px;
-    --gutefy-icon-wrapper-display-postion-right: 0px;
     --gutefy-icon-wrapper-display-postion-left: 100%;
     --gutefy-icon-wrapper-z-index: 9999999999;
-    --gutefy-icon-wrapper-position-top: 40%;
+    --gutefy-icon-wrapper-position-top: 44%;
     --gutefy-icon-wrapper-position-right: 0%;
     --gutefy-icon-wrapper-position-left: auto;
 }
@@ -34,7 +31,6 @@
         right: var(--gutefy-icon-wrapper-position-right);
         left: var(--gutefy-icon-wrapper-position-left);
         bottom: var(--gutefy-icon-wrapper-position-bottom);
-        opacity: var(--gutefy-icon-wrapper-opacity);
 
         #gf_social_icons_wrapper {
             display: grid;
@@ -48,7 +44,6 @@
                 justify-content: center;
                 align-items: center;
                 overflow: hidden;
-                opacity: var(--gutefy-icon-wrapper-opacity);
                 width: var(--gutefy-icon-wrapper-size);
                 height: var(--gutefy-icon-wrapper-size);
                 text-align: center;

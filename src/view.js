@@ -14,7 +14,7 @@ function App() {
     const accountsUrl = GfSocialIconsSettings['generalSettings']
     const styleSettings = GfSocialIconsSettings['styleSettings']['styles'];
     const openInNewTab = GfSocialIconsSettings['openInNewTab'];
-
+    // console.log('I am from view page',GfSocialIconsSettings);
     function removeEmptyValues(obj) {
         return Object.fromEntries(
             Object.entries(obj)
@@ -43,12 +43,10 @@ function App() {
                 }
                 if (typeof value == 'object') {
                     multiDimentionStyle = ''
-                    console.log(value[1]);
                     
                     if (typeof value[1] == 'object') { 
                         let concatenedStyleValue='';
                         Object.entries(value[1]).map(([key, value]) => {
-                            console.log(value);
                             if (typeof value == 'object') {
                                 multiDimentionStyle += `border-${key}: ${Object.entries(value).map(([key, value]) => value ? value : '').join(' ')} ;`
                             }
