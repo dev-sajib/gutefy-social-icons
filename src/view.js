@@ -75,8 +75,6 @@ function App() {
                 </div>
             </div>
             <style type='text/css' className='gf-social-icons-dynamic-style-sheet'>
-                {/* {`.gutefy-section-wrapper {
-                    ${generateStyle()}}`} */}
                 {generateStyle()};
             </style>
         </div>

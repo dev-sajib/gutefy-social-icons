@@ -9,57 +9,38 @@ const { customize } = wp;
 
 export function SocialRepeateater(props) {
 	const [accountsUrl, setAccountsUrl] = useState(props.control.setting.get()); // [['facebook', 'facebook.com'], ['google-x', 'google.com']]
+	
 	const addInputField = (e) => {
 		e.preventDefault();
-		wp.customize.previewer.refresh()
+		// wp.customize.previewer.refresh()
 		setAccountsUrl([...accountsUrl, ["facebook", ""]]);
 	};
-	const updatePreview = (accountsUrl) => {
-		try {
-			const iframeDoc = document.querySelector("iframe").contentDocument;
-			const gfWrapperEle = iframeDoc.body.querySelector(
-				"#gf_social_icons_wrapper",
-			);
-
-			if (gfWrapperEle) {
-				gfWrapperEle.innerHTML = "";
-				const gfWrapperEleRoot = createRoot(gfWrapperEle);
-				gfWrapperEleRoot.render(
-					<AccountGenerate accountsUrl={accountsUrl} />
-				);
-			}
-		} catch (error) {}
-	};
+	
 
 	const dataChangeHandle = (newAccountIconId, newAccountUrl, index) => {
 		const newAccountData = [newAccountIconId, newAccountUrl];
 		const newUrl = [...accountsUrl]; //[['facebook', 'facebook.com'], ['google-x', 'google.com']]
 		newUrl[index] = newAccountData;
 		setAccountsUrl(newUrl);
+			props.control.setting.set(accountsUrl);
+
 	};
-	props.control.setting.set(accountsUrl);
 
 	const removeInputField = (ele) => {
+		
 		const wrapperEle = ele.target.closest(
 			".gf-social-icons-repeater-field-child-wrapper",
 		);
 		const accountId = wrapperEle.getAttribute("account-id");
-		//console.log(accountId);
 		const currentAccountList = [...accountsUrl];
 		currentAccountList.splice(accountId, 1);
-
 		const newAccountList = currentAccountList;
-		customize.previewer.refresh()
 		setAccountsUrl(newAccountList);
-	};
+		props.control.setting.set(accountsUrl);
+		console.log('i am removed')
 
-	const iconDataChangeHandle = (iconId, index) => {
-		const newIcon = [...accountsUrl]; //[['facebook', 'facebook.com'], ['google-x', 'google.com']]
-		newIcon[index][0] = iconId;
-		setAccountsUrl(newIcon);
 	};
-	//console.log("🔥🔥🔥->", accountsUrl);
-	// updatePreview(accountsUrl);
+	props.control.setting.set(accountsUrl);
 
 	return (
 		<div className="gutefy_settings_wrapper_accounts_social_icon gf-social-icons-repeater-field-wrapper">

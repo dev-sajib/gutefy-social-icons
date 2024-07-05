@@ -14,7 +14,7 @@ import BorderBoxShadowControl from './borderBoxShadowControl'
 import AdvUnitControl from './advUnitControl'
 import Spacing from './spacing'
 
-export default function StyleSettingsN() {
+export default function StyleSettings() {
     // const [apiLoadingStatus, setApiLoadingStatus] = useState(false);
     function gfSocialIconsGetData(settings_id, dimentionalSettings = false) {
         let currentPosition = ''
@@ -36,7 +36,6 @@ export default function StyleSettingsN() {
             return positionType
         }
         value =customize.settings.settings[`gf_social_icons_style_settings[styles][${settings_id}]`].value
-        console.log('Hello-> ', value);
         return (value);
     }
 

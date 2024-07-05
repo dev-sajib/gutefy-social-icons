@@ -1,6 +1,6 @@
 /* jshint esversion: 6 */
 import {GeneralSettings} from './generalSettings';
-import { createRoot } from '@wordpress/element';
+import { createRoot } from 'react-dom/client';
 
 export const GeneralSettingsControl = wp.customize.Control.extend({
   renderContent: function renderContent() {
