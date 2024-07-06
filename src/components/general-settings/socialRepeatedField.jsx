@@ -7,6 +7,7 @@ import { IconPopup } from './iconPopup'
 
 export function SocialRepeatedField(props) {
     const [[showPopup, iconId], setShowPopup] = useState([false, ''])
+    const [showError, setShowError] = useState(false)
 
     const hidePopup = () => {
         setShowPopup([!showPopup, iconId])
@@ -15,7 +16,28 @@ export function SocialRepeatedField(props) {
         const iconId = ele.target.closest('.gf-social-icons--icon-data').getAttribute('icon-id')
         setShowPopup([!showPopup, iconId])
     }
-
+    function validateInput(input) {
+        console.log(input);
+        // Regular expression to validate mobile number (11 to 15 digits)
+        const mobileRegex = /^\d{11,15}$/
+    
+        // Regular expression to validate email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    
+        // Improved regular expression to validate URL
+        const urlRegex = /^(https?:\/\/)([a-z0-9.-]+)\.[a-z]{2,}(\/[a-z0-9._~-]*)*\/?$/i
+    
+        if (mobileRegex.test(input)) {
+            return true
+        } else if (emailRegex.test(input)) {
+            return true
+        } else if (urlRegex.test(input)) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     return (
         <div account-id={props.index} className='gf-social-icons-repeater-field-child-wrapper '>
             <div className='gf-social-icons-repeater-field'>
@@ -33,8 +55,14 @@ export function SocialRepeatedField(props) {
                     placeholder='https://facebook.com'
                     type='url'
                     value={props.input[1]}
-                    onChange={(e) => {
-                        props.dataChangeHandle(props.input[0], e, props.index)
+                    onChange={(value) => {
+                        console.log(validateInput(value))
+                        if (validateInput(value)) {
+                            setShowError(false)
+                            props.dataChangeHandle(props.input[0], value, props.index)
+                        } else{
+                            setShowError(true)
+                        }
                         // props.inputDataChangeHandle(e, props.index)
                     }}
                 />
@@ -46,6 +74,7 @@ export function SocialRepeatedField(props) {
                 </span>
                 <div className='gf-social-icons-account-list-drag-handle'></div>
             </div>
+            {showError && <span className='error'>Enter Valid Url</span>}
             {showPopup && <IconPopup index={props.index} input={props.input} hidePopup={hidePopup} dataChangeHandle={props.dataChangeHandle} iconId={iconId} setShowPopup={setShowPopup} />}
         </div>
     )

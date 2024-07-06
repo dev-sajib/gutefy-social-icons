@@ -30,10 +30,21 @@ class Gf_social_icons_global_settings
       add_action('woocommerce_after_main_content', [$this, 'gf_social_icons_get_icon_data']);
       add_filter('the_content', [$this, 'gf_social_icons_get_icon_data'], 99999);
       add_filter('get_the_excerpt', [$this, 'gf_social_icons_get_icon_data'], 99999);
+      add_filter('render_block', [$this, 'gf_social_icons_render_block'], 10, 2);
+
 
     } catch (\Throwable $th) {
       //throw $th;
     }
+  }
+  public function gf_social_icons_render_block($block_content, $block) {
+    // You can check the block name if you want to target specific blocks
+    // For example: if ( 'core/paragraph' === $block['blockName'] )
+    if ($block_content) {
+      $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper '></div>";
+      $block_content .= $html;
+    }
+    return $block_content;
   }
   function gf_social_icons_get_icon_data($content)
   {
@@ -89,72 +100,51 @@ class Gf_social_icons_global_settings
 
 
   // Validation callback function
-  public function gf_social_icons_custom_url_validation($error_object, $value, $setting_object)
-  {
-    // Ensure $value is an array
-    if (!is_array($value)) {
-      error_log('Unexpected type encountered in gf_social_icons_custom_url_validation: ' . gettype($value));
-      return [['facebook', 'http://facebook.com']];
-    }
+  public function gf_social_icons_custom_url_validation($error_object, $value, $setting_object) {
 
     foreach ($value as $key => $item) {
-      if (is_array($item)) {
-        $url = trim($item[1]);
-        // Check if $url is a string and starts with http:// or https://
-        if (is_string($url) && (strpos($url, 'http://') !== 0 && (strpos($url, 'https://') !== 0) && (strpos($url, '.') && strpos($url, '.') !== 0)) && !strpos($url, '@') && !preg_match('/^\d{10,}$/', $url)) {
-          // error_log('url');
-          $value[$key][1] = esc_url_raw('http://' . $url);
+        if (is_array($item)) {
+            $url = trim($item[1]);
+            // Check if the URL is either a valid URL, email, or phone number
+            if (!filter_var($url, FILTER_VALIDATE_URL) && !filter_var($url, FILTER_VALIDATE_EMAIL) && !preg_match('/^\+?\d+$/', $url)) {
+                return false; // Return default value on validation error
+            }
         }
-        elseif (filter_var($url, FILTER_VALIDATE_EMAIL)) {
-          // error_log('email');
-        }
-        elseif (preg_match('/^\+?\d+$/', $url)) {
-          // error_log('phone');
-        }
-        else{
-          return false;
-        }
-      }
     }
-
     return $value;
-  }
-  public function gf_social_icons_custom_sanitize($value)
-  {
+}
+
+public function gf_social_icons_custom_sanitize($value) {
     // Ensure $value is an array
     if (!is_array($value)) {
-      error_log('Unexpected type encountered in gf_social_icons_custom_sanitize: ' . gettype($value));
-      return [['facebook', 'http://facebook.com']]; // Return a default array or handle the unexpected type
+        error_log('Unexpected type encountered in gf_social_icons_custom_sanitize: ' . gettype($value));
+        return [['facebook', 'http://facebook.com']]; // Return a default array or handle the unexpected type
     }
 
     // Sanitize each item in the array
     foreach ($value as $key => $item) {
-      if (is_array($item) && count($item) >= 2) {
-        $name = sanitize_text_field($item[0]); // Sanitize the name
-        $url_or_contact = trim($item[1]); // Trim any leading/trailing spaces
+        if (is_array($item) && count($item) >= 2) {
+            $name = sanitize_text_field($item[0]); // Sanitize the name
+            $url_or_contact = trim($item[1]); // Trim any leading/trailing spaces
 
-        // Determine if it's a URL, email, or phone number
-        if (filter_var($url_or_contact, FILTER_VALIDATE_URL)) {
-          // Sanitize URL
-          $url_or_contact = esc_url_raw($url_or_contact);
-        } elseif (filter_var($url_or_contact, FILTER_VALIDATE_EMAIL)) {
-          // Sanitize email
-          $url_or_contact = sanitize_email($url_or_contact);
-        } elseif (preg_match('/^\d{10,}$/', $url_or_contact)) {
-          // Sanitize phone number (assuming it's already digits only)
-          $url_or_contact = preg_replace('/[^\d]/', '', $url_or_contact);
-        } else {
-          $url_or_contact = '';
+            // Determine if it's a URL, email, or phone number
+            if (filter_var($url_or_contact, FILTER_VALIDATE_URL)) {
+                // Sanitize URL
+                $url_or_contact = esc_url_raw($url_or_contact);
+            } elseif (filter_var($url_or_contact, FILTER_VALIDATE_EMAIL)) {
+                // Sanitize email
+                $url_or_contact = sanitize_email($url_or_contact);
+            } elseif (preg_match('/^\+?\d+$/', $url_or_contact)) {
+                // Sanitize phone number (assuming it's already digits only)
+                $url_or_contact = preg_replace('/[^\d]/', '', $url_or_contact);
+            }
+            // Update the sanitized name and URL/contact in the array
+            $value[$key][0] = $name;
+            $value[$key][1] = $url_or_contact;
         }
-
-        // Update the sanitized name and URL/contact in the array
-        $value[$key][0] = $name;
-        $value[$key][1] = $url_or_contact;
-      }
     }
-
     return $value;
-  }
+}
 
 
   public function gf_social_icons__settings($wp_customize)
