@@ -30,22 +30,22 @@ class Gf_social_icons_global_settings
       add_action('woocommerce_after_main_content', [$this, 'gf_social_icons_get_icon_data']);
       add_filter('the_content', [$this, 'gf_social_icons_get_icon_data'], 99999);
       add_filter('get_the_excerpt', [$this, 'gf_social_icons_get_icon_data'], 99999);
-      add_filter('render_block', [$this, 'gf_social_icons_render_block'], 10, 2);
+      add_filter('render_block', [$this, 'gf_social_icons_get_icon_data'], 10, 2);
 
 
     } catch (\Throwable $th) {
-      //throw $th;
+      
     }
   }
-  public function gf_social_icons_render_block($block_content, $block) {
-    // You can check the block name if you want to target specific blocks
-    // For example: if ( 'core/paragraph' === $block['blockName'] )
-    if ($block_content) {
-      $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper '></div>";
-      $block_content .= $html;
-    }
-    return $block_content;
-  }
+  // public function gf_social_icons_render_block($block_content) {
+  //   // You can check the block name if you want to target specific blocks
+  //   // For example: if ( 'core/paragraph' === $block['blockName'] )
+  //   if ($block_content) {
+  //     $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper '></div>";
+  //     $block_content .= $html;
+  //   }
+  //   return $block_content;
+  // }
   function gf_social_icons_get_icon_data($content)
   {
     $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper '></div>";
@@ -153,7 +153,7 @@ public function gf_social_icons_custom_sanitize($value) {
     $wp_customize->add_setting(
       'gf_social_icons_general_settings',
       array(
-        'default' => [['facebook', 'facebook.com']],
+        'default' => [['facebook', 'https://facebook.com','url']],
         'transport' => 'postMessage',
         'type' => 'option',
         'capability' => 'manage_options',
@@ -251,7 +251,7 @@ public function gf_social_icons_custom_sanitize($value) {
     if (!empty($social_icons_settings)):
 
       foreach ($social_icons_settings as $icon): ?>
-        <a class="fromphp gf_social_icons_social_icon" href="<?php echo esc_url($icon[1]); ?>" target="_blank">
+        <a class="fromphp gf_social_icons_social_icon" href="<?php echo esc_url($icon[1]); ?>" >
           <?php echo ($social_icons_data[$icon[0]]['icon']) ?>
         </a>
       <?php endforeach;

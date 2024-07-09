@@ -5,13 +5,14 @@ import fontIcons from './../../iconStore.json'
 import './../assets/css/socialRepeateater.scss'
 
 export function IconPopup(props) {
-    //index={props.index} iconDataChangeHandle={props.iconDataChangeHandle} hidePopup={hidePopup}
 
     const handelIconClickInPopUp = (e) => {
+        
         const spanEle = e.target.closest('span')
         const iconId = spanEle.getAttribute('icon-id')
         props.setShowPopup([false, iconId])
-        props.dataChangeHandle(iconId, props.input[1], props.index)
+        console.log(props.input);
+        props.dataChangeHandle(iconId, props.input[1], props.index,props.input[2])
         // wp.customize.previewer.refresh();
     }
     return (

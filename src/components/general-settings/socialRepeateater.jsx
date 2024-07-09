@@ -13,13 +13,13 @@ export function SocialRepeateater(props) {
 	const addInputField = (e) => {
 		e.preventDefault();
 		// wp.customize.previewer.refresh()
-		setAccountsUrl([...accountsUrl, ["facebook", ""]]);
+		setAccountsUrl([...accountsUrl, ["facebook", "","url"]]);
 	};
-	
 
-	const dataChangeHandle = (newAccountIconId, newAccountUrl, index) => {
-		const newAccountData = [newAccountIconId, newAccountUrl];
-		const newUrl = [...accountsUrl]; //[['facebook', 'facebook.com'], ['google-x', 'google.com']]
+	const dataChangeHandle = (newAccountIconId, newAccountUrl, index,type) => {
+		
+		const newAccountData = [newAccountIconId, newAccountUrl,type];
+		const newUrl = [...accountsUrl]; //[['facebook', 'facebook.com','url'], ['google-x', 'google.com','url']]
 		newUrl[index] = newAccountData;
 		setAccountsUrl(newUrl);
 			props.control.setting.set(accountsUrl);

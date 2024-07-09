@@ -17,29 +17,29 @@ export function SocialRepeatedField(props) {
         setShowPopup([!showPopup, iconId])
     }
     function validateInput(input) {
-        console.log(input);
+        console.log(input)
         // Regular expression to validate mobile number (11 to 15 digits)
         const mobileRegex = /^\d{11,15}$/
-    
+
         // Regular expression to validate email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    
+
         // Improved regular expression to validate URL
         const urlRegex = /^(https?:\/\/)([a-z0-9.-]+)\.[a-z]{2,}(\/[a-z0-9._~-]*)*\/?$/i
-    
+
         if (mobileRegex.test(input)) {
-            return true
+            return [true, 'mobilenumber']
         } else if (emailRegex.test(input)) {
-            return true
+            return [true, 'email']
         } else if (urlRegex.test(input)) {
-            return true
+            return [true, 'url']
         } else {
-            return false
+            return [false, 'url']
         }
     }
-    
+
     return (
-        <div account-id={props.index} className='gf-social-icons-repeater-field-child-wrapper '>
+        <div account-id={props.index} account-type={props.input[2]} className='gf-social-icons-repeater-field-child-wrapper '>
             <div className='gf-social-icons-repeater-field'>
                 <span
                     icon-id={props.input[0]}
@@ -56,12 +56,11 @@ export function SocialRepeatedField(props) {
                     type='url'
                     value={props.input[1]}
                     onChange={(value) => {
-                        console.log(validateInput(value))
-                        if (validateInput(value)) {
+                        if (validateInput(value)[0]) {
                             setShowError(false)
-                            props.dataChangeHandle(props.input[0], value, props.index)
-                        } else{
-                            setShowError(true)
+                            props.dataChangeHandle(props.input[0], value, props.index, validateInput(value)[1])
+                        } else {
+                            setShowError(true) 
                         }
                         // props.inputDataChangeHandle(e, props.index)
                     }}
