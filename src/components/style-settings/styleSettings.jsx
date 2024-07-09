@@ -49,7 +49,7 @@ export default function StyleSettings() {
 
                         <ColorControl label={'Wrapper Background'} value={gfSocialIconsGetData('--gutefy-icon-wrapper-color')} targetedSelector={'--gutefy-icon-wrapper-color'} />
                     </div>
-                    <PanelBody className='gf-social-icons-panel__body' initialOpen={false} title={__('Hover Style', 'gf-social-icons')} icon=''>
+                    <PanelBody className='gf-social-icons-panel__body' initialOpen={false} title={__('Hover Color', 'gf-social-icons')} icon=''>
                         <div className='gf-social-icons-panel__body_wrapper'>
                             <ColorControl label={'Icon Color'} value={gfSocialIconsGetData('--gutefy-icon-hover-color')} targetedSelector={'--gutefy-icon-hover-color'} />
                             <ColorControl label={'Wrapper Background'} value={gfSocialIconsGetData('--gutefy-icon-wrapper-hover-color')} targetedSelector={'--gutefy-icon-wrapper-hover-color'} />
