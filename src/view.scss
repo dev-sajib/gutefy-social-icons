@@ -1,0 +1,83 @@
+.hide {
+    display: none;
+}
+
+
+.show {
+    display: block;
+}
+
+:root {
+    --gutefy-icon-wrapper-color: #3858E9; // used for icon wrapper color
+    --gutefy-icon-color: white; // used for icon color
+    --gutefy-icon-wrapper-hover-color: #2980b9; // used for icon hover background color
+    --gutefy-icon-hover-color: white; //used for icon hover color
+    --gutefy-icon-size: 16px;
+    --gutefy-icon-wrapper-gap: 0px;
+    --gutefy-icon-wrapper-size: 44px;
+    --gutefy-icon-wrapper-display-postion-left: 100%;
+    --gutefy-icon-wrapper-z-index: 9999999999;
+    --gutefy-icon-wrapper-position-top: 44%;
+    --gutefy-icon-wrapper-position-right: 0%;
+    --gutefy-icon-wrapper-position-left: auto;
+}
+
+.gutefy-section-wrapper {
+
+    .gf_social_icons_social_float {
+        z-index: var(--gutefy-icon-wrapper-z-index);
+        position: fixed;
+        top: var(--gutefy-icon-wrapper-position-top);
+        right: var(--gutefy-icon-wrapper-position-right);
+        left: var(--gutefy-icon-wrapper-position-left);
+        bottom: var(--gutefy-icon-wrapper-position-bottom);
+
+        #gf_social_icons_wrapper {
+            .empty-sms{
+                background-color: red;
+                color: white;
+                padding: 5px;
+                text-transform: uppercase;
+                font-family: inherit;
+                font-weight: 500;
+                letter-spacing: 1px;
+                font-size: 11px;
+            }
+            display: grid;
+            gap: var(--gutefy-icon-wrapper-gap);
+
+            a.gf_social_icons_social_icon {
+                z-index: var(--gutefy-icon-wrapper-z-index);
+                position: relative;
+                background-color: var(--gutefy-icon-wrapper-color);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                width: var(--gutefy-icon-wrapper-size);
+                height: var(--gutefy-icon-wrapper-size);
+                text-align: center;
+                &:hover {
+                    background: var(--gutefy-icon-wrapper-hover-color);
+
+                    svg {
+                        fill: var(--gutefy-icon-hover-color);
+                    }
+                }
+
+                span {
+                    display: flex;
+
+                    svg {
+                        width: var(--gutefy-icon-size);
+                        fill: var(--gutefy-icon-color);
+                    }
+
+                    
+                }
+
+            }
+        }
+
+    }
+}
