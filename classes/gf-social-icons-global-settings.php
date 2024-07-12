@@ -7,7 +7,7 @@ class Gf_social_icons_global_settings
   private $gf_social_icons__extensions_namespace = '_social_icon';
   private $gf_social_icons_style_settings = [
     ['--gutefy-icon-color', 'white'],
-    ['--gutefy-icon-wrapper-color', '#27ae60'],
+    ['--gutefy-icon-wrapper-color', '#3858E9'],
     ['--gutefy-icon-hover-color', 'white'],
     ['--gutefy-icon-wrapper-hover-color', '#2980b9'],
     ['--gutefy-icon-wrapper-position-right', '0px'],
@@ -101,7 +101,9 @@ class Gf_social_icons_global_settings
 
   // Validation callback function
   public function gf_social_icons_custom_url_validation($error_object, $value, $setting_object) {
-
+    if(empty($value)){
+      return false;
+    }
     foreach ($value as $key => $item) {
         if (is_array($item)) {
             $url = trim($item[1]);
@@ -252,11 +254,13 @@ public function gf_social_icons_custom_sanitize($value) {
 
       foreach ($social_icons_settings as $icon): ?>
         <a class="fromphp gf_social_icons_social_icon" href="<?php echo esc_url($icon[1]); ?>" >
-          <?php echo ($social_icons_data[$icon[0]]['icon']) ?>
+          <span>
+            <?php echo ($social_icons_data[$icon[0]]['icon']) ?>
+          </span>
         </a>
       <?php endforeach;
     else: ?>
-      <p>Add Social Url.</p>
+      <p class="empty-sms">Minimum One Url Required.</p>
     <?php endif;
     // Get the contents of the buffer and clean it
     return ob_get_clean();

@@ -1,7 +1,7 @@
 /** @format */
 
 import { useState } from '@wordpress/element'
-import { fontIcons } from '../../fontAwsomeIcon'
+import fontIcons from './../../iconStore.json'
 import { __experimentalInputControl as InputControl } from '@wordpress/components'
 import { IconPopup } from './iconPopup'
 
@@ -17,7 +17,7 @@ export function SocialRepeatedField(props) {
         setShowPopup([!showPopup, iconId])
     }
     function validateInput(input) {
-        console.log(input)
+        //console.log(input)
         // Regular expression to validate mobile number (11 to 15 digits)
         const mobileRegex = /^\d{11,15}$/
 
@@ -42,13 +42,13 @@ export function SocialRepeatedField(props) {
         <div account-id={props.index} account-type={props.input[2]} className='gf-social-icons-repeater-field-child-wrapper '>
             <div className='gf-social-icons-repeater-field'>
                 <span
+                    dangerouslySetInnerHTML={{ __html: fontIcons[`${props.input[0]}`].icon }}
                     icon-id={props.input[0]}
                     className='gf-social-icons--icon-data'
                     onClick={(ele) => {
                         popupOpenClickHandler(ele)
                     }}
                 >
-                    {fontIcons[`${props.input[0]}`].icon}
                 </span>
                 <InputControl
                     className='gf-social-icons-url'

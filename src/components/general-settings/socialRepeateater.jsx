@@ -37,7 +37,7 @@ export function SocialRepeateater(props) {
 		const newAccountList = currentAccountList;
 		setAccountsUrl(newAccountList);
 		props.control.setting.set(accountsUrl);
-		console.log('i am removed')
+		//console.log('i am removed')
 
 	};
 	props.control.setting.set(accountsUrl);

@@ -4,15 +4,15 @@ import { useState } from '@wordpress/element'
 
 const  {customize} = wp
 
-export default function ToggleController() {
+export default function ToggleController({title}) {
     
     const getNewTabStatus = customize.settings.settings.gf_social_icons_open_in_new_tab_settings.value
     const [newTabStatus, setNewTabStatue] = useState(getNewTabStatus)
-    console.log('😓',newTabStatus)
+    //console.log('😓',newTabStatus)
 
     return (
         <ToggleControl
-            label='Open In new Tab '
+            label={title}
             checked={newTabStatus}
             onChange={(newValue) => {
                 setNewTabStatue(newValue);

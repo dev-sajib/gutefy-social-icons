@@ -2,15 +2,13 @@
 /**
  *
  * @link              https://gutefy.com
- * @since             1.0.0
+ * @since             1.0.1
  * @package           Gutefy_Social_Icons
  *
  * @wordpress-plugin
  * Plugin Name:       Gutefy Social Icons 
  * Plugin URI:        https://gutefy.com
- * Description:       Enhance your website with this robust plugin, effortlessly adding floating social icons for seamless display and interaction.
-
-
+ * Description:       Effortlessly adding floating social icons for seamless display and interaction.
  * Version:           1.0.1
  * Author:            Gutefy
  * Author URI:        https://portfolio.gutefy.com/
@@ -18,6 +16,8 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       gf-social-icons
  * Domain Path:       /languages
+ * Requires at least: 6.3
+ * Requires PHP:      7.2
  */
 
 if (!defined('ABSPATH')) {

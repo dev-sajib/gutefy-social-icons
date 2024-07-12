@@ -3,7 +3,7 @@ import React from "react";
 import { __ } from "@wordpress/i18n";
 
 // import internal dependencies
-import { fontIcons } from "../../fontAwsomeIcon";
+import fontIcons from './../../iconStore.json'
 
 export default function AccountGenerate({ accountsUrl, openInNewTab }) {
     const generateUrl = (value,accountType) => {
@@ -21,7 +21,7 @@ export default function AccountGenerate({ accountsUrl, openInNewTab }) {
                 break;
         }
     }
-    console.log('✅',accountsUrl);
+    //console.log('✅',accountsUrl);
     return (
         <>
             {accountsUrl && accountsUrl.map((e, index) => (
@@ -32,7 +32,8 @@ export default function AccountGenerate({ accountsUrl, openInNewTab }) {
                     target={openInNewTab ? "_blank" : "_self"}
                     rel={openInNewTab ? "noopener noreferrer" : undefined}
                 >
-                    {fontIcons[e[0]].icon ? fontIcons[e[0]].icon : fontIcons[e[0]].icon}
+                    <span dangerouslySetInnerHTML={{ __html: fontIcons[e[0]].icon ? fontIcons[e[0]].icon : fontIcons[e[0]].icon }} >
+                    </span>
                 </a>
             ))}
         </>

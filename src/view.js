@@ -5,7 +5,6 @@ import { createRoot } from '@wordpress/element';
 
 // import internal dependencies
 import './view.scss'
-import { fontIcons } from './fontAwsomeIcon';
 import AccountGenerate from './components/general-settings/accountGenerate';
 
 
@@ -14,7 +13,7 @@ function App() {
     const accountsUrl = GfSocialIconsSettings['generalSettings']
     const styleSettings = GfSocialIconsSettings['styleSettings']['styles'];
     const openInNewTab = GfSocialIconsSettings['openInNewTab'];
-    // console.log('I am from view page',GfSocialIconsSettings);
+    // //console.log('I am from view page',GfSocialIconsSettings);
     function removeEmptyValues(obj) {
         return Object.fromEntries(
             Object.entries(obj)
