@@ -1,17 +1,14 @@
 <?php
-
 /**
  *
  * @link              https://gutefy.com
- * @since             1.0.0
+ * @since             1.0.1
  * @package           Gutefy_Social_Icons
  *
  * @wordpress-plugin
  * Plugin Name:       Gutefy Social Icons 
  * Plugin URI:        https://gutefy.com
- * Description:       Enhance your website with this robust plugin, effortlessly adding floating social icons for seamless display and interaction.
-
-
+ * Description:       Effortlessly adding floating social icons for seamless display and interaction.
  * Version:           1.0.1
  * Author:            Gutefy
  * Author URI:        https://portfolio.gutefy.com/
@@ -19,79 +16,119 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       gf-social-icons
  * Domain Path:       /languages
+ * Requires at least: 6.3
+ * Requires PHP:      7.2
  */
 
-// If this file is called directly, abort.
-if (!defined('WPINC')) {
-	die;
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
 }
 
-/**
- * Currently plugin version.
- * Start at version 1.0.0 and use SemVer - https://semver.org
- * Rename this for your plugin and update it as you release new versions.
- */
-define('Gutefy_Social_Icons_VERSION', '1.0.0');
+require_once plugin_dir_path(__FILE__) . './classes/gf-social-icons-global-settings.php';
+new Gf_social_icons_global_settings();
 
-/**
- * The code that runs during plugin activation.
- * This action is documented in includes/gf-social-icons-class-activator.php
- */
-function gf_social_icons_activate()
-{
-	require_once plugin_dir_path(__FILE__) . 'includes/gf-social-icons-class-activator.php';
-	Gf_social_icons_class_activator::gf_social_icons_activate();
-}
-/**
- * Add settings link to the plugin page.
- *
- * @param array  $links Array of plugin action links.
- * @param string $file  Path to the plugin file relative to the plugins directory.
- * @return array
- */
 function gf_social_icons_plugin_action_links($links, $file)
 {
-	$settings_link = '<a href="' . admin_url('customize.php?autofocus[panel]=gutefy_settings_core_panel_social_icon&autofocus[section]=gutefy_settings_accounts_social_icon') . '">' . esc_html__('Settings', 'gf-social-icons') . '</a>';
+	$settings_link = '<a href="' . admin_url('customize.php?autofocus[panel]=gutefy_settings_core_panel_social_icon&autofocus[section]=gutefy_settings_general_social_icon') . '">' . esc_html__('Settings', 'gf-social-icons') . '</a>';
 	array_unshift($links, $settings_link);
 	return $links;
 }
 add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'gf_social_icons_plugin_action_links',10,2 );
 
 
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/gf-social-icons-class-deactivator.php
- */
-function gf_social_icons_deactivate()
+function gf_social_icons__customizer_scripts()
 {
-	require_once plugin_dir_path(__FILE__) . 'includes/gf-social-icons-class-deactivator.php';
-	Gf_social_icons_class_deactivator::gf_social_icons_deactivate();
+    $dir = __DIR__;
+
+    $script_asset_path = "$dir/build/customizer.asset.php";
+    if (!file_exists($script_asset_path)) {
+        throw new Error(
+            'You need to run `npm start` or `npm run build` for "Gutefy Social Icons" widget first.'
+        );
+    }
+    $customizer_js = 'build/customizer.js';
+    $script_asset = require ($script_asset_path);
+
+
+    wp_enqueue_script(
+        'gf-social-icons--customizer-editor',
+        plugins_url($customizer_js, __FILE__),
+        array('react', 'wp-components', 'jquery', 'wp-element', 'wp-i18n', 'customize-controls', 'wp-api'),
+        $script_asset['version']
+    );
+    // wp_set_script_translations( 'gf-social-icons-block-editor', 'gf-social-icons' );
+
+    wp_localize_script(
+        'gf-social-icons--customizer-editor',
+        'GfSocialIconsSettings',
+        [
+            'styleSettings' => get_option('gf_social_icons_style_settings', ''),
+        ],
+
+
+
+
+    );
+
+    $customizer_css = 'build/customizer.css';
+    wp_enqueue_style(
+        'gf-social-icons--customizer',
+        plugins_url($customizer_css, __FILE__),
+        ['wp-components'],
+        filemtime("$dir/$customizer_css")
+    );
+}
+add_action('customize_controls_enqueue_scripts', 'gf_social_icons__customizer_scripts', 10);
+
+function gf_social_icons_enqueue_styles()
+{
+    wp_enqueue_style('gf_social_icons_styles', plugin_dir_url(__FILE__) . 'build/view.css');
 }
 
-register_activation_hook(__FILE__, 'gf_social_icons_activate');
-register_deactivation_hook(__FILE__, 'gf_social_icons_deactivate');
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path(__FILE__) . 'includes/gf-social-icons-class.php';
-
-/**
- * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
- * @since    1.0.0
- */
-function gf_social_icons_run()
+function gf_social_icons_enqueue_scripts()
 {
 
-	$plugin = new Gf_social_icons_class();
-	$plugin->run();
+
+    $dir = __DIR__;
+
+    $script_asset_path = "$dir/build/view.asset.php";
+    if (!file_exists($script_asset_path)) {
+        throw new Error(
+            'You need to run `npm start` or `npm run build` for "Gutefy Social Icons" widget first.'
+        );
+    }
+    $view_js = 'build/view.js';
+    $script_asset = require ($script_asset_path);
+
+
+    wp_enqueue_script(
+        'gf-social-icons--view-controller',
+        plugins_url($view_js, __FILE__),
+        array('react', 'wp-components', 'wp-element', 'wp-i18n', 'wp-api'),
+        $script_asset['version']
+    );
+
+    wp_localize_script(
+        'gf-social-icons--view-controller',
+        'GfSocialIconsSettings',
+        [
+            'generalSettings' => get_option('gf_social_icons_general_settings', ''),
+            'openInNewTab' => get_option('gf_social_icons_open_in_new_tab_settings', ''),
+            'styleSettings' => get_option('gf_social_icons_style_settings', ''),
+        ],
+    );
+
+    $customizer_css = 'build/customizer.css';
+    wp_enqueue_style(
+        'gf-social-icons--customizer',
+        plugins_url($customizer_css, __FILE__),
+        ['wp-components'],
+        filemtime("$dir/$customizer_css")
+    );
+
 
 }
-gf_social_icons_run();
+
+add_action('wp_enqueue_scripts', 'gf_social_icons_enqueue_styles');
+add_action('wp_enqueue_scripts', 'gf_social_icons_enqueue_scripts');
+

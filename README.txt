@@ -72,4 +72,3 @@ For more information about the author and other projects, visit [Gutefy's Portfo
 
 == License ==
 Gutefy Social Icons is licensed under the GPLv2 or later - http://www.gnu.org/licenses/gpl-2.0.html
-
