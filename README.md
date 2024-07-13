@@ -1,63 +1,89 @@
 # Gutefy Social Icons
 
-**Contributors:** Gutefy  
-**Plugin Name:** Gutefy Social Icons  
-**Plugin URI:** [https://portfolio.gutefy.com/](https://portfolio.gutefy.com/)  
-**Tags:** social icons, style settings, Gutefy Social Icons, gutefy, gutenbarg social icons  
-**Requires at least:** 6.3  
-**Tested up to:** 6.5.2 
-**Stable tag:** 1.0.1 
-**License:** GPLv2 or later  
-**License URI:** [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
+Effortlessly add floating social icons to your website for seamless display and interaction.
 
 ## Description
 
-Gutefy Social Icons is a WordPress plugin developed by Gutefy, allowing users to easily enhance their website with a variety of customizable features. The main functionality of this plugin is to provide a Customizer option for adding social icons to your website.
-
-## Installation
-
-1. Upload the 'gf-social-icons' folder to the '/wp-content/plugins/' directory.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
+The Gutefy Social Icons plugin allows you to enhance your website by adding floating social icons with ease. This plugin is designed to provide a smooth user experience, making it simple to display and interact with social icons on your site.
 
 ## Features
 
-- **Gutefy Social Icons:** Easily add and customize social icons that will be displayed at the bottom right corner of your webpage.
-- **Social Accounts:** Configure up to 17 social accounts, including Facebook, GitHub, GitLab, LinkedIn, CodePen, and more.
-- **Style Settings:** Customize the appearance of your social icons with options such as icon color, hover color, background color, and hover background color.
+- Easy integration of floating social icons
+- Seamless display and interaction
+- Customizable styles and settings
+- Supports various social media platforms
 
-## Screenshots
+## Installation
 
-1. **Starting Panel:** ![Starting Panel](assets/starting-panel.jpg)
-2. **Gutefy Settings Panel:** ![Gutefy Settings Panel](assets/settings-panel.jpg)
-3. **Style Settings:** ![Style Settings](assets/style-settings.jpg)
-4. **Account Settings:** ![Account Settings](assets/accounts-setting.jpg)
-5. **Style 1:** ![Style 1](assets/style-one.jpg)
-6. **Style 2:** ![Style 1](assets/style-two.jpg)
+1. Download the plugin ZIP file from the [releases page](https://github.com/yourusername/gf-social-icons/releases).
+2. Go to your WordPress dashboard.
+3. Navigate to `Plugins > Add New`.
+4. Click `Upload Plugin`.
+5. Select the downloaded ZIP file and click `Install Now`.
+6. Activate the plugin through the 'Plugins' menu in WordPress.
 
-## Changelog
+## Usage
 
-### 1.0
+After activating the plugin, navigate to the plugin settings page to customize the social icons according to your preferences. You can adjust styles, positions, and choose which social media platforms to display.
 
-- Initial release.
+## Development
 
-## Frequently Asked Questions
+### Folder Structure
 
-### How can I add or edit social accounts?
+- `classes/reactControl/`: Contains PHP classes for managing social icons settings and controls.
+- `node_modules/`: Directory containing all Node.js modules.
+- `src/`: Source directory for React components and SCSS files.
+  - `components/assets/css/`: Contains SCSS files for styling the plugin.
+  - `components/general-settings/`: React components for general settings.
+  - `components/style-settings/`: React components for style settings.
+  - `customizer.js`: Entry point for the customizer script.
+  - `view.js`: Entry point for the view script.
 
-Navigate to the Customizer, find the "Gutefy Social Icons" section, and go to the "Social Accounts" panel. Here, you can add or edit up to 17 social accounts.
+### Build and Development Scripts
 
-### How do I customize the style of the social icons?
+- `build`: Compiles the source files.
+- `format`: Formats the code.
+- `lint:css`: Lints the CSS files.
+- `lint:js`: Lints the JavaScript files.
+- `packages-update`: Updates the WordPress packages.
+- `plugin-zip`: Zips the plugin files for distribution.
+- `start`: Starts the development server.
 
-In the Customizer, locate the "Gutefy Social Icons" section and access the "Style Settings" panel. You can choose a style from the "Select Style" dropdown and customize colors for icon, hover, background, and hover background.
+Run the scripts using npm. For example, to build the plugin, use:
 
-## Support
+```bash
+npm run build
 
-For any issues or inquiries, please visit the support forums on WordPress.org.
+## Contributing
 
-## More Information
+We welcome contributions to enhance the plugin. Please follow these steps to contribute:
 
-For more information about the author and other projects, visit [Gutefy's Portfolio](https://portfolio.gutefy.com/).
+1. Fork the repository.
+2. Create a new branch:
+    ```bash
+    git checkout -b feature-branch
+    ```
+3. Make your changes and commit them:
+    ```bash
+    git commit -m 'Add new feature'
+    ```
+4. Push to the branch:
+    ```bash
+    git push origin feature-branch
+    ```
+5. Submit a pull request.
 
 ## License
 
-Gutefy Social Icons is licensed under the GPLv2 or later - [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
+This plugin is licensed under the GPL-2.0-or-later License. See the [LICENSE](LICENSE) file for more information.
+
+## Support
+
+For support and further information, please visit our website or contact us at [support@gutefy.com](mailto:support@gutefy.com).
+
+Feel free to update the placeholder links (`https://github.com/yourusername/gf-social-icons/releases`, `https://gutefy.com`, and `mailto:support@gutefy.com`) with the actual URLs and email address.
+
+
+
+
+
