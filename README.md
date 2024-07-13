@@ -20,12 +20,13 @@ The Gutefy Social Icons plugin allows you to enhance your website by adding floa
 
 ## Installation
 
-1. Download the plugin ZIP file from the [releases page](https://github.com/yourusername/gf-social-icons/releases).
+1. Download the plugin ZIP file from the [releases page](https://github.com/dev-sajib/gutefy-social-icons/releases).
 2. Go to your WordPress dashboard.
 3. Navigate to `Plugins > Add New`.
 4. Click `Upload Plugin`.
 5. Select the downloaded ZIP file and click `Install Now`.
 6. Activate the plugin through the 'Plugins' menu in WordPress.
+6. Run `npm i && npm run start`.
 
 ## Usage
 
@@ -86,7 +87,7 @@ This plugin is licensed under the GPL-2.0-or-later License. See the [LICENSE](LI
 
 For support and further information, please visit our website or contact us at [support@gutefy.com](mailto:support@gutefy.com).
 
-Feel free to update the placeholder links (`https://github.com/yourusername/gf-social-icons/releases`, `https://gutefy.com`, and `mailto:support@gutefy.com`) with the actual URLs and email address.
+Feel free to update the placeholder links (`https://github.com/dev-sajib/gutefy-social-icons/releases`, `https://portfolio.gutefy.com`, and `mailto:admin@gutefy.com`) with the actual URLs and email address.
 
 
 
