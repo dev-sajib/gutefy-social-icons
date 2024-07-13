@@ -25,11 +25,11 @@ export function GeneralSettings({ control }) {
                         <div className='gf-social-icons-panel__body_wrapper'>
                             <ToggleController title='Open in new tab' />
                         </div>
-                        {/* <PanelBody className='gf-social-icons-panel__body' initialOpen={false} title={__('Responsive Settings', 'gf-social-icons')} icon=''>
+                        <PanelBody className='gf-social-icons-panel__body' initialOpen={false} title={__('Responsive Settings', 'gf-social-icons')} icon=''>
                             <div className='gf-social-icons-panel__body_wrapper '>
                                 <ToggleController title='Disable in Mobile' />
                             </div>
-                        </PanelBody> */}
+                        </PanelBody>
                     </PanelBody>
                 </Panel>
             </div>
