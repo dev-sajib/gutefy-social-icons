@@ -59,7 +59,7 @@ Run the scripts using npm. For example, to build the plugin, use:
 
 ```bash
 npm run build
-
+```
 ## Contributing
 
 We welcome contributions to enhance the plugin. Please follow these steps to contribute:
@@ -85,7 +85,7 @@ This plugin is licensed under the GPL-2.0-or-later License. See the [LICENSE](LI
 
 ## Support
 
-For support and further information, please visit our website or contact us at [support@gutefy.com](mailto:support@gutefy.com).
+For support and further information, please visit our website or contact us at [support@gutefy.com](mailto:admin@gutefy.com).
 
 Feel free to update the placeholder links (`https://github.com/dev-sajib/gutefy-social-icons/releases`, `https://portfolio.gutefy.com`, and `mailto:admin@gutefy.com`) with the actual URLs and email address.
 
