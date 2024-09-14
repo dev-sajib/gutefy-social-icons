@@ -2,7 +2,7 @@
 
 // Tooltip.js
 import React, { useState } from 'react'
-import './css/tooltip.scss'
+import './tooltipStyle.scss'
 
 const Tooltip = ({ text, children }) => {
     const [visible, setVisible] = useState(false)

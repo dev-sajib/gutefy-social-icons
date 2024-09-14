@@ -4,6 +4,7 @@ import { useState } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 import { Dropdown, Button, ColorPicker, ColorPalette } from '@wordpress/components'
 import './colorStyle.scss'
+import Tooltip from '../tooltip/tooltip'
 // internal dependency
 import { StyleGenerator } from '../styleGenerator'
 
@@ -52,7 +53,6 @@ export default function Color({ control }) {
                 return currentDeviceValue // Return if value is found
             }
         }
-
     }
     const selfExecuteFunction = () => {
         linkResponsiveButtonWithCustomizerFooterButton()
@@ -129,18 +129,17 @@ export default function Color({ control }) {
 
                 <div>
                     <div id='gf-social-icons-color-control-wrapper'>
+                        <label className='gf-social-icons-settings-label' htmlFor=''>
+                            {control.params.label}
+                        </label>
                         <Dropdown
                             className='gf-social-icons-color-dropdown'
                             contentClassName='gf-social-icons-color-dropdown-content-wrapper'
                             popoverProps={{ placement: 'bottom-start' }}
                             renderToggle={({ isOpen, onToggle }) => (
-                                <Button
-                                    style={{ backgroundColor: getDeviceValue(value,device) }}
-                                    className='color-selector'
-                                    variant='primary'
-                                    onClick={onToggle}
-                                    aria-expanded={isOpen}
-                                ></Button>
+                                <Tooltip text={device}>
+                                    <Button style={{ backgroundColor: getDeviceValue(value, device) }} className='color-selector' variant='primary' onClick={onToggle} aria-expanded={isOpen}></Button>
+                                </Tooltip>
                             )}
                             renderContent={() => {
                                 return (

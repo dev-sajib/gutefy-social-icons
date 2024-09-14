@@ -1,7 +1,4 @@
 import './customizer.scss'
-import './assets/js/customizer-script.js'
-
-
 import { ToggleControl } from './components/toggleControl/index.js';
 import { SocialRepeateaterControl } from './components/socialRepeaterControl';
 import { ColorControl } from './components/colorControl';

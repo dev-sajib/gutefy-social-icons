@@ -1,11 +1,17 @@
 
 #gf-social-icons-color-control-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   .gf-social-icons-color-dropdown{
-    width: 100%;
+
     button{
-      width: 100%;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
       background-color: unset;
       border: 1px solid #dcdcdc;
+
       &:hover{
         background: unset;
       }

@@ -3,6 +3,7 @@ import { ToggleControl } from '@wordpress/components'
 import { useState } from '@wordpress/element'
 import { Panel, PanelBody } from '@wordpress/components'
 import { __ } from '@wordpress/i18n'
+import Tooltip from './tooltip/tooltip'
 
 import { StyleGenerator } from './styleGenerator'
 
@@ -125,16 +126,19 @@ export function ResponsiveToggle({ control }) {
                     <label className='gf-social-icons-settings-label' htmlFor=''>
                         {control.params.label}
                     </label>
-                    <ToggleControl
-                        data-device={device}
-                        onChange={(newValue) =>
-                            handleChange({
-                                ...value['values'][0]['value'],
-                                [device]: getKeyOrValue(newValue),
-                            })
-                        }
-                        checked={getDeviceValue(value, device)}
-                    />
+                    <Tooltip text={device}>
+                        <ToggleControl
+                            data-device={device}
+                            onChange={(newValue) =>
+                                handleChange({
+                                    ...value['values'][0]['value'],
+                                    [device]: getKeyOrValue(newValue),
+                                })
+                            }
+                            checked={getDeviceValue(value, device)}
+                        />
+                    </Tooltip>
+
                     <StyleGenerator />
                 </div>
             </div>
@@ -149,9 +153,9 @@ export function WithoutResponsiveToggle({ control }) {
     const handleChange = (newValue) => {
         let _newValue = {
             ...control.settings.default(),
-            value:newValue
+            value: newValue,
         }
-        
+
         setValue(_newValue)
         control.setting.set(_newValue)
     }
