@@ -1,0 +1,19 @@
+{
+    "name": "syedsajib/gf-social-icons",
+    "description": "Effortlessly adding floating social icons for seamless display and interaction.",
+    "license": "GPL-2.0+",
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "GF_SOCIAL_ICONS\\": "includes/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Syed18103392",
+            "email": "56638411+Syed18103392@users.noreply.github.com"
+        }
+    ]
+}

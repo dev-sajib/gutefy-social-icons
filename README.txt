@@ -11,10 +11,10 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-Gutefy Social Icons is a WordPress plugin developed by Gutefy, allowing users to easily enhance their website with a variety of customizable features. The main functionality of this plugin is to provide a Customizer option for adding social icons to your website.
+Gutefy Social Icons is a WordPress plugin developed by Gutefy. The main functionality of this plugin is to provide a Customizer option for adding social icons to your website.
 
 == Short Description ==
-Floting Social Icons Solutions.
+Floating Social Icons Solutions.
 
 == Installation ==
 1. Upload the 'gf-social-icons' folder to the '/wp-content/plugins/' directory.
@@ -25,7 +25,7 @@ Floting Social Icons Solutions.
 - **Gutefy Social Icons:** Easily add and customize social icons that will be displayed at the right side of your webpage.
 - **Social Accounts:** Easily can add as many account as you want .
 - **Social Icon Changing Feature:** With one click can Change icon   .
-- **Style Settings:** Customize the appearance of your social icons with options such as icon color, hover color, background color, hover background color, icon size, wrapper size, icon wrapper opacity and so one.
+- **Style Settings:** Customize the appearance of your social icons with options such as icon color, hover color, background color, hover background color, icon size, wrapper size, Adjust Vertical Position and so one.
 
 == Screenshots ==
 1. **Starting Panel:**
