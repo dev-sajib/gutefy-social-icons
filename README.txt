@@ -5,7 +5,7 @@ Plugin URI: https://portfolio.gutefy.com/
 Tags: social icons, ,floting social icons
 Requires at least: 6.3
 Requires PHP: 7.2
-Tested up to: 6.5.2
+Tested up to: 6.6.2
 Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
