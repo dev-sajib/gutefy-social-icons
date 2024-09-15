@@ -128,7 +128,7 @@ export default function Color({ control }) {
                 </header>
 
                 <div>
-                    <div id='gf-social-icons-color-control-wrapper'>
+                    <div id='gf-social-icons-color-control-wrapper' className='gf-social-icons-inline-settings-wrapper'>
                         <label className='gf-social-icons-settings-label' htmlFor=''>
                             {control.params.label}
                         </label>

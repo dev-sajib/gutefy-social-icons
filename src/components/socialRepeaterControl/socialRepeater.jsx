@@ -39,9 +39,9 @@ export function SocialRepeateater({ control }) {
 
     return (
         <div className='gf-social-icons__main-wrapper'>
-            <Panel>
+            {/* <Panel>
                 <PanelBody className='gf-social-icons-panel__body' title={__('Control Your Accounts', 'gf-social-icons')} icon='user'>
-                    <div className='gf-social-icons-panel__body_wrapper'>
+                    <div className='gf-social-icons-panel__body_wrapper'> */}
                         <div className='gutefy_settings_wrapper_accounts_social_icon gf-social-icons-repeater-field-wrapper'>
                             <button className='gf_social_icons_add_account_button' onClick={addInputField}>
                                 Add Input Field
@@ -53,8 +53,8 @@ export function SocialRepeateater({ control }) {
                             </ReactSortable>
                         </div>
                     </div>
-                </PanelBody>
-            </Panel>
-        </div>
+        //         </PanelBody>
+        //     </Panel>
+        // </div>
     )
 }

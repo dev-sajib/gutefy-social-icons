@@ -12,7 +12,6 @@
   --gutefy-icon-color: white; // used for icon color
   --gutefy-icon-wrapper-hover-color: #2980b9; // used for icon hover background color
   --gutefy-icon-hover-color: white; //used for icon hover color
-  --gutefy-icon-size: 16px;
   --gutefy-icon-wrapper-gap: 0px;
   --gutefy-icon-wrapper-size: 44px;
   --gutefy-icon-wrapper-display-postion-left: 100%;
@@ -23,48 +22,84 @@
 }
 
 #gf_social_icons__wrapper {
-  z-index: var(--gutefy-icon-wrapper-z-index);
   position: fixed;
-  top: var(--gutefy-icon-wrapper-position-top);
-  right: var(--gutefy-icon-wrapper-position-right);
-  left: var(--gutefy-icon-wrapper-position-left);
-  bottom: var(--gutefy-icon-wrapper-position-bottom);
-
-  .empty-sms {
-    background-color: red;
-    color: white;
-    padding: 5px;
-    text-transform: uppercase;
-    font-family: inherit;
-    font-weight: 500;
-    letter-spacing: 1px;
-    font-size: 11px;
+  
+  &.position--right{
+    right: 0;
+    left: auto;
   }
+  &.position--left{
+    right: auto;
+    left: 0;
 
+    .customize-partial-edit-shortcut {
+      position: absolute;
+      /* width: 1px; */
+      /* height: 1px; */
+      padding: 0;
+      margin: -1px -0px 0 0px;
+      border: 0;
+      background: transparent;
+      color: transparent;
+      box-shadow: none;
+      outline: none;
+      z-index: 5;
+      right: -33px;
+      left: auto;
+  }
+  }
+  top: var(--gutefy-icon-wrapper-position-top);
+  
+
+  bottom: var(--gutefy-icon-wrapper-position-bottom);
   display: grid;
-  gap: var(--gutefy-icon-wrapper-gap);
+  z-index: var(--gutefy-icon-wrapper-z-index);
 
-  a.gf_social_icons_social_icon {
-    z-index: var(--gutefy-icon-wrapper-z-index);
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    width: var(--gutefy-icon-wrapper-size);
-    height: var(--gutefy-icon-wrapper-size);
-    text-align: center;
+  .gf_social_icons_social_float {
     
-    span {
-      display: flex;
+    display: grid;
+    gap: var(--gutefy-icon-wrapper-gap);
 
-      svg {
-        width: var(--gutefy-icon-size);
-        fill: var(--gutefy-icon-color);
-      }
-
-
+    .empty-sms {
+      background-color: red;
+      color: white;
+      padding: 5px;
+      text-transform: uppercase;
+      font-family: inherit;
+      font-weight: 500;
+      letter-spacing: 1px;
+      font-size: 11px;
     }
 
+
+
+    a.gf_social_icons_social_icon {
+
+      z-index: var(--gutefy-icon-wrapper-z-index);
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      text-align: center;
+      aspect-ratio: 1;
+      // transition: all 0.3s ease; /* Apply transition to all properties */
+
+      & * {
+        transition: all 0.3s ease;
+        /* Apply transition to all properties */
+      }
+
+      span {
+        display: flex;
+
+        svg {
+          fill: var(--gutefy-icon-color);
+        }
+
+
+      }
+
+    }
   }
 }

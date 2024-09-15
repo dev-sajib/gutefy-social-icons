@@ -54,7 +54,6 @@ class Core extends BaseCustomizer
       ],
       Settings::SECTION_STYLE_SETTINGS => [
         'title' => __('Design', TEXT_DOMAIN),
-        'description' => __('<p>Design Accounts icons</p>', TEXT_DOMAIN),
         'panel' => Settings::PANEL_CORE,
         'priority' => 2,
       ]
@@ -258,6 +257,141 @@ class Core extends BaseCustomizer
         ],
         'custom_control' => "\GF_SOCIAL_ICONS\Controls\Color"
       ],
+      [
+        'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_SIZE'],
+        'setting_args' => [
+          'default' => [
+            [
+              'css_attr' => 'width',
+              'value' => ['desktop' => '16px'],
+            ]
+          ],
+          'transport' => 'postMessage',
+          'type' => 'option',
+          'capability' => 'manage_options',
+          // 'sanitize_callback' => [$this, 'gf_social_icons_custom_sanitize'],
+          // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
+        ],
+        'control_args' => [
+          'label' => __('Icon Size', TEXT_DOMAIN),
+          'section' => Settings::SECTION_STYLE_SETTINGS,
+          'input_attrs' => array(
+            'responsive' => true,
+            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon svg",
+            'heading' => 'Advance Settings',
+            'control_for' => Settings::GENERAL_TAB_ELEMENT
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\UnitInput"
+      ],
+      [
+        'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_HOVER_SIZE'],
+        'setting_args' => [
+          'default' => [
+            [
+              'css_attr' => 'width',
+              'value' => ['desktop' => ''],
+            ]
+          ],
+          'transport' => 'postMessage',
+          'type' => 'option',
+          'capability' => 'manage_options',
+          // 'sanitize_callback' => [$this, 'gf_social_icons_custom_sanitize'],
+          // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
+        ],
+        'control_args' => [
+          'label' => __('Icon Size', TEXT_DOMAIN),
+          'section' => Settings::SECTION_STYLE_SETTINGS,
+          'input_attrs' => array(
+            'responsive' => true,
+            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon:hover svg",
+            'heading' => 'Advance Settings',
+            'control_for' => Settings::HOVER_TAB_ELEMENT
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\UnitInput"
+      ],
+      [
+        'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_WRAPPER_SIZE'],
+        'setting_args' => [
+          'default' => [
+            [
+              'css_attr' => 'width',
+              'value' => ['desktop' => '44px'],
+            ]
+          ],
+          'transport' => 'postMessage',
+          'type' => 'option',
+          'capability' => 'manage_options',
+          // 'sanitize_callback' => [$this, 'gf_social_icons_custom_sanitize'],
+          // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
+        ],
+        'control_args' => [
+          'label' => __('Icon Wrapper', TEXT_DOMAIN),
+          'section' => Settings::SECTION_STYLE_SETTINGS,
+          'input_attrs' => array(
+            'responsive' => true,
+            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon",
+            'heading' => 'Advance Settings',
+            'control_for' => Settings::GENERAL_TAB_ELEMENT
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\UnitInput"
+      ],
+      [
+        'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_WRAPPER_HOVER_SIZE'],
+        'setting_args' => [
+          'default' => [
+            [
+              'css_attr' => 'width',
+              'value' => ['desktop' => ''],
+            ]
+          ],
+          'transport' => 'postMessage',
+          'type' => 'option',
+          'capability' => 'manage_options',
+          // 'sanitize_callback' => [$this, 'gf_social_icons_custom_sanitize'],
+          // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
+        ],
+        'control_args' => [
+          'label' => __('Icon Wrapper size', TEXT_DOMAIN),
+          'section' => Settings::SECTION_STYLE_SETTINGS,
+          'input_attrs' => array(
+            'responsive' => true,
+            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon:hover",
+            'heading' => 'Advance Settings',
+            'control_for' => Settings::HOVER_TAB_ELEMENT
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\UnitInput"
+      ],
+      [
+        'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_SPACING'],
+        'setting_args' => [
+          'default' => [
+            [
+              'css_attr' => 'row-gap',
+              'value' => ['desktop' => '20px'],
+            ]
+          ],
+          'transport' => 'postMessage',
+          'type' => 'option',
+          'capability' => 'manage_options',
+          // 'sanitize_callback' => [$this, 'gf_social_icons_custom_sanitize'],
+          // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
+        ],
+        'control_args' => [
+          'label' => __('Vertical Gap', TEXT_DOMAIN),
+          'section' => Settings::SECTION_STYLE_SETTINGS,
+          'input_attrs' => array(
+            'responsive' => true,
+            'css_selector' => "#gf_social_icons__wrapper .gf_social_icons_social_float",
+            'heading' => 'Advance Settings',
+            'control_for' => Settings::GENERAL_TAB_ELEMENT
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\UnitInput"
+      ],
       
     ];
 
@@ -275,6 +409,12 @@ class Core extends BaseCustomizer
       );
     }
   }
+
+
+  /**
+   * Control for ADD Partial controller 
+   * @return void
+   */
   public function add_partials()
   {
     $partials = [

@@ -122,7 +122,7 @@ export function ResponsiveToggle({ control }) {
             </header>
 
             <div>
-                <div id='gf-social-icons-controller-wrapper'>
+                <div id='gf-social-icons-controller-wrapper' className='gf-social-icons-inline-settings-wrapper'>
                     <label className='gf-social-icons-settings-label' htmlFor=''>
                         {control.params.label}
                     </label>
@@ -162,7 +162,7 @@ export function WithoutResponsiveToggle({ control }) {
     return (
         <>
             <div>
-                <div id='gf-social-icons-controller-wrapper'>
+                <div id='gf-social-icons-controller-wrapper' className='gf-social-icons-inline-settings-wrapper'>
                     <label className='gf-social-icons-settings-label' htmlFor=''>
                         {control.params.label}
                     </label>
