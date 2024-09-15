@@ -6,14 +6,6 @@
   }
 }
 
-ul#sub-accordion-section-gutefy_settings_styles_social_icon{
-  background-color: #fff !important;
-
-  .components-panel {
-    border: none !important;
-  }
-}
-
 .gf-social-icons-tab-element-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -22,7 +14,7 @@ ul#sub-accordion-section-gutefy_settings_styles_social_icon{
   z-index: 2;
   top: 0px;
   margin: 0;
-  padding: 0 14px;
+  padding:  0 14px;
   box-shadow: inset 0px -1px 0px 0px #ddd;
 
   .gf-social-icons-tab-element {
@@ -121,10 +113,9 @@ ul#sub-accordion-section-gutefy_settings_styles_social_icon{
 }
 
 //controller-wrapper-style
-.gf-social-icons-inline-settings-wrapper {
+#gf-social-icons-controller-wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 #sub-accordion-panel-gutefy_settings_core-panel_social_icon {

@@ -1,6 +1,8 @@
 
 #gf-social-icons-color-control-wrapper{
- 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   .gf-social-icons-color-dropdown{
 
     button{

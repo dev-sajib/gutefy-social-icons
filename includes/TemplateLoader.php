@@ -18,7 +18,7 @@ class TemplateLoader
     }
     public static function gf_social_icons_get_icon_data_block($block_content, $block){
         if ($block['blockName'] === 'core/template-part' && isset($block['attrs']['slug']) && $block['attrs']['slug'] === 'header') {
-            $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper position--right'>" . self::load_template() . "</div>";
+            $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper '>" . self::load_template() . "</div>";
             $block_content .= $html;
             self::generateStyle();
         }
@@ -27,7 +27,7 @@ class TemplateLoader
     }
     public static function gf_social_icons_get_icon_data($content)
     {
-        $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper position--left'>" . self::load_template() . "</div>";
+        $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper '>" . self::load_template() . "</div>";
         $content .= $html;
         self::generateStyle();
         return $content;
