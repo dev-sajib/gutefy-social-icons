@@ -34,10 +34,13 @@ if (!defined('PLUGIN_ROOT_DIRECTORY')) {
 if (!defined('PLUGIN_ROOT_FILE')) {
     define('PLUGIN_ROOT_FILE', __FILE__);
 }
+
 if (!defined('PLUGIN_ROOT_DIRECTORY_URL')) {
     define('PLUGIN_ROOT_DIRECTORY_URL', plugin_dir_url( __FILE__ ));
 }
-
+if (!defined('PLUGIN_ROOT_BASENAME')) {
+    define('PLUGIN_ROOT_BASENAME', plugin_basename(__FILE__));
+}
 // Include the activate.php file
 // require_once PLUGIN_ROOT_DIRECTORY . '/includes/activate.php';
 
@@ -47,11 +50,9 @@ use GF_SOCIAL_ICONS\Global\EnqueueScripts;
 use GF_SOCIAL_ICONS\TemplateLoader;
 
 // Initialize the classes
-new Core;
-new Activate;
+new Core();
+new Activate();
 EnqueueScripts::init();
 TemplateLoader::init();
 
-// Initialize the Activate class for activation hook
-new Activate();
 ?>

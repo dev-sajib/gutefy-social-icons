@@ -2,13 +2,14 @@
 
 import { useState } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
-import { Dropdown, Button, ColorPicker, ColorPalette } from '@wordpress/components'
+import { Dropdown, Button, ColorPicker, ColorPalette, GradientPicker } from '@wordpress/components'
 import './colorStyle.scss'
 import Tooltip from '../tooltip/tooltip'
 // internal dependency
 import { StyleGenerator } from '../styleGenerator'
 
 export default function Color({ control }) {
+    const [ gradient, setGradient ] = useState( null );
     const [device, setDevice] = useState('desktop')
     let preValue = ''
 
@@ -156,6 +157,27 @@ export default function Color({ control }) {
                                             clearable={false}
                                             onChange={(newValue) => handleChange({ ...value['values'][0]['value'], [device]: newValue })}
                                             enableAlpha
+                                        />
+                                        <GradientPicker
+                                            value={gradient}
+                                            onChange={(currentGradient) => setGradient(currentGradient)}
+                                            gradients={[
+                                                {
+                                                    name: 'JShine',
+                                                    gradient: 'linear-gradient(135deg,#12c2e9 0%,#c471ed 50%,#f64f59 100%)',
+                                                    slug: 'jshine',
+                                                },
+                                                {
+                                                    name: 'Moonlit Asteroid',
+                                                    gradient: 'linear-gradient(135deg,#0F2027 0%, #203A43 0%, #2c5364 100%)',
+                                                    slug: 'moonlit-asteroid',
+                                                },
+                                                {
+                                                    name: 'Rastafarie',
+                                                    gradient: 'linear-gradient(135deg,#1E9600 0%, #FFF200 0%, #FF0000 100%)',
+                                                    slug: 'rastafari',
+                                                },
+                                            ]}
                                         />
                                     </div>
                                 )

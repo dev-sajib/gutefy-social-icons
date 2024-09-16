@@ -102,7 +102,6 @@ class EnqueueScripts
 
 
         $customizer_css = 'build/customizer.css';
-        error_log('Enqueue File');
         wp_enqueue_style(
             'gf-social-icons--customizer',
             plugins_url($customizer_css, PLUGIN_ROOT_FILE),

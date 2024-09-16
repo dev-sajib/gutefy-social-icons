@@ -73,11 +73,9 @@ class TemplateLoader
 
     public static function generateStyle()
     {
-        error_log('generateStyle File');
         $markup_style = '';
         $get_value = get_option('gf_social_icons_style_settings'); // it's an object
 
-        error_log( print_r($get_value['styles'],true));
         foreach ($get_value['styles'] as $setting) {
             foreach ($setting['values'] as $singleStyle) {
                 $desktop_value = isset($singleStyle['value']['desktop']) ? $singleStyle['value']['desktop'] : '';

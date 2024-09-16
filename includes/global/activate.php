@@ -4,17 +4,26 @@ namespace GF_SOCIAL_ICONS\Global;
 
 class Activate
 {
+
     public function __construct()
     {
         register_activation_hook(PLUGIN_ROOT_FILE, [$this, 'gf_activate_plugin']);
         add_action('widgets_init', [$this, 'gf_register_sidebar']);
+        add_filter( 'plugin_action_links_' . PLUGIN_ROOT_BASENAME, [$this,'gf_social_icons_plugin_action_links'],10,2 );
+
     }
 
     public function gf_activate_plugin()
     {
         $this->create_gf_blog_dynamic_css_folder();
     }
-
+    public function gf_social_icons_plugin_action_links($links, $file)
+    {
+        // error_log('hi from logo');
+        $settings_link = '<a href="' . admin_url('customize.php?autofocus[panel]=gutefy_settings_core_panel_social_icon&autofocus[section]=gutefy_settings_general_social_icon') . '">' . esc_html__('Settings', 'gf-social-icons') . '</a>';
+        array_unshift($links, $settings_link);
+        return $links;
+    }
     public function create_gf_blog_dynamic_css_folder()
     {
 
@@ -48,5 +57,3 @@ class Activate
         );
     }
 }
-?>
-
