@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n'
 
 import { __experimentalBorderBoxControl as BorderBoxControl } from '@wordpress/components'
 import { StyleGenerator } from '../styleGenerator'
+import Tooltip from '../tooltip/tooltip'
 
 export default function Border({ control }) {
     //STATE DECLEARATION =>
@@ -66,20 +67,19 @@ export default function Border({ control }) {
 
     //HANDLE CHANGES =>
     const handleChange = (newBorders) => {
-        let border={};
+        console.log('Border=>handle Change=>🔥', value.values)
+        let border = {}
         if (newBorders.width || newBorders.color || newBorders.style) {
-            console.log(newBorders)
-            border.css_attr = "border";
-            border.value = {};
-            border.value[device] = newBorders;
-        }
-        else {
-            
+            border.css_attr = 'border'
+            border.value = value.values[0].value
+
+            border.value[device] = newBorders
+        } else {
             console.log('Unlinked')
         }
         let newValue = {
             ...value,
-            values: [border]
+            values: [border],
         }
         setValue(newValue)
         control.setting.set(newValue)
@@ -87,44 +87,33 @@ export default function Border({ control }) {
 
     //EXECUTED FUNCTION IN EVERY RENDER
     useEffect(() => {
-        console.log('hi')
         linkResponsiveButtonWithCustomizerFooterButton()
         control.setting.set(value)
     }, [])
-
+    control.setting.set(value)
     const processValue = (val) => {
-
-        console.log(val);
-        let rawVal  ={}
+        let rawVal = {}
         val.values.forEach(function (e) {
             if (e.css_attr === 'border') {
-                rawVal= e.value[device]
+                rawVal = e.value[device]
             }
-            
+
             if (e.css_attr === 'border-top') {
-                console.log(e.value[device])
-                rawVal['top']= e.value[device]
+                rawVal['top'] = e.value[device]
             }
             if (e.css_attr === 'border-bottom') {
-                console.log(e.value[device])
-                rawVal['bottom']= e.value[device]
+                rawVal['bottom'] = e.value[device]
             }
             if (e.css_attr === 'border-left') {
-                console.log(e.value[device])
-                rawVal['left']= e.value[device]
+                rawVal['left'] = e.value[device]
             }
             if (e.css_attr === 'border-right') {
-                console.log(e.value[device])
-                rawVal['right']= e.value[device]
+                rawVal['right'] = e.value[device]
             }
-            
-            
         })
 
-        return rawVal;
-
+        return rawVal
     }
-
 
     return (
         <>
@@ -134,7 +123,9 @@ export default function Border({ control }) {
                 }`}
                 style={conditionally_display() ? { display: 'none' } : { display: 'block' }}
             >
-                <BorderBoxControl value={processValue(value)} data-device={device} colors={colors} label={__('Borders')}  onChange={handleChange} />
+                <Tooltip text={device}>
+                    <BorderBoxControl value={processValue(value)} data-device={device} colors={colors}  onChange={handleChange} />
+                </Tooltip>
                 <StyleGenerator />
             </div>
         </>

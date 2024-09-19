@@ -11,12 +11,17 @@ class TemplateLoader
 
     public static function init()
     {
-        add_action('woocommerce_after_main_content', [__CLASS__, 'gf_social_icons_get_icon_data']);
-        add_filter('the_content', [__CLASS__, 'gf_social_icons_get_icon_data'], 99999);
-        add_filter('get_the_excerpt', [__CLASS__, 'gf_social_icons_get_icon_data'], 99999);
-        add_filter('render_block', [__CLASS__, 'gf_social_icons_get_icon_data_block'], 10, 2);
+        if (self::is_block_theme()) {
+            add_filter('render_block', [__CLASS__, 'gf_social_icons_get_icon_data_block'], 10, 2);
+        } else {
+            add_action('woocommerce_after_main_content', [__CLASS__, 'gf_social_icons_get_icon_data']);
+            add_filter('the_content', [__CLASS__, 'gf_social_icons_get_icon_data'], 99999);
+            add_filter('get_the_excerpt', [__CLASS__, 'gf_social_icons_get_icon_data'], 99999);
+        }
+
     }
-    public static function gf_social_icons_get_icon_data_block($block_content, $block){
+    public static function gf_social_icons_get_icon_data_block($block_content, $block)
+    {
         if ($block['blockName'] === 'core/template-part' && isset($block['attrs']['slug']) && $block['attrs']['slug'] === 'header') {
             $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper position--right'>" . self::load_template() . "</div>";
             $block_content .= $html;
@@ -24,6 +29,25 @@ class TemplateLoader
         }
 
         return $block_content;
+    }
+    public static function is_block_theme()
+    {
+        // Get the current theme
+        $theme = wp_get_theme();
+
+        // Check for the presence of theme.json file
+        $theme_json_path = get_template_directory() . '/theme.json';
+        if (file_exists($theme_json_path)) {
+            return true; // It's a block theme
+        }
+
+        // Check for the presence of block template files
+        $block_templates = glob(get_template_directory() . '/*.html');
+        if (!empty($block_templates)) {
+            return true; // It's likely a block theme
+        }
+
+        return false; // It's a classic theme
     }
     public static function gf_social_icons_get_icon_data($content)
     {
@@ -71,11 +95,12 @@ class TemplateLoader
         return ob_get_clean();
     }
 
-    public static function getStyleString($val){
-        if(gettype($val)==='string'){
+    public static function getStyleString($val)
+    {
+        if (gettype($val) === 'string') {
             return $val;
         }
-        return join(' ',$val);
+        return join(' ', $val);
     }
     public static function generateStyle()
     {
@@ -88,7 +113,7 @@ class TemplateLoader
                 // var_dump(gettype($singleStyle['value']['desktop']));
                 // echo '</pre>';
 
-                $desktop_value = isset($singleStyle['value']['desktop']) ? self::getStyleString( $singleStyle['value']['desktop']) : '';
+                $desktop_value = isset($singleStyle['value']['desktop']) ? self::getStyleString($singleStyle['value']['desktop']) : '';
                 $tablet_value = isset($singleStyle['value']['tablet']) ? self::getStyleString($singleStyle['value']['tablet']) : '';
                 $mobile_value = isset($singleStyle['value']['mobile']) ? self::getStyleString($singleStyle['value']['mobile']) : '';
 
@@ -106,7 +131,7 @@ class TemplateLoader
                     $markup_style .= '@media (max-width: 1020px) {' . $setting['css_selector'] . "{" . $singleStyle['css_attr'] . ":" . $tablet_value . "!important;}}";
                 }
                 if ($mobile_value !== null && $mobile_value != '') {
-                    $markup_style .= '@media (max-width: 714px) {' . $setting['css_selector'] . "{" . $singleStyle['css_attr'] . ":" . $mobile_value . "!important;}}";
+                    $markup_style .= '@media (max-width: 719px) {' . $setting['css_selector'] . "{" . $singleStyle['css_attr'] . ":" . $mobile_value . "!important;}}";
                 }
             }
         }
