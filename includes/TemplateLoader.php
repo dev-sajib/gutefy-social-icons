@@ -71,6 +71,12 @@ class TemplateLoader
         return ob_get_clean();
     }
 
+    public static function getStyleString($val){
+        if(gettype($val)==='string'){
+            return $val;
+        }
+        return join(' ',$val);
+    }
     public static function generateStyle()
     {
         $markup_style = '';
@@ -78,9 +84,13 @@ class TemplateLoader
 
         foreach ($get_value['styles'] as $setting) {
             foreach ($setting['values'] as $singleStyle) {
-                $desktop_value = isset($singleStyle['value']['desktop']) ? $singleStyle['value']['desktop'] : '';
-                $tablet_value = isset($singleStyle['value']['tablet']) ? $singleStyle['value']['tablet'] : '';
-                $mobile_value = isset($singleStyle['value']['mobile']) ? $singleStyle['value']['mobile'] : '';
+                // echo '<pre>';
+                // var_dump(gettype($singleStyle['value']['desktop']));
+                // echo '</pre>';
+
+                $desktop_value = isset($singleStyle['value']['desktop']) ? self::getStyleString( $singleStyle['value']['desktop']) : '';
+                $tablet_value = isset($singleStyle['value']['tablet']) ? self::getStyleString($singleStyle['value']['tablet']) : '';
+                $mobile_value = isset($singleStyle['value']['mobile']) ? self::getStyleString($singleStyle['value']['mobile']) : '';
 
                 if ($singleStyle['css_attr'] === 'font-family' && $desktop_value && $desktop_value != 'inherit') {
                     // Add font-family to the list if it's not already present

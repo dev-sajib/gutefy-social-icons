@@ -105,7 +105,7 @@ class Core extends BaseCustomizer
       [
         'id' => Settings::GENERAL_SETTING_ID_OPEN_IN_NEW_TAB_SETTINGS,
         'setting_args' => [
-          'default' => ['value'=>true, 'toggleValue' => ['true' => 'block', 'false' => 'none']],
+          'default' => ['value' => true, 'toggleValue' => ['true' => 'block', 'false' => 'none']],
           'transport' => 'postMessage',
           'type' => 'option',
           'capability' => 'manage_options',
@@ -392,7 +392,65 @@ class Core extends BaseCustomizer
         ],
         'custom_control' => "\GF_SOCIAL_ICONS\Controls\UnitInput"
       ],
-      
+      [
+        'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_WRAPPER_POSITION_TOP'],
+        'setting_args' => [
+          'default' => [
+            [
+              'css_attr' => 'top',
+              'value' => ['desktop' => '44%'],
+            ]
+          ],
+          'transport' => 'postMessage',
+          'type' => 'option',
+          'capability' => 'manage_options',
+          // 'sanitize_callback' => [$this, 'gf_social_icons_custom_sanitize'],
+          // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
+        ],
+        'control_args' => [
+          'label' => __('Adjust Vertical Position', TEXT_DOMAIN),
+          'section' => Settings::SECTION_STYLE_SETTINGS,
+          'input_attrs' => array(
+            'responsive' => true,
+            'css_selector' => "#gf_social_icons__wrapper",
+            'heading' => 'Advance Settings',
+            // 'control_for' => Settings::GENERAL_TAB_ELEMENT
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\UnitInput"
+      ],
+      [
+        'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_BORDER'],
+        'priority' => 1,
+        'setting_args' => [
+          'default' => [
+            'css_selector' => "#gf_social_icons__wrapper .gf_social_icons_social_icon",
+            'values' => [
+              ['css_attr' => 'border-top', 'value' => ['desktop' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '1px'], 'tablet' => ['color' => '#72aee6', 'style' => 'solid', 'width' => '1px']]],
+              ['css_attr' => 'border-right', 'value' => ['desktop' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '1px']]],
+              ['css_attr' => 'border-bottom', 'value' => ['desktop' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '1px']]],
+              ['css_attr' => 'border-left', 'value' => ['desktop' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '1px']]],
+            ]
+          ],
+          'transport' => 'postMessage',
+          'type' => 'option',
+          'capability' => 'manage_options',
+          // 'sanitize_callback' => [$this, 'gf_social_icons_custom_sanitize'],
+          // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
+        ],
+        'control_args' => [
+          'label' => __('Border', TEXT_DOMAIN),
+          'section' => Settings::SECTION_STYLE_SETTINGS,
+          'input_attrs' => array(
+            'responsive' => true,
+            'css_selector' => "#gf_social_icons__wrapper .gf_social_icons_social_icon",
+            'heading' => 'Advance Settings',
+            'control_for' => Settings::GENERAL_TAB_ELEMENT
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\BorderControl"
+      ],
+
     ];
 
 
