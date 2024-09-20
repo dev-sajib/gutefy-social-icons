@@ -82,6 +82,7 @@
       align-items: center;
       overflow: hidden;
       text-align: center;
+      width: 44px !important;
       aspect-ratio: 1;
       // transition: all 0.3s ease; /* Apply transition to all properties */
 
@@ -94,6 +95,7 @@
         display: flex;
 
         svg {
+          width: 16px;
           fill: var(--gutefy-icon-color);
         }
 

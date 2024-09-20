@@ -153,9 +153,12 @@ class Core extends BaseCustomizer
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_COLOR'],
         'setting_args' => [
           'default' => [
-            [
-              'css_attr' => 'fill',
-              'value' => ['desktop' => '#ffffff'],
+            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon span svg",
+            'device_wise_value' => [
+              'desktop' => [
+                'css_attr' => 'fill',
+                'value' => '#ffffff',
+              ],
             ]
           ],
           'transport' => 'postMessage',
@@ -169,7 +172,6 @@ class Core extends BaseCustomizer
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
-            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon span svg",
             'heading' => 'Advance Settings',
             'control_for' => Settings::GENERAL_TAB_ELEMENT
           ),
@@ -180,9 +182,12 @@ class Core extends BaseCustomizer
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_WRAPPER_BACKGROUND'],
         'setting_args' => [
           'default' => [
-            [
-              'css_attr' => 'background',
-              'value' => ['desktop' => '#3858E9'],
+            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon",
+            'device_wise_value' => [
+              'desktop' => [
+                'css_attr' => 'background',
+                'value' => '#3858E9',
+              ],
             ]
           ],
           'transport' => 'postMessage',
@@ -196,7 +201,6 @@ class Core extends BaseCustomizer
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
-            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon",
             'heading' => 'Advance Settings',
             'control_for' => Settings::GENERAL_TAB_ELEMENT
           ),
@@ -207,9 +211,12 @@ class Core extends BaseCustomizer
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_HOVER_COLOR'],
         'setting_args' => [
           'default' => [
-            [
-              'css_attr' => 'fill',
-              'value' => ['desktop' => ''],
+            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon:hover span svg",
+            'device_wise_value' => [
+              'desktop' => [
+                'css_attr' => 'fill',
+                'value' => '',
+              ],
             ]
           ],
           'transport' => 'postMessage',
@@ -223,7 +230,6 @@ class Core extends BaseCustomizer
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
-            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon:hover span svg",
             'heading' => 'Advance Settings',
             'control_for' => Settings::HOVER_TAB_ELEMENT
           ),
@@ -234,9 +240,12 @@ class Core extends BaseCustomizer
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_WRAPPER_HOVER_BACKGROUND'],
         'setting_args' => [
           'default' => [
-            [
-              'css_attr' => 'background',
-              'value' => ['desktop' => ''],
+            'css_selector' => "#gf_social_icons__wrapper .gf_social_icons_social_float",
+            'values' => [
+              [
+                'css_attr' => 'background',
+                'value' => ['desktop' => ''],
+              ]
             ]
           ],
           'transport' => 'postMessage',
@@ -250,7 +259,6 @@ class Core extends BaseCustomizer
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
-            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon:hover",
             'heading' => 'Advance Settings',
             'control_for' => Settings::HOVER_TAB_ELEMENT
           ),
@@ -261,9 +269,12 @@ class Core extends BaseCustomizer
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_SIZE'],
         'setting_args' => [
           'default' => [
-            [
-              'css_attr' => 'width',
-              'value' => ['desktop' => '16px'],
+            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon svg",
+            'device_wise_value' => [
+              'desktop' => [
+                'css_attr' => 'width',
+                'value' => '16px',
+              ],
             ]
           ],
           'transport' => 'postMessage',
@@ -277,7 +288,6 @@ class Core extends BaseCustomizer
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
-            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon svg",
             'heading' => 'Advance Settings',
             'control_for' => Settings::GENERAL_TAB_ELEMENT
           ),
@@ -288,9 +298,12 @@ class Core extends BaseCustomizer
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_HOVER_SIZE'],
         'setting_args' => [
           'default' => [
-            [
-              'css_attr' => 'width',
-              'value' => ['desktop' => ''],
+            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon:hover svg",
+            'device_wise_value' => [
+              'desktop' => [
+                'css_attr' => 'width',
+                'value' => '',
+              ],
             ]
           ],
           'transport' => 'postMessage',
@@ -304,7 +317,6 @@ class Core extends BaseCustomizer
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
-            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon:hover svg",
             'heading' => 'Advance Settings',
             'control_for' => Settings::HOVER_TAB_ELEMENT
           ),
@@ -315,9 +327,20 @@ class Core extends BaseCustomizer
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_WRAPPER_SIZE'],
         'setting_args' => [
           'default' => [
-            [
-              'css_attr' => 'width',
-              'value' => ['desktop' => '44px'],
+            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon",
+            'device_wise_value' => [
+              'desktop' => [
+                'css_attr' => 'width',
+                'value' => '44px',
+              ],
+              'tablet' => [
+                'css_attr' => 'width',
+                'value' => '34px',
+              ],
+              'mobile' => [
+                'css_attr' => 'width',
+                'value' => '24px',
+              ],
             ]
           ],
           'transport' => 'postMessage',
@@ -331,7 +354,6 @@ class Core extends BaseCustomizer
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
-            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon",
             'heading' => 'Advance Settings',
             'control_for' => Settings::GENERAL_TAB_ELEMENT
           ),
@@ -342,9 +364,12 @@ class Core extends BaseCustomizer
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_WRAPPER_HOVER_SIZE'],
         'setting_args' => [
           'default' => [
-            [
-              'css_attr' => 'width',
-              'value' => ['desktop' => ''],
+            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon:hover",
+            'device_wise_value' => [
+              'desktop' => [
+                'css_attr' => 'width',
+                'value' => '',
+              ],
             ]
           ],
           'transport' => 'postMessage',
@@ -358,7 +383,6 @@ class Core extends BaseCustomizer
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
-            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon:hover",
             'heading' => 'Advance Settings',
             'control_for' => Settings::HOVER_TAB_ELEMENT
           ),
@@ -368,10 +392,14 @@ class Core extends BaseCustomizer
       [
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_SPACING'],
         'setting_args' => [
+
           'default' => [
-            [
-              'css_attr' => 'row-gap',
-              'value' => ['desktop' => '20px'],
+            'css_selector' => "#gf_social_icons__wrapper .gf_social_icons_social_float",
+            'device_wise_value' => [
+              'desktop' => [
+                'css_attr' => 'row-gap',
+                'value' => '20px',
+              ],
             ]
           ],
           'transport' => 'postMessage',
@@ -385,7 +413,6 @@ class Core extends BaseCustomizer
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
-            'css_selector' => "#gf_social_icons__wrapper .gf_social_icons_social_float",
             'heading' => 'Advance Settings',
             'control_for' => Settings::GENERAL_TAB_ELEMENT
           ),
@@ -396,9 +423,12 @@ class Core extends BaseCustomizer
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_WRAPPER_POSITION_TOP'],
         'setting_args' => [
           'default' => [
-            [
-              'css_attr' => 'top',
-              'value' => ['desktop' => '44%'],
+            'css_selector' => "#gf_social_icons__wrapper",
+            'device_wise_value' => [
+              'desktop' => [
+                'css_attr' => 'top',
+                'value' => '44%',
+              ],
             ]
           ],
           'transport' => 'postMessage',
@@ -412,7 +442,6 @@ class Core extends BaseCustomizer
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
-            'css_selector' => "#gf_social_icons__wrapper",
             'heading' => 'Advance Settings',
             // 'control_for' => Settings::GENERAL_TAB_ELEMENT
           ),
@@ -426,7 +455,7 @@ class Core extends BaseCustomizer
           'default' => [
             'css_selector' => "#gf_social_icons__wrapper .gf_social_icons_social_icon",
             'values' => [
-              ['css_attr' => 'border-top', 'value' => ['desktop' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '1px'], 'tablet' => ['color' => '#72aee6', 'style' => 'solid', 'width' => '1px']]],
+              ['css_attr' => 'border-top', 'value' => ['desktop' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '1px']]],
               ['css_attr' => 'border-right', 'value' => ['desktop' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '1px']]],
               ['css_attr' => 'border-bottom', 'value' => ['desktop' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '1px']]],
               ['css_attr' => 'border-left', 'value' => ['desktop' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '1px']]],

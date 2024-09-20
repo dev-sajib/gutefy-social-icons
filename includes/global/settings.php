@@ -27,7 +27,9 @@ class Settings
         'STYLE_SETTING_ID_WRAPPER_BACKGROUND' => 'gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-color]',
         'STYLE_SETTING_ID_ICON_HOVER_COLOR' => 'gf_social_icons_style_settings[styles][--gutefy-icon-hover-color]',
         'STYLE_SETTING_ID_WRAPPER_HOVER_BACKGROUND' => 'gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-hover-color]',
+
         // 'STYLE_SETTING_ID_WRAPPER_POSITION_RIGHT' => 'gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-right]',
+
         'STYLE_SETTING_ID_WRAPPER_POSITION_TOP' => 'gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-top]',
         'STYLE_SETTING_ID_ICON_SIZE' => 'gf_social_icons_style_settings[styles][--gutefy-icon-size]',
         'STYLE_SETTING_ID_ICON_HOVER_SIZE' => 'gf_social_icons_style_settings[styles][--gutefy-icon-hover-size]',

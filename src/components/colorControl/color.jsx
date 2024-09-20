@@ -1,6 +1,6 @@
 /** @format */
 
-import { useState } from '@wordpress/element'
+import { useState,useEffect } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 import { Dropdown, Button, ColorPicker, ColorPalette, GradientPicker } from '@wordpress/components'
 import './colorStyle.scss'
@@ -9,35 +9,64 @@ import Tooltip from '../tooltip/tooltip'
 import { StyleGenerator } from '../styleGenerator'
 
 export default function Color({ control }) {
-    const [ gradient, setGradient ] = useState( null );
+    
+    // state control
+    
+    const [gradient, setGradient] = useState(null)
     const [device, setDevice] = useState('desktop')
-    let preValue = ''
+    const [value, setValue] = useState(control.settings.default())
 
-    if (control.settings.default()['css_selector']) {
-        preValue = control.settings.default()
-    } else {
-        preValue = typeof control.settings.default() === 'object' && {
-            css_selector: control.params.input_attrs.css_selector,
-            values: control.settings.default(),
-        }
-    }
+    // const handleChange = (newValue) => {
+    //     let property = value.values[0].css_attr
+    //     let targetedCSSAttr = { ...value['values'].filter((e) => e['css_attr'] == property)[0], value: newValue }
 
-    const [value, setValue] = useState(preValue)
+    //     newValue = value['values'].map((item) => (item.css_attr === property ? targetedCSSAttr : item))
 
-    const devices = ['desktop', 'tablet', 'mobile']
+    //     setValue((prevValue) => ({
+    //         ...prevValue,
+    //         values: newValue,
+    //     }))
+    // }
 
     const handleChange = (newValue) => {
-        let property = value.values[0].css_attr
-        let targetedCSSAttr = { ...value['values'].filter((e) => e['css_attr'] == property)[0], value: newValue }
+        let css_attr = value.device_wise_value[device]?.css_attr || value.device_wise_value['desktop'].css_attr
 
-        newValue = value['values'].map((item) => (item.css_attr === property ? targetedCSSAttr : item))
+        let updatedDeviceWiseValue = {
+            ...value.device_wise_value,
+            [device]: { css_attr: css_attr, value: newValue },
+        }
+        // console.log('handleChange=>', updatedDeviceWiseValue);
+        let updatedValue = {
+            ...value,
+            device_wise_value: updatedDeviceWiseValue,
+        }
+        // console.log(updatedValue);
 
-        setValue((prevValue) => ({
-            ...prevValue,
-            values: newValue,
-        }))
+        setValue(updatedValue)
+
+        control.setting.set({ ...updatedValue, id: Math.floor(Math.random() * 9000) + 100 })
     }
-    function getDeviceValue(value, device) {
+
+    // function getDeviceValue(value, device) {
+    //     // Define the order of devices based on priority (mobile -> tablet -> desktop)
+    //     const devices = ['mobile', 'tablet', 'desktop']
+
+    //     // Get the index of the required device in the priority list
+    //     const deviceIndex = devices.indexOf(device)
+
+    //     // Start checking from the current device and fallback to previous ones if not available
+    //     for (let i = deviceIndex; i < devices.length; i++) {
+    //         const currentDevice = devices[i]
+    //         const currentDeviceValue = value['values'][0]['value'][currentDevice]
+
+    //         // Check if the key exists and is not null/undefined
+    //         if (currentDeviceValue !== undefined && currentDeviceValue !== null) {
+    //             return currentDeviceValue // Return if value is found
+    //         }
+    //     }
+    // }
+    function getDeviceValue(device_wise_value, device) {
+        // console.log('get=>',device_wise_value)
         // Define the order of devices based on priority (mobile -> tablet -> desktop)
         const devices = ['mobile', 'tablet', 'desktop']
 
@@ -47,7 +76,7 @@ export default function Color({ control }) {
         // Start checking from the current device and fallback to previous ones if not available
         for (let i = deviceIndex; i < devices.length; i++) {
             const currentDevice = devices[i]
-            const currentDeviceValue = value['values'][0]['value'][currentDevice]
+            const currentDeviceValue = device_wise_value[currentDevice] ? device_wise_value[currentDevice]['value'] : undefined
 
             // Check if the key exists and is not null/undefined
             if (currentDeviceValue !== undefined && currentDeviceValue !== null) {
@@ -55,10 +84,11 @@ export default function Color({ control }) {
             }
         }
     }
-    const selfExecuteFunction = () => {
+
+    //EXECUTED FUNCTION IN EVERY RENDER
+    useEffect(() => {
         linkResponsiveButtonWithCustomizerFooterButton()
-        control.setting.set(value)
-    }
+    }, [])
 
     const handleResponsive = (element) => {
         wp.customize.previewedDevice(element.target.dataset.device)
@@ -85,7 +115,6 @@ export default function Color({ control }) {
         }
         return false
     }
-    selfExecuteFunction()
 
     const colorPalette = [
         { name: '1', color: '#0D1B2A' },
@@ -100,7 +129,6 @@ export default function Color({ control }) {
         { name: '12', color: '#4CC9F0' },
     ]
 
-    // console.log('🔥', value['values'])
 
     return (
         <>
@@ -110,23 +138,6 @@ export default function Color({ control }) {
                 }`}
                 style={conditionally_display() ? { display: 'none' } : { display: 'block' }}
             >
-                <header className='gf-social-icons-settings-title-wrapper'>
-                    <label className='gf-social-icons-settings-label' htmlFor=''>
-                        {control.params.label}
-                    </label>
-                    <ul className='gf-social-icons-responsive-controls gf-social-icons-devices'>
-                        {devices.map((item, index) => (
-                            <li
-                                key={index}
-                                data-device={item}
-                                onClick={(element) => {
-                                    handleResponsive(element)
-                                }}
-                                className={`gf-social-icons-${item} ${item == device ? 'active' : ''} `}
-                            ></li>
-                        ))}
-                    </ul>
-                </header>
 
                 <div>
                     <div id='gf-social-icons-color-control-wrapper' className='gf-social-icons-inline-settings-wrapper'>
@@ -139,7 +150,7 @@ export default function Color({ control }) {
                             popoverProps={{ placement: 'bottom-start' }}
                             renderToggle={({ isOpen, onToggle }) => (
                                 <Tooltip text={device}>
-                                    <Button style={{ backgroundColor: getDeviceValue(value, device) }} className='color-selector' variant='primary' onClick={onToggle} aria-expanded={isOpen}></Button>
+                                    <Button style={{ backgroundColor: getDeviceValue(value.device_wise_value , device) }} className='color-selector' variant='primary' onClick={onToggle} aria-expanded={isOpen}></Button>
                                 </Tooltip>
                             )}
                             renderContent={() => {
@@ -147,18 +158,18 @@ export default function Color({ control }) {
                                     <div>
                                         <ColorPicker
                                             data-device={device}
-                                            color={value['values'][0]['value'][device]}
-                                            onChange={(newValue) => handleChange({ ...value['values'][0]['value'], [device]: newValue })}
+                                            color={getDeviceValue(value.device_wise_value , device)}
+                                            onChange={handleChange}
                                             enableAlpha
                                         />
                                         <ColorPalette
                                             colors={colorPalette}
                                             disableCustomColors={true}
                                             clearable={false}
-                                            onChange={(newValue) => handleChange({ ...value['values'][0]['value'], [device]: newValue })}
+                                            onChange={handleChange}
                                             enableAlpha
                                         />
-                                        <GradientPicker
+                                        {/* <GradientPicker
                                             value={gradient}
                                             onChange={(currentGradient) => setGradient(currentGradient)}
                                             gradients={[
@@ -178,7 +189,7 @@ export default function Color({ control }) {
                                                     slug: 'rastafari',
                                                 },
                                             ]}
-                                        />
+                                        /> */}
                                     </div>
                                 )
                             }}

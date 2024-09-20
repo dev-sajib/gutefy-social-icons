@@ -32,7 +32,8 @@ export function StyleGenerator() {
      *
      * @returns {string|undefined} - The generated CSS string or undefined if no markup is produced.
      */
-    const cssMarktp = (css_selector, css_attr, value) => {
+    const cssMarktp = (css_selector, value, device_name) => {
+        console.log(css_selector, value, device_name)
         let markup = ''
 
         if (value.desktop) {
@@ -64,8 +65,9 @@ export function StyleGenerator() {
      * @returns {string} - The updated style markup string with new styles added.
      */
     const generateMarkup = (elementObj, style_markup) => {
-        style_markup += Object.values(elementObj.values)
-            .map((e) => cssMarktp(elementObj.css_selector, e.css_attr, e.value)) //  ,
+        console.log('generateMarkup=>', elementObj)
+        style_markup += Object.entries(elementObj.device_wise_value)
+            .map(([device_name, value]) => cssMarktp(elementObj.css_selector, value, device_name))
             .join('')
 
         return style_markup
@@ -74,23 +76,48 @@ export function StyleGenerator() {
     /**
      * Generates the CSS based on customizer settings and injects it into the preview iframe.
      */
-    function generateBuilderStyleCss() {
+    async function generateBuilderStyleCss() {
         const style_settings_id = CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['styleSettings']
         let style_markup = ''
+        let singleStyleObj = {}
 
-        let styles = Object.values(style_settings_id)
-            .map((e) => generateMarkup(wp.customize(e).get(), style_markup))
-            .join(' ')
-        
+        Object.values(style_settings_id).map((settings_id) => {
+            let single_style = wp.customize(settings_id).get()
+            if (single_style.device_wise_value) {
+                Object.entries(single_style.device_wise_value).forEach(function ([single_device_name, single_device_values]) {
+                    // Check if single_device_name already exists, if not, initialize it as an array
+                    singleStyleObj[single_device_name] = singleStyleObj[single_device_name] || []
+
+                    // Append the new style object to the existing array
+                    singleStyleObj[single_device_name].push({
+                        css_selector: single_style.css_selector,
+                        ...single_device_values,
+                    })
+
+                    console.log('singleStyleObj=>', singleStyleObj)
+                })
+            }
+        })
+
+        console.log('singleStyleObj=>', singleStyleObj)
+        let styles = Object.entries(singleStyleObj)
+            .map(([device, value]) => {
+                if (device == 'desktop') {
+                    return value.map((e) => `${e.css_selector} { ${e.css_attr} : ${e.value} !important }`)
+                } else if (device == 'tablet') {
+                    return value.map((e) => `@media(max-width:1020px){${e.css_selector}{ ${e.css_attr} : ${e.value} !important}}`)
+                } else if (device == 'mobile') {
+                    return value.map((e) => `@media(max-width:719px){${e.css_selector}{ ${e.css_attr} : ${e.value} !important}}`)
+                }
+            })
+            .join()
+            .replaceAll(',', '   ')
+
         let iframeBody = document.querySelector('iframe')?.contentDocument.body
-        console.log(iframeBody);
         if (iframeBody) {
-            const mainContainer = iframeBody.querySelector('#gf_social_icons__wrapper')
-            
-            console.log(mainContainer)
-            if (mainContainer) {
-                console.log('hisad')
+            let mainContainer = iframeBody.querySelector('#gf_social_icons__wrapper')
 
+            if (mainContainer) {
                 // Check if a <style> element for dynamic styles already exists.
                 let styleElement = iframeBody.querySelector('#gf-social-icons-dynamic-builder-css')
                 if (!styleElement) {
@@ -105,5 +132,4 @@ export function StyleGenerator() {
 
     // Call the function to generate and inject the CSS into the preview.
     generateBuilderStyleCss()
-
 }

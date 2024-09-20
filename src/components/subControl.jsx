@@ -175,79 +175,21 @@ export function WithoutResponsiveToggle({ control }) {
     )
 }
 
-export function ResponsiveUnitControl({ control }) {
-    const [device, setDevice] = useState('desktop')
-
-    let preValue = ''
-
-    if (control.settings.default()['css_selector']) {
-        preValue = control.settings.default()
-    } else {
-        preValue = typeof control.settings.default() === 'object' && {
-            css_selector: control.params.input_attrs.css_selector,
-            values: control.settings.default(),
-        }
-    }
-
-    const [value, setValue] = useState(preValue)
-
-    function getDeviceValue(value, device) {
-        // Define the order of devices based on priority (mobile -> tablet -> desktop)
-        const devices = ['mobile', 'tablet', 'desktop']
-
-        // Get the index of the required device in the priority list
-        const deviceIndex = devices.indexOf(device)
-
-        // Start checking from the current device and fallback to previous ones if not available
-        for (let i = deviceIndex; i < devices.length; i++) {
-            const currentDevice = devices[i]
-            const currentDeviceValue = value['values'][0]['value'][currentDevice]
-
-            // Check if the key exists and is not null/undefined
-            if (currentDeviceValue !== undefined && currentDeviceValue !== null) {
-                return currentDeviceValue // Return if value is found
-            }
-        }
-    }
-
-    const handleChange = (newValue) => {
-        let property = value.values[0].css_attr
-        let targetedCSSAttr = { ...value['values'].filter((e) => e['css_attr'] == property)[0], value: newValue }
-
-        newValue = value['values'].map((item) => (item.css_attr === property ? targetedCSSAttr : item))
-
-        setValue((prevValue) => ({
-            ...prevValue,
-            values: newValue,
-        }))
-    }
-    const selfExecuteFunction = () => {
-        linkResponsiveButtonWithCustomizerFooterButton()
-        control.setting.set(value)
-    }
-    const linkResponsiveButtonWithCustomizerFooterButton = () => {
-        Array.from(document.querySelectorAll('#customize-footer-actions .devices button')).map((e) =>
-            e.addEventListener('click', () => {
-                setDevice(wp.customize.previewedDevice.get())
-            })
-        )
-    }
-
-
-
-    selfExecuteFunction()
+export function ResponsiveUnitControl({ handleChange,value,device,getDeviceValue,label }) {
+    
     return (
         <div className=''>
             <div id='gf-social-icons-toggle-button-wrapper' className='gf-social-icons-inline-settings-wrapper'>
                 <label className='gf-social-icons-settings-label' htmlFor=''>
-                    {control.params.label}
+                    {label}
                 </label>
                 <Tooltip text={device}>
                     <UnitControl
                         style={{ width: '80px' }}
                         data-device={device}
                         value={getDeviceValue(value, device)}
-                        onChange={(newValue) => handleChange({ ...value['values'][0]['value'], [device]: newValue })}
+                        // onChange={(newValue) => handleChange({ ...value['values'][0]['value'], [device]: newValue })}
+                        onChange={handleChange}
                     />
                 </Tooltip>
                 <StyleGenerator />
