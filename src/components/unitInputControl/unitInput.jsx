@@ -12,11 +12,11 @@ export function UnitInput({ control }) {
     const [value, setValue] = useState(control.settings.default())
 
 
-    // console.log('value=>' ,value)
+    // //console.log('value=>' ,value)
     //helper function
     function getDeviceValue(device_wise_value, device) {
 
-        // console.log('get=>',device_wise_value)
+        // //console.log('get=>',device_wise_value)
         // Define the order of devices based on priority (mobile -> tablet -> desktop)
         const devices = ['mobile', 'tablet', 'desktop']
 
@@ -44,12 +44,12 @@ export function UnitInput({ control }) {
             ...value.device_wise_value,
             [device] : {css_attr:css_attr, value: newValue}
         }
-        // console.log('handleChange=>', updatedDeviceWiseValue);
+        // //console.log('handleChange=>', updatedDeviceWiseValue);
         let updatedValue = {
             ...value,
             device_wise_value: updatedDeviceWiseValue
         }
-        // console.log(updatedValue);
+        // //console.log(updatedValue);
 
         setValue(updatedValue)
 

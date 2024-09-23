@@ -10,7 +10,7 @@ export function IconPopup(props) {
         const spanEle = e.target.closest('span')
         const iconId = spanEle.getAttribute('icon-id')
         props.setShowPopup([false, iconId])
-        //console.log(props.input);
+        ////console.log(props.input);
         props.dataChangeHandle(iconId, props.input[1], props.index,props.input[2])
         // wp.customize.previewer.refresh();
     }

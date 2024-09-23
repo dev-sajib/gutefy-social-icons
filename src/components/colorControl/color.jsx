@@ -1,21 +1,21 @@
 /** @format */
 
-import { useState,useEffect } from '@wordpress/element'
+import { useState, useEffect } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 import { Dropdown, Button, ColorPicker, ColorPalette, GradientPicker } from '@wordpress/components'
 import './colorStyle.scss'
 import Tooltip from '../tooltip/tooltip'
+import transparentBG from './transparent.png'
 // internal dependency
 import { StyleGenerator } from '../styleGenerator'
 
 export default function Color({ control }) {
-    
     // state control
-    
+
     const [gradient, setGradient] = useState(null)
     const [device, setDevice] = useState('desktop')
     const [value, setValue] = useState(control.settings.default())
-
+    // console.log(value);
     // const handleChange = (newValue) => {
     //     let property = value.values[0].css_attr
     //     let targetedCSSAttr = { ...value['values'].filter((e) => e['css_attr'] == property)[0], value: newValue }
@@ -35,38 +35,19 @@ export default function Color({ control }) {
             ...value.device_wise_value,
             [device]: { css_attr: css_attr, value: newValue },
         }
-        // console.log('handleChange=>', updatedDeviceWiseValue);
+        // //console.log('handleChange=>', updatedDeviceWiseValue);
         let updatedValue = {
             ...value,
             device_wise_value: updatedDeviceWiseValue,
         }
-        // console.log(updatedValue);
+        // //console.log(updatedValue);
 
         setValue(updatedValue)
 
         control.setting.set({ ...updatedValue, id: Math.floor(Math.random() * 9000) + 100 })
     }
-
-    // function getDeviceValue(value, device) {
-    //     // Define the order of devices based on priority (mobile -> tablet -> desktop)
-    //     const devices = ['mobile', 'tablet', 'desktop']
-
-    //     // Get the index of the required device in the priority list
-    //     const deviceIndex = devices.indexOf(device)
-
-    //     // Start checking from the current device and fallback to previous ones if not available
-    //     for (let i = deviceIndex; i < devices.length; i++) {
-    //         const currentDevice = devices[i]
-    //         const currentDeviceValue = value['values'][0]['value'][currentDevice]
-
-    //         // Check if the key exists and is not null/undefined
-    //         if (currentDeviceValue !== undefined && currentDeviceValue !== null) {
-    //             return currentDeviceValue // Return if value is found
-    //         }
-    //     }
-    // }
     function getDeviceValue(device_wise_value, device) {
-        // console.log('get=>',device_wise_value)
+        // //console.log('get=>',device_wise_value)
         // Define the order of devices based on priority (mobile -> tablet -> desktop)
         const devices = ['mobile', 'tablet', 'desktop']
 
@@ -76,6 +57,7 @@ export default function Color({ control }) {
         // Start checking from the current device and fallback to previous ones if not available
         for (let i = deviceIndex; i < devices.length; i++) {
             const currentDevice = devices[i]
+            // console.log(device_wise_value);
             const currentDeviceValue = device_wise_value[currentDevice] ? device_wise_value[currentDevice]['value'] : undefined
 
             // Check if the key exists and is not null/undefined
@@ -129,7 +111,6 @@ export default function Color({ control }) {
         { name: '12', color: '#4CC9F0' },
     ]
 
-
     return (
         <>
             <div
@@ -138,7 +119,6 @@ export default function Color({ control }) {
                 }`}
                 style={conditionally_display() ? { display: 'none' } : { display: 'block' }}
             >
-
                 <div>
                     <div id='gf-social-icons-color-control-wrapper' className='gf-social-icons-inline-settings-wrapper'>
                         <label className='gf-social-icons-settings-label' htmlFor=''>
@@ -150,25 +130,23 @@ export default function Color({ control }) {
                             popoverProps={{ placement: 'bottom-start' }}
                             renderToggle={({ isOpen, onToggle }) => (
                                 <Tooltip text={device}>
-                                    <Button style={{ backgroundColor: getDeviceValue(value.device_wise_value , device) }} className='color-selector' variant='primary' onClick={onToggle} aria-expanded={isOpen}></Button>
+                                    <Button
+                                        style={{
+                                            background: getDeviceValue(value.device_wise_value, device) === '' ? `url(${transparentBG})` : getDeviceValue(value.device_wise_value, device),
+                                            backgroundSize: 'cover',
+                                        }}
+                                        className='color-selector'
+                                        variant='primary'
+                                        onClick={onToggle}
+                                        aria-expanded={isOpen}
+                                    ></Button>
                                 </Tooltip>
                             )}
                             renderContent={() => {
                                 return (
                                     <div>
-                                        <ColorPicker
-                                            data-device={device}
-                                            color={getDeviceValue(value.device_wise_value , device)}
-                                            onChange={handleChange}
-                                            enableAlpha
-                                        />
-                                        <ColorPalette
-                                            colors={colorPalette}
-                                            disableCustomColors={true}
-                                            clearable={false}
-                                            onChange={handleChange}
-                                            enableAlpha
-                                        />
+                                        <ColorPicker data-device={device} color={getDeviceValue(value.device_wise_value, device)} onChange={handleChange} enableAlpha />
+                                        <ColorPalette colors={colorPalette} disableCustomColors={true} clearable={false} onChange={handleChange} enableAlpha />
                                         {/* <GradientPicker
                                             value={gradient}
                                             onChange={(currentGradient) => setGradient(currentGradient)}

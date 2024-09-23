@@ -8,34 +8,9 @@ import Tooltip from '../tooltip/tooltip'
 import { UnitInput } from '../unitInputControl/unitInput'
 
 export default function Border({ control }) {
-    //STATE DECLEARATION =>
+    //STATE DECLEARATION
     const [device, setDevice] = useState(wp.customize.previewedDevice.get())
     const [value, setValue] = useState(control.settings.default())
-
-    //SYNC RESPONSIVE BUTTON =>
-    const linkResponsiveButtonWithCustomizerFooterButton = () => {
-        Array.from(document.querySelectorAll('#customize-footer-actions .devices button')).map((e) =>
-            e.addEventListener('click', () => {
-                setDevice(wp.customize.previewedDevice.get())
-            })
-        )
-    }
-
-    // HANDLE CONDITIONAL DISPLAY =>
-    const conditionally_display = () => {
-        if (control.params.input_attrs.conditional_dependency) {
-            const dependency_control_id = control.params.input_attrs.conditional_dependency
-            const dependency_control_value = control.params.input_attrs.conditional_dependency_value
-            const dependency_control_db_value = wp.customize.settings.settings[dependency_control_id].value
-
-            if (dependency_control_db_value === dependency_control_value) {
-                return false
-            } else {
-                return true
-            }
-        }
-        return false
-    }
 
     //DEFAULT COLOR PLATTER FOR BORDER COLOR SELECTION =>
     const colors = [
@@ -67,88 +42,117 @@ export default function Border({ control }) {
 
     //HANDLE CHANGES =>
     const handleChange = (newBorders) => {
-        console.log(newBorders)
-        let border = {}
-        value.values.forEach((e) => (border.values = e))
-        console.log(border)
-
-        Object.entries(newBorders).map(([key, value], index) => {
-            if (typeof value === 'string') {
-                border.values.map((e, index) => {
-                    if (e.css_attr == 'border') {
-                        e.value[device][key] = value
-                    } else if (!e.css_attr == 'border') {
-                        border.css_attr = 'border'
-                        border.value[device][key] = value
-                    }
-                })
+        if (typeof Object.values(newBorders)[0] === 'string') {
+            newBorders = {
+                css_attr: 'border',
+                value: newBorders,
             }
-        })
-        // if (newBorders.width || newBorders.color || newBorders.style) {
-        //     border.css_attr = 'border'
-        //     border.value = value.values[0].value
-        //     border.value[device] = newBorders
-        // } else {
-        //     let multiBorder = {};
+        } else {
+            newBorders = Object.entries(newBorders).map(function ([elementName, elementValue]) {
+                if (typeof elementValue === 'object') {
+                    return {
+                        css_attr: `border-${elementName}`,
+                        value: elementValue,
+                    }
+                }
 
-        //     console.log('Unlinked')
-        // }
+                if (typeof elementValue == 'string') {
+                }
+            })
+        }
+
+        let updatedDeviceWiseValue = {
+            ...value.device_wise_value,
+            [device]: newBorders,
+        }
         let updatedValue = {
             ...value,
-            values: [border],
+            device_wise_value: updatedDeviceWiseValue,
         }
+        //console.log(updatedValue);
+
         setValue(updatedValue)
+
         control.setting.set({ ...updatedValue, id: Math.floor(Math.random() * 9000) + 100 })
     }
-    function getDeviceValue(value, device) {
-        // Define the order of devices based on priority (mobile -> tablet -> desktop)
-
+    //helper function
+    function getDeviceValue(device_wise_value, device) {
         const devices = ['mobile', 'tablet', 'desktop']
-
         // Get the index of the required device in the priority list
         const deviceIndex = devices.indexOf(device)
 
         // Start checking from the current device and fallback to previous ones if not available
         for (let i = deviceIndex; i < devices.length; i++) {
             const currentDevice = devices[i]
-            const currentDeviceValue = value[currentDevice]
+            let currentDeviceValue = {}
+            if (device_wise_value[currentDevice]) {
+                if (device_wise_value[currentDevice].value) {
+                    currentDeviceValue=device_wise_value[currentDevice].value
+                }
+                else{
+                    device_wise_value[currentDevice].forEach((e) => {
+                        //console.log(e.css_attr)
+                        let tempKey
+                        if (e.css_attr === 'border-top') {
+                            tempKey = 'top'
+                        }
+                        if (e.css_attr === 'border-bottom') {
+                            tempKey = 'bottom'
+                        }
+                        if (e.css_attr === 'border-left') {
+                            tempKey = 'left'
+                        }
+                        if (e.css_attr === 'border-right') {
+                            tempKey = 'right'
+                        }
+
+                        currentDeviceValue = {
+                            ...currentDeviceValue,
+                            [tempKey]: e.value,
+                        }
+                    })
+                }
+            } else {
+                currentDeviceValue = undefined
+            }
 
             // Check if the key exists and is not null/undefined
             if (currentDeviceValue !== undefined && currentDeviceValue !== null) {
+                //console.log(currentDeviceValue)
                 return currentDeviceValue // Return if value is found
             }
         }
+    }
+
+    //SYNC RESPONSIVE BUTTON =>
+    const linkResponsiveButtonWithCustomizerFooterButton = () => {
+        Array.from(document.querySelectorAll('#customize-footer-actions .devices button')).map((e) =>
+            e.addEventListener('click', () => {
+                setDevice(wp.customize.previewedDevice.get())
+            })
+        )
+    }
+
+    // HANDLE CONDITIONAL DISPLAY =>
+    const conditionally_display = () => {
+        if (control.params.input_attrs.conditional_dependency) {
+            const dependency_control_id = control.params.input_attrs.conditional_dependency
+            const dependency_control_value = control.params.input_attrs.conditional_dependency_value
+            const dependency_control_db_value = wp.customize.settings.settings[dependency_control_id].value
+
+            if (dependency_control_db_value === dependency_control_value) {
+                return false
+            } else {
+                return true
+            }
+        }
+        return false
     }
 
     //EXECUTED FUNCTION IN EVERY RENDER
     useEffect(() => {
         linkResponsiveButtonWithCustomizerFooterButton()
     }, [])
-
-    const processValue = (val) => {
-        let rawVal = {}
-        val.values.forEach(function (e) {
-            if (e.css_attr === 'border') {
-                rawVal = getDeviceValue(e.value, device)
-            }
-
-            if (e.css_attr === 'border-top') {
-                rawVal['top'] = getDeviceValue(e.value, device)
-            }
-            if (e.css_attr === 'border-bottom') {
-                rawVal['bottom'] = getDeviceValue(e.value, device)
-            }
-            if (e.css_attr === 'border-left') {
-                rawVal['left'] = getDeviceValue(e.value, device)
-            }
-            if (e.css_attr === 'border-right') {
-                rawVal['right'] = getDeviceValue(e.value, device)
-            }
-        })
-
-        return rawVal
-    }
-    control.setting.set(value)
 
     return (
         <>
@@ -159,7 +163,7 @@ export default function Border({ control }) {
                 style={conditionally_display() ? { display: 'none' } : { display: 'block' }}
             >
                 <Tooltip text={device}>
-                    <BorderBoxControl value={processValue(value)} data-device={device} colors={colors} onChange={handleChange} />
+                    <BorderBoxControl value={getDeviceValue(value.device_wise_value, device)} data-device={device} colors={colors} onChange={handleChange} />
                 </Tooltip>
                 <StyleGenerator />
             </div>

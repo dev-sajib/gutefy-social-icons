@@ -1,6 +1,6 @@
 /* Tooltip.css */
 .tooltip-container {
-  &>div {
+  & .components-border-box-control  {
     width: 100% !important;
 }
   position: relative;

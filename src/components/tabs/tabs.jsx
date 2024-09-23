@@ -21,7 +21,7 @@ export function Tabs({ control }) {
     }
 
     window.addEventListener('load', () => {
-        setTimeout(function() {
+        setTimeout(function () {
             handleChange();
         }, 1000);
     })

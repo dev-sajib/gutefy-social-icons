@@ -16,8 +16,13 @@ class Settings
     const GENERAL_SETTING_ID_MOBILE_VISIBILITY_SETTINGS = 'gf_social_icons_mobile_visiblity_settings';
     const GLOBAL_ID__TAB = 'gf_social_icons_tab_settings';
 
+
+    const STYLE_SETTING_ID_WRAPPER_POSITION_RIGHT = 'gf_social_icons_position_horizontally';
+
+
     //ANCHOR - PARTIAL SETTINGS ID
     const PARTIAL_GENERAL_SETTING_ID_SOCIAL_REPEATER = 'gf_social_icons_general_settings_partial';
+    const PARTIAL_STYLE_SETTING_ID_WRAPPER_POSITION_RIGHT = 'gf_social_icons_position_horizontally_partial';
     //ANCHOR - STYLE SETTINGS ID
 
 
@@ -28,7 +33,6 @@ class Settings
         'STYLE_SETTING_ID_ICON_HOVER_COLOR' => 'gf_social_icons_style_settings[styles][--gutefy-icon-hover-color]',
         'STYLE_SETTING_ID_WRAPPER_HOVER_BACKGROUND' => 'gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-hover-color]',
 
-        // 'STYLE_SETTING_ID_WRAPPER_POSITION_RIGHT' => 'gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-right]',
 
         'STYLE_SETTING_ID_WRAPPER_POSITION_TOP' => 'gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-top]',
         'STYLE_SETTING_ID_ICON_SIZE' => 'gf_social_icons_style_settings[styles][--gutefy-icon-size]',
