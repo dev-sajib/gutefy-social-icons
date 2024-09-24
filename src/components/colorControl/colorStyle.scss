@@ -1,0 +1,19 @@
+
+#gf-social-icons-color-control-wrapper{
+ 
+  .gf-social-icons-color-dropdown{
+
+    button{
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      background-color: unset;
+      border: 1px solid #dcdcdc;
+
+      &:hover{
+        background: unset;
+      }
+    }
+  }
+  
+}

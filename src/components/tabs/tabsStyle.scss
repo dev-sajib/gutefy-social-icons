@@ -1,0 +1,18 @@
+#gf-blog-radio-image-wrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  
+  span{
+    width: 100%;
+    border: none;
+    background: lightgray;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &.gf-blog-selection-active{
+      background-color: #3858E9;
+    }
+  }
+
+}
