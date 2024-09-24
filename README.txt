@@ -6,26 +6,37 @@ Tags: social icons, ,floting social icons
 Requires at least: 6.3
 Requires PHP: 7.2
 Tested up to: 6.6.2
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-Gutefy Social Icons is a WordPress plugin developed by Gutefy. The main functionality of this plugin is to provide a Customizer option for adding social icons to your website.
+Introducing **Sticky Social Icons**, a lightweight and responsive WordPress plugin that lets you easily display social media icons on the side of your website. You can choose your favorite social media platforms, link them to your profiles, and have users connect with you through clickable icons.
+
+The plugin integrates seamlessly with the WordPress Customizer, making it incredibly easy to configure. All settings can be managed directly from the Customizer, allowing you to see real-time changes as you adjust your icons and layouts.
+
+**Sticky Social Icons** is fully responsive, ensuring that your icons display perfectly on both large desktops and small mobile screens. It’s lightweight, which means it won’t slow down your site or affect performance.
+
+Preloaded with popular social icons like **Facebook**, **Twitter (now X)**, **WhatsApp**, **Instagram**, **YouTube**, **LinkedIn**, **Telegram**, **Pinterest**, **Snapchat**, **TikTok**, **Reddit**, **Skype**, and options like **phone** and **email** (e.g., **Envelope**), the plugin allows you to enhance your site’s social presence. Future updates will expand the icon list and add more exciting features like animations and tooltips.
+
+With **Sticky Social Icons**, you get a clean, fast, and user-friendly way to connect your website to your social channels, offering a seamless experience for your visitors.
 
 == Short Description ==
-Floating Social Icons Solutions.
+A lightweight, responsive social media plugin for showcasing icons on your website, with easy customization directly in the WordPress Customizer.
 
 == Installation ==
 1. Upload the 'gf-social-icons' folder to the '/wp-content/plugins/' directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
 3. Click on settings. 
 
-==Key Features ==
-- **Gutefy Social Icons:** Easily add and customize social icons that will be displayed at the right side of your webpage.
-- **Social Accounts:** Easily can add as many account as you want .
-- **Social Icon Changing Feature:** With one click can Change icon   .
-- **Style Settings:** Customize the appearance of your social icons with options such as icon color, hover color, background color, hover background color, icon size, wrapper size, Adjust Vertical Position and so one.
+== Key Features ==  
+- **Sticky Social Icons:** Easily add and display social icons on the side of your website for seamless user engagement.  
+- **Unlimited Social Accounts:** Add as many social media accounts as you need with ease.  
+- **Custom Icon Selection:** Quickly change and customize social icons with just one click.  
+- **Responsive Design:** Icons look great on both desktop and mobile devices.  
+- **Style Settings:** Full control over icon appearance, including color, hover effects, background color, size, and vertical positioning.  
+- **Custom Link Options:** Choose whether links open in the same tab or a new tab.  
+- **Future-Ready Features:** Animation and tooltip support coming soon.  
 
 == Screenshots ==
 1. **Starting Panel:**
@@ -56,6 +67,11 @@ Floating Social Icons Solutions.
 * Bug Fix: Fixed a bug related to hover styles for better consistency.
 * Added: Icon Changing option
 * Introduces: Flexible Account adding system
+
+= 1.1.0 =
+* Added: Border Control.
+* Added: Responsive Control.
+* Bug Fix: Fixed a bug related to hover styles for better consistency.
 
 == Frequently Asked Questions ==
 = How can I add or edit social accounts? =

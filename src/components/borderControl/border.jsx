@@ -162,6 +162,9 @@ export default function Border({ control }) {
                 }`}
                 style={conditionally_display() ? { display: 'none' } : { display: 'block' }}
             >
+                <label className='gf-social-icons-settings-label gf-seperate-line-setting-title' htmlFor=''>
+                            {control.params.label}
+                </label>
                 <Tooltip text={device}>
                     <BorderBoxControl value={getDeviceValue(value.device_wise_value, device)} data-device={device} colors={colors} onChange={handleChange} />
                 </Tooltip>

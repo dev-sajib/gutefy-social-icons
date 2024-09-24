@@ -8,8 +8,9 @@ use GF_SOCIAL_ICONS\Types\Panel;
 use GF_SOCIAL_ICONS\Types\Partial;
 use GF_SOCIAL_ICONS\Types\Section;
 use GF_SOCIAL_ICONS\Types\Control;
-use GF_SOCIAL_ICONS\Global\Helper;
 use GF_SOCIAL_ICONS\TemplateLoader;
+use GF_SOCIAL_ICONS\Sanitize;
+use GF_SOCIAL_ICONS\Validation;
 
 class Core extends BaseCustomizer
 {
@@ -87,12 +88,12 @@ class Core extends BaseCustomizer
       [
         'id' => Settings::GENERAL_SETTING_ID_SOCIAL_REPEATER,
         'setting_args' => [
-          'default' => [['facebook', '', 'url']],
+          'default' => [['facebook_f', '', 'url']],
           'transport' => 'postMessage',
           'type' => 'option',
           'capability' => 'manage_options',
-          // 'sanitize_callback' => [$this, 'gf_social_icons_custom_sanitize'],
-          // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
+          'sanitize_callback' => [Sanitize::class, 'gf_social_icons_custom_sanitize'],
+          'validate_callback' => [Validation::class, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
           'label' => __('Accounts List', TEXT_DOMAIN),
@@ -154,6 +155,7 @@ class Core extends BaseCustomizer
       ],
       [
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_COLOR'],
+        'priority' => 1,
         'setting_args' => [
           'default' => [
             'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon span svg",
@@ -183,13 +185,14 @@ class Core extends BaseCustomizer
       ],
       [
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_WRAPPER_BACKGROUND'],
+        'priority' => 2,
         'setting_args' => [
           'default' => [
             'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon",
             'device_wise_value' => [
               'desktop' => [
                 'css_attr' => 'background',
-                'value' => '#3858E9',
+                'value' => '#000000',
               ],
             ]
           ],
@@ -212,6 +215,7 @@ class Core extends BaseCustomizer
       ],
       [
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_HOVER_COLOR'],
+        'priority' => 1,
         'setting_args' => [
           'default' => [
             'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon:hover span svg",
@@ -241,6 +245,7 @@ class Core extends BaseCustomizer
       ],
       [
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_WRAPPER_HOVER_BACKGROUND'],
+        'priority' => 2,
         'setting_args' => [
           'default' => [
             'css_selector' => "#gf_social_icons__wrapper .gf_social_icons_social_float a:hover",
@@ -270,6 +275,7 @@ class Core extends BaseCustomizer
       ],
       [
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_SIZE'],
+        'priority' => 3,
         'setting_args' => [
           'default' => [
             'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon svg",
@@ -299,6 +305,7 @@ class Core extends BaseCustomizer
       ],
       [
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_HOVER_SIZE'],
+        'priority' => 3,
         'setting_args' => [
           'default' => [
             'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon:hover svg",
@@ -328,6 +335,7 @@ class Core extends BaseCustomizer
       ],
       [
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_WRAPPER_SIZE'],
+        'priority' => 4,
         'setting_args' => [
           'default' => [
             'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon",
@@ -365,6 +373,7 @@ class Core extends BaseCustomizer
       ],
       [
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_WRAPPER_HOVER_SIZE'],
+        'priority' => 4,
         'setting_args' => [
           'default' => [
             'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon:hover",
@@ -394,6 +403,7 @@ class Core extends BaseCustomizer
       ],
       [
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_SPACING'],
+        'priority' => 5,
         'setting_args' => [
 
           'default' => [
@@ -446,7 +456,7 @@ class Core extends BaseCustomizer
           'input_attrs' => array(
             'responsive' => true,
             'heading' => 'Advance Settings',
-            // 'control_for' => Settings::GENERAL_TAB_ELEMENT
+            'control_for' => Settings::GENERAL_TAB_ELEMENT
           ),
         ],
         'custom_control' => "\GF_SOCIAL_ICONS\Controls\UnitInput"
@@ -465,6 +475,7 @@ class Core extends BaseCustomizer
           'label' => __('Horizontal Position', TEXT_DOMAIN),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
+            'control_for' => Settings::GENERAL_TAB_ELEMENT
           ),
         ],
         'custom_control' => "\GF_SOCIAL_ICONS\Controls\SelectDropdownControl"
@@ -477,10 +488,10 @@ class Core extends BaseCustomizer
             'css_selector' => "#gf_social_icons__wrapper .gf_social_icons_social_icon",
             'device_wise_value' => [
               'desktop' => [
-                ['css_attr' => 'border-top', 'value' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '1px']],
-                ['css_attr' => 'border-right', 'value' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '1px']],
-                ['css_attr' => 'border-bottom', 'value' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '1px']],
-                ['css_attr' => 'border-left', 'value' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '1px']],
+                ['css_attr' => 'border-top', 'value' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '0px']],
+                ['css_attr' => 'border-right', 'value' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '0px']],
+                ['css_attr' => 'border-bottom', 'value' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '0px']],
+                ['css_attr' => 'border-left', 'value' => ['color' => '#72aee6', 'style' => 'dashed', 'width' => '0px']],
               ],
             ]
           ],

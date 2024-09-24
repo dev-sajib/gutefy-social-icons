@@ -27,21 +27,21 @@ class Settings
 
 
     const CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY = [
-        'GENERAL_SETTING_ID_RESPONSIVE_CONTROL' => 'gf_social_icons_style_settings[styles][gf_social_icons_responsive_control]',
-        'STYLE_SETTING_ID_ICON_COLOR' => 'gf_social_icons_style_settings[styles][--gutefy-icon-color]',
-        'STYLE_SETTING_ID_WRAPPER_BACKGROUND' => 'gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-color]',
-        'STYLE_SETTING_ID_ICON_HOVER_COLOR' => 'gf_social_icons_style_settings[styles][--gutefy-icon-hover-color]',
-        'STYLE_SETTING_ID_WRAPPER_HOVER_BACKGROUND' => 'gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-hover-color]',
+        'GENERAL_SETTING_ID_RESPONSIVE_CONTROL' => 'gf_social_icons_styles_setting[styles][gf_social_icons_responsive_control]',
+        'STYLE_SETTING_ID_ICON_COLOR' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-color]',
+        'STYLE_SETTING_ID_WRAPPER_BACKGROUND' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-wrapper-color]',
+        'STYLE_SETTING_ID_ICON_HOVER_COLOR' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-hover-color]',
+        'STYLE_SETTING_ID_WRAPPER_HOVER_BACKGROUND' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-wrapper-hover-color]',
 
 
-        'STYLE_SETTING_ID_WRAPPER_POSITION_TOP' => 'gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-position-top]',
-        'STYLE_SETTING_ID_ICON_SIZE' => 'gf_social_icons_style_settings[styles][--gutefy-icon-size]',
-        'STYLE_SETTING_ID_ICON_HOVER_SIZE' => 'gf_social_icons_style_settings[styles][--gutefy-icon-hover-size]',
+        'STYLE_SETTING_ID_WRAPPER_POSITION_TOP' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-wrapper-position-top]',
+        'STYLE_SETTING_ID_ICON_SIZE' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-size]',
+        'STYLE_SETTING_ID_ICON_HOVER_SIZE' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-hover-size]',
 
-        'STYLE_SETTING_ID_ICON_WRAPPER_SIZE' => 'gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-size]',
-        'STYLE_SETTING_ID_ICON_WRAPPER_HOVER_SIZE' => 'gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-hover-size]',
-        'STYLE_SETTING_ID_BORDER' => 'gf_social_icons_style_settings[styles][gutefy_icon_wrapper_border]',
-        'STYLE_SETTING_ID_SPACING' => 'gf_social_icons_style_settings[styles][--gutefy-icon-wrapper-gap]',
+        'STYLE_SETTING_ID_ICON_WRAPPER_SIZE' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-wrapper-size]',
+        'STYLE_SETTING_ID_ICON_WRAPPER_HOVER_SIZE' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-wrapper-hover-size]',
+        'STYLE_SETTING_ID_BORDER' => 'gf_social_icons_styles_setting[styles][gutefy_icon_wrapper_border]',
+        'STYLE_SETTING_ID_SPACING' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-wrapper-gap]',
     ];
 
 

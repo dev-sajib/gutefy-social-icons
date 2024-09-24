@@ -1,14 +1,9 @@
 <?php
 namespace GF_SOCIAL_ICONS;
 
-use GF_SOCIAL_ICONS\Global\Helper;
-use GF_SOCIAL_ICONS\Global\Settings;
 
 class TemplateLoader
 {
-    public static $usedFonts = [];
-    public static $fontsEnqueued = false; // Flag to track if fonts have been enqueued
-
     public static function init()
     {
         if (self::is_block_theme()) {
@@ -22,10 +17,10 @@ class TemplateLoader
     }
     public static function gf_social_icons_get_icon_data_block($block_content, $block)
     {
-        $gf_social_icons_position_horizontally = get_option('gf_social_icons_position_horizontally', []);
+        $gf_social_icons_position_horizontally = get_option('gf_social_icons_position_horizontally', 'position--right');
 
         if ($block['blockName'] === 'core/template-part' && isset($block['attrs']['slug']) && $block['attrs']['slug'] === 'header') {
-            $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper ".$gf_social_icons_position_horizontally."'>" . self::load_template() . "</div>";
+            $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper " . $gf_social_icons_position_horizontally . "'>" . self::load_template() . "</div>";
             $block_content .= $html;
             self::generateStyle();
         }
@@ -53,9 +48,9 @@ class TemplateLoader
     }
     public static function gf_social_icons_get_icon_data($content)
     {
-        $gf_social_icons_position_horizontally = get_option('gf_social_icons_position_horizontally', []);
+        $gf_social_icons_position_horizontally = get_option('gf_social_icons_position_horizontally', 'position--right');
 
-        $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper ".$gf_social_icons_position_horizontally."'>" . self::load_template() . "</div>";
+        $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper " . $gf_social_icons_position_horizontally . "'>" . self::load_template() . "</div>";
         $content .= $html;
         self::generateStyle();
         return $content;
@@ -63,7 +58,7 @@ class TemplateLoader
     public static function load_template()
     {
         $social_icons_settings = get_option('gf_social_icons_general_settings', []);
-        $open_in_new_tab = get_option('gf_social_icons_open_in_new_tab_settings', []);
+        $open_in_new_tab = get_option('gf_social_icons_open_in_new_tab_settings', ['value' => true]);
 
 
         // load icon json 
@@ -113,7 +108,7 @@ class TemplateLoader
     public static function generateMarkupString($singleStyle, $markup_string)
     {
 
-        if ($singleStyle['css_attr'] === null) {
+        if ($singleStyle['css_attr'] && $singleStyle['css_attr'] === null) {
             foreach ($singleStyle as $style) {
 
                 if (gettype($style) != 'string') {
@@ -146,76 +141,75 @@ class TemplateLoader
     }
     public static function generateStyle()
     {
-        $get_value = get_option('gf_social_icons_style_settings');
+        $get_value = get_option('gf_social_icons_styles_setting');
 
         $mergedStyles = [];
+        if ($get_value) {
+            foreach ($get_value['styles'] as $style) {
 
-        foreach ($get_value['styles'] as $style) {
+                // Loop through each device-wise value in the current style
+                if ($style['device_wise_value']) {
+                    foreach ($style['device_wise_value'] as $device => $deviceValues) {
+                        // Initialize the device key if it doesn't exist
+                        if (!isset($mergedStyles[$device])) {
+                            $mergedStyles[$device] = [];
+                        }
 
-            // Loop through each device-wise value in the current style
-            foreach ($style['device_wise_value'] as $device => $deviceValues) {
+                        // Merge the styles under the device key by grouping the css_selector
+                        $mergedStyles[$device][] = [
+                            'css_selector' => $style['css_selector'],
+                            ...$deviceValues,  // Spread the device-specific values
+                        ];
 
-
-                // Initialize the device key if it doesn't exist
-                if (!isset($mergedStyles[$device])) {
-                    $mergedStyles[$device] = [];
+                    }
                 }
 
-                // Merge the styles under the device key by grouping the css_selector
-                $mergedStyles[$device][] = [
-                    'css_selector' => $style['css_selector'],
-                    ...$deviceValues,  // Spread the device-specific values
-                ];
-
-            }
-        }
-
-        $markup_string = '';
-
-        if ($mergedStyles['desktop']) {
-
-            foreach ($mergedStyles['desktop'] as $singleStyle) {
-
-
-                $markup_string = self::generateMarkupString($singleStyle, $markup_string);
-
-
-            }
-        }
-
-        if ($mergedStyles['tablet']) {
-
-            $markup_string .= '@media (max-width: 1020px) {';
-
-            foreach ($mergedStyles['tablet'] as $singleStyle) {
-                $markup_string = self::generateMarkupString($singleStyle, $markup_string);
             }
 
-            $markup_string .= '}';
-        }
-        ;
-        if ($mergedStyles['mobile']) {
-            $markup_string .= '@media (max-width: 714px) {';
-            foreach ($mergedStyles['mobile'] as $singleStyle) {
-                $markup_string = self::generateMarkupString($singleStyle, $markup_string);
+            $markup_string = '';
+
+            if ($mergedStyles['desktop']) {
+
+                foreach ($mergedStyles['desktop'] as $singleStyle) {
+
+
+                    $markup_string = self::generateMarkupString($singleStyle, $markup_string);
+
+
+                }
             }
-            $markup_string .= '}';
+
+            if ($mergedStyles['tablet']) {
+
+                $markup_string .= '@media (max-width: 1020px) {';
+
+                foreach ($mergedStyles['tablet'] as $singleStyle) {
+                    $markup_string = self::generateMarkupString($singleStyle, $markup_string);
+                }
+
+                $markup_string .= '}';
+            }
+            ;
+            if ($mergedStyles['mobile']) {
+                $markup_string .= '@media (max-width: 714px) {';
+                foreach ($mergedStyles['mobile'] as $singleStyle) {
+                    $markup_string = self::generateMarkupString($singleStyle, $markup_string);
+                }
+                $markup_string .= '}';
+            }
+            ;
+
+
+            $upload_dir = wp_upload_dir();
+            $folder_path = $upload_dir['basedir'] . '/gf-social-icons-customizer';
+            if (!file_exists($folder_path)) {
+                mkdir($folder_path, 0755, true);
+            }
+            $dynamic_css_file_path = $folder_path . '/gf-social-icons-dynamic-style.css';
+            $open_dynamic_style_file = fopen($dynamic_css_file_path, 'w');
+            fwrite($open_dynamic_style_file, $markup_string);
+            fclose($open_dynamic_style_file);
         }
-        ;
-
-
-        $upload_dir = wp_upload_dir();
-        $folder_path = $upload_dir['basedir'] . '/gf-social-icons-customizer';
-        if (!file_exists($folder_path)) {
-            mkdir($folder_path, 0755, true);
-        }
-        $dynamic_css_file_path = $folder_path . '/gf-social-icons-dynamic-style.css';
-        $open_dynamic_style_file = fopen($dynamic_css_file_path, 'w');
-        fwrite($open_dynamic_style_file, $markup_string);
-        fclose($open_dynamic_style_file);
-
-        // Set a flag to indicate that fonts need to be enqueued
-        self::$fontsEnqueued = true;
     }
 }
 

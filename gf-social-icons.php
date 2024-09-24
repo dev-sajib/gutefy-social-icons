@@ -2,14 +2,14 @@
 /**
  *
  * @link              https://gutefy.com
- * @since             1.0.1
+ * @since             1.1.0
  * @package           Gutefy_Social_Icons
  *
  * @wordpress-plugin
- * Plugin Name:       Gutefy Social Icons 
+ * Plugin Name:       Sticky Social Icons 
  * Plugin URI:        https://gutefy.com
- * Description:       Effortlessly adding floating social icons for seamless display and interaction.
- * Version:           1.0.1
+ * Description:       A lightweight, responsive social media plugin for showcasing icons on your website, with easy customization directly in the WordPress Customizer.
+ * Version:           1.1.0
  * Author:            Gutefy
  * Author URI:        https://portfolio.gutefy.com/
  * License:           GPL-2.0+

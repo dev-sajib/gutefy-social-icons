@@ -14,7 +14,7 @@
 		"plugin-zip": "npm-run-all clean-zip build zip-files",
 		"start": "wp-scripts start",
 		"clean-zip": "rm -rf gf-social-icons.zip && mkdir -p plugin-zip",
-		"zip-files": "cp -r includes build vendor gf-social-icons.php 'README.txt'   plugin-zip && cd plugin-zip && zip -r ../gf-social-icons.zip ."
+		"zip-files": "cp -r includes build vendor composer.json gf-social-icons.php 'README.txt'   plugin-zip && cd plugin-zip && zip -r ../gf-social-icons.zip ."
 	},
 	"devDependencies": {
 		"@types/sortablejs": "^1.15.8",

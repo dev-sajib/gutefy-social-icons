@@ -148,7 +148,18 @@ ul#sub-accordion-section-gutefy_settings_styles_social_icon{
     }
   }
 }
-
+.gf-seperate-line-setting-title{
+  padding-bottom: 10px;
+  display: block;
+}
+.gf-social-icons-tab-element , .gf-social-icons-settings-label{
+    text-transform: uppercase;
+    font-family: inherit;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-size: 11px;
+    color: #000000;
+}
 #accordion-panel-gutefy_settings_core-panel_social_icon {
   .accordion-section-title {
     text-transform: uppercase;

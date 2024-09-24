@@ -8,7 +8,7 @@
 }
 
 :root {
-  --gutefy-icon-wrapper-color: #3858E9; // used for icon wrapper color
+  --gutefy-icon-wrapper-color: #000000; // used for icon wrapper color
   --gutefy-icon-color: white; // used for icon color
   --gutefy-icon-wrapper-gap: 0px;
   --gutefy-icon-wrapper-size: 44px;
@@ -86,7 +86,7 @@
       // transition: all 0.3s ease; /* Apply transition to all properties */
 
       & * {
-        transition: all 0.3s ease;
+        transition: all 0.1s ease;
         /* Apply transition to all properties */
       }
 
