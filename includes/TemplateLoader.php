@@ -4,56 +4,32 @@ namespace GF_SOCIAL_ICONS;
 
 class TemplateLoader
 {
+    public $templateLoadCount = 0;
     public static function init()
     {
-        if (self::is_block_theme()) {
-            add_filter('render_block', [__CLASS__, 'gf_social_icons_get_icon_data_block'], 10, 2);
-        } else {
-            add_action('woocommerce_after_main_content', [__CLASS__, 'gf_social_icons_get_icon_data']);
-            add_filter('the_content', [__CLASS__, 'gf_social_icons_get_icon_data'], 99999);
-            add_filter('get_the_excerpt', [__CLASS__, 'gf_social_icons_get_icon_data'], 99999);
-        }
+        $header_exists = has_action('wp_head');
+        $footer_exists = has_action('wp_footer');
 
+        if ($header_exists) {
+            add_action('wp_head', [__CLASS__, 'gf_social_icons_get_icon_data_loader']);
+        } elseif ($footer_exists) {
+            add_action('wp_footer', [__CLASS__, 'gf_social_icons_get_icon_data_loader']);
+        } else {
+            add_action('wp_body_open', [__CLASS__, 'gf_social_icons_get_icon_data_loader']);
+        }
     }
-    public static function gf_social_icons_get_icon_data_block($block_content, $block)
+
+    public static function gf_social_icons_get_icon_data_loader()
     {
         $gf_social_icons_position_horizontally = get_option('gf_social_icons_position_horizontally', 'position--right');
 
-        if ($block['blockName'] === 'core/template-part' && isset($block['attrs']['slug']) && $block['attrs']['slug'] === 'header') {
+
+        if (true) {
             $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper " . $gf_social_icons_position_horizontally . "'>" . self::load_template() . "</div>";
-            $block_content .= $html;
             self::generateStyle();
         }
 
-        return $block_content;
-    }
-    public static function is_block_theme()
-    {
-        // Get the current theme
-        $theme = wp_get_theme();
-
-        // Check for the presence of theme.json file
-        $theme_json_path = get_template_directory() . '/theme.json';
-        if (file_exists($theme_json_path)) {
-            return true; // It's a block theme
-        }
-
-        // Check for the presence of block template files
-        $block_templates = glob(get_template_directory() . '/*.html');
-        if (!empty($block_templates)) {
-            return true; // It's likely a block theme
-        }
-
-        return false; // It's a classic theme
-    }
-    public static function gf_social_icons_get_icon_data($content)
-    {
-        $gf_social_icons_position_horizontally = get_option('gf_social_icons_position_horizontally', 'position--right');
-
-        $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper " . $gf_social_icons_position_horizontally . "'>" . self::load_template() . "</div>";
-        $content .= $html;
-        self::generateStyle();
-        return $content;
+        echo $html;
     }
     public static function load_template()
     {
