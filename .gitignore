@@ -55,3 +55,4 @@ package-lock.json
 .DS_Store
 public/.DS_Store
 /assets/js
+.DS_Store
