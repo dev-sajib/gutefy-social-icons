@@ -1,5 +1,5 @@
-# Gutefy Social Icons
-![Gutefy Social Icons](https://img.shields.io/badge/version-1.0.1-blue.svg)
+# Sticky Social Icons
+![Sticky Social Icons](https://img.shields.io/badge/version-1.0.1-blue.svg)
 ![PHP Version](https://img.shields.io/badge/PHP-%3E%3D%207.2-blue.svg)
 ![WordPress Version](https://img.shields.io/badge/WordPress-%3E%3D%206.3-blue.svg)
 ![License](https://img.shields.io/badge/license-GPL--2.0--or--later-blue.svg)

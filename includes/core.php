@@ -29,7 +29,7 @@ class Core extends BaseCustomizer
 
     $panels = array(
       Settings::PANEL_CORE => [
-        'title' => __('Gutefy Social Icons', TEXT_DOMAIN),
+        'title' => __('Sticky Social Icons', TEXT_DOMAIN),
         'description' => __('<p>Gutefy Extensions for floating social icons</p>', TEXT_DOMAIN),
         'priority' => 31,
       ]

@@ -15,7 +15,7 @@ class EnqueueScripts
         $script_asset_path = PLUGIN_ROOT_DIRECTORY . '/build/customizer.asset.php';
         if (!file_exists($script_asset_path)) {
             throw new \Error(
-                'You need to run `npm start` or `npm run build` for "Gutefy Social Icons" widget first.'
+                'You need to run `npm start` or `npm run build` for "Sticky Social Icons" widget first.'
             );
         }
         $customizer_js = 'build/customizer.js';
@@ -80,7 +80,7 @@ class EnqueueScripts
         $script_asset_path = "$dir/build/view.asset.php";
         if (!file_exists($script_asset_path)) {
             throw new Error(
-                'You need to run `npm start` or `npm run build` for "Gutefy Social Icons" widget first.'
+                'You need to run `npm start` or `npm run build` for "Sticky Social Icons" widget first.'
             );
         }
         $view_js = 'build/view.js';

@@ -1,6 +1,6 @@
-=== Gutefy Social Icons ===
+=== Sticky Social Icons ===
 Contributors: Gutefy
-Plugin Name: Gutefy Social Icons
+Plugin Name: Sticky Social Icons
 Plugin URI: https://portfolio.gutefy.com/
 Tags: social icons, ,floting social icons
 Requires at least: 6.3
@@ -75,10 +75,10 @@ A lightweight, responsive social media plugin for showcasing icons on your websi
 
 == Frequently Asked Questions ==
 = How can I add or edit social accounts? =
-Navigate to the Customizer, find the "Gutefy Social Icons" section, and go to the "Social Accounts" panel. Here, you can add or edit up to 17 social accounts.
+Navigate to the Customizer, find the "Sticky Social Icons" section, and go to the "Social Accounts" panel. Here, you can add or edit up to 17 social accounts.
 
 = How do I customize the style of the social icons? =
-In the Customizer, locate the "Gutefy Social Icons" section and access the "Style Settings" panel. You can choose a style from the "Select Style" dropdown and customize colors for icon, hover, background, and hover background.
+In the Customizer, locate the "Sticky Social Icons" section and access the "Style Settings" panel. You can choose a style from the "Select Style" dropdown and customize colors for icon, hover, background, and hover background.
 
 == Support ==
 For any issues or inquiries, please visit the support forums on WordPress.org.
@@ -87,4 +87,4 @@ For any issues or inquiries, please visit the support forums on WordPress.org.
 For more information about the author and other projects, visit [Gutefy's Portfolio](https://portfolio.gutefy.com/).
 
 == License ==
-Gutefy Social Icons is licensed under the GPLv2 or later - http://www.gnu.org/licenses/gpl-2.0.html
+Sticky Social Icons is licensed under the GPLv2 or later - http://www.gnu.org/licenses/gpl-2.0.html
