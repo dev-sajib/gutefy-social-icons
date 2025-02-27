@@ -5,8 +5,8 @@ Plugin URI: https://portfolio.gutefy.com/
 Tags: social icons, ,floting social icons
 Requires at least: 6.3
 Requires PHP: 7.2
-Tested up to: 6.6.2
-Stable tag: 1.1.0
+Tested up to: 6.7.2
+Stable tag: 1.1.01
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,11 @@ A lightweight, responsive social media plugin for showcasing icons on your websi
 
 = 1.1.0 =
 * Added: Border Control.
+* Added: Responsive Control.
+* Bug Fix: Fixed a bug related to hover styles for better consistency.
+
+= 1.1.01 =
+* Fixed: Icon Loading Issue in various theme.
 * Added: Responsive Control.
 * Bug Fix: Fixed a bug related to hover styles for better consistency.
 

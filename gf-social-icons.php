@@ -9,7 +9,7 @@
  * Plugin Name:       Sticky Social Icons 
  * Plugin URI:        https://gutefy.com
  * Description:       A lightweight, responsive social media plugin for showcasing icons on your website, with easy customization directly in the WordPress Customizer.
- * Version:           1.1.0
+ * Version:           1.1.01
  * Author:            Gutefy
  * Author URI:        https://portfolio.gutefy.com/
  * License:           GPL-2.0+
