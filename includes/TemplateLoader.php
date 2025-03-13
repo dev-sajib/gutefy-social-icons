@@ -84,7 +84,7 @@ class TemplateLoader
     public static function generateMarkupString($singleStyle, $markup_string)
     {
 
-        if ($singleStyle['css_attr'] && $singleStyle['css_attr'] === null) {
+        if (array_key_exists('css_attr',$singleStyle) && $singleStyle['css_attr'] && $singleStyle['css_attr'] === null) {
             foreach ($singleStyle as $style) {
 
                 if (gettype($style) != 'string') {
@@ -101,15 +101,13 @@ class TemplateLoader
             }
 
         } else {
-
-
-            if (gettype($singleStyle['value']) == 'array') {
+            if ( array_key_exists('value',@$singleStyle) && gettype($singleStyle['value']) == 'array') {
                 $style_string = '';
                 foreach ($singleStyle['value'] as $value) {
                     $style_string .= $value . ' ';
                 }
                 $markup_string .= $singleStyle['css_selector'] . "{" . $singleStyle['css_attr'] . ":" . $style_string . "!important;}";
-            } else {
+            } else if( array_key_exists('value',@$singleStyle) && gettype($singleStyle['value'])==='string') {
                 $markup_string .= $singleStyle['css_selector'] . "{" . $singleStyle['css_attr'] . ":" . $singleStyle['value'] . "!important;}";
             }
         }
