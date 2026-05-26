@@ -6,6 +6,8 @@ import { TabsControl } from './components/tabs/';
 import { UnitInputControl } from './components/unitInputControl';
 import { BorderControl } from './components/borderControl';
 import { SelectDropDownControl } from './components/selectDropDownControl';
+import { ConditionalDisplayControl } from './components/conditionalDisplayControl';
+import { CheckboxControl } from './components/checkboxControl';
 
 const { controlConstructor } = wp.customize;
 
@@ -17,3 +19,5 @@ controlConstructor.gf_social_icons__type_tabs = TabsControl
 controlConstructor.gf_social_icons__type_unit_input = UnitInputControl
 controlConstructor.gf_social_icons__borders_control_type = BorderControl
 controlConstructor.gf_social_icons__type_select_dropdown = SelectDropDownControl
+controlConstructor.gf_social_icons__type_conditional_display = ConditionalDisplayControl
+controlConstructor.gf_social_icons__type_checkbox = CheckboxControl

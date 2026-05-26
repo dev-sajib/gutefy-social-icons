@@ -1,95 +1,152 @@
-=== Sticky Social Icons ===
-Contributors: Gutefy
-Plugin Name: Sticky Social Icons
-Plugin URI: https://portfolio.gutefy.com/
-Tags: social icons, ,floting social icons
+=== Sticky Social Icons - Floating Social Media, WhatsApp Chat, Click-to-Call & Email Icons ===
+Contributors: gutefy
+Tags: social icons, floating social icons, whatsapp button, click to call, share buttons
 Requires at least: 6.3
 Requires PHP: 7.2
-Tested up to: 6.7.2
-Stable tag: 1.1.01
+Tested up to: 7.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
+Floating or inline social icons for any WordPress site: WhatsApp click-to-chat, click-to-call, email, Facebook, Instagram, X, YouTube, TikTok and more.
+
 == Description ==
-Introducing **Sticky Social Icons**, a lightweight and responsive WordPress plugin that lets you easily display social media icons on the side of your website. You can choose your favorite social media platforms, link them to your profiles, and have users connect with you through clickable icons.
 
-The plugin integrates seamlessly with the WordPress Customizer, making it incredibly easy to configure. All settings can be managed directly from the Customizer, allowing you to see real-time changes as you adjust your icons and layouts.
+**Sticky Social Icons** is a lightweight, mobile-friendly social media plugin that lets you add floating sticky social icons to any WordPress site — without writing a single line of code. Visitors get instant access to your WhatsApp, phone, email, and every social channel right from the side of the screen.
 
-**Sticky Social Icons** is fully responsive, ensuring that your icons display perfectly on both large desktops and small mobile screens. It’s lightweight, which means it won’t slow down your site or affect performance.
+Designed for businesses, creators, agencies, and stores, the plugin works out of the box with **Block Themes**, **Classic Themes**, **WooCommerce**, **Elementor**, **Bricks**, **Divi**, **Astra**, **Kadence**, **GeneratePress**, **Hello Theme**, **Hello Elementor**, and every popular page builder.
 
-Preloaded with popular social icons like **Facebook**, **Twitter (now X)**, **WhatsApp**, **Instagram**, **YouTube**, **LinkedIn**, **Telegram**, **Pinterest**, **Snapchat**, **TikTok**, **Reddit**, **Skype**, and options like **phone** and **email** (e.g., **Envelope**), the plugin allows you to enhance your site’s social presence. Future updates will expand the icon list and add more exciting features like animations and tooltips.
+Configure everything live in the **WordPress Customizer** — change colors, sizes, borders, radius, position, and per-device visibility and see the result update in real time.
 
-With **Sticky Social Icons**, you get a clean, fast, and user-friendly way to connect your website to your social channels, offering a seamless experience for your visitors.
+= 🚀 Why Sticky Social Icons? =
 
-== Short Description ==
-A lightweight, responsive social media plugin for showcasing icons on your website, with easy customization directly in the WordPress Customizer.
+* **No-code setup** — pick icons, paste URLs, publish. Live Customizer preview means no guessing.
+* **Click-to-chat WhatsApp** — paste a number, optionally add a pre-filled message, done.
+* **Click-to-call & SMS** — `tel:` and `sms:` links for mobile visitors.
+* **Click-to-email** — `mailto:` with optional subject and body pre-fill.
+* **Truly responsive** — show or hide on Desktop / Tablet / Mobile independently.
+* **Hide on specific pages** — front page, blog, single posts, single pages, archives, search, 404, WooCommerce shop / cart / checkout / single product.
+* **Hide for user roles** — keep icons away from logged-out guests, administrators, or any role you choose.
+* **SEO and accessibility ready** — every link ships with proper `aria-label` and `rel="noopener noreferrer"`.
+* **Lightweight** — zero jQuery on the frontend, no bloated icon font, only the CSS your visitors actually need.
+
+= 🎨 Full Design Control =
+
+* Icon color (normal + hover, per device)
+* Icon background color (normal + hover, per device)
+* Icon size (normal + hover, per device)
+* Icon wrapper / button size (per device)
+* Border (4-side, color + style + width, per device)
+* Border radius (normal + hover, per device — make pills, circles, squares)
+* Vertical gap between icons
+* Vertical position (top %)
+* Horizontal position (left or right rail)
+
+= 📱 Popular Channels Built In =
+
+Facebook, Facebook Messenger, Facebook (f), WhatsApp, Instagram, X (Twitter), YouTube, LinkedIn, TikTok, Telegram, Pinterest, Snapchat, Reddit, Skype, Tumblr, Discord, GitHub, Vimeo, Twitch, Behance, Dribbble, Email (envelope), Phone, and more — with new icons added in every release.
+
+= 💼 Perfect For =
+
+* Small business and local service websites
+* Restaurants, salons, clinics, real estate, automotive
+* WooCommerce stores wanting WhatsApp pre-sales chat
+* Bloggers and content creators
+* Portfolios and agency sites
+* Membership and online course sites
+* Anyone replacing heavyweight "share & follow" plugins
 
 == Installation ==
-1. Upload the 'gf-social-icons' folder to the '/wp-content/plugins/' directory.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Click on settings. 
 
-== Key Features ==  
-- **Sticky Social Icons:** Easily add and display social icons on the side of your website for seamless user engagement.  
-- **Unlimited Social Accounts:** Add as many social media accounts as you need with ease.  
-- **Custom Icon Selection:** Quickly change and customize social icons with just one click.  
-- **Responsive Design:** Icons look great on both desktop and mobile devices.  
-- **Style Settings:** Full control over icon appearance, including color, hover effects, background color, size, and vertical positioning.  
-- **Custom Link Options:** Choose whether links open in the same tab or a new tab.  
-- **Future-Ready Features:** Animation and tooltip support coming soon.  
+= From the WordPress Dashboard =
+1. Go to **Plugins → Add New**.
+2. Search for **Sticky Social Icons**.
+3. Click **Install Now** and then **Activate**.
+4. Open **Appearance → Customize → Sticky Social Icons** and add your accounts.
+
+= Manual Installation =
+1. Download the plugin ZIP from WordPress.org.
+2. Upload the `gf-social-icons` folder to `/wp-content/plugins/`.
+3. Activate the plugin via **Plugins** in the WordPress dashboard.
+4. Open **Appearance → Customize → Sticky Social Icons**.
+
+== Frequently Asked Questions ==
+
+= How do I add a WhatsApp click-to-chat icon? =
+In the Customizer, pick the **WhatsApp** icon, paste your number with country code (digits only — e.g. `15551234567`), open the **Advanced** chevron next to the input, and optionally type a pre-filled message. The plugin builds a `https://wa.me/...` link automatically.
+
+= How do I add a click-to-call (phone) icon? =
+Pick the **Phone** icon, paste your number. The icon generates a `tel:` link, opening the dialer on mobile. Toggle "Use SMS instead of call" in the per-row Advanced panel to switch to an `sms:` link.
+
+= Can I add an email icon with pre-filled subject and body? =
+Yes. Pick the **Envelope** icon, paste the email address, open Advanced, and fill in Subject and Body. The plugin produces a `mailto:` link with the params encoded.
+
+= How do I hide icons on specific pages? =
+Open **Appearance → Customize → Sticky Social Icons → Advanced → Display Rules**. Check any page type (front page, single posts, WooCommerce checkout, etc.) to hide the icons there.
+
+= How do I hide icons from logged-out visitors or administrators? =
+In the same **Advanced** section, check any role under **Hide For These User Roles**. Use **Guest** for logged-out visitors.
+
+= How do I show icons on mobile only (or hide on desktop)? =
+Use **Device Visibility** in the Advanced section. Uncheck Desktop, Tablet, or Mobile independently.
+
+= Does it work with WooCommerce? =
+Yes. There are dedicated hide-on rules for the WooCommerce shop, cart, checkout, and single product pages.
+
+= Does it work with block themes (Twenty Twenty-Four, etc.) and page builders (Elementor, Bricks, Divi)? =
+Yes. The plugin injects on `wp_head`, `wp_footer`, or `wp_body_open` (whichever your theme provides). It is theme- and builder-agnostic.
+
+= Does it slow down my site? =
+No. There is no jQuery on the frontend, no icon font, and only the CSS your visitors need. SVG icons are inlined so the browser makes zero extra requests.
+
+= Does it track my visitors? =
+No. The plugin makes no external requests, sets no cookies, and does not track anything.
 
 == Screenshots ==
-1. **Starting Panel:**
-   ![Starting Panel](assets/starting-panel.jpg)
-
-2. **Gutefy Settings Panel:**
-   ![Gutefy Settings Panel](assets/settings-panel.jpg)
-
-3. **Style Settings:**
-   ![Style Settings](assets/style-settings.jpg)
-
-4. **Account Settings:**
-   ![Account Settings](assets/accounts-setting.jpg)
-
-5. **Style 1:**
-   ![Style 1](assets/style-one.jpg)
-
-6. **Style 2:**
-   ![Style 1](assets/style-two.jpg)
+1. Floating social icons rail on a typical homepage.
+2. Customizer panel — General section with Accounts List, drag-to-reorder, and Open in New Tab.
+3. Customizer panel — Design section with Normal/Hover tabs, colors, sizes, border, radius.
+4. Customizer panel — Advanced section with Device Visibility and Display Rules.
+5. Per-row WhatsApp pre-fill / mailto subject+body / SMS toggle.
+6. Per-row WhatsApp pre-fill, mailto subject+body, SMS toggle.
 
 == Changelog ==
-= 1.0.0 =
-* Initial release.
 
-= 1.0.1 =
-* Enhancement: Improved the floating style of social icons for better stability.
-* Enhancement: Enhanced functionality related to styling, ensuring smoother user experience.
+= 1.2.0 =
+* **New:** Border radius (normal + hover, responsive) — circle, pill, or rounded icons in one click.
+* **New:** Smart per-row URL builder for WhatsApp (`wa.me` + pre-filled message), Email (`mailto:` with subject + body), Phone (`tel:` or `sms:`).
+* **New:** Advanced visibility rules — hide on front page, blog, single post/page, archives, search, 404, and dedicated WooCommerce shop / cart / checkout / product targets.
+* **New:** Hide icons for selected user roles (guest, administrator, subscriber, custom).
+* **New:** Per-device on/off checkboxes (Desktop / Tablet / Mobile) — all visible at once, no more switching device tabs.
+* **Accessibility:** Every icon link now ships with an `aria-label` and `rel="noopener noreferrer"`.
+* **Refactor:** New reusable `Checkbox` Customizer control.
+* **Improved:** Customizer UI — consistent capitalized labels, unified heading style, tidier spacing.
+* **Improved:** Live Customizer preview now matches frontend rendering for all new style controls.
+
+= 1.1.02 =
+* Bug Fix: Fixed a bug related to style generation for better performance.
+
+= 1.1.01 =
+* Fixed: Icon Loading Issue in various themes.
+* Added: Responsive Control.
 * Bug Fix: Fixed a bug related to hover styles for better consistency.
-* Added: Icon Changing option
-* Introduces: Flexible Account adding system
 
 = 1.1.0 =
 * Added: Border Control.
 * Added: Responsive Control.
 * Bug Fix: Fixed a bug related to hover styles for better consistency.
 
-= 1.1.01 =
-* Fixed: Icon Loading Issue in various theme.
-* Added: Responsive Control.
-* Bug Fix: Fixed a bug related to hover styles for better consistency.
+= 1.0.1 =
+* Enhancement: Improved the floating style of social icons for better stability.
+* Enhancement: Enhanced functionality related to styling.
+* Bug Fix: Fixed a bug related to hover styles.
+* Added: Icon changing option.
+* Introduced: Flexible account adding system.
 
-== Frequently Asked Questions ==
-= How can I add or edit social accounts? =
-Navigate to the Customizer, find the "Sticky Social Icons" section, and go to the "Social Accounts" panel. Here, you can add or edit up to 17 social accounts.
+= 1.0.0 =
+* Initial release.
 
-= How do I customize the style of the social icons? =
-In the Customizer, locate the "Sticky Social Icons" section and access the "Style Settings" panel. You can choose a style from the "Select Style" dropdown and customize colors for icon, hover, background, and hover background.
+== Upgrade Notice ==
 
-== Support ==
-For any issues or inquiries, please visit the support forums on WordPress.org.
-
-== More Information ==
-For more information about the author and other projects, visit [Gutefy's Portfolio](https://portfolio.gutefy.com/).
-
-== License ==
-Sticky Social Icons is licensed under the GPLv2 or later - http://www.gnu.org/licenses/gpl-2.0.html
+= 1.2.0 =
+Major feature release. Adds click-to-chat WhatsApp/Email/Phone, page-level visibility rules, role-based hiding, border-radius, per-device visibility, and accessibility (aria-label, noopener). Recommended for everyone.

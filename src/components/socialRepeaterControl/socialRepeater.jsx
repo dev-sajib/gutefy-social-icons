@@ -11,19 +11,28 @@ import { __ } from '@wordpress/i18n'
 const { customize } = wp
 
 export function SocialRepeateater({ control }) {
-    const [accountsUrl, setAccountsUrl] = useState(control.setting.get()) // [['facebook', 'facebook.com'], ['google-x', 'google.com']]
+    const normalizeRow = (row) => {
+        const r = [...row]
+        if (r.length < 3) r[2] = 'url'
+        if (r.length < 4 || typeof r[3] !== 'object' || r[3] === null) r[3] = {}
+        return r
+    }
+
+    const initial = (control.setting.get() || []).map(normalizeRow)
+    const [accountsUrl, setAccountsUrl] = useState(initial)
 
     const addInputField = (e) => {
         e.preventDefault()
-        setAccountsUrl([...accountsUrl, ['facebook', '', 'url']])
+        setAccountsUrl([...accountsUrl, ['facebook', '', 'url', {}]])
     }
 
-    const dataChangeHandle = (newAccountIconId, newAccountUrl, index, type) => {
-        const newAccountData = [newAccountIconId, newAccountUrl, type]
+    const dataChangeHandle = (newAccountIconId, newAccountUrl, index, type, options) => {
+        const prevOptions = accountsUrl[index] && accountsUrl[index][3] ? accountsUrl[index][3] : {}
+        const newAccountData = [newAccountIconId, newAccountUrl, type, options !== undefined ? options : prevOptions]
         const newUrl = [...accountsUrl]
         newUrl[index] = newAccountData
         setAccountsUrl(newUrl)
-        control.setting.set(accountsUrl)
+        control.setting.set(newUrl)
     }
 
     const removeInputField = (ele) => {

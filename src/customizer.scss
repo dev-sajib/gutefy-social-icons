@@ -123,14 +123,81 @@ ul#sub-accordion-section-gutefy_settings_styles_social_icon{
 //controller-wrapper-style
 .gf-social-icons-inline-settings-wrapper {
   display: flex;
+  padding: 5px 0;
   justify-content: space-between;
   align-items: center;
+}
+
+.gf-social-icons-advanced-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  color: #777;
+  transition: transform 0.2s;
+  margin-right: 4px;
+
+  &:hover {
+    color: #3858E9;
+  }
+
+  &.open {
+    transform: rotate(180deg);
+    color: #3858E9;
+  }
+}
+
+.gf-social-icons-advanced-panel {
+  margin: 8px 0 12px 0;
+  padding: 10px;
+  background: #f6f7f7;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+
+  .components-base-control {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.gf-social-icons-checkbox-control {
+  .components-checkbox-control {
+    padding-top: 5px;
+  }
+}
+
+#customize-control-gf_social_icons_open_in_new_tab_settings {
+  padding-top: 15px;
+}
+
+.gf-social-icons-visibility-wrapper {
+  .components-checkbox-control {
+    padding-top: 5px;
+  }
+
+  .gf-social-icons-visibility-section {
+    margin-top: 16px;
+    padding-top: 12px;
+    border-top: 1px solid #e5e7eb;
+  }
+
+  .gf-social-icons-visibility-help {
+    margin: 0 0 8px 0;
+    font-size: 11px;
+    color: #757575;
+    line-height: 1.4;
+  }
 }
 
 #sub-accordion-panel-gutefy_settings_core-panel_social_icon {
   .control-section {
     .accordion-section-title {
-      text-transform: uppercase;
+      text-transform: capitalize;
       font-family: inherit;
       font-weight: 700;
       letter-spacing: 1px;
@@ -152,17 +219,37 @@ ul#sub-accordion-section-gutefy_settings_styles_social_icon{
   padding-bottom: 10px;
   display: block;
 }
-.gf-social-icons-tab-element , .gf-social-icons-settings-label{
-    text-transform: uppercase;
+.gf-social-icons-tab-element,
+.gf-social-icons-settings-label,
+.gf-social-icons-visibility-heading,
+.gf-social-icons-checkbox-control__label {
+    text-transform: capitalize;
     font-family: inherit;
     font-weight: 400;
     letter-spacing: 1px;
     font-size: 11px;
     color: #000000;
 }
+
+.gf-social-icons-settings-label,
+.gf-social-icons-visibility-heading,
+.gf-social-icons-checkbox-control__label {
+    margin: 0 0 8px 0;
+}
+
+// Apply consistent capitalization to every label inside this plugin's customizer panel,
+// including labels rendered by @wordpress/components (CheckboxControl, ToggleControl, InputControl, etc.).
+#sub-accordion-panel-gutefy_settings_core-panel_social_icon {
+  .components-checkbox-control__label,
+  .components-toggle-control__label,
+  .components-base-control__label,
+  .components-input-control__label {
+    text-transform: capitalize;
+  }
+}
 #accordion-panel-gutefy_settings_core-panel_social_icon {
   .accordion-section-title {
-    text-transform: uppercase;
+    text-transform: capitalize;
     font-family: inherit;
     font-weight: 700;
     letter-spacing: 1px;

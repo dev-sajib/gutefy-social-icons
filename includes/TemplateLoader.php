@@ -21,15 +21,65 @@ class TemplateLoader
 
     public static function gf_social_icons_get_icon_data_loader()
     {
+        if (!self::should_render()) {
+            return;
+        }
         $gf_social_icons_position_horizontally = get_option('gf_social_icons_position_horizontally', 'position--right');
 
-
-        if (true) {
-            $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper " . $gf_social_icons_position_horizontally . "'>" . self::load_template() . "</div>";
-            self::generateStyle();
-        }
+        $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper " . esc_attr($gf_social_icons_position_horizontally) . "'>" . self::load_template() . "</div>";
+        self::generateStyle();
 
         echo $html;
+    }
+
+    /**
+     * Evaluate the visibility rules saved by ConditionalDisplay control.
+     * Returns true when the icons should render on the current request.
+     */
+    public static function should_render()
+    {
+        $rules = get_option('gf_social_icons_visibility_rules', []);
+        if (!is_array($rules) || empty($rules)) {
+            return true;
+        }
+
+        $targets = isset($rules['targets']) && is_array($rules['targets']) ? $rules['targets'] : [];
+        $hide_for_roles = isset($rules['hide_for_roles']) && is_array($rules['hide_for_roles']) ? $rules['hide_for_roles'] : [];
+
+        // Role rule: if current user's role is in the "Hide for these roles" list, hide.
+        if (!empty($hide_for_roles)) {
+            $current_roles = self::get_current_user_roles();
+            foreach ($current_roles as $role) {
+                if (in_array($role, $hide_for_roles, true)) {
+                    return false;
+                }
+            }
+        }
+
+        // Page rule: hide if the current request matches any checked target.
+        if (!empty($targets['front_page']) && is_front_page())                    return false;
+        if (!empty($targets['home_blog']) && is_home())                           return false;
+        if (!empty($targets['single_post']) && is_singular('post'))               return false;
+        if (!empty($targets['single_page']) && is_page())                         return false;
+        if (!empty($targets['archive']) && is_archive())                          return false;
+        if (!empty($targets['search']) && is_search())                            return false;
+        if (!empty($targets['not_found']) && is_404())                            return false;
+
+        if (class_exists('WooCommerce')) {
+            if (!empty($targets['woocommerce_shop']) && function_exists('is_shop') && is_shop()) {
+                return false;
+            }
+            if (!empty($targets['woocommerce_checkout']) && (
+                (function_exists('is_cart') && is_cart()) || (function_exists('is_checkout') && is_checkout())
+            )) {
+                return false;
+            }
+            if (!empty($targets['woocommerce_product']) && function_exists('is_product') && is_product()) {
+                return false;
+            }
+        }
+
+        return true;
     }
     public static function load_template()
     {
@@ -59,10 +109,14 @@ class TemplateLoader
         if (!empty($social_icons_settings)):
             foreach ($social_icons_settings as $icon) {
                 if ($icon[1]) {
+                    $aria_label = ucwords(str_replace(['_', '-'], ' ', $icon[0]));
+                    $options = (isset($icon[3]) && is_array($icon[3])) ? $icon[3] : [];
+                    $href = self::build_href($icon[0], $icon[1], $options);
+                    $is_protocol_href = (bool) preg_match('/^(mailto:|tel:|sms:)/i', $href);
                     ?>
 
-                    <a class="gf_social_icons_social_icon" href="<?php echo esc_url($icon[1]); ?>" <?php
-                    if ($open_in_new_tab['value']) {
+                    <a class="gf_social_icons_social_icon" href="<?php echo $is_protocol_href ? esc_attr($href) : esc_url($href); ?>" aria-label="<?php echo esc_attr($aria_label); ?>" rel="noopener noreferrer" <?php
+                    if ($open_in_new_tab['value'] && !$is_protocol_href) {
                         echo 'target="_blank"';
                     } ?>>
                         <span>
@@ -81,10 +135,76 @@ class TemplateLoader
         return ob_get_clean();
     }
 
+    /**
+     * Returns an array of role slugs for the current visitor.
+     * Guests always include the 'guest' slug. Logged-in users include all assigned WP roles.
+     */
+    public static function get_current_user_roles()
+    {
+        if (!is_user_logged_in()) {
+            return ['guest'];
+        }
+        $u = wp_get_current_user();
+        return ($u && !empty($u->roles)) ? array_values($u->roles) : [];
+    }
+
+    /**
+     * Build an href from a repeater row, based on icon type + per-row options.
+     * Options shape:
+     *   whatsapp: ['prefill_message' => string]
+     *   mail (envelope/envelope-regular): ['subject' => string, 'body' => string]
+     *   phone: ['sms' => bool]
+     */
+    public static function build_href($icon_id, $target, $options = [])
+    {
+        $mail_icons = ['envelope', 'envelope-regular'];
+        $whatsapp_icons = ['whatsapp'];
+        $phone_icons = ['phone'];
+
+        $target_trim = trim($target);
+
+        if (in_array($icon_id, $whatsapp_icons, true)) {
+            $digits = preg_replace('/\D/', '', $target_trim);
+            if (!$digits) {
+                return $target_trim;
+            }
+            $href = 'https://wa.me/' . $digits;
+            if (!empty($options['prefill_message'])) {
+                $href .= '?text=' . rawurlencode($options['prefill_message']);
+            }
+            return $href;
+        }
+
+        if (in_array($icon_id, $mail_icons, true)) {
+            if (!filter_var($target_trim, FILTER_VALIDATE_EMAIL)) {
+                return $target_trim;
+            }
+            $href = 'mailto:' . $target_trim;
+            $q = [];
+            if (!empty($options['subject'])) $q['subject'] = $options['subject'];
+            if (!empty($options['body']))    $q['body']    = $options['body'];
+            if ($q) {
+                $href .= '?' . http_build_query($q);
+            }
+            return $href;
+        }
+
+        if (in_array($icon_id, $phone_icons, true)) {
+            $digits = preg_replace('/[^\d+]/', '', $target_trim);
+            if (!$digits) {
+                return $target_trim;
+            }
+            $scheme = !empty($options['sms']) ? 'sms:' : 'tel:';
+            return $scheme . $digits;
+        }
+
+        return $target_trim;
+    }
+
     public static function generateMarkupString($singleStyle, $markup_string)
     {
 
-        if ($singleStyle['css_attr'] && $singleStyle['css_attr'] === null) {
+        if (array_key_exists('css_attr',$singleStyle) && $singleStyle['css_attr'] && $singleStyle['css_attr'] === null) {
             foreach ($singleStyle as $style) {
 
                 if (gettype($style) != 'string') {
@@ -101,15 +221,13 @@ class TemplateLoader
             }
 
         } else {
-
-
-            if (gettype($singleStyle['value']) == 'array') {
+            if ( array_key_exists('value',@$singleStyle) && gettype($singleStyle['value']) == 'array') {
                 $style_string = '';
                 foreach ($singleStyle['value'] as $value) {
                     $style_string .= $value . ' ';
                 }
                 $markup_string .= $singleStyle['css_selector'] . "{" . $singleStyle['css_attr'] . ":" . $style_string . "!important;}";
-            } else {
+            } else if( array_key_exists('value',@$singleStyle) && gettype($singleStyle['value'])==='string') {
                 $markup_string .= $singleStyle['css_selector'] . "{" . $singleStyle['css_attr'] . ":" . $singleStyle['value'] . "!important;}";
             }
         }
