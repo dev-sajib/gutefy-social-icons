@@ -57,6 +57,11 @@ class Core extends BaseCustomizer
         'title' => __('Design', TEXT_DOMAIN),
         'panel' => Settings::PANEL_CORE,
         'priority' => 2,
+      ],
+      Settings::SECTION_ADVANCED_SETTINGS => [
+        'title' => __('Advanced', TEXT_DOMAIN),
+        'panel' => Settings::PANEL_CORE,
+        'priority' => 3,
       ]
     );
 
@@ -134,24 +139,30 @@ class Core extends BaseCustomizer
                 'css_attr' => 'display',
                 'value' => 'block',
               ],
+              'tablet' => [
+                'css_attr' => 'display',
+                'value' => 'block',
+              ],
+              'mobile' => [
+                'css_attr' => 'display',
+                'value' => 'block',
+              ],
             ],
             'toggleValue' => ['true' => 'block', 'false' => 'none']
           ],
           'transport' => 'postMessage',
           'type' => 'option',
           'capability' => 'manage_options',
-          // 'sanitize_callback' => [$this, 'gf_social_icons_custom_sanitize'],
-          // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Set Visiblity', TEXT_DOMAIN),
-          'section' => Settings::SECTION_GENERAL_SETTINGS,
+          'label' => __('Device Visibility', TEXT_DOMAIN),
+          'section' => Settings::SECTION_ADVANCED_SETTINGS,
+          'priority' => 1,
           'input_attrs' => array(
             'responsive' => true,
-            'heading' => 'Advance Settings'
           ),
         ],
-        'custom_control' => "\GF_SOCIAL_ICONS\Controls\Toggle"
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\Checkbox"
       ],
       [
         'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_ICON_COLOR'],
@@ -513,6 +524,82 @@ class Core extends BaseCustomizer
         ],
         'custom_control' => "\GF_SOCIAL_ICONS\Controls\BorderControl"
       ],
+      [
+        'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_BORDER_RADIUS'],
+        'priority' => 6,
+        'setting_args' => [
+          'default' => [
+            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon",
+            'device_wise_value' => [
+              'desktop' => [
+                'css_attr' => 'border-radius',
+                'value' => '0px',
+              ],
+            ]
+          ],
+          'transport' => 'postMessage',
+          'type' => 'option',
+          'capability' => 'manage_options',
+        ],
+        'control_args' => [
+          'label' => __('Border Radius', TEXT_DOMAIN),
+          'section' => Settings::SECTION_STYLE_SETTINGS,
+          'input_attrs' => array(
+            'responsive' => true,
+            'heading' => 'Advance Settings',
+            'control_for' => Settings::GENERAL_TAB_ELEMENT
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\UnitInput"
+      ],
+      [
+        'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_BORDER_RADIUS_HOVER'],
+        'priority' => 6,
+        'setting_args' => [
+          'default' => [
+            'css_selector' => "#gf_social_icons__wrapper a.gf_social_icons_social_icon:hover",
+            'device_wise_value' => [
+              'desktop' => [
+                'css_attr' => 'border-radius',
+                'value' => '',
+              ],
+            ]
+          ],
+          'transport' => 'postMessage',
+          'type' => 'option',
+          'capability' => 'manage_options',
+        ],
+        'control_args' => [
+          'label' => __('Border Radius', TEXT_DOMAIN),
+          'section' => Settings::SECTION_STYLE_SETTINGS,
+          'input_attrs' => array(
+            'responsive' => true,
+            'heading' => 'Advance Settings',
+            'control_for' => Settings::HOVER_TAB_ELEMENT
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\UnitInput"
+      ],
+      [
+        'id' => Settings::GENERAL_SETTING_ID_VISIBILITY_RULES,
+        'setting_args' => [
+          'default' => [
+            'targets' => [],
+            'hide_for_roles' => [],
+          ],
+          'transport' => 'postMessage',
+          'type' => 'option',
+          'capability' => 'manage_options',
+          'sanitize_callback' => [Sanitize::class, 'gf_social_icons_visibility_sanitize'],
+        ],
+        'control_args' => [
+          'label' => __('Display Rules', TEXT_DOMAIN),
+          'section' => Settings::SECTION_ADVANCED_SETTINGS,
+          'priority' => 2,
+          'input_attrs' => array(),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\ConditionalDisplay"
+      ],
 
     ];
 
@@ -533,7 +620,7 @@ class Core extends BaseCustomizer
 
 
   /**
-   * Control for ADD Partial controller 
+   * Control for ADD Partial controller
    * @return void
    */
   public function add_partials()

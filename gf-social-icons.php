@@ -1,22 +1,23 @@
 <?php
 /**
  *
- * @link              https://gutefy.com
- * @since             1.1.0
+ * @link              https://github.com/dev-sajib/gutefy-social-icons
+ * @since             1.2.0
  * @package           Gutefy_Social_Icons
  *
  * @wordpress-plugin
- * Plugin Name:       Sticky Social Icons 
- * Plugin URI:        https://gutefy.com
- * Description:       A lightweight, responsive social media plugin for showcasing icons on your website, with easy customization directly in the WordPress Customizer.
- * Version:           1.1.01
+ * Plugin Name:       Sticky Social Icons
+ * Plugin URI:        https://github.com/dev-sajib/gutefy-social-icons
+ * Description:       Add floating, sticky, or inline social media icons (Facebook, WhatsApp, Instagram, X/Twitter, YouTube, LinkedIn, TikTok, Email, Phone, more) with a no-code WordPress Customizer interface, shortcode, and Gutenberg block.
+ * Version:           1.2.0
  * Author:            Gutefy
- * Author URI:        https://portfolio.gutefy.com/
+ * Author URI:        https://profiles.wordpress.org/gutefy/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       gf-social-icons
  * Domain Path:       /languages
  * Requires at least: 6.3
+ * Tested up to:      7.0
  * Requires PHP:      7.2
  */
 

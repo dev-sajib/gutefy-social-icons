@@ -9,8 +9,10 @@ class Validation{
       foreach ($value as $key => $item) {
           if (is_array($item)) {
               $url = trim($item[1]);
-              // Check if the URL is either a valid URL, email, or phone number
-              if (!filter_var($url, FILTER_VALIDATE_URL) && !filter_var($url, FILTER_VALIDATE_EMAIL) && !preg_match('/^\+?\d+$/', $url)) {
+              $digits_only = preg_replace('/\D/', '', $url);
+              // Check if the URL is either a valid URL, email, or phone-like (digits with optional spaces/dashes/parens/+).
+              $is_phone_like = preg_match('/^\+?[\d\s\-\(\)]{7,20}$/', $url) && strlen($digits_only) >= 7;
+              if (!filter_var($url, FILTER_VALIDATE_URL) && !filter_var($url, FILTER_VALIDATE_EMAIL) && !$is_phone_like) {
                   return false; // Return default value on validation error
               }
           }

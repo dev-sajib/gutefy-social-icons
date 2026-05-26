@@ -9,11 +9,13 @@ class Settings
     //ANCHOR -SECTION-IDS
     const SECTION_GENERAL_SETTINGS = 'gutefy_settings_general_social_icon';
     const SECTION_STYLE_SETTINGS = 'gutefy_settings_styles_social_icon';
+    const SECTION_ADVANCED_SETTINGS = 'gutefy_settings_advanced_social_icon';
 
     //ANCHOR -GENERAL SETTINGS ID
     const GENERAL_SETTING_ID_SOCIAL_REPEATER = 'gf_social_icons_general_settings';
     const GENERAL_SETTING_ID_OPEN_IN_NEW_TAB_SETTINGS = 'gf_social_icons_open_in_new_tab_settings';
     const GENERAL_SETTING_ID_MOBILE_VISIBILITY_SETTINGS = 'gf_social_icons_mobile_visiblity_settings';
+    const GENERAL_SETTING_ID_VISIBILITY_RULES = 'gf_social_icons_visibility_rules';
     const GLOBAL_ID__TAB = 'gf_social_icons_tab_settings';
 
 
@@ -41,6 +43,8 @@ class Settings
         'STYLE_SETTING_ID_ICON_WRAPPER_SIZE' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-wrapper-size]',
         'STYLE_SETTING_ID_ICON_WRAPPER_HOVER_SIZE' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-wrapper-hover-size]',
         'STYLE_SETTING_ID_BORDER' => 'gf_social_icons_styles_setting[styles][gutefy_icon_wrapper_border]',
+        'STYLE_SETTING_ID_BORDER_RADIUS' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-radius]',
+        'STYLE_SETTING_ID_BORDER_RADIUS_HOVER' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-radius-hover]',
         'STYLE_SETTING_ID_SPACING' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-wrapper-gap]',
     ];
 
