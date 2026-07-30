@@ -1,10 +1,14 @@
 <?php
 namespace GF_SOCIAL_ICONS\Controls;
 
-class SocialRepeater extends \WP_Customize_Control
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+class UnitInput extends \WP_Customize_Control
 {
 
-  public $type = 'gf_social_icons__general_control_type';
+  public $type = 'gf_social_icons__type_unit_input';
   public function json()
   {
     $json = parent::json();
@@ -14,8 +18,7 @@ class SocialRepeater extends \WP_Customize_Control
   public function render_content()
   {
     ?>
-    <div id="gf_social_icons__general-control-wrapper">
-      //render from react
+    <div id="gf_social_icons__wrapper_unit_input">
     </div>
     <?php
   }

@@ -5,10 +5,10 @@ namespace GF_SOCIAL_ICONS\Controls;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-class Checkbox extends \WP_Customize_Control
+class SocialRepeater extends \WP_Customize_Control
 {
 
-  public $type = 'gf_social_icons__type_checkbox';
+  public $type = 'gf_social_icons__general_control_type';
   public function json()
   {
     $json = parent::json();
@@ -18,7 +18,7 @@ class Checkbox extends \WP_Customize_Control
   public function render_content()
   {
     ?>
-    <div id="gf_social_icons__checkbox-wrapper">
+    <div id="gf_social_icons__general-control-wrapper">
       //render from react
     </div>
     <?php

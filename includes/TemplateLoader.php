@@ -2,6 +2,10 @@
 namespace GF_SOCIAL_ICONS;
 
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 class TemplateLoader
 {
     public $templateLoadCount = 0;
@@ -26,10 +30,64 @@ class TemplateLoader
         }
         $gf_social_icons_position_horizontally = get_option('gf_social_icons_position_horizontally', 'position--right');
 
-        $html = "<div id='gf_social_icons__wrapper' class='gutefy-section-parent-wrapper " . esc_attr($gf_social_icons_position_horizontally) . "'>" . self::load_template() . "</div>";
         self::generateStyle();
 
-        echo $html;
+        echo '<div id="gf_social_icons__wrapper" class="gutefy-section-parent-wrapper ' . esc_attr($gf_social_icons_position_horizontally) . '">';
+        self::render_template();
+        echo '</div>';
+    }
+
+    /**
+     * Tags and attributes allowed inside the bundled icon SVGs.
+     *
+     * The icon markup ships with the plugin (build/iconStore.json), but it is still
+     * filtered through wp_kses() so nothing unexpected can ever reach the page.
+     *
+     * @return array
+     */
+    public static function svg_allowed_html()
+    {
+        $shared_attributes = array(
+            'fill'             => true,
+            'fill-rule'        => true,
+            'fill-opacity'     => true,
+            'stroke'           => true,
+            'stroke-width'     => true,
+            'stroke-linecap'   => true,
+            'stroke-linejoin'  => true,
+            'stroke-dasharray' => true,
+            'opacity'          => true,
+            'transform'        => true,
+            'class'            => true,
+            'style'            => true,
+            'id'               => true,
+        );
+
+        return array(
+            'svg'      => $shared_attributes + array(
+                'xmlns'               => true,
+                'xmlns:xlink'         => true,
+                'viewbox'             => true,
+                'width'               => true,
+                'height'              => true,
+                'preserveaspectratio' => true,
+                'role'                => true,
+                'aria-hidden'         => true,
+                'focusable'           => true,
+                'version'             => true,
+            ),
+            'g'        => $shared_attributes,
+            'title'    => array(),
+            'defs'     => array(),
+            'path'     => $shared_attributes + array('d' => true),
+            'circle'   => $shared_attributes + array('cx' => true, 'cy' => true, 'r' => true),
+            'ellipse'  => $shared_attributes + array('cx' => true, 'cy' => true, 'rx' => true, 'ry' => true),
+            'rect'     => $shared_attributes + array('x' => true, 'y' => true, 'width' => true, 'height' => true, 'rx' => true, 'ry' => true),
+            'line'     => $shared_attributes + array('x1' => true, 'y1' => true, 'x2' => true, 'y2' => true),
+            'polygon'  => $shared_attributes + array('points' => true),
+            'polyline' => $shared_attributes + array('points' => true),
+            'use'      => $shared_attributes + array('href' => true, 'xlink:href' => true, 'x' => true, 'y' => true),
+        );
     }
 
     /**
@@ -81,7 +139,24 @@ class TemplateLoader
 
         return true;
     }
+    /**
+     * Returns the icon markup as a string.
+     *
+     * Kept for backward compatibility — render_template() is the printing version.
+     *
+     * @return string
+     */
     public static function load_template()
+    {
+        ob_start();
+        self::render_template();
+        return ob_get_clean();
+    }
+
+    /**
+     * Prints the icon list.
+     */
+    public static function render_template()
     {
         $social_icons_settings = get_option('gf_social_icons_general_settings', []);
         $open_in_new_tab = get_option('gf_social_icons_open_in_new_tab_settings', ['value' => true]);
@@ -92,7 +167,7 @@ class TemplateLoader
 
         //check availablity
         if (!file_exists($json_file_path)) {
-            return 'Icon Json File Not Found';
+            return;
         }
 
         // Read and decode the JSON file
@@ -100,39 +175,39 @@ class TemplateLoader
         $social_icons_data = json_decode($json_data, true);
 
         // Check if the JSON data was properly decoded
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            return '<p>Error: Invalid JSON data.</p>';
+        if (json_last_error() !== JSON_ERROR_NONE || !is_array($social_icons_data)) {
+            return;
         }
-        ob_start();
+
+        $open_in_new_tab = (is_array($open_in_new_tab) && !empty($open_in_new_tab['value']));
+        $allowed_svg = self::svg_allowed_html();
 
         echo '<div class="gf_social_icons_social_float">';
-        if (!empty($social_icons_settings)):
-            foreach ($social_icons_settings as $icon) {
-                if ($icon[1]) {
-                    $aria_label = ucwords(str_replace(['_', '-'], ' ', $icon[0]));
-                    $options = (isset($icon[3]) && is_array($icon[3])) ? $icon[3] : [];
-                    $href = self::build_href($icon[0], $icon[1], $options);
-                    $is_protocol_href = (bool) preg_match('/^(mailto:|tel:|sms:)/i', $href);
-                    ?>
 
-                    <a class="gf_social_icons_social_icon" href="<?php echo $is_protocol_href ? esc_attr($href) : esc_url($href); ?>" aria-label="<?php echo esc_attr($aria_label); ?>" rel="noopener noreferrer" <?php
-                    if ($open_in_new_tab['value'] && !$is_protocol_href) {
-                        echo 'target="_blank"';
-                    } ?>>
-                        <span>
-                            <?php echo ($social_icons_data[$icon[0]]['icon']) ?>
-                        </span>
-                    </a>
-                    <?php
+        if (!empty($social_icons_settings)) {
+            foreach ($social_icons_settings as $icon) {
+                if (empty($icon[1]) || !isset($social_icons_data[$icon[0]]['icon'])) {
+                    continue;
                 }
+
+                $aria_label = ucwords(str_replace(['_', '-'], ' ', $icon[0]));
+                $options = (isset($icon[3]) && is_array($icon[3])) ? $icon[3] : [];
+                $href = self::build_href($icon[0], $icon[1], $options);
+                $is_protocol_href = (bool) preg_match('/^(mailto:|tel:|sms:)/i', $href);
+
+                echo '<a class="gf_social_icons_social_icon" href="'
+                    . ($is_protocol_href ? esc_attr($href) : esc_url($href))
+                    . '" aria-label="' . esc_attr($aria_label) . '" rel="noopener noreferrer"'
+                    . (($open_in_new_tab && !$is_protocol_href) ? ' target="_blank"' : '')
+                    . '><span>'
+                    . wp_kses($social_icons_data[$icon[0]]['icon'], $allowed_svg)
+                    . '</span></a>';
             }
-            ;
-        else: ?>
-            <p class="empty-sms">Minimum One Url Required.</p>
-        <?php endif;
+        } else {
+            echo '<p class="empty-sms">' . esc_html__('Minimum One Url Required.', 'gf-social-icons') . '</p>';
+        }
+
         echo '</div>';
-        // Get the contents of the buffer and clean it
-        return ob_get_clean();
     }
 
     /**

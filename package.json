@@ -1,6 +1,6 @@
 {
 	"name": "gf-social-icons",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"description": "Floating, sticky social media icons for WordPress with Customizer support.",
 	"author": "Gutefy",
 	"license": "GPL-2.0-or-later",
@@ -14,7 +14,7 @@
 		"plugin-zip": "npm-run-all clean-zip build zip-files",
 		"start": "wp-scripts start",
 		"clean-zip": "rm -rf gf-social-icons.zip plugin-zip && mkdir -p plugin-zip/gf-social-icons",
-		"zip-files": "cp -r includes build vendor composer.json gf-social-icons.php uninstall.php LICENSE README.txt plugin-zip/gf-social-icons && cd plugin-zip && zip -r ../gf-social-icons.zip gf-social-icons"
+		"zip-files": "cp -r includes build vendor src composer.json package.json webpack.config.js gf-social-icons.php uninstall.php LICENSE README.txt README.md plugin-zip/gf-social-icons && cd plugin-zip && zip -r ../gf-social-icons.zip gf-social-icons -x '*.DS_Store'"
 	},
 	"devDependencies": {
 		"@types/sortablejs": "^1.15.8",

@@ -2,6 +2,10 @@
 namespace GF_SOCIAL_ICONS\Types;
 
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 class Control{
   
   public $id;

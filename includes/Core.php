@@ -2,6 +2,10 @@
 
 namespace GF_SOCIAL_ICONS;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 use GF_SOCIAL_ICONS\Global\Settings;
 use GF_SOCIAL_ICONS\BaseCustomizer;
 use GF_SOCIAL_ICONS\Types\Panel;
@@ -29,8 +33,8 @@ class Core extends BaseCustomizer
 
     $panels = array(
       Settings::PANEL_CORE => [
-        'title' => __('Sticky Social Icons', TEXT_DOMAIN),
-        'description' => __('<p>Gutefy Extensions for floating social icons</p>', TEXT_DOMAIN),
+        'title' => __('Sticky Social Icons', 'gf-social-icons'),
+        'description' => __('Floating social and contact icons for your site.', 'gf-social-icons'),
         'priority' => 31,
       ]
     );
@@ -49,17 +53,17 @@ class Core extends BaseCustomizer
   {
     $section = array(
       Settings::SECTION_GENERAL_SETTINGS => [
-        'title' => __('General', TEXT_DOMAIN),
+        'title' => __('General', 'gf-social-icons'),
         'panel' => Settings::PANEL_CORE,
         'priority' => 1,
       ],
       Settings::SECTION_STYLE_SETTINGS => [
-        'title' => __('Design', TEXT_DOMAIN),
+        'title' => __('Design', 'gf-social-icons'),
         'panel' => Settings::PANEL_CORE,
         'priority' => 2,
       ],
       Settings::SECTION_ADVANCED_SETTINGS => [
-        'title' => __('Advanced', TEXT_DOMAIN),
+        'title' => __('Advanced', 'gf-social-icons'),
         'panel' => Settings::PANEL_CORE,
         'priority' => 3,
       ]
@@ -101,7 +105,7 @@ class Core extends BaseCustomizer
           'validate_callback' => [Validation::class, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Accounts List', TEXT_DOMAIN),
+          'label' => __('Accounts List', 'gf-social-icons'),
           'section' => Settings::SECTION_GENERAL_SETTINGS,
           'input_attrs' => array(
           ),
@@ -119,7 +123,7 @@ class Core extends BaseCustomizer
           // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Open in new Tab', TEXT_DOMAIN),
+          'label' => __('Open in new Tab', 'gf-social-icons'),
           'section' => Settings::SECTION_GENERAL_SETTINGS,
           'input_attrs' => array(
             'responsive' => false,
@@ -155,7 +159,7 @@ class Core extends BaseCustomizer
           'capability' => 'manage_options',
         ],
         'control_args' => [
-          'label' => __('Device Visibility', TEXT_DOMAIN),
+          'label' => __('Device Visibility', 'gf-social-icons'),
           'section' => Settings::SECTION_ADVANCED_SETTINGS,
           'priority' => 1,
           'input_attrs' => array(
@@ -184,7 +188,7 @@ class Core extends BaseCustomizer
           // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Icon Color', TEXT_DOMAIN),
+          'label' => __('Icon Color', 'gf-social-icons'),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
@@ -214,7 +218,7 @@ class Core extends BaseCustomizer
           // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Icon background color', TEXT_DOMAIN),
+          'label' => __('Icon background color', 'gf-social-icons'),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
@@ -244,7 +248,7 @@ class Core extends BaseCustomizer
           // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Icon color', TEXT_DOMAIN),
+          'label' => __('Icon color', 'gf-social-icons'),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
@@ -274,7 +278,7 @@ class Core extends BaseCustomizer
           // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Icon background color', TEXT_DOMAIN),
+          'label' => __('Icon background color', 'gf-social-icons'),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
@@ -304,7 +308,7 @@ class Core extends BaseCustomizer
           // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Icon Size', TEXT_DOMAIN),
+          'label' => __('Icon Size', 'gf-social-icons'),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
@@ -334,7 +338,7 @@ class Core extends BaseCustomizer
           // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Icon Size', TEXT_DOMAIN),
+          'label' => __('Icon Size', 'gf-social-icons'),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
@@ -372,7 +376,7 @@ class Core extends BaseCustomizer
           // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Icon Wrapper', TEXT_DOMAIN),
+          'label' => __('Icon Wrapper', 'gf-social-icons'),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
@@ -402,7 +406,7 @@ class Core extends BaseCustomizer
           // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Icon Wrapper size', TEXT_DOMAIN),
+          'label' => __('Icon Wrapper size', 'gf-social-icons'),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
@@ -433,7 +437,7 @@ class Core extends BaseCustomizer
           // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Vertical Gap', TEXT_DOMAIN),
+          'label' => __('Vertical Gap', 'gf-social-icons'),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
@@ -462,7 +466,7 @@ class Core extends BaseCustomizer
           // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Adjust Vertical Position', TEXT_DOMAIN),
+          'label' => __('Adjust Vertical Position', 'gf-social-icons'),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
@@ -483,7 +487,7 @@ class Core extends BaseCustomizer
           // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Horizontal Position', TEXT_DOMAIN),
+          'label' => __('Horizontal Position', 'gf-social-icons'),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'control_for' => Settings::GENERAL_TAB_ELEMENT
@@ -513,7 +517,7 @@ class Core extends BaseCustomizer
           // 'validate_callback' => [$this, 'gf_social_icons_custom_url_validation'],
         ],
         'control_args' => [
-          'label' => __('Border', TEXT_DOMAIN),
+          'label' => __('Border', 'gf-social-icons'),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
@@ -542,7 +546,7 @@ class Core extends BaseCustomizer
           'capability' => 'manage_options',
         ],
         'control_args' => [
-          'label' => __('Border Radius', TEXT_DOMAIN),
+          'label' => __('Border Radius', 'gf-social-icons'),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
@@ -570,7 +574,7 @@ class Core extends BaseCustomizer
           'capability' => 'manage_options',
         ],
         'control_args' => [
-          'label' => __('Border Radius', TEXT_DOMAIN),
+          'label' => __('Border Radius', 'gf-social-icons'),
           'section' => Settings::SECTION_STYLE_SETTINGS,
           'input_attrs' => array(
             'responsive' => true,
@@ -593,7 +597,7 @@ class Core extends BaseCustomizer
           'sanitize_callback' => [Sanitize::class, 'gf_social_icons_visibility_sanitize'],
         ],
         'control_args' => [
-          'label' => __('Display Rules', TEXT_DOMAIN),
+          'label' => __('Display Rules', 'gf-social-icons'),
           'section' => Settings::SECTION_ADVANCED_SETTINGS,
           'priority' => 2,
           'input_attrs' => array(),

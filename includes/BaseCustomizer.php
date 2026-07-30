@@ -1,6 +1,10 @@
 <?php
 namespace GF_SOCIAL_ICONS;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 use GF_SOCIAL_ICONS\Types\Panel;
 use GF_SOCIAL_ICONS\Types\Partial;
 use GF_SOCIAL_ICONS\Types\Section;

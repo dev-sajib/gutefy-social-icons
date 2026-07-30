@@ -1,14 +1,14 @@
-=== Sticky Social Icons - Floating Social Media, WhatsApp Chat, Click-to-Call & Email Icons ===
+=== Sticky Social Icons ===
 Contributors: gutefy
-Tags: social icons, floating social icons, whatsapp button, click to call, share buttons
+Tags: social icons, floating social icons, sticky icons, contact buttons, click to call
 Requires at least: 6.3
 Requires PHP: 7.2
 Tested up to: 7.0
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Floating or inline social icons for any WordPress site: WhatsApp click-to-chat, click-to-call, email, Facebook, Instagram, X, YouTube, TikTok and more.
+Floating or inline social and contact icons for any WordPress site — no code, live Customizer preview.
 
 == Description ==
 
@@ -102,15 +102,27 @@ No. There is no jQuery on the frontend, no icon font, and only the CSS your visi
 = Does it track my visitors? =
 No. The plugin makes no external requests, sets no cookies, and does not track anything.
 
-== Screenshots ==
-1. Floating social icons rail on a typical homepage.
-2. Customizer panel — General section with Accounts List, drag-to-reorder, and Open in New Tab.
-3. Customizer panel — Design section with Normal/Hover tabs, colors, sizes, border, radius.
-4. Customizer panel — Advanced section with Device Visibility and Display Rules.
-5. Per-row WhatsApp pre-fill / mailto subject+body / SMS toggle.
-6. Per-row WhatsApp pre-fill, mailto subject+body, SMS toggle.
+== Source Code ==
+
+The complete, human-readable source of this plugin — uncompiled JavaScript/JSX and SCSS — is available at:
+
+https://github.com/syed-sajib/gutefy-social-icons
+
+The files in `/build` are generated from `/src` with @wordpress/scripts (webpack). To build them yourself:
+
+1. `npm install`
+2. `npm run build`
+
+Build configuration lives in `webpack.config.js`; the entry points are `src/customizer.js` and `src/view.js`. Development watch mode is `npm run start`. The `/src` directory is also shipped inside this plugin package, so no download is required to read the original source.
 
 == Changelog ==
+
+= 1.2.1 =
+* **Changed:** Plugin display name simplified to **Sticky Social Icons** — removed the third-party trademarked term and the extra keywords from the name and the plugin tags.
+* **Added:** Full uncompiled source (`/src`), `package.json`, and `webpack.config.js` are now included in the plugin package.
+* **Added:** Readme now documents the public source repository and the exact build process for the files in `/build`.
+* **Updated:** Repository URLs point to the new location, https://github.com/syed-sajib/gutefy-social-icons.
+* No functional or feature changes.
 
 = 1.2.0 =
 * **New:** Border radius (normal + hover, responsive) — circle, pill, or rounded icons in one click.
@@ -147,6 +159,9 @@ No. The plugin makes no external requests, sets no cookies, and does not track a
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.2.1 =
+Maintenance release. Plugin name simplified, full source code and build instructions now included. No functional changes — safe update for everyone.
 
 = 1.2.0 =
 Major feature release. Adds click-to-chat WhatsApp/Email/Phone, page-level visibility rules, role-based hiding, border-radius, per-device visibility, and accessibility (aria-label, noopener). Recommended for everyone.

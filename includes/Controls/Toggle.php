@@ -1,10 +1,14 @@
 <?php
 namespace GF_SOCIAL_ICONS\Controls;
 
-class BorderControl extends \WP_Customize_Control
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+class Toggle extends \WP_Customize_Control
 {
   
-  public $type = 'gf_social_icons__borders_control_type';
+  public $type = 'gf_social_icons__toggle_control_type';
   public function json()
   {
     $json = parent::json();
@@ -16,7 +20,7 @@ class BorderControl extends \WP_Customize_Control
   {
 
     ?>
-    <div id="gf_social_icons__borders-control-wrap">
+    <div id="gf_social_icons__toggle-control-wrapper">
       //render from react
     </div>
     <?php

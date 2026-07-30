@@ -1,6 +1,10 @@
 <?php
 namespace GF_SOCIAL_ICONS;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 class Validation{
     public static function gf_social_icons_custom_url_validation($error_object, $value, $setting_object) {
       if(empty($value)){

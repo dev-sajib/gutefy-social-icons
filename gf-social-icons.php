@@ -1,21 +1,20 @@
 <?php
 /**
  *
- * @link              https://github.com/dev-sajib/gutefy-social-icons
- * @since             1.2.0
+ * @link              https://github.com/syed-sajib/gutefy-social-icons
+ * @since             1.2.1
  * @package           Gutefy_Social_Icons
  *
  * @wordpress-plugin
  * Plugin Name:       Sticky Social Icons
- * Plugin URI:        https://github.com/dev-sajib/gutefy-social-icons
- * Description:       Add floating, sticky, or inline social media icons (Facebook, WhatsApp, Instagram, X/Twitter, YouTube, LinkedIn, TikTok, Email, Phone, more) with a no-code WordPress Customizer interface, shortcode, and Gutenberg block.
- * Version:           1.2.0
+ * Plugin URI:        https://github.com/syed-sajib/gutefy-social-icons
+ * Description:       Add floating, sticky social and contact icons (Facebook, Instagram, X/Twitter, YouTube, LinkedIn, TikTok, WhatsApp, Email, Phone and more) to any site, configured live in the WordPress Customizer.
+ * Version:           1.2.1
  * Author:            Gutefy
  * Author URI:        https://profiles.wordpress.org/gutefy/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       gf-social-icons
- * Domain Path:       /languages
  * Requires at least: 6.3
  * Tested up to:      7.0
  * Requires PHP:      7.2
@@ -50,10 +49,20 @@ use GF_SOCIAL_ICONS\Core;
 use GF_SOCIAL_ICONS\Global\EnqueueScripts;
 use GF_SOCIAL_ICONS\TemplateLoader;
 
-// Initialize the classes
-new Core();
+// Activation hook and admin links must be registered while the plugin file loads.
 new Activate();
-EnqueueScripts::init();
-TemplateLoader::init();
+
+/**
+ * Initialize the rest of the plugin on `init`.
+ *
+ * The Customizer panels, sections and controls carry translated labels, so they
+ * must not be built before `init` — doing so triggers WordPress' "translation
+ * loading was triggered too early" notice (see _load_textdomain_just_in_time()).
+ */
+add_action('init', function () {
+    new Core();
+    EnqueueScripts::init();
+    TemplateLoader::init();
+});
 
 ?>

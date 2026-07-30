@@ -2,7 +2,11 @@
 namespace GF_SOCIAL_ICONS\Types;
 
 
-class Panel{
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+class Partial{
   
   /**
    * Summary of id
@@ -12,7 +16,7 @@ class Panel{
   
   /**
    * Summary of args
-   * @var array args passed into panel.
+   * @var array args passed into partial.
    */
   public $args = array();
 
@@ -24,6 +28,5 @@ class Panel{
   public function __construct($id,$args){
     $this->id = $id;
     $this->args = $args;
-
   }
 }

@@ -1,6 +1,10 @@
 <?php
 namespace GF_SOCIAL_ICONS\Global;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 class Settings
 {
     //ANCHOR  PANEL ID :

@@ -1,6 +1,10 @@
 <?php 
 namespace GF_SOCIAL_ICONS\Types;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 class Section {
 	/**
 	 * ID of section

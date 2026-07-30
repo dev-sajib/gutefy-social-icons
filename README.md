@@ -1,5 +1,5 @@
 # Sticky Social Icons
-![Sticky Social Icons](https://img.shields.io/badge/version-1.0.1-blue.svg)
+![Sticky Social Icons](https://img.shields.io/badge/version-1.2.1-blue.svg)
 ![PHP Version](https://img.shields.io/badge/PHP-%3E%3D%207.2-blue.svg)
 ![WordPress Version](https://img.shields.io/badge/WordPress-%3E%3D%206.3-blue.svg)
 ![License](https://img.shields.io/badge/license-GPL--2.0--or--later-blue.svg)
@@ -28,13 +28,14 @@ With **Sticky Social Icons**, you get a clean, fast, and user-friendly way to co
 
 ## Installation
 
-1. Download the plugin ZIP file from the [releases page](https://github.com/dev-sajib/gutefy-social-icons/releases).
+1. Download the plugin ZIP file from the [releases page](https://github.com/syed-sajib/gutefy-social-icons/releases), or install **Sticky Social Icons** from the WordPress.org plugin directory.
 2. Go to your WordPress dashboard.
 3. Navigate to `Plugins > Add New`.
 4. Click `Upload Plugin`.
 5. Select the downloaded ZIP file and click `Install Now`.
 6. Activate the plugin through the 'Plugins' menu in WordPress.
-6. Run `npm i && npm run start`.
+
+If you cloned this repository instead of downloading a release, run `npm install && npm run build` first — the `build/` directory is not committed (see [Development](#development)).
 
 ## Usage
 
@@ -42,16 +43,35 @@ After activating the plugin, navigate to the plugin settings page to customize t
 
 ## Development
 
+### Source and Build
+
+Everything shipped in `build/` is compiled from `src/` with [@wordpress/scripts](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/) (webpack). Nothing in this project is minified by hand or obfuscated, and there are no compiled binaries.
+
+```bash
+npm install
+npm run build     # production build into build/
+npm run start     # development build + watch
+```
+
+Build configuration: `webpack.config.js` (extends the default `@wordpress/scripts` config, adds the two entry points below and copies `src/iconStore.json` into `build/`).
+
+| Source | Output |
+|---|---|
+| `src/customizer.js` (+ `src/components/**/*.jsx`, `src/customizer.scss`) | `build/customizer.js`, `build/customizer.css` |
+| `src/view.js`, `src/view.scss` | `build/view.js`, `build/view.css` |
+| `src/iconStore.json` | `build/iconStore.json` |
+
 ### Folder Structure
 
-- `classes/reactControl/`: Contains PHP classes for managing social icons settings and controls.
-- `node_modules/`: Directory containing all Node.js modules.
-- `src/`: Source directory for React components and SCSS files.
-  - `components/assets/css/`: Contains SCSS files for styling the plugin.
-  - `components/general-settings/`: React components for general settings.
-  - `components/style-settings/`: React components for style settings.
-  - `customizer.js`: Entry point for the customizer script.
-  - `view.js`: Entry point for the view script.
+- `gf-social-icons.php`: Plugin bootstrap and header.
+- `includes/`: PHP classes — `Core`, `TemplateLoader`, `Sanitize`, `Validation`, `BaseCustomizer`, plus `types/`, `controls/` (Customizer control registrations) and `global/` (activation, settings, enqueues).
+- `src/`: Uncompiled source — React/JSX Customizer controls, SCSS, and the frontend script.
+  - `components/`: One folder per Customizer control (`borderControl`, `colorControl`, `socialRepeaterControl`, `tabs`, `toggleControl`, `unitInputControl`, `checkboxControl`, `conditionalDisplayControl`, `selectDropDownControl`, `tooltip`) plus `styleGenerator.jsx` and `subControl.jsx`.
+  - `customizer.js` / `customizer.scss`: Entry point and styles for the Customizer UI.
+  - `view.js` / `view.scss`: Entry point and styles for the frontend.
+  - `iconStore.json`: Icon catalogue (SVG paths and metadata).
+- `build/`: Generated output — **not committed**, produced by `npm run build`.
+- `vendor/`: Composer autoloader.
 
 ### Build and Development Scripts
 
@@ -93,9 +113,7 @@ This plugin is licensed under the GPL-2.0-or-later License. See the [LICENSE](LI
 
 ## Support
 
-For support and further information, please visit our website or contact us at [support@gutefy.com](mailto:admin@gutefy.com).
-
-Feel free to update the placeholder links (`https://github.com/dev-sajib/gutefy-social-icons/releases`, `https://portfolio.gutefy.com`, and `mailto:admin@gutefy.com`) with the actual URLs and email address.
+For support and further information, contact us at [admin@gutefy.com](mailto:admin@gutefy.com) or open an issue on the [issue tracker](https://github.com/syed-sajib/gutefy-social-icons/issues).
 
 
 

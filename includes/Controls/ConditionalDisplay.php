@@ -1,6 +1,10 @@
 <?php
 namespace GF_SOCIAL_ICONS\Controls;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 class ConditionalDisplay extends \WP_Customize_Control
 {
 

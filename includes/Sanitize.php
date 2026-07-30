@@ -1,6 +1,10 @@
 <?php
 
 namespace GF_SOCIAL_ICONS;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 class Sanitize {
 
   public static function gf_social_icons_visibility_sanitize($value) {
@@ -41,8 +45,8 @@ class Sanitize {
   public static function gf_social_icons_custom_sanitize($value) {
     // Ensure $value is an array
     if (!is_array($value)) {
-        error_log('Unexpected type encountered in gf_social_icons_custom_sanitize: ' . gettype($value));
-        return [['facebook', 'http://facebook.com']]; // Return a default array or handle the unexpected type
+        // Unexpected type — fall back to a safe default.
+        return [['facebook', 'http://facebook.com']];
     }
 
     // Sanitize each item in the array
