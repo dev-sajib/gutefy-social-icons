@@ -3,7 +3,7 @@
     "description": "Effortlessly adding floating social icons for seamless display and interaction.",
     "license": "GPL-2.0+",
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.2"
     },
     "autoload": {
         "psr-4": {

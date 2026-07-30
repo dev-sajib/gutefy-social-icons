@@ -3,7 +3,7 @@ Contributors: gutefy
 Tags: social icons, floating social icons, sticky icons, contact buttons, click to call
 Requires at least: 6.3
 Requires PHP: 7.2
-Tested up to: 7.0
+Tested up to: 7.0.2
 Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
