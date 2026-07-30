@@ -14,7 +14,7 @@ Floating or inline social and contact icons for any WordPress site — no code, 
 
 **Sticky Social Icons** is a lightweight, mobile-friendly social media plugin that lets you add floating sticky social icons to any WordPress site — without writing a single line of code. Visitors get instant access to your WhatsApp, phone, email, and every social channel right from the side of the screen.
 
-Designed for businesses, creators, agencies, and stores, the plugin works out of the box with **Block Themes**, **Classic Themes**, **WooCommerce**, **Elementor**, **Bricks**, **Divi**, **Astra**, **Kadence**, **GeneratePress**, **Hello Theme**, **Hello Elementor**, and every popular page builder.
+Designed for businesses, creators, agencies, and stores, the plugin works out of the box with both block and classic themes, and with the common page builders.
 
 Configure everything live in the **WordPress Customizer** — change colors, sizes, borders, radius, position, and per-device visibility and see the result update in real time.
 
@@ -45,6 +45,12 @@ Configure everything live in the **WordPress Customizer** — change colors, siz
 = 📱 Popular Channels Built In =
 
 Facebook, Facebook Messenger, Facebook (f), WhatsApp, Instagram, X (Twitter), YouTube, LinkedIn, TikTok, Telegram, Pinterest, Snapchat, Reddit, Skype, Tumblr, Discord, GitHub, Vimeo, Twitch, Behance, Dribbble, Email (envelope), Phone, and more — with new icons added in every release.
+
+= 🛠 Source Code and Build Process =
+
+Nothing in this plugin is obfuscated or minified by hand. The uncompiled source (JavaScript/JSX and SCSS) ships inside the plugin in `/src`, together with `package.json` and `webpack.config.js`, and is also published at https://github.com/syed-sajib/gutefy-social-icons
+
+The files in `/build` are generated from `/src` with @wordpress/scripts (webpack) by running `npm install` and then `npm run build`. See the "Source Code" section below for details.
 
 = 💼 Perfect For =
 
