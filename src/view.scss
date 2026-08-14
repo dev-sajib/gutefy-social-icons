@@ -167,8 +167,20 @@
     left: calc(100% + 8px);
   }
 
-  &.layout--horizontal .gf_social_icons_tooltip,
-  &.has--bottom-bar .gf_social_icons_tooltip {
+  // Above the icon when the icons sit in a row. The bottom-bar variant only
+  // applies inside the mobile breakpoint, where that layout actually kicks in.
+  &.layout--horizontal .gf_social_icons_tooltip {
+    top: auto;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 767px) {
+
+  #gf_social_icons__wrapper.has--bottom-bar .gf_social_icons_tooltip {
     top: auto;
     bottom: calc(100% + 8px);
     left: 50%;
