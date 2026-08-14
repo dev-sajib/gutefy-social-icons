@@ -11,9 +11,9 @@ class Activate
 
     public function __construct()
     {
-        register_activation_hook(PLUGIN_ROOT_FILE, [$this, 'gf_activate_plugin']);
+        register_activation_hook(GF_SOCIAL_ICONS_FILE, [$this, 'gf_activate_plugin']);
         add_action('widgets_init', [$this, 'gf_register_sidebar']);
-        add_filter( 'plugin_action_links_' . PLUGIN_ROOT_BASENAME, [$this,'gf_social_icons_plugin_action_links'],10,2 );
+        add_filter( 'plugin_action_links_' . GF_SOCIAL_ICONS_BASENAME, [$this,'gf_social_icons_plugin_action_links'],10,2 );
 
     }
 

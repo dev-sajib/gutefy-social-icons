@@ -6,6 +6,9 @@ namespace GF_SOCIAL_ICONS;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+
+use GF_SOCIAL_ICONS\Global\Settings;
+
 class TemplateLoader
 {
     public $templateLoadCount = 0;
@@ -28,13 +31,124 @@ class TemplateLoader
         if (!self::should_render()) {
             return;
         }
-        $gf_social_icons_position_horizontally = get_option('gf_social_icons_position_horizontally', 'position--right');
 
         self::generateStyle();
 
-        echo '<div id="gf_social_icons__wrapper" class="gutefy-section-parent-wrapper ' . esc_attr($gf_social_icons_position_horizontally) . '">';
+        $classes = ['gutefy-section-parent-wrapper'];
+        $classes[] = get_option('gf_social_icons_position_horizontally', 'position--right');
+        $classes[] = Sanitize::gf_social_icons_layout_sanitize(get_option(Settings::GENERAL_SETTING_ID_LAYOUT, 'layout--vertical'));
+
+        $animation = Sanitize::gf_social_icons_animation_sanitize(get_option(Settings::ADVANCED_SETTING_ID_ANIMATION, 'anim--none'));
+        if ('anim--none' !== $animation) {
+            $classes[] = $animation;
+        }
+
+        if (self::option_enabled(Settings::ADVANCED_SETTING_ID_MOBILE_BOTTOM_BAR)) {
+            $classes[] = 'has--bottom-bar';
+        }
+
+        $collapsible = self::option_enabled(Settings::ADVANCED_SETTING_ID_TOGGLE_BUTTON);
+        if ($collapsible) {
+            $classes[] = 'has--toggle';
+        }
+
+        $scroll_reveal = self::option_enabled(Settings::ADVANCED_SETTING_ID_SCROLL_REVEAL);
+        $attributes = '';
+        if ($scroll_reveal) {
+            $classes[] = 'is--scroll-reveal';
+
+            /**
+             * Distance in pixels the visitor must scroll before the icons appear.
+             *
+             * @since 1.3.0
+             * @param int $offset Scroll offset in pixels.
+             */
+            $offset = (int) apply_filters('gf_social_icons_scroll_offset', 200);
+            $attributes .= ' data-scroll-offset="' . esc_attr(max(0, $offset)) . '"';
+        }
+
+        echo '<div id="gf_social_icons__wrapper" class="' . esc_attr(implode(' ', array_filter($classes))) . '"' . $attributes . '>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- $attributes is assembled from escaped values above.
+
+        if ($collapsible) {
+            self::render_toggle_button();
+        }
+
         self::render_template();
         echo '</div>';
+    }
+
+    /**
+     * Reads a toggle-style option saved as ['value' => bool].
+     *
+     * @param string $option_name Option key.
+     * @return bool
+     */
+    public static function option_enabled($option_name)
+    {
+        $value = get_option($option_name, ['value' => false]);
+
+        if (is_array($value)) {
+            return !empty($value['value']);
+        }
+
+        return (bool) $value;
+    }
+
+    /**
+     * Prints the button that collapses and expands the icon list.
+     */
+    public static function render_toggle_button()
+    {
+        $icon = self::get_icon_markup('link');
+
+        echo '<button type="button" class="gf_social_icons_toggle" aria-expanded="false" aria-controls="gf_social_icons_list" aria-label="'
+            . esc_attr__('Show social and contact links', 'gf-social-icons') . '">'
+            . '<span class="gf_social_icons_toggle_open" aria-hidden="true">' . $icon . '</span>' // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- filtered by get_icon_markup().
+            . '<span class="gf_social_icons_toggle_close" aria-hidden="true">&times;</span>'
+            . '</button>';
+    }
+
+    /**
+     * Returns the bundled SVG for an icon id, filtered through wp_kses().
+     *
+     * @param string $icon_id Icon key from iconStore.json.
+     * @return string
+     */
+    public static function get_icon_markup($icon_id)
+    {
+        $store = self::get_icon_store();
+
+        if (!isset($store[$icon_id]['icon'])) {
+            return '';
+        }
+
+        return wp_kses($store[$icon_id]['icon'], self::svg_allowed_html());
+    }
+
+    /**
+     * Loads and caches the bundled icon catalogue.
+     *
+     * @return array
+     */
+    public static function get_icon_store()
+    {
+        static $store = null;
+
+        if (null !== $store) {
+            return $store;
+        }
+
+        $store = [];
+        $json_file_path = plugin_dir_path(__FILE__) . './../build/iconStore.json';
+
+        if (file_exists($json_file_path)) {
+            $decoded = json_decode(file_get_contents($json_file_path), true);
+            if (JSON_ERROR_NONE === json_last_error() && is_array($decoded)) {
+                $store = $decoded;
+            }
+        }
+
+        return $store;
     }
 
     /**
@@ -161,53 +275,155 @@ class TemplateLoader
         $social_icons_settings = get_option('gf_social_icons_general_settings', []);
         $open_in_new_tab = get_option('gf_social_icons_open_in_new_tab_settings', ['value' => true]);
 
+        $social_icons_data = self::get_icon_store();
 
-        // load icon json 
-        $json_file_path = plugin_dir_path(__FILE__) . './../build/iconStore.json';
-
-        //check availablity
-        if (!file_exists($json_file_path)) {
-            return;
-        }
-
-        // Read and decode the JSON file
-        $json_data = file_get_contents($json_file_path);
-        $social_icons_data = json_decode($json_data, true);
-
-        // Check if the JSON data was properly decoded
-        if (json_last_error() !== JSON_ERROR_NONE || !is_array($social_icons_data)) {
+        if (empty($social_icons_data)) {
             return;
         }
 
         $open_in_new_tab = (is_array($open_in_new_tab) && !empty($open_in_new_tab['value']));
+        $use_brand_colors = self::option_enabled(Settings::GENERAL_SETTING_ID_BRAND_COLORS);
         $allowed_svg = self::svg_allowed_html();
 
-        echo '<div class="gf_social_icons_social_float">';
+        echo '<div id="gf_social_icons_list" class="gf_social_icons_social_float">';
 
         if (!empty($social_icons_settings)) {
             foreach ($social_icons_settings as $icon) {
-                if (empty($icon[1]) || !isset($social_icons_data[$icon[0]]['icon'])) {
+                $options = (isset($icon[3]) && is_array($icon[3])) ? $icon[3] : [];
+                $icon_markup = self::get_row_icon_markup($icon[0], $options, $social_icons_data, $allowed_svg);
+
+                if (empty($icon[1]) || '' === $icon_markup) {
                     continue;
                 }
 
-                $aria_label = ucwords(str_replace(['_', '-'], ' ', $icon[0]));
-                $options = (isset($icon[3]) && is_array($icon[3])) ? $icon[3] : [];
+                $aria_label = !empty($options['label'])
+                    ? $options['label']
+                    : ucwords(str_replace(['_', '-'], ' ', $icon[0]));
+
                 $href = self::build_href($icon[0], $icon[1], $options);
                 $is_protocol_href = (bool) preg_match('/^(mailto:|tel:|sms:)/i', $href);
+                $row_style = self::get_row_color_style($icon[0], $options, $social_icons_data, $use_brand_colors);
 
-                echo '<a class="gf_social_icons_social_icon" href="'
+                $classes = ['gf_social_icons_social_icon'];
+                $declarations = [];
+
+                if (isset($row_style['icon'])) {
+                    $classes[] = 'has--row-icon-color';
+                    $declarations[] = '--gf-row-icon-color:' . $row_style['icon'];
+                }
+                if (isset($row_style['background'])) {
+                    $classes[] = 'has--row-bg-color';
+                    $declarations[] = '--gf-row-bg-color:' . $row_style['background'];
+                }
+
+                $inline_style = $declarations
+                    ? ' style="' . esc_attr(implode(';', $declarations)) . '"'
+                    : '';
+
+                echo '<a class="' . esc_attr(implode(' ', $classes)) . '" href="'
                     . ($is_protocol_href ? esc_attr($href) : esc_url($href))
                     . '" aria-label="' . esc_attr($aria_label) . '" rel="noopener noreferrer"'
                     . (($open_in_new_tab && !$is_protocol_href) ? ' target="_blank"' : '')
-                    . '><span>'
-                    . wp_kses($social_icons_data[$icon[0]]['icon'], $allowed_svg)
-                    . '</span></a>';
+                    . $inline_style // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped with esc_attr() above.
+                    . '><span class="gf_social_icons_icon">'
+                    . $icon_markup // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- filtered by get_row_icon_markup().
+                    . '</span>';
+
+                if (!empty($options['label'])) {
+                    echo '<span class="gf_social_icons_tooltip" aria-hidden="true">' . esc_html($options['label']) . '</span>';
+                }
+
+                echo '</a>';
             }
         } else {
             echo '<p class="empty-sms">' . esc_html__('Minimum One Url Required.', 'gf-social-icons') . '</p>';
         }
 
         echo '</div>';
+    }
+
+    /**
+     * Returns escaped icon markup for a row: an uploaded image when one is set,
+     * otherwise the bundled SVG.
+     *
+     * @param string $icon_id     Icon key.
+     * @param array  $options     Per-row options.
+     * @param array  $store       Icon catalogue.
+     * @param array  $allowed_svg Allowed SVG tags.
+     * @return string
+     */
+    public static function get_row_icon_markup($icon_id, $options, $store, $allowed_svg)
+    {
+        $attachment_id = isset($options['custom_icon']) ? absint($options['custom_icon']) : 0;
+
+        if ($attachment_id) {
+            if ('image/svg+xml' === get_post_mime_type($attachment_id)) {
+                $file = get_attached_file($attachment_id);
+                if ($file && file_exists($file)) {
+                    return wp_kses(file_get_contents($file), $allowed_svg);
+                }
+            }
+
+            $image = wp_get_attachment_image($attachment_id, [64, 64], false, [
+                'class' => 'gf_social_icons_custom_icon',
+                'alt' => '',
+                'aria-hidden' => 'true',
+            ]);
+
+            if ($image) {
+                return $image;
+            }
+        }
+
+        if (!isset($store[$icon_id]['icon'])) {
+            return '';
+        }
+
+        return wp_kses($store[$icon_id]['icon'], $allowed_svg);
+    }
+
+    /**
+     * Resolves the colours for one row.
+     *
+     * Precedence: per-row override, then the brand colour when brand colours are on,
+     * then nothing — in which case the global Design settings apply.
+     *
+     * @param string $icon_id          Icon key.
+     * @param array  $options          Per-row options.
+     * @param array  $store            Icon catalogue.
+     * @param bool   $use_brand_colors Whether brand colours are enabled.
+     * @return array
+     */
+    public static function get_row_color_style($icon_id, $options, $store, $use_brand_colors)
+    {
+        $style = [];
+
+        $icon_color = isset($options['icon_color']) ? Sanitize::gf_social_icons_color_sanitize($options['icon_color']) : '';
+        $background = isset($options['bg_color']) ? Sanitize::gf_social_icons_color_sanitize($options['bg_color']) : '';
+
+        if ($use_brand_colors) {
+            $brand = isset($store[$icon_id]['defaultColor'])
+                ? Sanitize::gf_social_icons_color_sanitize($store[$icon_id]['defaultColor'])
+                : '';
+
+            if ('' !== $brand) {
+                if ('' === $background) {
+                    $background = $brand;
+                }
+                if ('' === $icon_color) {
+                    $icon_color = '#ffffff';
+                }
+            }
+        }
+
+        if ('' !== $icon_color) {
+            $style['icon'] = $icon_color;
+        }
+        if ('' !== $background) {
+            $style['background'] = $background;
+        }
+
+        return $style;
     }
 
     /**
@@ -276,37 +492,83 @@ class TemplateLoader
         return $target_trim;
     }
 
-    public static function generateMarkupString($singleStyle, $markup_string)
+    /**
+     * Joins the parts of a multi-value declaration (border shorthand and friends).
+     *
+     * @param array $values Value parts.
+     * @return string
+     */
+    private static function join_style_values($values)
     {
+        $parts = [];
 
-        if (array_key_exists('css_attr',$singleStyle) && $singleStyle['css_attr'] && $singleStyle['css_attr'] === null) {
-            foreach ($singleStyle as $style) {
-
-                if (gettype($style) != 'string') {
-                    if (gettype($style['value']) === 'array') {
-                        $style_string = '';
-                        foreach ($style['value'] as $value) {
-                            $style_string .= $value . ' ';
-                        }
-                        $markup_string .= $singleStyle['css_selector'] . "{" . $style['css_attr'] . ":" . $style_string . " !important;}";
-                    } else {
-                        $markup_string .= $singleStyle['css_selector'] . "{" . $style['css_attr'] . ":" . $style['value'] . " !important;}";
-                    }
-                }
-            }
-
-        } else {
-            if ( array_key_exists('value',@$singleStyle) && gettype($singleStyle['value']) == 'array') {
-                $style_string = '';
-                foreach ($singleStyle['value'] as $value) {
-                    $style_string .= $value . ' ';
-                }
-                $markup_string .= $singleStyle['css_selector'] . "{" . $singleStyle['css_attr'] . ":" . $style_string . "!important;}";
-            } else if( array_key_exists('value',@$singleStyle) && gettype($singleStyle['value'])==='string') {
-                $markup_string .= $singleStyle['css_selector'] . "{" . $singleStyle['css_attr'] . ":" . $singleStyle['value'] . "!important;}";
+        foreach ($values as $value) {
+            $value = trim((string) $value);
+            if ('' !== $value) {
+                $parts[] = $value;
             }
         }
-        return $markup_string;
+
+        return implode(' ', $parts);
+    }
+
+    /**
+     * Appends one declaration, skipping anything without a value.
+     *
+     * Hover settings that were never touched arrive here empty; writing them out
+     * produced invalid declarations such as `fill:!important;`.
+     *
+     * @param string $selector CSS selector.
+     * @param string $property CSS property.
+     * @param mixed  $value    Declaration value.
+     * @return string
+     */
+    private static function build_declaration($selector, $property, $value)
+    {
+        $selector = trim((string) $selector);
+        $property = trim((string) $property);
+
+        if ('' === $selector || '' === $property) {
+            return '';
+        }
+
+        $value = is_array($value) ? self::join_style_values($value) : trim((string) $value);
+
+        if ('' === $value) {
+            return '';
+        }
+
+        return $selector . '{' . $property . ':' . $value . ' !important;}';
+    }
+
+    public static function generateMarkupString($singleStyle, $markup_string)
+    {
+        if (!is_array($singleStyle)) {
+            return $markup_string;
+        }
+
+        $selector = isset($singleStyle['css_selector']) ? $singleStyle['css_selector'] : '';
+
+        // Grouped shape: the entry holds a list of declarations instead of one.
+        if (!isset($singleStyle['css_attr'])) {
+            foreach ($singleStyle as $style) {
+                if (is_array($style) && isset($style['css_attr'])) {
+                    $markup_string .= self::build_declaration(
+                        $selector,
+                        $style['css_attr'],
+                        isset($style['value']) ? $style['value'] : ''
+                    );
+                }
+            }
+
+            return $markup_string;
+        }
+
+        return $markup_string . self::build_declaration(
+            $selector,
+            $singleStyle['css_attr'],
+            isset($singleStyle['value']) ? $singleStyle['value'] : ''
+        );
     }
     public static function generateStyle()
     {
@@ -337,48 +599,79 @@ class TemplateLoader
 
             $markup_string = '';
 
-            if ($mergedStyles['desktop']) {
-
+            if (!empty($mergedStyles['desktop'])) {
                 foreach ($mergedStyles['desktop'] as $singleStyle) {
-
-
                     $markup_string = self::generateMarkupString($singleStyle, $markup_string);
-
-
                 }
             }
 
-            if ($mergedStyles['tablet']) {
-
-                $markup_string .= '@media (max-width: 1020px) {';
+            if (!empty($mergedStyles['tablet'])) {
+                $tablet_styles = '';
 
                 foreach ($mergedStyles['tablet'] as $singleStyle) {
-                    $markup_string = self::generateMarkupString($singleStyle, $markup_string);
+                    $tablet_styles = self::generateMarkupString($singleStyle, $tablet_styles);
                 }
 
-                $markup_string .= '}';
+                if ('' !== $tablet_styles) {
+                    $markup_string .= '@media (max-width: 1020px) {' . $tablet_styles . '}';
+                }
             }
-            ;
-            if ($mergedStyles['mobile']) {
-                $markup_string .= '@media (max-width: 714px) {';
+
+            if (!empty($mergedStyles['mobile'])) {
+                $mobile_styles = '';
+
                 foreach ($mergedStyles['mobile'] as $singleStyle) {
-                    $markup_string = self::generateMarkupString($singleStyle, $markup_string);
+                    $mobile_styles = self::generateMarkupString($singleStyle, $mobile_styles);
                 }
-                $markup_string .= '}';
-            }
-            ;
 
-
-            $upload_dir = wp_upload_dir();
-            $folder_path = $upload_dir['basedir'] . '/gf-social-icons-customizer';
-            if (!file_exists($folder_path)) {
-                mkdir($folder_path, 0755, true);
+                if ('' !== $mobile_styles) {
+                    $markup_string .= '@media (max-width: 714px) {' . $mobile_styles . '}';
+                }
             }
-            $dynamic_css_file_path = $folder_path . '/gf-social-icons-dynamic-style.css';
-            $open_dynamic_style_file = fopen($dynamic_css_file_path, 'w');
-            fwrite($open_dynamic_style_file, $markup_string);
-            fclose($open_dynamic_style_file);
+
+            self::write_dynamic_stylesheet($markup_string);
         }
+    }
+
+    /**
+     * Writes the generated stylesheet to the uploads directory.
+     *
+     * Uses WP_Filesystem, and skips the write entirely when the file already holds
+     * the same CSS — this runs on every front-end request.
+     *
+     * @param string $css Stylesheet contents.
+     * @return bool True when the file is present and current.
+     */
+    public static function write_dynamic_stylesheet($css)
+    {
+        $upload_dir = wp_upload_dir();
+
+        if (!empty($upload_dir['error'])) {
+            return false;
+        }
+
+        $folder_path = trailingslashit($upload_dir['basedir']) . 'gf-social-icons-customizer';
+        $file_path = $folder_path . '/gf-social-icons-dynamic-style.css';
+
+        if (file_exists($file_path) && md5_file($file_path) === md5($css)) {
+            return true;
+        }
+
+        global $wp_filesystem;
+
+        if (!function_exists('WP_Filesystem')) {
+            require_once ABSPATH . 'wp-admin/includes/file.php';
+        }
+
+        if (!WP_Filesystem()) {
+            return false;
+        }
+
+        if (!$wp_filesystem->is_dir($folder_path) && !wp_mkdir_p($folder_path)) {
+            return false;
+        }
+
+        return $wp_filesystem->put_contents($file_path, $css, FS_CHMOD_FILE);
     }
 }
 

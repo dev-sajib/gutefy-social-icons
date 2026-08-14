@@ -85,9 +85,84 @@ class Sanitize {
             if (isset($raw_options['sms'])) {
                 $clean_options['sms'] = (bool) $raw_options['sms'];
             }
-            $value[$key][3] = $clean_options;
+            if (isset($raw_options['label'])) {
+                $clean_options['label'] = sanitize_text_field(substr((string) $raw_options['label'], 0, 60));
+            }
+            if (isset($raw_options['icon_color'])) {
+                $clean_options['icon_color'] = self::gf_social_icons_color_sanitize($raw_options['icon_color']);
+            }
+            if (isset($raw_options['bg_color'])) {
+                $clean_options['bg_color'] = self::gf_social_icons_color_sanitize($raw_options['bg_color']);
+            }
+            if (isset($raw_options['custom_icon'])) {
+                $clean_options['custom_icon'] = absint($raw_options['custom_icon']);
+            }
+            $value[$key][3] = array_filter($clean_options, function ($option) {
+                return $option !== '' && $option !== null;
+            });
         }
     }
     return $value;
-}
+  }
+
+  /**
+   * Accepts a hex colour or an rgb()/rgba() string, returns '' when neither.
+   *
+   * @param mixed $color Raw colour value.
+   * @return string
+   */
+  public static function gf_social_icons_color_sanitize($color)
+  {
+    $color = trim((string) $color);
+
+    if ('' === $color) {
+      return '';
+    }
+
+    $hex = sanitize_hex_color($color);
+    if ($hex) {
+      return $hex;
+    }
+
+    if (preg_match('/^rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*(?:,\s*(?:0|1|0?\.\d+)\s*)?\)$/i', $color)) {
+      return $color;
+    }
+
+    return '';
+  }
+
+  /**
+   * Toggle controls store their state as ['value' => bool].
+   *
+   * @param mixed $value Raw setting value.
+   * @return array
+   */
+  public static function gf_social_icons_toggle_sanitize($value)
+  {
+    $state = is_array($value) ? !empty($value['value']) : (bool) $value;
+
+    return ['value' => $state];
+  }
+
+  /**
+   * @param mixed $value Raw setting value.
+   * @return string
+   */
+  public static function gf_social_icons_layout_sanitize($value)
+  {
+    $allowed = ['layout--vertical', 'layout--horizontal'];
+
+    return in_array($value, $allowed, true) ? $value : 'layout--vertical';
+  }
+
+  /**
+   * @param mixed $value Raw setting value.
+   * @return string
+   */
+  public static function gf_social_icons_animation_sanitize($value)
+  {
+    $allowed = ['anim--none', 'anim--fade', 'anim--slide'];
+
+    return in_array($value, $allowed, true) ? $value : 'anim--none';
+  }
 }

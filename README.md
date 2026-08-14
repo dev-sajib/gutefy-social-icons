@@ -1,5 +1,5 @@
 # Sticky Social Icons
-![Sticky Social Icons](https://img.shields.io/badge/version-1.2.1-blue.svg)
+![Sticky Social Icons](https://img.shields.io/badge/version-1.3.0-blue.svg)
 ![PHP Version](https://img.shields.io/badge/PHP-%3E%3D%207.2-blue.svg)
 ![WordPress Version](https://img.shields.io/badge/WordPress-%3E%3D%206.3-blue.svg)
 ![License](https://img.shields.io/badge/license-GPL--2.0--or--later-blue.svg)
@@ -15,16 +15,21 @@ The plugin integrates seamlessly with the WordPress Customizer, making it incred
 
 **Sticky Social Icons** is fully responsive, ensuring that your icons display perfectly on both large desktops and small mobile screens. It’s lightweight, which means it won’t slow down your site or affect performance.
 
-Preloaded with popular social icons like **Facebook**, **Twitter (now X)**, **WhatsApp**, **Instagram**, **YouTube**, **LinkedIn**, **Telegram**, **Pinterest**, **Snapchat**, **TikTok**, **Reddit**, **Skype**, and options like **phone** and **email** (e.g., **Envelope**), the plugin allows you to enhance your site’s social presence. Future updates will expand the icon list and add more exciting features like animations and tooltips.
+Preloaded with 44 icons — **Facebook**, **X (Twitter)**, **WhatsApp**, **Instagram**, **YouTube**, **LinkedIn**, **TikTok**, **Telegram**, **Threads**, **Bluesky**, **Mastodon**, **Signal**, **Viber**, **LINE**, **Discord**, **Slack**, **Spotify**, **Twitch**, **Vimeo**, **GitHub**, **Tumblr**, **Behance**, **Dribbble**, **Yelp**, **Pinterest**, **Snapchat**, **Reddit**, **Skype**, plus **phone**, **email** and a generic link icon. Any channel that is not in the pack can be added as a custom link with your own uploaded icon.
 
 With **Sticky Social Icons**, you get a clean, fast, and user-friendly way to connect your website to your social channels, offering a seamless experience for your visitors.
 
 ## Features
 
-- Easy integration of floating social icons
-- Seamless display and interaction
-- Customizable styles and settings
-- Supports various social media platforms
+- Floating icon rail, horizontal bar, or full-width bottom bar on mobile
+- Official brand colors, with per-account icon and background overrides
+- Collapse the list behind a single toggle button (click or keyboard, Escape closes)
+- Reveal after scrolling, with optional fade or slide animation (respects `prefers-reduced-motion`)
+- Hover tooltips that double as the link's accessible name
+- Click-to-chat WhatsApp, click-to-call, SMS and pre-filled email links
+- Custom links with your own uploaded icon
+- Per-device visibility, page-level display rules and role-based hiding
+- No jQuery, no icon font, and no React on the frontend — one 1 KB script
 
 ## Installation
 
@@ -61,6 +66,14 @@ Build configuration: `webpack.config.js` (extends the default `@wordpress/script
 | `src/view.js`, `src/view.scss` | `build/view.js`, `build/view.css` |
 | `src/iconStore.json` | `build/iconStore.json` |
 
+`src/iconStore.json` itself is generated:
+
+```bash
+npm run build:icons   # tools/build-icon-store.js
+```
+
+Icon artwork comes from [Font Awesome Free](https://fontawesome.com/license/free), licensed CC BY 4.0.
+
 ### Folder Structure
 
 - `gf-social-icons.php`: Plugin bootstrap and header.
@@ -70,12 +83,14 @@ Build configuration: `webpack.config.js` (extends the default `@wordpress/script
   - `customizer.js` / `customizer.scss`: Entry point and styles for the Customizer UI.
   - `view.js` / `view.scss`: Entry point and styles for the frontend.
   - `iconStore.json`: Icon catalogue (SVG paths and metadata).
+- `tools/`: Maintenance scripts — `build-icon-store.js` regenerates the icon catalogue.
 - `build/`: Generated output — **not committed**, produced by `npm run build`.
 - `vendor/`: Composer autoloader.
 
 ### Build and Development Scripts
 
 - `build`: Compiles the source files.
+- `build:icons`: Regenerates `src/iconStore.json` from Font Awesome.
 - `format`: Formats the code.
 - `lint:css`: Lints the CSS files.
 - `lint:js`: Lints the JavaScript files.

@@ -605,6 +605,189 @@ class Core extends BaseCustomizer
         'custom_control' => "\GF_SOCIAL_ICONS\Controls\ConditionalDisplay"
       ],
 
+      // ANCHOR - Layout and behaviour controls (since 1.3.0)
+      [
+        'id' => Settings::GENERAL_SETTING_ID_LAYOUT,
+        'setting_args' => [
+          'default' => 'layout--vertical',
+          'transport' => 'refresh',
+          'type' => 'option',
+          'capability' => 'manage_options',
+          'sanitize_callback' => [Sanitize::class, 'gf_social_icons_layout_sanitize'],
+        ],
+        'control_args' => [
+          'label' => __('Layout', 'gf-social-icons'),
+          'section' => Settings::SECTION_GENERAL_SETTINGS,
+          'priority' => 3,
+          'input_attrs' => array(
+            'choices' => array(
+              array('label' => __('Vertical rail', 'gf-social-icons'), 'value' => 'layout--vertical'),
+              array('label' => __('Horizontal bar', 'gf-social-icons'), 'value' => 'layout--horizontal'),
+            ),
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\SelectDropdownControl"
+      ],
+      [
+        'id' => Settings::GENERAL_SETTING_ID_BRAND_COLORS,
+        'setting_args' => [
+          'default' => ['value' => false],
+          'transport' => 'refresh',
+          'type' => 'option',
+          'capability' => 'manage_options',
+          'sanitize_callback' => [Sanitize::class, 'gf_social_icons_toggle_sanitize'],
+        ],
+        'control_args' => [
+          'label' => __('Use Brand Colors', 'gf-social-icons'),
+          'section' => Settings::SECTION_GENERAL_SETTINGS,
+          'priority' => 4,
+          'input_attrs' => array(
+            'responsive' => false,
+            'heading' => 'Advance Settings'
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\Toggle"
+      ],
+      [
+        'id' => Settings::ADVANCED_SETTING_ID_MOBILE_BOTTOM_BAR,
+        'setting_args' => [
+          'default' => ['value' => false],
+          'transport' => 'refresh',
+          'type' => 'option',
+          'capability' => 'manage_options',
+          'sanitize_callback' => [Sanitize::class, 'gf_social_icons_toggle_sanitize'],
+        ],
+        'control_args' => [
+          'label' => __('Bottom Bar On Mobile', 'gf-social-icons'),
+          'section' => Settings::SECTION_ADVANCED_SETTINGS,
+          'priority' => 3,
+          'input_attrs' => array(
+            'responsive' => false,
+            'heading' => 'Advance Settings'
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\Toggle"
+      ],
+      [
+        'id' => Settings::ADVANCED_SETTING_ID_TOGGLE_BUTTON,
+        'setting_args' => [
+          'default' => ['value' => false],
+          'transport' => 'refresh',
+          'type' => 'option',
+          'capability' => 'manage_options',
+          'sanitize_callback' => [Sanitize::class, 'gf_social_icons_toggle_sanitize'],
+        ],
+        'control_args' => [
+          'label' => __('Collapse Behind A Button', 'gf-social-icons'),
+          'section' => Settings::SECTION_ADVANCED_SETTINGS,
+          'priority' => 4,
+          'input_attrs' => array(
+            'responsive' => false,
+            'heading' => 'Advance Settings'
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\Toggle"
+      ],
+      [
+        'id' => Settings::ADVANCED_SETTING_ID_SCROLL_REVEAL,
+        'setting_args' => [
+          'default' => ['value' => false],
+          'transport' => 'refresh',
+          'type' => 'option',
+          'capability' => 'manage_options',
+          'sanitize_callback' => [Sanitize::class, 'gf_social_icons_toggle_sanitize'],
+        ],
+        'control_args' => [
+          'label' => __('Show After Scrolling', 'gf-social-icons'),
+          'section' => Settings::SECTION_ADVANCED_SETTINGS,
+          'priority' => 5,
+          'input_attrs' => array(
+            'responsive' => false,
+            'heading' => 'Advance Settings'
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\Toggle"
+      ],
+      [
+        'id' => Settings::ADVANCED_SETTING_ID_ANIMATION,
+        'setting_args' => [
+          'default' => 'anim--none',
+          'transport' => 'refresh',
+          'type' => 'option',
+          'capability' => 'manage_options',
+          'sanitize_callback' => [Sanitize::class, 'gf_social_icons_animation_sanitize'],
+        ],
+        'control_args' => [
+          'label' => __('Entrance Animation', 'gf-social-icons'),
+          'section' => Settings::SECTION_ADVANCED_SETTINGS,
+          'priority' => 6,
+          'input_attrs' => array(
+            'choices' => array(
+              array('label' => __('None', 'gf-social-icons'), 'value' => 'anim--none'),
+              array('label' => __('Fade in', 'gf-social-icons'), 'value' => 'anim--fade'),
+              array('label' => __('Slide in', 'gf-social-icons'), 'value' => 'anim--slide'),
+            ),
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\SelectDropdownControl"
+      ],
+      [
+        'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_TOOLTIP_BACKGROUND'],
+        'priority' => 14,
+        'setting_args' => [
+          'default' => [
+            'css_selector' => "#gf_social_icons__wrapper .gf_social_icons_tooltip",
+            'device_wise_value' => [
+              'desktop' => [
+                'css_attr' => 'background',
+                'value' => '#111827',
+              ],
+            ]
+          ],
+          'transport' => 'postMessage',
+          'type' => 'option',
+          'capability' => 'manage_options',
+        ],
+        'control_args' => [
+          'label' => __('Tooltip Background', 'gf-social-icons'),
+          'section' => Settings::SECTION_STYLE_SETTINGS,
+          'input_attrs' => array(
+            'responsive' => false,
+            'heading' => 'Advance Settings',
+            'control_for' => Settings::GENERAL_TAB_ELEMENT
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\Color"
+      ],
+      [
+        'id' => Settings::CUSTOMIZER__STYLE__SETTINGS_ID__ARRAY['STYLE_SETTING_ID_TOOLTIP_COLOR'],
+        'priority' => 15,
+        'setting_args' => [
+          'default' => [
+            'css_selector' => "#gf_social_icons__wrapper .gf_social_icons_tooltip",
+            'device_wise_value' => [
+              'desktop' => [
+                'css_attr' => 'color',
+                'value' => '#ffffff',
+              ],
+            ]
+          ],
+          'transport' => 'postMessage',
+          'type' => 'option',
+          'capability' => 'manage_options',
+        ],
+        'control_args' => [
+          'label' => __('Tooltip Text Color', 'gf-social-icons'),
+          'section' => Settings::SECTION_STYLE_SETTINGS,
+          'input_attrs' => array(
+            'responsive' => false,
+            'heading' => 'Advance Settings',
+            'control_for' => Settings::GENERAL_TAB_ELEMENT
+          ),
+        ],
+        'custom_control' => "\GF_SOCIAL_ICONS\Controls\Color"
+      ],
+
     ];
 
 

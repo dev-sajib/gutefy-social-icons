@@ -16,7 +16,7 @@ class EnqueueScripts
 
     public static function enqueue()
     {
-        $script_asset_path = PLUGIN_ROOT_DIRECTORY . '/build/customizer.asset.php';
+        $script_asset_path = GF_SOCIAL_ICONS_DIR . '/build/customizer.asset.php';
         if (!file_exists($script_asset_path)) {
             throw new \Error(
                 'You need to run `npm start` or `npm run build` for "Sticky Social Icons" widget first.'
@@ -25,10 +25,13 @@ class EnqueueScripts
         $customizer_js = 'build/customizer.js';
         $script_asset = require ($script_asset_path);
 
+        // Needed by the per-account "Custom icon" picker.
+        wp_enqueue_media();
+
 
         wp_enqueue_script(
             'gf-social-icons--customizer-editor',
-            plugins_url($customizer_js, PLUGIN_ROOT_FILE),
+            plugins_url($customizer_js, GF_SOCIAL_ICONS_FILE),
             array('react', 'wp-components', 'jquery', 'wp-element', 'wp-i18n', 'customize-controls', 'wp-api'),
             $script_asset['version']
         );
@@ -46,9 +49,9 @@ class EnqueueScripts
         $customizer_css = 'build/customizer.css';
         wp_enqueue_style(
             'gf-social-icons--customizer-css',
-            plugins_url($customizer_css, PLUGIN_ROOT_FILE),
+            plugins_url($customizer_css, GF_SOCIAL_ICONS_FILE),
             ['wp-components'],
-            filemtime(PLUGIN_ROOT_DIRECTORY . "/$customizer_css")
+            filemtime(GF_SOCIAL_ICONS_DIR . "/$customizer_css")
         );
     }
     public static function view_enqueue_style()
@@ -61,9 +64,9 @@ class EnqueueScripts
         $view_css = 'build/view.css';
         wp_enqueue_style(
             'gf-social-icons-view-css',
-            plugins_url($view_css, PLUGIN_ROOT_FILE),
+            plugins_url($view_css, GF_SOCIAL_ICONS_FILE),
             array(), // Dependencies
-            filemtime(plugin_dir_path(PLUGIN_ROOT_FILE) . $view_css) // Version based on file modification time
+            filemtime(plugin_dir_path(GF_SOCIAL_ICONS_FILE) . $view_css) // Version based on file modification time
         );
 
         // Enqueue the dynamic CSS file if it exists
@@ -79,11 +82,11 @@ class EnqueueScripts
     public static function view_enqueue_script()
     {
 
-        $dir = PLUGIN_ROOT_DIRECTORY;
+        $dir = GF_SOCIAL_ICONS_DIR;
 
         $script_asset_path = "$dir/build/view.asset.php";
         if (!file_exists($script_asset_path)) {
-            throw new Error(
+            throw new \Error(
                 'You need to run `npm start` or `npm run build` for "Sticky Social Icons" widget first.'
             );
         }
@@ -97,23 +100,15 @@ class EnqueueScripts
         //     [],
         //     null
         // );
+        // The frontend script is plain JavaScript — build/view.asset.php reports no
+        // dependencies, so React and the wp-* packages are not loaded for visitors.
         wp_enqueue_script(
             'gf-social-icons--view-controller',
-            plugins_url($view_js, PLUGIN_ROOT_FILE),
-            array('react', 'wp-components', 'wp-element', 'wp-i18n', 'wp-api'),
-            $script_asset['version']
+            plugins_url($view_js, GF_SOCIAL_ICONS_FILE),
+            $script_asset['dependencies'],
+            $script_asset['version'],
+            true
         );
-
-
-        $customizer_css = 'build/customizer.css';
-        wp_enqueue_style(
-            'gf-social-icons--customizer',
-            plugins_url($customizer_css, PLUGIN_ROOT_FILE),
-            ['wp-components'],
-            filemtime("$dir/$customizer_css")
-        );
-
-
     }
 
 }

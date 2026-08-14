@@ -257,3 +257,56 @@
         opacity: 1;
     }
 }
+
+/* Per-account advanced options (since 1.3.0) */
+.gf-social-icons-row-colors {
+  display: flex;
+  gap: 12px;
+  margin: 8px 0;
+
+  .gf-social-icons-row-color {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+
+    label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #1e1e1e;
+    }
+
+    input[type='color'] {
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      background: none;
+      cursor: pointer;
+    }
+  }
+}
+
+.gf-social-icons-row-custom-icon {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 4px;
+
+  label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #1e1e1e;
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+}

@@ -1,8 +1,9 @@
 /** @format */
 
-import { useState } from '@wordpress/element'
+import { useEffect, useState } from '@wordpress/element'
+import { __ } from '@wordpress/i18n'
 import fontIcons from '../../iconStore.json'
-import { __experimentalInputControl as InputControl, TextareaControl, ToggleControl as WpToggleControl } from '@wordpress/components'
+import { __experimentalInputControl as InputControl, TextareaControl, ToggleControl as WpToggleControl, Button } from '@wordpress/components'
 import { IconPopup } from './iconPopup'
 
 const MAIL_ICONS = ['envelope', 'envelope-regular']
@@ -20,6 +21,7 @@ export function SocialRepeatedField(props) {
     const [[showPopup, iconId], setShowPopup] = useState([false, ''])
     const [showError, setShowError] = useState(false)
     const [showAdvanced, setShowAdvanced] = useState(false)
+    const [customIconUrl, setCustomIconUrl] = useState('')
 
     const options = (props.input[3] && typeof props.input[3] === 'object') ? props.input[3] : {}
     const rowType = getRowType(props.input[0])
@@ -58,7 +60,46 @@ export function SocialRepeatedField(props) {
         phone: '15551234567',
         url: 'https://facebook.com',
     }
-    const hasAdvanced = rowType === 'mail' || rowType === 'whatsapp' || rowType === 'phone'
+    // Every row has advanced options now (label, colours, custom icon); the
+    // channel-specific fields below are added on top for mail/whatsapp/phone.
+    const hasAdvanced = true
+
+    const brandColor = fontIcons[props.input[0]]?.defaultColor || '#000000'
+
+    const openMediaLibrary = () => {
+        const media = window.wp?.media
+
+        if (!media) {
+            return
+        }
+
+        const frame = media({
+            title: __('Choose an icon', 'gf-social-icons'),
+            button: { text: __('Use this icon', 'gf-social-icons') },
+            library: { type: 'image' },
+            multiple: false,
+        })
+
+        frame.on('select', () => {
+            const attachment = frame.state().get('selection').first().toJSON()
+            setCustomIconUrl(attachment.url)
+            updateOption('custom_icon', attachment.id)
+        })
+
+        frame.open()
+    }
+
+    // Resolve the preview URL for an icon chosen in an earlier session.
+    useEffect(() => {
+        const id = options.custom_icon
+
+        if (!id || customIconUrl || !window.wp?.media?.attachment) {
+            return
+        }
+
+        const attachment = window.wp.media.attachment(id)
+        attachment.fetch().then(() => setCustomIconUrl(attachment.get('url')))
+    }, [options.custom_icon])
 
     return (
         <div account-id={props.index} account-type={props.input[2]} className='gf-social-icons-repeater-field-child-wrapper '>
@@ -139,6 +180,62 @@ export function SocialRepeatedField(props) {
                             onChange={(v) => updateOption('sms', v)}
                         />
                     )}
+
+                    <InputControl
+                        label={__('Tooltip label', 'gf-social-icons')}
+                        placeholder={__('Chat on WhatsApp', 'gf-social-icons')}
+                        value={options.label || ''}
+                        onChange={(v) => updateOption('label', v || '')}
+                    />
+
+                    <div className='gf-social-icons-row-colors'>
+                        <div className='gf-social-icons-row-color'>
+                            <label>{__('Icon color', 'gf-social-icons')}</label>
+                            <input
+                                type='color'
+                                value={options.icon_color || '#ffffff'}
+                                onChange={(e) => updateOption('icon_color', e.target.value)}
+                            />
+                            {options.icon_color && (
+                                <Button variant='tertiary' onClick={() => updateOption('icon_color', '')}>
+                                    {__('Reset', 'gf-social-icons')}
+                                </Button>
+                            )}
+                        </div>
+
+                        <div className='gf-social-icons-row-color'>
+                            <label>{__('Background color', 'gf-social-icons')}</label>
+                            <input
+                                type='color'
+                                value={options.bg_color || brandColor}
+                                onChange={(e) => updateOption('bg_color', e.target.value)}
+                            />
+                            {options.bg_color && (
+                                <Button variant='tertiary' onClick={() => updateOption('bg_color', '')}>
+                                    {__('Reset', 'gf-social-icons')}
+                                </Button>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className='gf-social-icons-row-custom-icon'>
+                        <label>{__('Custom icon', 'gf-social-icons')}</label>
+                        {customIconUrl && <img src={customIconUrl} alt='' width='24' height='24' />}
+                        <Button variant='secondary' onClick={openMediaLibrary}>
+                            {options.custom_icon ? __('Replace', 'gf-social-icons') : __('Upload', 'gf-social-icons')}
+                        </Button>
+                        {options.custom_icon && (
+                            <Button
+                                variant='tertiary'
+                                onClick={() => {
+                                    setCustomIconUrl('')
+                                    updateOption('custom_icon', '')
+                                }}
+                            >
+                                {__('Remove', 'gf-social-icons')}
+                            </Button>
+                        )}
+                    </div>
                 </div>
             )}
 

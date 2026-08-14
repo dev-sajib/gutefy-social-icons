@@ -1,12 +1,13 @@
 {
 	"name": "gf-social-icons",
-	"version": "1.2.1",
+	"version": "1.3.0",
 	"description": "Floating, sticky social media icons for WordPress with Customizer support.",
 	"author": "Gutefy",
 	"license": "GPL-2.0-or-later",
 	"main": "build/customizer.js",
 	"scripts": {
 		"build": "wp-scripts build",
+		"build:icons": "node tools/build-icon-store.js",
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
@@ -14,9 +15,10 @@
 		"plugin-zip": "npm-run-all clean-zip build zip-files",
 		"start": "wp-scripts start",
 		"clean-zip": "rm -rf gf-social-icons.zip plugin-zip && mkdir -p plugin-zip/gf-social-icons",
-		"zip-files": "cp -r includes build vendor src composer.json package.json webpack.config.js gf-social-icons.php uninstall.php LICENSE README.txt README.md plugin-zip/gf-social-icons && cd plugin-zip && zip -r ../gf-social-icons.zip gf-social-icons -x '*.DS_Store'"
+		"zip-files": "cp -r includes build vendor src tools composer.json package.json webpack.config.js gf-social-icons.php uninstall.php LICENSE README.txt README.md plugin-zip/gf-social-icons && cd plugin-zip && zip -r ../gf-social-icons.zip gf-social-icons -x '*.DS_Store'"
 	},
 	"devDependencies": {
+		"@fortawesome/free-brands-svg-icons": "^6.7.2",
 		"@types/sortablejs": "^1.15.8",
 		"@wordpress/scripts": "^27.9.0",
 		"copy-webpack-plugin": "^12.0.2",

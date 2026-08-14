@@ -22,6 +22,14 @@ class Settings
     const GENERAL_SETTING_ID_VISIBILITY_RULES = 'gf_social_icons_visibility_rules';
     const GLOBAL_ID__TAB = 'gf_social_icons_tab_settings';
 
+    //ANCHOR - LAYOUT AND BEHAVIOUR (since 1.3.0)
+    const GENERAL_SETTING_ID_LAYOUT = 'gf_social_icons_layout';
+    const GENERAL_SETTING_ID_BRAND_COLORS = 'gf_social_icons_use_brand_colors';
+    const ADVANCED_SETTING_ID_MOBILE_BOTTOM_BAR = 'gf_social_icons_mobile_bottom_bar';
+    const ADVANCED_SETTING_ID_SCROLL_REVEAL = 'gf_social_icons_scroll_reveal';
+    const ADVANCED_SETTING_ID_ANIMATION = 'gf_social_icons_animation';
+    const ADVANCED_SETTING_ID_TOGGLE_BUTTON = 'gf_social_icons_toggle_button';
+
 
     const STYLE_SETTING_ID_WRAPPER_POSITION_RIGHT = 'gf_social_icons_position_horizontally';
 
@@ -50,6 +58,8 @@ class Settings
         'STYLE_SETTING_ID_BORDER_RADIUS' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-radius]',
         'STYLE_SETTING_ID_BORDER_RADIUS_HOVER' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-radius-hover]',
         'STYLE_SETTING_ID_SPACING' => 'gf_social_icons_styles_setting[styles][--gutefy-icon-wrapper-gap]',
+        'STYLE_SETTING_ID_TOOLTIP_BACKGROUND' => 'gf_social_icons_styles_setting[styles][--gutefy-tooltip-background]',
+        'STYLE_SETTING_ID_TOOLTIP_COLOR' => 'gf_social_icons_styles_setting[styles][--gutefy-tooltip-color]',
     ];
 
 
